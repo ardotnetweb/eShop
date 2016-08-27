@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/admin/Views/Shared/_Main.cshtml";
+}
+@using eShop.WebApplication.DomainClasses.AppClasses
+@model List<Slider>
+
+
+
+
+@Html.Partial(partialViewName: MVC.admin.Slider.Views._SolidHeaderSlider)
+<div class="row">
+
+    <div class="col-md-12">
+        <div id="slider">
+            @for (int i = 0; i < Model.Count(); i++)
+            {
+                <img src="~/Content/Images/Slider/@Model[i].Image" style="background-size:100%" data-caption="#caption-@i" />
+            }
+        </div>
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+            if (Model[i].Explain != null && Model[i].Title != null)
+            {
+                <div id="caption-@i" style="display:none; float:right !important; ">
+                    <h4>
+                        @Model[i].Title
+                    </h4>
+                    <p>
+                        @Model[i].Explain
+                    </p>
+                    <p>
+                        مشاهده جزئات بیشتر این پکیج آموزشی
+                    </p>
+                </div>
+            }
+        }
+    </div>
+</div>
+@section Scripts
+{
+<script>
+    var slider = new IdealImageSlider.Slider('#slider');
+    slider.addCaptions();
+    slider.start();
+</script>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

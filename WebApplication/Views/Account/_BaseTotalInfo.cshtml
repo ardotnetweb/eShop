@@ -1,0 +1,65 @@
+﻿@using eShop.WebApplication.DomainClasses.ViewModelClasses
+@model CountInfoUser
+<br />
+<div class="row">
+    <div class="baseInfoUserHeaderWithGlyphiconTop">
+        <span class="glyphicon glyphicon-stats" style="margin:1px auto; font-size:33px;"></span>
+    </div>
+    <div class="baseInfoUserHeaderWithGlyphiconBottom">
+        گزارش عملکرد
+    </div>
+</div>
+<br />
+<table class="table" id="tableInfoUserSection" style="font:normal 14px eramFont;">
+    <tr>
+        <td>
+            تعداد کل سفارشات
+        </td>
+        <td>
+            @Model.CountOrder.ToString()
+        </td>
+        <td>
+            تعداد سفارشات تائید نشده
+        </td>
+        <td>
+            @Model.CountNotConfirmed.ToString()
+        </td>
+    </tr>
+    <tr>
+        <td>
+            تعداد سفارشات در حال پردازش
+        </td>
+        <td>
+            @Model.CountProcess.ToString()
+        </td>
+        <td>
+            تعداد سفارشات ارسال شده
+        </td>
+        <td>
+            @Model.CountSend.ToString()
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            تعداد نظرات ارسالی
+        </td>
+        <td>
+            @Model.CountComment.ToString()
+        </td>
+        <td>
+            تعداد پیام های ارسالی
+        </td>
+        <td>
+            @Model.CountMessage.ToString()
+        </td>
+    </tr>
+    <tr>
+        <td>
+            تعداد محصولات لیست علاقه مندی ها
+        </td>
+        <td colspan="3">
+            @Model.CountComment.ToString()
+        </td>
+    </tr>
+</table>

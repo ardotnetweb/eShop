@@ -1,0 +1,64 @@
+﻿@using eShop.WebApplication.DomainClasses.ViewModelClasses
+
+@model List<CommentViewModel>
+
+@{
+    var loadInfoUrl = Url.Action(actionName: MVC.admin.Manage.ActionNames.PagedIndexComment,
+                                 controllerName: MVC.admin.Manage.Name);
+}
+
+    <input type="hidden" value="1" id="PageNumber" name="PageNumber" />
+    @if (Model.Count() != 0)
+    {
+        <input type="hidden" value="@Model[0].User_Id" name="IdValue" id="IdValue" />
+    }
+    else
+    {
+        <input type="hidden" value="-1" name="IdValue" id="IdValue" />
+    }
+
+
+    <div class="btn-dark" style="padding:3px 6px;">
+        <h4>
+            لیست کلی کامنت های محصولات
+        </h4>
+    </div>
+
+
+    <ul class="media-list msg-list" id="MoreInfoDiv">
+        @Html.Partial(partialViewName: MVC.admin.Manage.Views._DataCommentUser, model: Model)
+    </ul>
+
+
+    <div class="row controlitembutton">
+        <div class="controlItemButtonInnerDiv">
+            <div class="col-md-10 borderLeft">
+                <input id="moreInfoButton" type="button" class="btn btn-primary btn-block" value="موارد بیشتر" />
+            </div>
+            <div class="col-md-2 center-block controlDisplay" id="ProgressDiv" align="center">
+                <img src="@Url.Content("/Content/Images/Main/loadingAnimation.gif")" />
+            </div>
+        </div>
+    </div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#moreInfoButton").InfiniteScroll({
+            moreInfoDiv: '#MoreInfoDiv',
+            progressDiv: '#ProgressDiv',
+            loadInfoUrl: '@loadInfoUrl',
+            loginUrl: '/login',
+            errorHandler: function () {
+                alert('خطایی رخ داده است');
+            },
+            completeHandler: function () {
+                $("#PageNumber").val(parseInt($("#PageNumber").val()) + 1);
+ 
+            },
+            noMoreInfoHandler: function () {
+                $("#moreInfoButton").css("display", "none");
+            }
+        });
+    });
+</script>

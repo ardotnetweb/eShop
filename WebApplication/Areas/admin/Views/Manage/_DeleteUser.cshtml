@@ -1,0 +1,89 @@
+﻿@using eShop.WebApplication.DomainClasses.ViewModelClasses
+@model DeleteUserProfileViewModel
+
+
+<div id="resultUpdate">
+
+</div>
+<div class="panel panel-default">
+    <div class="divLoading" id="divLoadingUpdateProfile">
+        <img src="@Url.Content("~/Content/Images/Main/Loadnig.GIF")" />
+    </div>
+    <div class="panel-heading">
+        <h4 class="fontSizeLarge">
+          حذف کاربر از سیستم
+        </h4>
+        <p class="fontSizeLargeTitle">
+            در این بخش شما می توانید کاربر جاری  را از سیستم حذف نمایید دقت لازم صورت گیرد که بعد از حذف کاربر از سیستم دیگر امکان بازیابی اطلاعات آن کاربر تحت هیچ شرایطی انمکان پذیر نیست
+            پس در زمان حذف دقت لازمه صورت گیرد
+        </p>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="breadcrumb" id="navBarMenu">
+                <li>
+                    <a href="@Url.Action(MVC.admin.Manage.ActionNames.Register,MVC.admin.Manage.Name)">ایجاد کاربر جدید در سیستم</a>
+                </li>
+                <li>
+                    <a href="@Url.Action(MVC.admin.Manage.ActionNames.Index,MVC.admin.Manage.Name)">مشاهده لیست کاربران سیستم</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    @using (Ajax.BeginForm(actionName: MVC.admin.Manage.ActionNames.DeleteUser,controllerName: MVC.admin.Manage.Name,routeValues: null,ajaxOptions: new AjaxOptions{HttpMethod = "POST",InsertionMode = InsertionMode.Replace,LoadingElementId = "divLoadingUpdateProfile",UpdateTargetId = "resultUpdate"}))
+    {
+        <div class="panel-body">
+            <div class="col-sm-12">
+                <h3 class="borderBottom padingBottom marginBottom">
+                    حذف کاربر از سیستم
+                </h3>
+            </div>
+            <div class="form-group borderBottom">
+                <div class="col-sm-12 marginBottom marginTop" style="font:normal 15px eramFont;">
+                    کاربر آقا / خانم <span>
+                        <label style="font:normal 16px eramFont; color:green;">
+                            @Model.Name
+                        </label>
+                    </span>
+                    با نام کاربری
+                    <span>
+                        <label style="font:normal 16px eramFont; color:green;">
+                            @Model.UserName
+                        </label>
+                    </span> در سیستم <span>
+                        @if (!Model.StatusActive)
+                        {
+                            <label style="font:normal 16px eramFont; color:green;">
+                                فعال
+                            </label>
+                        }
+                        else
+                        {
+                            <label style="font:normal 16px eramFont; color:green;">
+                                غیر فعال
+                            </label>
+                        }
+                    </span>
+                    است.برای حذف کاربر از سیستم از تنظیم زیر استفاده نمایید
+                    <br />
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="form-group borderBottom">
+                <div class="col-sm-4">
+                    <div class="ckbox ckbox-primary">
+                        <input type="checkbox" value="true" name="StatusDelete" id="StatusDelete" data-val="true" />
+                        <label for="StatusDelete">
+                            حذف کاربر از سیستم
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <input type="submit" value="ذخیره اطلاعات بروز رسانی شده" class="btn btn-primary" onclick="$.validator.unobtrusive.parse($('form'));  " />
+        </div>
+    }
+</div>
+

@@ -1,0 +1,7 @@
+﻿User-agent: *
+Sitemap: http://www.inspectelement.us/sitemap
+Disallow: /Account/Login/
+Disallow: /Account/Register/
+Disallow: /Account/ForgotPassword/
+Disallow: /Account/RememberPassword/
+Disallow: /Admin/

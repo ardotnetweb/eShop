@@ -1,0 +1,224 @@
+﻿@{
+    ViewBag.Title = "detailsProduct";
+    Layout = "~/Areas/admin/Views/Shared/_Main.cshtml";
+}
+
+@using eShop.WebApplication.DomainClasses.ViewModelClasses
+
+@model ProductShowViewModel
+
+
+<div id="result">
+</div>
+<div class="row">
+    <a id="anchor"></a>
+    <div class="col-md-12">
+        <div class="panel panel-default">
+
+            <div class="panel-heading">
+                <h4 class="fontSizeLarge">نمایش جزئیات محصول آموزشی</h4>
+                <p class="fontSizeLargeTitle">
+                    شما در این قسمت می توانید اقدام به مشاهده جزئیات محصول آموزشی مبروطه کنید در ضمن تصاویر محصول آموزشی قابل نمایش است
+                    و کامنت های که برای هر محصول گذاشته شده است قابل مشاده می باشد کامنت های که دارای رنگ پس زمینه می باشند در در نمایش برای کاربران سایت غیر قابل دیدن است
+                    در کنار هر کامنت گزینه ویرایش اطلاعات کانت موجود است می توانید آن را انتخاب نماید و عملیات مربوطه را روی آن کامنت انجام دهید
+                </p>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="breadcrumb" id="navBarMenu">
+                        <li>
+                            <a href="@Url.Action(MVC.admin.Product.ActionNames.CreateProduct, MVC.admin.Product.Name)">ایجاد محصول آموزشی جدید</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action(MVC.admin.Product.ActionNames.Index,MVC.admin.Product.Name)"> نمایش کلیه محصولات آموزشی</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action(MVC.admin.Product.ActionNames.OfferProduct,MVC.admin.Product.Name)">ایجاد لیست محصولات پیشنهادی</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action(MVC.admin.Product.ActionNames.ChageObsverOfferProduct, MVC.admin.Product.Name)">حذف محصولات از دسته پیشنهاد ها</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action(MVC.admin.Product.ActionNames.UpdateProduct, MVC.admin.Product.Name, new { Id = Model.Id })">ویرایش محصول</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+
+                    <div class="form-group">
+                        <div class="col-sm-10">
+                            <div>
+                                <div class="col-sm-2 distanceDiv">
+                                    نام محصول
+                                </div>
+                                <div class="col-sm-10 splitdiv distanceDiv">
+                                    @Model.Name
+                                </div>
+                            </div>
+                            <div>
+                                <div class="col-sm-2 distanceDiv">
+                                    تاریخ درج محصول
+                                </div>
+                                <div class="col-sm-4 splitdiv distanceDiv">
+                                    @Model.Date
+                                </div>
+                                <div class="col-sm-2 distanceDiv">
+                                    مدت زمان آموزش
+                                </div>
+                                <div class="col-sm-4 splitdiv distanceDiv">
+                                    @Model.Time
+                                </div>
+                            </div>
+                            <div>
+                                <div class="col-sm-2 distanceDiv">
+                                    دسته گروه آموزشی
+                                </div>
+                                <div class="col-sm-4 splitdiv distanceDiv">
+                                    @Model.Category_Name
+                                </div>
+                                <div class="col-sm-2 distanceDiv">
+                                    کمپانی سازنده
+                                </div>
+                                <div class="col-sm-4 splitdiv distanceDiv">
+                                    @Model.Company_Name
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="col-sm-2 distanceDiv">
+                                    بر چسب ها
+                                </div>
+                                <div class="col-sm-10 splitdiv distanceDiv">
+                                    @Model.LabelsName
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="col-sm-2" id="lightBoxPrimaryImage">
+                            <a href="@Url.Content("~/Content/Images/Product/MainSize/" + Model.PrimaryImage)">
+                                <img src="@Url.Content("~/Content/Images/Product/MainSize/" + Model.PrimaryImage)" width="180" height="180" class="img-circle" style="float:left;" />
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+                <div style="width:100%; height:1px; background-color:#eee; margin-bottom:20px;"></div>
+                <div class="row">
+                    <div class="col-sm-2 distanceDiv">
+                        توضیحات
+                    </div>
+                    <div class="col-sm-10 splitdiv distanceDiv">
+                        @Html.Raw(Model.Explain)
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-sm-2">
+                            تصاویر بیشتر محصول
+                        </div>
+                        <div class="col-sm-10" id="lightBoxImageProduct">
+
+                            @foreach (var item in Model.ImageProducts)
+                            {
+                                <div class="col-sm-4" style="border:1px solid #eee;">
+                                    <div class="positionImageLightBox">
+                                        <a href="@Url.Content("~/Content/Images/Product/GallerySize/" + item.Image)" class="formImageLightBox">
+                                            <img src="@Url.Content("~/Content/Images/Product/GallerySize/" + item.Image)" width="255" height="200" />
+                                        </a>
+                                    </div>
+                                    <br />
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-12 borderBottom">
+                        <h3 style="font:normal 19px eramFont; text-align:center">
+                            کامنت های محصول
+                        </h3>
+                    </div>
+                    <br /><br />
+                    <div id="ContainerComment" data-addresscomment="@Url.Action(MVC.admin.Comment.ActionNames.GetAllCommentPerProduct,MVC.admin.Comment.Name)" data-productid="@Model.Id">
+                        <br />
+                        <div class="col-md-1" style="float:none; margin-left:auto; margin-right:auto;">
+                            <img src="~/Content/Images/Main/loadingAnimation.gif" style="margin:30px auto;" />
+                        </div>
+                    </div>
+                </div>
+                <br /><br />
+                <h3 style="border-bottom:2px solid #eee; font:normal 17px eramfont; padding-bottom:10px;">
+                    ارسال کامنت :
+                </h3>
+                <div class="row" id="BoxSendComment">
+                    <div class="col-md-12">
+                        <br />
+                        <label class="AnnounceSend">
+                            متن مورد نظر خود را جهت ارسال وارد نمایید
+                        </label>
+                        <br />
+
+                    </div>
+                    @using (Ajax.BeginForm(MVC.admin.Comment.ActionNames.SendComment, MVC.admin.Comment.Name,null, new AjaxOptions{HttpMethod = "POST",InsertionMode = InsertionMode.Replace,LoadingElementId = "divLoadninSendComment",UpdateTargetId = "resultComment"}, null))
+                    {
+                        <div id="ContainerStatusCommentUser" class="col-md-12" style="padding:0;">
+                            <div id="divCoverSendComment"></div>
+                            @Html.HiddenFor(x => x.Id)
+                            <div class="col-md-12">
+                                @Html.TextArea("ExplainComment", new { @class = "SectionSendCommentTextArea", id = "SectionSendCommentTextArea" })
+                                @Html.ValidationMessage("ExplainComment", "", new { @class = "text-danger" })
+                            </div>
+                            <br />
+                            <div class="col-md-12">
+                                <div class="col-md-2" style="padding:0;">
+                                    <input id="btnSendComment" type="submit" value="ارسال نظر" class="btn btn-default" />
+                                </div>
+                                <div class="col-md-3">
+                                    <img id="divLoadninSendComment" src="~/Content/Images/Main/loadingAnimation.gif" style="display:none" />
+                                </div>
+                                <div class="col-md-6" id="resultComment" style="color:red">
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-sm-9 col-sm-offset-3">
+                        @Ajax.ActionLink(linkText: "حذف گروه جاری",actionName: MVC.admin.Product.ActionNames.DeleteProduct,controllerName: MVC.admin.Product.Name,routeValues: new { Id = Model.Id },ajaxOptions: new AjaxOptions{HttpMethod = "POST",UpdateTargetId = "result",InsertionMode = InsertionMode.Replace,LoadingElementId = "divLoading"},htmlAttributes: new { @class = "btn btn-primary mr5" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script type="text/javascript" lang="en">
+        $(function () {
+            $("#lightBoxImageProduct a").lightBox();
+            $("#lightBoxPrimaryImage a").lightBox();
+            $('#anchor').attr('href', location.hash.replace('#', ''));
+        });
+        $(document).on('click', '#anchor', function () {
+            $('html,body').animate({ scrollBottom: $(window).scrollTop() + $(window).height() }, 'slow')
+        });
+        $('#anchor').trigger('click');
+
+        $(document).ready(function () {
+            $.get($('#ContainerComment').data('addresscomment'), { Id: $('#ContainerComment').data('productid') }, function (data) {
+                $('#ContainerComment').empty().append(data);
+            });
+        });
+    </script>
+}
+
+

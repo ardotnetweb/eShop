@@ -1,0 +1,145 @@
+﻿@using eShop.WebApplication.DomainClasses.ViewModelClasses
+@model CompanyViewModel
+
+@{
+    ViewBag.Title = string.Format("جزئیات کمپانی سازنده :{0}",ViewBag.CompanyName);
+    Layout = "~/Views/Shared/_MainSidebar.cshtml";
+}
+<link href="~/Content/sweet-alert.css" rel="stylesheet" />
+<script src="~/Scripts/sweet-alert.min.js"></script>
+
+<div class="row BaseInformationCompany img-rounded">
+    <br />
+    <div class="col-md-12">
+        <div class="tabbable" id="tabContentCompany">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#BaseInformationCompanyShow" data-toggle="tab">مشاهده اطلاعات پایه ای کمپانی</a></li>
+                <li><a href="#ProductCompanyShow" data-toggle="tab">دسته محصولات تولیدی کمپانی</a></li>
+                <li><a id="SaleProductCompany-Obsever" href="#SaleProductCompany" data-toggle="tab">خرید کلیه محصولات این کمپانی</a></li>
+            </ul>
+            <div class="tab-content">
+                <div id="BaseInformationCompanyShow" class="tab-pane active">
+                    <div class="row">
+                        <br />
+                        <div class="col-md-2 pull-left">
+                            @if (Model.ImageCompany != null)
+                            {
+                                <img src="~/Content/Images/Company/@Model.ImageCompany" class="pull-left" />
+                            }
+                            else
+                            {
+                                <img src="~/Content/Images/Company/NoImage_Samll.jpg" class="pull-left" />
+                            } 
+                        </div>
+                        <div class="col-md-10">
+                            <div class="col-md-12" style="text-align:center; padding:0;">
+                                <h2 class="H2NameComoany">
+                                    @Model.NameCompany
+                                </h2>
+                            </div>
+                            <div class="col-md-6 AddressCompany">
+                                <span>
+                                    تارنمای کمپانی سازنده :
+                                </span>
+                                <label>
+                                    <a class="decoration_a">
+                                        @Model.AddressCompany.ToString()
+                                    </a>
+                                </label>
+                            </div>
+                            <div class="col-md-6 TitleCompany">
+                                <label class="pull-left">
+                                    @Model.TitleCompany
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <br />
+                            <label class="HistoryCompany">
+                                تاریخچه کمپانی
+                            </label>
+                        </div>
+                        <br />
+                        <div class="col-md-12">
+                            <p style="font-size:15px;">
+                                @Html.Raw(Model.ExplainCompany)
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+                <div id="ProductCompanyShow" class="tab-pane">
+                    <div class="row">
+                        <br />
+                        <div class="col-md-12">
+                            <span style="border-bottom:2px solid #eee; padding-bottom:7px;">
+                                انتخاب دسته گروه آموزشی
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:20px;">
+                        <div class="divLoadingsubCategory" id="divLoadingsubCategory">
+                            <img src="@Url.Content("~/Content/Images/Main/loadningSamall.GIF")" />
+                        </div>
+                        <div class="col-md-12" id="containerRedirect">
+
+                            <input type="hidden" name="Category_IdRoot" id="Category_IdRoot">
+                            <input type="hidden" name="Category_Id" id="Category_Id">
+                            <input type="hidden" name="Company_Id" value="@Model.IdCompany" id="Company_Id" />
+
+                            <input type="hidden" name="PageNumber" value="" id="PageNumber" />
+                            <div class="col-md-2">انتخاب گروه تکنولوژی ها</div>
+                            <div class="col-md-4">
+                                @Html.DropDownList("RootCategory", (SelectList)ViewBag.Category, "یکی از گروه ها را انتخاب نمایید", new { id = "CategoryDropdown", @class = "form-control controlFocus select-section-company", data_address = Url.Action(MVC.Category.ActionNames.GetAllSubCategory, MVC.Category.Name) })
+                            </div>
+
+                            <div class="col-md-2" id="textSubCategory">انتخاب تکنولوژی توسعه</div>
+                            <div class="col-md-3" id="dropDownListSubCategory">
+                                @Html.DropDownList("SubCategory", (SelectList)ViewBag.SubCategory, "", new { id = "SubCategoryDropdown", @class = "form-control controlFocus select-section-company" })
+                            </div>
+                            <div class="col-md-1" id="divSearch">
+                                <button type="button" class="btn btn-primary" id="moreInfoButton" data-loadaddress="@Url.Action(MVC.Product.ActionNames.GetAllProductCompanyPerCategory, MVC.Product.Name)">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table-hover">
+                                <tbody id="MoreInfoDiv">
+                                    <br />
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <br />
+                        <div class="col-md-12">
+                            <div class="col-md-9" id="Destination">
+
+                            </div>
+                            <div class="col-md-3" style="padding-top:10px;">
+                                <img id="ProgressDiv" src="@Url.Content("~/Content/Images/Main/loadingAnimation.gif")" class="center-block" style="display:none" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="SaleProductCompany" class="tab-pane">
+                    <br />
+                    <div class="alert alert-white">
+                        <p>
+                            هنوز این امکان برای سایت فراهم نشده است
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+</div>
+<script src="~/Scripts/jquery-loader-information.js"></script>

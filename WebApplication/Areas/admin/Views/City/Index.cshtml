@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/admin/Views/Shared/_Main.cshtml";
+}
+
+@using eShop.WebApplication.DomainClasses.ViewModelClasses
+
+@model ProvinceShowViewModel
+
+
+@Html.Partial(partialViewName: MVC.admin.Province.Views._solidHeaderProvince)
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">
+                @Html.LabelFor(x => x.Name)
+            </label>
+            <div class="col-sm-7">
+                @Html.DropDownListFor(x => x.Id,ViewBag.Provinces as SelectList,"یکی از گروه های آموزشی  را انتخاب نمایید",new { @class = "form-control dropdownProvince chosen-rtl" })
+                @Html.ValidationMessageFor(x => x.Id, "",new { @class = "text-danger" })
+            </div>
+        </div>
+        <hr />
+
+        <div id="resultCity">
+        </div>
+    </div>
+</div>
+
+
+@section Scripts
+{
+    <script type="text/javascript" lang="en">
+
+        $(".dropdownProvince").chosen({
+            width: "100%",
+            dataplaceholder: "لطفا تعدادی برچسب انتخاب نمایید"
+        }).css({ height: "60px" });
+
+        $(".dropdownProvince").chosen().change(function (event) {
+            $.getJSON("@Url.Action(actionName:MVC.admin.City.ActionNames.GetCityByIdProvince,
+                                       controllerName:MVC.admin.City.Name)",
+                                   { Id: $(event.target).val() },
+                                   function (data) {
+                                       $("#resultCity").empty();
+                                       $.each(data, function (index) {
+                                           $("#resultCity").append
+                                               (" <div class=\"col-md-2 cityStyle\">" +
+                                               data[index].Name + "<a class=\"pull-right colorWhite\" href=\"/admin/City/UpdateCity/" +
+                                               data[index].Id + "\">ویرایش</a></div>")
+                                           .hide();
+                                           $("#resultCity").fadeIn(300);
+                                       })
+                                   });
+
+        });
+    </script>
+}
+

@@ -1,0 +1,40 @@
+﻿@using eShop.WebApplication.DomainClasses.ViewModelClasses
+@model ClasseListTechnology
+<h4 style="padding-bottom:10px;">
+    <label class="leftpanel-title">
+        تعداد کل محصولات
+    </label>
+    <span class="badge pull-right marginLeft">@Model.TotalProduct</span>
+</h4>
+<ul class="nav nav-pills nav-stacked nav-contacts navSearchCategory ulSideBarCategorySeach">
+    @foreach (var item in Model.categories)
+    {
+        if (item.NumberProduct > 0)
+        {
+            <li>
+                <article>
+                    <span class="pull-left">
+                        @Ajax.ActionLink(item.Name,actionName: MVC.admin.Product.ActionNames.DataProductSearch,controllerName: MVC.admin.Product.Name,routeValues: new { Id = item.Id, term = ViewBag.term, count = ViewBag.count },ajaxOptions: new AjaxOptions{HttpMethod = "Post",InsertionMode = InsertionMode.Replace,UpdateTargetId = "searchCategoryContent",LoadingElementId = "divLoadingSearch"},htmlAttributes: new { @class = "decoration_a" })
+                    </span>
+                    <span class="badge pull-right spanMargin img-rounded">@item.NumberProduct</span>
+                    <div class="clearfix"></div>
+                </article>
+            </li>
+
+        }
+        else
+        {
+            <li class="disabled borderBottom">
+                <article>
+                    <span class="pull-left">
+                        @Ajax.ActionLink(item.Name,actionName: MVC.admin.Product.ActionNames.DataProductSearch,controllerName: MVC.admin.Product.Name,routeValues: new { Id = item.Id, term = ViewBag.term, count = ViewBag.count },ajaxOptions: new AjaxOptions{HttpMethod = "Post",InsertionMode = InsertionMode.Replace,UpdateTargetId = "searchCategoryContent",LoadingElementId = "divLoadingSearch"},htmlAttributes: new { @class = "decoration_a" })
+                    </span>
+                    <span class="pull-right spanMargin badge img-rounded">@item.NumberProduct</span>
+                    <div class="clearfix"></div>
+                </article>
+            </li>
+        }
+
+    }
+</ul>
+

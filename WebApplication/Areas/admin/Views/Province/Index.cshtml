@@ -1,0 +1,27 @@
+﻿@using eShop.WebApplication.DomainClasses.AppClasses
+@model List<Province>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/admin/Views/Shared/_Main.cshtml";
+}
+@Html.Partial(MVC.admin.Province.Views._solidHeaderProvince)
+
+
+
+
+@Html.Action(actionName: MVC.admin.Province.ActionNames.SearchProvince,controllerName: MVC.admin.Province.Name)
+<hr />
+
+<div class="row">
+    <div class="col-md-12" id="result">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-2 citystyle containerProvince">
+                @item.Name
+                <a class="pull-right colorwhite" href="/admin/Province/UpdateProvince/@item.Id">ویرایش</a>
+            </div>
+        }
+    </div>
+</div>

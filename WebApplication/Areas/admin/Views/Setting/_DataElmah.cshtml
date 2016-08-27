@@ -1,0 +1,135 @@
+﻿@using eShop.WebApplication.DomainClasses.OtherViewModel
+@model List<ElmahViewModel>
+
+<div class="divLoadingTable" id="divLoadingTable">
+    <img src="@Url.Content("~/Content/Images/Main/Loadnig.GIF")" />
+</div>
+<div id="resultDeleteElmahError">
+
+</div>
+@using (Ajax.BeginForm(actionName: MVC.admin.Setting.ActionNames.ComputeAndDeleteElmah, controllerName: MVC.admin.Setting.Name, routeValues: null, ajaxOptions: new AjaxOptions { HttpMethod = "POST", LoadingElementId = "divLoadingTable", UpdateTargetId = "resultDeleteElmahError", InsertionMode = InsertionMode.Replace }, htmlAttributes: new { id = "form_elmahError" }))
+{
+    for (int i = 0; i < Model.Count(); i++)
+    {
+        <input type="hidden" value="@i" name="[@i].key" />
+        <div class="panel panel-default">
+            <div class="panel-heading elmahError">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle collapsed collapseElmah" data-toggle="collapse"
+                       data-parent="#accordion" href="#@MvcHtmlString.Create("collapseTen" + i)"></a>
+                    <label class="ckbox ckbox-primary pull-left">
+                        <input type="checkbox" value="true" name="[@i].value.TakeCareIP" id="[@i].value.TakeCareIP" data-val="true" />
+                        <label for="[@i].value.TakeCareIP">هشدار محافظت از IP</label>
+                    </label>
+                    <label class="marginRight_Elamh">
+                        <span>تاریخ :</span>
+                        <span class="marginleftandRight">
+                            @Html.Hidden("[" + i + "].value.Date", Model[i].Date.ToString("yyyy/MM/dd"))
+                            @Html.DisplayFor(x => Model[i].Date, "DisplayPersianDatePicker")
+                        </span>
+                    </label>
+                    <label class="marginRight_Elamh">
+                        <span>زمان :</span>
+                        <span class="marginleftandRight">
+                            @Html.TextBox("[" + i + "].value.Time", Model[i].Time)
+                        </span>
+                    </label>
+                    <label class="marginRight_Elamh">
+                        <span>آدرس پروتکل اینترنتی :</span>
+                        <span class="marginleftandRight">
+                            @Html.TextBox("[" + i + "].value.Remote_Addr", Model[i].Remote_Addr)
+                        </span>
+                    </label>
+
+                </h4>
+            </div>
+            <div id="@MvcHtmlString.Create("collapseTen" + i)" class="panel-collapse collapse">
+                <div class="panel-body">
+
+                    <div class="clearfix padingRowShowElamah">
+                        <div class="col-md-4">
+                            @Html.DisplayFor(x => Model[i].StatusCode)
+                        </div>
+                        <div class="col-md-2"> : Status Code</div>
+
+                        <div class="col-md-4">
+                            @Html.DisplayFor(x => Model[i].ExceptionType)
+                        </div>
+                        <div class="col-md-2"> : Message Type</div>
+
+                    </div>
+
+
+                    <div class="clearfix padingRowShowElamah">
+                        <div class="col-md-4">
+                            @Html.DisplayFor(x => Model[i].Login_User)
+                        </div>
+                        <div class="col-md-2"> : Login User </div>
+                        <div class="col-md-4">
+                            @Html.DisplayFor(x => Model[i].Remote_User)
+                        </div>
+                        <div class="col-md-2"> : Remote User</div>
+
+                    </div>
+                    <div class="clearfix padingRowShowElamah">
+                        <div class="col-md-10">
+                            @Html.TextBox("[" + i + "].value.Message", Model[i].Message, new { @class = "txtMessageInElmah" })
+                        </div>
+                        <div class="col-md-2">
+                            : Message
+                        </div>
+                    </div>
+                    <div class="clearfix padingRowShowElamah">
+                        <div class="col-md-10">
+                            @Html.DisplayFor(x => Model[i].URL)
+                        </div>
+                        <div class="col-md-2">
+                            : URL
+                        </div>
+                    </div>
+
+                    <div class="clearfix padingRowShowElamah">
+                        <div class="col-md-10">
+                            @Html.DisplayFor(x => Model[i].Script_Name)
+                        </div>
+                        <div class="col-md-2">
+                            : Script Name
+                        </div>
+                    </div>
+
+
+                    <div class="clearfix padingRowShowElamah">
+                        <div class="col-md-10">
+                            @Html.DisplayFor(x => Model[i].Http_Accept)
+                        </div>
+                        <div class="col-md-2">
+                            : HTTP Accept
+                        </div>
+                    </div>
+                    <div class="clearfix padingRowShowElamah">
+                        <div class="col-md-10">
+                            @Html.TextBox("[" + i + "].value.Http_Method", Model[i].Http_Method, new { @class = "txtHttp_Method" })
+                        </div>
+                        <div class="col-md-2">
+                            : Method
+                        </div>
+                    </div>
+                    @Html.Hidden("[" + i + "].value.ErrorId", Model[i].ErrorId)
+
+                </div>
+            </div>
+        </div>
+    }
+    <input type="submit" value="حذف و نگهداری اینترنت پروتکل" class="btn btn-primary" />
+}
+
+<script type="text/javascript" lang="en">
+    $(document).ready(function () {
+        $("#form_elmahError input[type=text]").prop('readonly', true)
+        .css({ border: 'none', 'background-color': 'transparent' });
+        $(".txtHttp_Method").css({ 'text-align': 'left' });
+    });
+</script>
+
+
+

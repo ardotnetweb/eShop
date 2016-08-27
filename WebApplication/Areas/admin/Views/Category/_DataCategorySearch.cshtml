@@ -1,0 +1,111 @@
+﻿@using eShop.WebApplication.DomainClasses.ViewModelClasses
+
+@model List<ProductShowViewModel>
+@{
+    int page = ViewBag.page;
+    int currentPage = page + 1;
+    int max = ViewBag.TotalRecords / ViewBag.count;
+    int firstPage = ((currentPage - 2) <= 0) ? 0 : currentPage - 3;
+    int lastPage = ((currentPage + 2) >= max) ? max : currentPage + 3;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div id="table-Content" class="table-responsive">
+            <table class="table tableCategory">
+                <thead>
+                    <tr>
+
+                        <th>
+                            نام محصول
+                        </th>
+                        <th>
+                            دسته گروه آموزشی
+                        </th>
+                        <th>
+                            کمپانی سازنده
+                        </th>
+                        <th>اطلاعات بیشتر</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @item.Name.ToString()
+                            </td>
+                            <td>
+                                @item.Category_Name
+                            </td>
+                            <td>
+                                @item.Company_Name
+                            </td>
+                            <td>
+                                @Html.ActionLink(linkText: "موارد بیشتر", actionName: MVC.admin.Product.ActionNames.DetailsProduct, controllerName: MVC.admin.Product.Name, routeValues: new { Id = @item.Id }, htmlAttributes: new { @class = "decoration_a" })
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+            <div class="numberPaginStyle">
+                <div class="col-md-8">
+                    <ul class="pagingUl">
+                        <li id="first">
+                            @Ajax.ActionLink(linkText: "اولین", actionName: MVC.admin.Product.ActionNames.DataProductSearch, 
+                           controllerName: MVC.admin.Product.Name, routeValues: new { page = 0, term = ViewBag.term, count = ViewBag.count }, ajaxOptions: new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.Replace, LoadingElementId = "divLoadingSearch", UpdateTargetId = "table-Content" }, htmlAttributes: new { @class = "decoration_a" })
+                        </li>
+                        @for (int i = firstPage; i < lastPage; i++)
+                        {
+                            if (currentPage == max + 1)
+                            {
+                                <text>
+                                    <script>$('li#last').addClass("disableUl");</script></text>
+                            }
+                            else
+                            {
+                                <text>
+                                    <script>if ($('li#last').hasClass("disableUl")) $('li#last').addClass("disableUl");</script></text>
+                            }
+                            if (currentPage == 1)
+                            {
+                                <text>
+                                    <script>$('li#first').addClass("disableUl");</script></text>
+                            }
+                            else
+                            {
+                                <text>
+                                    <script>if ($('li#first').hasClass("disableUl")) $('li#first').addClass("disableUl");</script></text>
+                            }
+                            if (i + 1 == currentPage)
+                            {
+                                <li class="active"><a href="#">@MvcHtmlString.Create("" + (@i + 1) + "").ToString()</a></li>
+                            }
+                            else
+                            {
+                                <li>
+                                    @Ajax.ActionLink(linkText: MvcHtmlString.Create("" + (@i + 1) + "").ToString(), actionName: MVC.admin.Product.ActionNames.DataProductSearch, controllerName: MVC.admin.Product.Name, routeValues: new { page = i, term = ViewBag.term, count = ViewBag.count }, ajaxOptions: new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.Replace, UpdateTargetId = "table-Content", LoadingElementId = "divLoadingSearch" }, htmlAttributes: new { @class = "decoration_a" })
+                                </li>
+                            }
+                        }
+                        <li id="last">
+                            @Ajax.ActionLink(linkText: "آخرین", actionName: MVC.admin.Product.ActionNames.DataProductSearch, controllerName: MVC.admin.Product.Name, routeValues: new { page = max, term = ViewBag.term, count = ViewBag.count }, ajaxOptions: new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.Replace, UpdateTargetId = "table-Content", LoadingElementId = "divLoadingSearch" }, htmlAttributes: new { @class = "decoration_a" })
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <label class="pull-right">
+                        شما صفحه @currentPage از @(max) هستید
+                    </label>
+                </div>
+                <div class="statusClear"></div>
+            </div>
+        </div>
+
+        <div class="divLoadingSearch" id="divLoadingSearch">
+            <img src="@Url.Content("~/Content/Images/Main/Loadnig.GIF")" />
+        </div>
+    </div>
+</div>
+

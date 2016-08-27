@@ -1,0 +1,101 @@
+﻿@using eShop.WebApplication.DomainClasses.ViewModelClasses
+@model CategorySearchViewModel
+
+@{
+    ViewBag.Title = string.Format(" {0}نمایش گروه محصولات", ViewBag.CategoryName);
+    Layout = "~/Views/Shared/_Main.cshtml";
+    var UrlLoadInfo = Url.Action(MVC.Category.ActionNames.GetDataTable, MVC.Category.Name);
+}
+
+
+
+<div class="row" style="padding-top:20px; padding-bottom:20px;" id="ContainerCheckBoxCategoryCompany"
+     data-addresscategory="@UrlLoadInfo" data-categoryid="@Model.CategoryId">
+    <div class="col-md-3">
+        <div style="border:1px solid #eee; height:auto; width:100%;">
+            <div class="HeaderSearchCategoryTechnologyBase">
+                <span>
+                    @string.Format("تکنولوژی های  {0}", Model.ParentName)
+                </span>
+            </div>
+            <div class="HeaderSearchCategoryTechnologyTop">
+                بر اساس تکنولوژی
+            </div>
+            <div class="CategoryTechnology" id="CategoryTechnology">
+                <form>
+                    <ul>
+                        @for (int i = 0; i < Model.Categories.Count(); i++)
+                        {
+                            <li>
+                                <div class="ckbox ckbox-default pull-right">
+                                    <input type="checkbox" id="@MvcHtmlString.Create("Category-" + Model.Categories[i].Id)" />
+                                    <label for="@MvcHtmlString.Create("Category-" + Model.Categories[i].Id)">@Model.Categories[i].Name</label>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </form>
+            </div>
+            <div class="ClearStatus"></div>
+            <div class="HeaderSearchCategoryTechnologyTopbottom">
+                بر اساس کمپانی سازنده
+            </div>
+            <div class="CompanyTechnology" id="CompanyTechnology">
+                <form>
+                    <ul>
+                        @for (int i = 0; i < Model.Companies.Count(); i++)
+                        {
+                            <li>
+                                <div class="ckbox ckbox-default pull-right">
+                                    <input type="checkbox" id="@MvcHtmlString.Create("Company-" + Model.Companies[i].Id)" />
+                                    <label for="@MvcHtmlString.Create("Company-" + Model.Companies[i].Id)">@Model.Companies[i].Name</label>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </form>
+            </div>
+            <div class="ClearStatus"></div>
+        </div>
+    </div>
+    <div class="col-md-9" style="padding:0;">
+        <div class="divLoading" id="divLoading">
+            <img src="~/Content/Images/Main/loadningMeidum.GIF" />
+        </div>
+        <div class="col-md-9" style="padding:0;">
+            <input type="text" id="txtSerachProduct" style="width:65%; height:28px;" class="form-control controlFocus" placeholder="نام محصول مورد نظر را وارد نمایید" />
+        </div>
+        <div class="col-md-3" style="text-align:left;">
+            <div class="form-inline hidden-xs">
+                <span>حالات نمایش:&nbsp;</span>
+                <ul id="status" class="form-group list-inline">
+                    <li id="grid" class="grid grid-active"><a href="#"><span class="glyphicon glyphicon-th"></span></a></li>
+                    <li id="list" class="list"><a href="#"><span class="glyphicon glyphicon-list"></span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div style="margin-top:15px;">
+            <div class="col-md-2" style="padding:0;">
+                <span style="font-size:15px;">مرتب سازی بر اساس</span>
+            </div>
+            <div class="col-md-2" style="padding:0;">
+                @Html.DropDownList("search", (IEnumerable<SelectListItem>)ViewBag.StatusSearch, new { @class = "dropdownSectionSearch" })
+            </div>
+            <div class="col-md-1" style="padding:0;">
+                @Html.DropDownList("order", (IEnumerable<SelectListItem>)ViewBag.AseDes, new { @class = "dropdownSectionSearch" })
+            </div>
+        </div>
+        <div id="result">
+
+        </div>
+    </div>
+</div>
+@section Scripts
+{
+    <link href="~/Content/css/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content/css/bootstrap-switch.css" rel="stylesheet" />
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap-switch.js"></script>
+    <script src="~/Scripts/loader-information-product.js"></script>
+}

@@ -1,0 +1,22 @@
+﻿@using eShop.WebApplication.DomainClasses.SMSViewModel
+@model List<InfoSMSViewModel>
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @item.Id
+        </td>
+        <td>
+            @item.Sender
+        </td>
+        <td>
+            @item.DateTime
+        </td>
+        <td>
+            @item.DateTime.ToString("hh:mm:ss")
+        </td>
+        <td>
+            @item.Body
+        </td>
+    </tr>
+}

@@ -1,0 +1,241 @@
+﻿@{
+    ViewBag.Title = "updateProduct";
+    Layout = "~/Areas/admin/Views/Shared/_Main.cshtml";
+}
+
+@using eShop.WebApplication.DomainClasses.ViewModelClasses
+
+@model ProductEditViewModel
+
+<div id="result">
+    @Html.Raw(TempData["createProduct"])
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="divLoadingContent" id="divLoadingContent">
+            <img src="@Url.Content("~/Content/Images/Main/725.GIF")" />
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="fontSizeLarge">
+                    ویرایش و بروز رسانی اطلاعات محصول
+                </h4>
+                <p class="fontSizeLargeTitle">
+
+                    شما در این بخش می توانید اطلاعات یک محصول را ویرایش کنید . در ضمن تصاویر مربوط به این محصول در این قسمت قابل ویرایش نمی باشند برای ویرایش تصاویر در پایین صفحه گزینه ویرایش تصاویر را انتخاب نمایید
+                </p>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="breadcrumb" id="navBarMenu">
+                        <li>
+                            <a href="@Url.Action(MVC.admin.Product.ActionNames.CreateProduct, MVC.admin.Product.Name)">ایجاد محصول آموزشی جدید</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action(MVC.admin.Product.ActionNames.Index,MVC.admin.Product.Name)"> نمایش کلیه محصولات آموزشی</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action(MVC.admin.Product.ActionNames.OfferProduct,MVC.admin.Product.Name)">ایجاد لیست محصولات پیشنهادی</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action(MVC.admin.Product.ActionNames.ChageObsverOfferProduct, MVC.admin.Product.Name)">حذف محصولات از دسته پیشنهاد ها</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action(MVC.admin.Product.ActionNames.DetailsProduct, MVC.admin.Product.Name, new { Id = Model.Id })">نمایش جزئیات محصول</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            @using (Html.BeginForm(actionName: MVC.admin.Product.ActionNames.UpdateProduct, controllerName: MVC.admin.Product.Name, method: FormMethod.Post, htmlAttributes: new { enctype = "multipart/form-data" }))
+            {
+                <input type="hidden" value="@Model.PrimaryImage" name="_PrimryImage" />
+                <input type="hidden" value="@Model.Id" name="Id" />
+
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@Html.LabelFor(x => x.Name)</label>
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(x => x.Name, new { @class = "form-control controlFocus", autocomplete = "off" })
+                                @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@Html.LabelFor(x => x.Time)</label>
+                            <div class="col-sm-3">
+                                @Html.TextBoxFor(x => x.Time, new { autocomplete = "off", @class = "form-control controlFocus fontSizeLarge", id = "txtcontainerTimes" })
+                                @Html.ValidationMessageFor(x => x.Time, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-sm-1 center-block padingMinuteHour">
+                                <button id="moreInfprmationTimes">
+                                    <span class="glyphicon glyphicon-cog padingMinuteHour"></span>
+                                </button>
+                            </div>
+                            <div id="contaniermoreInfprmationTimes">
+
+                                <label class="col-sm-1">ساعت : </label>
+                                <div class="col-sm-1" id="Hour">
+                                    <input type="text" maxlength="3" id="txtHour" autocomplete="off" class="form-control controlFocus" onkeypress="return isNumberKey(event)" />
+                                </div>
+                                <label class="col-sm-1">دقیقه : </label>
+                                <div class="col-md-1" id="Minute">
+                                    <input type="text" maxlength="2" id="txtMinutes" autocomplete="off" class="form-control controlFocus" onkeypress="return isNumberKey(event)" />
+                                </div>
+                                <div class="col-sm-1">
+                                    <input type="button" id="submitTimes" value="تایید" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@Html.LabelFor(x => x.Price)</label>
+                            <div class="col-sm-3">
+                                @Html.TextBoxFor(x => x.Price, new { autocomplete = "off", @class = "form-control controlFocus fontSizeLarge", id = "txtOriginalPrice", maxlength = "6", onkeypress = "return isNumberKey(event)" })
+                                @Html.ValidationMessageFor(x => x.Price, "", new { @class = "text-danger" })
+                            </div>
+                            @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-sm-3">
+                                @Html.EditorFor(x => x.Date, "PersianDatePicker", new { autocomplete = "off" })
+                                @Html.ValidationMessageFor(x => x.Date, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@Html.LabelFor(x => x.Image)</label>
+                            <div class="col-sm-2">
+                                @Html.TextBoxFor(x => x.Image, new { type = "file", @class = "form-control", id = "controlUpload", name = "controlUpload", onchange = "ShowPreviewImageUpload(this);" })
+                                @Html.ValidationMessageFor(x => x.Date, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-sm-1" id="fileUpload">
+                                <input type="button" id="calerImageUploaded" class="btn btn-primary" value="پاکسازی کنترل بارگذاری" />
+                            </div>
+                            <div class="col-sm-6">
+                                <img id="impPrev" class="ControlimgPrev img-circle" style="max-width:120px; float:left; max-height:120px;" src="~/Content/Images/Product/MainSize/@Model.PrimaryImage" />
+                            </div>
+                        </div>
+                        <div class="form-group" style="position:relative">
+                            <label class="col-sm-3 control-label">
+                                @Html.LabelFor(x => x.Category_Id)
+                            </label>
+                            <div class="col-sm-9">
+                                @Html.DropDownListFor(x => x.Category_Id, ViewBag.Categories as SelectList, "یکی از گروه های آموزشی  را انتخاب نمایید", new { @class = "form-control controlFocus dropdownGroup chosen-rtl" })@Html.ValidationMessageFor(x => x.Category_Id, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">
+                                @Html.LabelFor(x => x.Company_Id)
+                            </label>
+                            <div class="col-sm-9">
+                                @Html.DropDownListFor(x => x.Company_Id, (IEnumerable<SelectListItem>)ViewBag.Companies, "یکی از کمپانی ها را انتخاب نمایید", new { @class = "form-control controlFocus dropdownGCompany chosen-rtl" })
+                                @Html.ValidationMessageFor(x => x.Company_Id, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@Html.LabelFor(x => x.LabelsId)</label>
+                            <div class="col-sm-9">
+                                @Html.ListBoxFor(x => x.LabelsId, ViewBag.Labels as MultiSelectList,
+                                new { @class = "form-control controlFocus listBoxLabels chosen-rtl" })
+                                @Html.ValidationMessageFor(x => x.LabelsId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@Html.LabelFor(x => x.Explain)</label>
+                            <div class="col-sm-9">
+                                @Html.TextAreaFor(x => x.Explain, new { @class = "form-control controlFocus" })
+                                @Html.ValidationMessageFor(x => x.Explain, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">تصاویر بارگذاری شده</label>
+                            <div class="col-sm-9">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"></label>
+                            <div class="col-sm-9" id="lightBoxUpdateProduct">
+                                @foreach (var item in Model.ImageProducts)
+                                {
+                                    <div class="col-sm-4 borderWhole">
+                                        <div class="positionImageLightBox">
+                                            <a href="@Url.Content("~/Content/Images/Product/GallerySize/" + item.Image)" class="formImageLightBox">
+                                                <img src="@Url.Content("~/Content/Images/Product/GallerySize/" + item.Image)" class="formImageLightBox" />
+                                            </a>
+                                        </div>
+                                        <br />
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <input type="submit" value="ذخیره سازی" class="btn btn-primary pull-left button_save_update_margin_left" />
+                            <input type="reset" value="خالی کردن باکس ها" class="btn btn-default pull-left" />
+                            @Html.ActionLink(linkText: "ویرایش تصاویر این مجموعه آموزشی", actionName: MVC.admin.Product.ActionNames.ShowImageProduct, controllerName: MVC.admin.Product.Name, routeValues: new { Id = Model.Id }, htmlAttributes: new { @class = "btn btn-primary pull-right" })
+                        </div>
+                    </div>
+
+                </div>
+            }
+        </div>
+    </div>
+
+</div>
+
+
+@section Scripts
+{
+    <script type="text/javascript" lang="en">
+        $(function () {
+            $('#Explain').editable({
+                buttons: ["bold", "italic", "underline", "strikeThrough", "fontFamily",
+                    "fontSize", "color", "formatBlock", "align", "insertOrderedList",
+                    "insertUnorderedList", "outdent", "indent", "selectAll", "createLink",
+                    "insertImage", "insertVideo", "undo", "redo", "html", "save", "inserthorizontalrule"],
+                inlineMode: false,
+                inverseSkin: true,
+                preloaderSrc: '@Url.Content("~/Content/Images/Main/preloader.gif")',
+                allowedImageTypes: ["jpeg", "jpg", "png"],
+                height: 300,
+                language: "fa",
+                direction: "rtl",
+                fontList: ["Tahoma, Geneva", "Arial, Helvetica", "Impact, Charcoal"],
+                autosave: false,
+                autosaveInterval: 2500,
+                saveURL: '@Url.Action("FroalaUploadImage", "product")',
+                saveParams: { postId: "123" },
+                spellcheck: true,
+                plainPaste: true,
+                imageButtons: ["removeImage", "replaceImage", "linkImage"],
+                borderColor: '#00008b',
+                imageUploadURL: '@Url.Action("FroalaUploadImage", "product")',
+                imageParams: { postId: "123" },
+                enableScript: false
+            });
+        });
+        $(".dropdownGroup").chosen({
+            width: "100%",
+            dataplaceholder: "لطفا تعدادی برچسب انتخاب نمایید"
+        }).css({ height: "60px" });
+
+        $(".dropdownGCompany").chosen({
+            width: "100%",
+            dataplaceholder: "لطفا تعدادی برچسب انتخاب نمایید"
+        }).css({ height: "60px" });
+
+        $(".listBoxLabels").chosen({
+            width: "100%",
+            dataplaceholder: "لطفا تعدادی برچسب انتخاب نمایید"
+        });
+
+        $("#lightBoxUpdateProduct a").lightBox();
+        $("#lightBoxPrimaryImage a").lightBox();
+
+    </script>
+}
+
+
+
+

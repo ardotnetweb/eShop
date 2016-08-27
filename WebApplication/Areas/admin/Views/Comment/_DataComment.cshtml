@@ -1,0 +1,125 @@
+﻿@using eShop.WebApplication.DomainClasses.ViewModelClasses
+@model List<CommentViewModel>
+@for (int i = 0; i < Model.Count; i++)
+{
+    var highlight = " ";
+    if (!Model[i].ReadStatus)
+    {
+        highlight = "highlighted";
+    }
+    <li class="@MvcHtmlString.Create("media "+highlight)">
+        <div class="media-body">
+            <div class="pull-right media-option">
+                @if (Model[i].ReadStatus)
+                {
+                <i class="glyphicon glyphicon-eye-open"></i>
+                }
+                else
+                {
+                <i class="glyphicon glyphicon-eye-close"></i>
+                }
+                <small>
+                    @Html.DisplayFor(x => Model[i].DateTime, "DisplayPersianDatePicker")
+                </small>
+                <a href=""><i class="fa fa-star"></i></a>
+                <div class="btn-group">
+                    <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-cog"></i>
+                    </a>
+                    <ul class="dropdown-menu pull-right baseDirectComment" role="menu">
+                        <li class="baseAnswer">
+                            @Html.ActionLink("پاسخ به کامنت", MVC.admin.Product.ActionNames.DetailsProduct,MVC.admin.Product.Name, null, null, "BoxSendComment", new { Id = Model[i].Product_Id }, null)
+                        </li>
+                        @if (Model[i].ReadStatus)
+                        {
+                        <li class="baseReadMark disabled">
+                            <a data-id="@Model[i].Id">علامت گذاری خوانده شده و نمایش</a>
+                        </li>
+                        }
+                        else
+                        {
+                        <li class="baseReadMark">
+                            <a data-id="@Model[i].Id">علامت گذاری خوانده شده و نمایش</a>
+                        </li>
+                        }
+                        <li class="divider"></li>
+                        <li class="baseDeleteComment">
+                            <a data-id="@Model[i].Id">حذف کامنت</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <h3 class="sender">
+                <a class="decoration_a" href="@Url.Action(MVC.admin.Manage.ActionNames.CompleteInformationUser, MVC.admin.Manage.Name, new { Id=Model[i].User_Id })">
+                    @Model[i].UserName
+                </a>
+            </h3>
+            <p>
+                @Html.Raw(Model[i].Explain)
+            </p>
+        </div>
+    </li>
+}
+
+
+<script type="text/javascript" lang="en">
+    $(document).ready(function () {
+        $(document).on('click', 'ul.baseDirectComment li.baseReadMark a', function () {
+            var $this = $(this);
+            ShowLoading($this);
+            $.get('@Url.Action(MVC.admin.Comment.ActionNames.ChangeStatusRead,MVC.admin.Comment.Name)', { Id: $this.data('id') }, function (data) {
+                if (data.Result == "true") {
+
+                    $this.closest('li.highlighted').removeClass('highlighted');
+                    $this.closest('li').addClass('disabled');
+                    $this.closest('div.media-option').find('i:eq(0)').removeClass();
+
+                    $this.closest('div.media-option').find('i:eq(0)').
+                        addClass('glyphicon').addClass('glyphicon-eye-open');
+                }
+                else {
+                    alert('عدم موفقیت در تغیر وضعیت علامت گذاری پیام به عنوان خوانده شده');
+                }
+                HideLoading($this);
+            });
+        });
+
+
+        $(document).on('click', 'ul.baseDirectComment li.baseDeleteComment a', function () {
+            var $this = $(this);
+            ShowLoading($this);
+            $.get('@Url.Action(MVC.admin.Comment.ActionNames.DeleteComment,MVC.admin.Comment.Name)', { Id: $this.data('id') }, function (data) {
+                if (data.Result == "true") {
+                    $this.closest('li.media').fadeOut(500, function () {
+                        $this.closest('li.media').remove();
+                    });
+                }
+                else {
+                    alert('عدم موفقیت در حذف کامنت');
+                }
+                HideLoading($this);
+            });
+        });
+
+
+
+
+        function ShowLoading($this) {
+            $this.closest("li.media").attr("disabled", true).
+                css({ 'background-color': '#eee', 'opacity': '.6' });
+        };
+        function HideLoading($this) {
+            $this.closest("li.media").attr("disabled", false).
+                css({ 'background-color': 'transparent', 'opacity': '1' });
+        };
+    });
+
+</script>
+<style type="text/css" lang="en">
+    ul.baseDirectComment li a:hover {
+        cursor: pointer;
+    }
+    ul#MoreInfoDiv {
+        border-bottom: 1px solid #eee !important;
+    }
+</style>

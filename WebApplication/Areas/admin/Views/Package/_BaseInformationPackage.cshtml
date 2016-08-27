@@ -1,0 +1,116 @@
+﻿@{
+    var HourEducation = int.Parse(Model.TimeEducationPackage.Split(':')[0]);
+    var MinuteEducation = int.Parse(Model.TimeEducationPackage.Split(':')[1]);
+
+    if (MinuteEducation > 60)
+    {
+        HourEducation += MinuteEducation / 60;
+        MinuteEducation = MinuteEducation % 60;
+    }
+    var CountDay = 0;
+    var CountHour = Model.EndDatePackage.Subtract(Model.StartDatePackage).TotalHours;
+    if (CountHour > 24)
+    {
+        CountDay = Convert.ToInt32(CountHour / 24);
+        CountHour = CountHour % 24;
+    }
+}
+@using eShop.WebApplication.DomainClasses.ViewModelClasses
+@model PackageViewModel
+
+
+<div class="row">
+    <div class="col-md-2">
+        @if (Model.ImagePackage != null)
+        {
+            <img class="media-object img-circle img-online imgPackageDetails"
+                 src="~/Content/Images/Package/@Model.ImagePackage" alt="...">
+        }
+        else
+        {
+            <img class="media-object img-circle img-online imgPackageDetails"
+                 src="~/Content/Images/Package/NoImage_2.jpg" alt="...">
+        }
+    </div>
+    <div class="col-md-10">
+        <div class="col-md-12 marginBottom">
+            <div class="col-md-2 padingBottom">عنوان پکیج آموزشی</div>
+            <div class="col-md-10 borderBottom padingBottom colortextOne">@Model.NamePackage</div>
+        </div>
+        <div class="col-md-12 marginBottom">
+            <div class="col-md-2 padingBottom"> بدون احتساب تخفیف</div>
+            <div class="col-md-4 padingBottom borderBottom colortextOne">
+                <span>@Model.OriginalPricePackage</span>&nbsp;
+                <span>تومان</span>
+            </div>
+            <div class="col-md-2 padingBottom"> با احتساب تخفیف</div>
+            <div class="col-md-4 padingBottom borderBottom colortextOne">
+                <span>@Model.DisCountPricePackage</span>&nbsp;
+                <span>تومان</span>
+            </div>
+        </div>
+        <div class="col-md-12 marginBottom">
+            <div class="col-md-2 padingBottom">تعداد محصولات</div>
+            <div class="col-md-4 padingBottom borderBottom colortextOne">
+                <span>@Model.ProductsPackage</span>&nbsp;
+                <span>محصول</span>
+            </div>
+            <div class="col-md-2 padingBottom"> در صد تخفیف</div>
+            <div class="col-md-4 padingBottom borderBottom colortextOne">
+                <span>@Model.PercentPackage</span>&nbsp;
+                <span>%</span>
+            </div>
+        </div>
+
+        <div class="col-md-12 marginBottom">
+            <div class="col-md-2 padingBottom">تاریخ شروع</div>
+            <div class="col-md-4 padingBottom borderBottom colortextOne">
+                <span>
+                    @Html.DisplayFor(x => Model.StartDatePackage, "DisplayPersianDatePicker")
+                </span>
+            </div>
+            <div class="col-md-2 padingBottom">تاریخ پایان</div>
+            <div class="col-md-4 padingBottom borderBottom colortextOne">
+                <span>
+                    @Html.DisplayFor(x => Model.EndDatePackage, "DisplayPersianDatePicker")
+                </span>
+            </div>
+        </div>
+
+        <div class="col-md-12 marginBottom">
+            <div class="col-md-2 padingBottom">وضعیت نمایش</div>
+            <div class="col-md-4 padingBottom borderBottom">
+                <div class="ckbox ckbox-primary pull-left">
+                    @if (Model.IsShowPackage)
+                    {
+                        <input type="checkbox" id="checkbox7" checked disabled>
+                        <label for="checkbox7">دوره زمانی پکیج آموزشی</label>
+
+                    }
+                    else
+                    {
+                        <input type="checkbox" id="checkbox7" disabled>
+                        <label for="checkbox7">پایان یافتن دوره زمانی پکیج آموزشی</label>
+                    }
+                </div>
+            </div>
+            <div class="col-md-2 padingBottom">جمع زمان ها</div>
+            <div class="col-md-4 padingBottom borderBottom colortextOne">
+                <span>@HourEducation</span>&nbsp;
+                <span>ساعت</span>&nbsp;
+                <span>@MinuteEducation</span>&nbsp;
+                <span>دقیقه</span>
+            </div>
+        </div>
+
+        <div class="col-md-12 marginBottom">
+            <div class="col-md-2 padingBottom">پایان اعتبار پکیج</div>
+            <div class="col-md-10 borderBottom padingBottom colortextOne">
+                <span>@CountDay</span>&nbsp;
+                <span>روز</span>&nbsp;
+                <span>@CountHour</span> &nbsp;
+                <span>ساعت</span>
+            </div>
+        </div>
+    </div>
+</div>

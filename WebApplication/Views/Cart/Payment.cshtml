@@ -1,0 +1,160 @@
+﻿@{
+    ViewBag.Title = "انتخاب نوع پرداخت";
+    Layout = "~/Views/Shared/_Main.cshtml";
+}
+
+<br />
+<div class="row col-md-offset-1">
+    <div class="col-md-11">
+        <h2 class="center-block" style="font:normal 20px eramFont; text-align:center;">
+            <span class="center-block">
+               انتخاب نوع پرداخت
+            </span>
+        </h2>
+    </div>
+</div>
+
+<div class="distanceTop"></div>
+
+
+<div class="row bs-wizard" style="border-bottom:0;">
+
+    <div class="col-xs-3 bs-wizard-step complete">
+        <div class="text-center bs-wizard-stepnum">1</div>
+        <div class="progress"><div class="progress-bar"></div></div>
+        <a href="#" class="bs-wizard-dot">
+            <span class="glyphicon glyphicon-ok" style="color:white;"></span>
+        </a>
+        <div class="bs-wizard-info text-center">
+            <a class="decoration_a" href="@Url.Action(MVC.Cart.ActionNames.Index, MVC.Cart.Name)">
+                سبد خرید
+            </a>
+        </div>
+    </div>
+
+    <div class="col-xs-3 bs-wizard-step complete">
+        <div class="text-center bs-wizard-stepnum">2</div>
+        <div class="progress"><div class="progress-bar"></div></div>
+        <a href="#" class="bs-wizard-dot">
+            <span class="glyphicon glyphicon-ok" style="color:white;"></span>
+        </a>
+        <div class="bs-wizard-info text-center">
+            <a class="decoration_a" href="@Url.Action(MVC.Cart.ActionNames.Information, MVC.Cart.Name)">
+                آدرس و مشخصات
+            </a>
+        </div>
+    </div>
+
+    <div class="col-xs-3 bs-wizard-step complete">
+        <div class="text-center bs-wizard-stepnum">2</div>
+        <div class="progress"><div class="progress-bar"></div></div>
+        <a href="#" class="bs-wizard-dot">
+            <span class="glyphicon glyphicon-ok" style="color:white;"></span>
+        </a>
+        <div class="bs-wizard-info text-center">
+            <a class="decoration_a" href="@Url.Action(MVC.Cart.ActionNames.Confirmation,MVC.Cart.Name)">تائید اطلاعات</a>
+        </div>
+    </div>
+
+    <div class="col-xs-3 bs-wizard-step active">
+        <div class="text-center bs-wizard-stepnum">4</div>
+        <div class="progress"><div class="progress-bar"></div></div>
+        <a href="#" class="bs-wizard-dot">
+        </a>
+        <div class="bs-wizard-info text-center">انتخاب روش پرداخت</div>
+    </div>
+</div>
+<div class="distanceBottom"></div>
+
+<br /><br /><br />
+
+
+
+<div class="row col-md-offset-1">
+    <div class="col-md-11">
+        @using (Ajax.BeginForm(MVC.Cart.ActionNames.Payment, MVC.Cart.Name,
+    new AjaxOptions
+    {
+        HttpMethod = "POST",
+        InsertionMode = InsertionMode.Replace,
+        LoadingElementId = "divLoadingLastStep",
+        OnSuccess = "OnSuccessRegisterOrder",
+        OnBegin = "OnBeginRegisterOrder"
+    }))
+        {
+            @Html.AntiForgeryToken()
+            <table class="table table-items">
+                <thead>
+                    <tr>
+                        <th>انتخابگر</th>
+                        <th class="col-md-4">نوع پرداخت</th>
+                        <th colspan="2">توضیحات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="radio" disabled name="selectPayment" value="Online"></td>
+                        <td>
+                            <p class="dec">پرداخت اینترنتی</p>
+                        </td>
+                        <td>
+                            <p>پرداخت از کلیه کارت های عضو شبکه شتاب انجام میشود .</p>
+                            <p>[ پرداخت اینترنتی باعث ایجاد الویت و تسریع در پردازش سفارش شما خواهد شد. ]</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="radio" name="selectPayment" value="PostOffice" checked></td>
+                        <td><p class="dec">پرداخت در محل</p></td>
+                        <td><p>تحویل مبلغ سفارش به مامور پست انجام میشود.</p></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div>
+                <div class="col-md-2 pull-left">
+                    <input type="submit" value="ثبت سفارش" class="btn btn-primary pull-left" />
+                </div>
+                <div class="col-md-2 pull-left" style="padding-top:6px;" id="divLoadingLastStep">
+                    <img src="~/Content/Images/Main/loadingAnimation.gif" />
+                </div>
+            </div>
+        }
+
+        <br /><br />
+
+        <div id="alertAfterOperation">
+            <div class="col-md-12">
+                <div class="alert alert-info">
+                    <p>
+                        Hello RoshanZamir
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br /><br />
+<script type="text/javascript" lang="en">
+    function OnSuccessRegisterOrder(data) {
+        $('#divLoadingLastStep').hide();
+        if (data.Status == "true" && data.Result != null && data.Address != null) {
+            window.location.href = data.Address;
+        }
+        else {
+            $('#alertAfterOperation p').text(data.Result);
+            $('#alertAfterOperation').show();
+        }
+    };
+
+    function OnBeginRegisterOrder() {
+        $('#alertAfterOperation').hide();
+        $('#divLoadingLastStep').show();
+    };
+
+    $(document).ready(function () {
+        $('#alertAfterOperation').hide();
+        $('#divLoadingLastStep').hide();
+    });
+</script>
+

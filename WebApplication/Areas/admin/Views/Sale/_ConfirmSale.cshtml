@@ -1,0 +1,68 @@
+﻿@using eShop.WebApplication.DomainClasses.ViewModelClasses
+@model ConfirmSaleViewModel
+
+<div class="row">
+    <div class="col-md-12">
+        <div style="width:100%; height:40px; background-color:#eee; text-align:center; border-radius:5px 5px 0 0;">
+            <span style="font:normal 18px eramFont; text-align:center; margin-top:7px;">
+                تائید سفارش در فناوران اطلاعات ارم وب شیراز
+            </span>
+        </div>
+        <div style="padding:15px;">
+            <p style="font:normal 15px eramFont; border-bottom:2px solid #eee;">
+                شما قصد فعال سازی سفارش با کد رهگیری سیستمی
+                <span>
+                    <label style="color:green">
+                        @MvcHtmlString.Create("EWTR-" + (Model.Sale_Id * 237 + 2323) + "").ToString()
+                    </label>
+                </span>
+                را دارید
+            </p>
+            <p style="font:normal 15px eramFont; border-bottom:2px solid #eee;  line-height:1.7em;">
+                در ابتدا چک مارک زیر را علامت بزنید و سپس بر روی دکمه تائید بزنید تا
+                سفارش شما تائید شود بعد از تائید یک پیامک به مشتری حاوی تائید شدن سفارش ارسال میشود
+            </p>
+            <p style="font:normal 15px eramFont; line-height:1.7em; clear:both">
+                <div class="ckbox ckbox-primary">
+                    <input type="checkbox" id="checkBox1" value="1/9500" name="checkboxSelectProduct">
+                    <label for="checkBox1">
+                        تائید سفارش
+                    </label>
+                </div>
+            </p>
+            <div class="clearfix"></div>
+            @using (Ajax.BeginForm(MVC.admin.Sale.ActionNames.ResultConfirmSale, MVC.admin.Sale.Name,new AjaxOptions{HttpMethod = "POST",InsertionMode = InsertionMode.Replace,OnBegin = "OnBeginConfirmationSale",OnSuccess = "OnSuccessConfirmationSale",UpdateTargetId = "divResultConfirmSale",LoadingElementId = "imgLoadingInConfirmSale"})){
+                @Html.HiddenFor(x => x.Sale_Id)
+                @Html.HiddenFor(x => x.Usder_Id)
+                <p>
+                    <input type="submit" value="تائید سفارش" class="btn btn-primary" id="btnConfirm" />
+                    <img src="@Url.Content("~/Content/Images/Main/loadingAnimation.gif")" class="pull-right" id="imgLoadingInConfirmSale" style="display:none;" />
+                </p>
+            }
+            <div class="alert alert-info" id="divResultConfirmSale">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" lang="en">
+    function OnBeginConfirmationSale() {
+        if (!$('#checkBox1').is(':checked')) {
+            $('#divResultConfirmSale').show();
+            $('#divResultConfirmSale').text('برای تائید سفارش حتما باید چک مارک بالا را انتخاب نمایید');
+            return false;
+        } else {
+            $('#divResultConfirmSale').hide();
+            return true;
+        }
+    };
+    function OnSuccessConfirmationSale(data) {
+        $('#divResultConfirmSale').show();
+        $('#divResultConfirmSale').text(data.Result);
+    };
+    $(document).ready(function () {
+        $('#divResultConfirmSale').hide();
+    });
+</script>

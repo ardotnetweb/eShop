@@ -1,0 +1,444 @@
+﻿@using eShop.WebApplication.DomainClasses.ViewModelClasses
+@using eShop.WebApplication.DomainClasses.AppClasses
+@model DetailsProductShowViewModel
+
+@{
+    ViewBag.Title = string.Format("جزئیات محصول آموزشی  : {0}",ViewBag.ProductName);
+    Layout = "~/Views/Shared/_Main.cshtml";
+    var HourEducation = Model.ProductShowViewModel.Time.Hours;
+    var MinuteEducation = Model.ProductShowViewModel.Time.Minutes;
+
+    if (MinuteEducation > 60)
+    {
+        HourEducation += MinuteEducation / 60;
+        MinuteEducation = MinuteEducation % 60;
+    }
+
+}
+
+
+
+
+<div style="padding-top:10px;" id="containerDetailsProductBase">
+    <aside class="scrollspy clearfix hidden-xs col-md-2" id="directPage">
+        <ul class="nav nav-list affix">
+            <li class="spy-1 active"><a href="#part-BaseInformation">توضیح خلاصه و تصویر</a></li>
+            <li class="spy-6"><a href="#part-Details">جزئیات محصول</a></li>
+            <li class="spy-2"><a href="#part-Explain">توضیحات محصول</a></li>
+            <li class="spy-3"><a href="#part-Similar">محصولات مشابه</a></li>
+            <li class="spy-4"><a href="#part-Comment">نظرات کاربران</a></li>
+            <li class="spy-5"><a href="#part-SendComment">ارسال نظر</a></li>
+            <li id="scrollToTop-holder"><a href="" class="scrollToTop"><span class="glyphicon glyphicon-upload"></span></a></li>
+        </ul>
+    </aside>
+
+    <div class="clearfix"></div>
+    <div class=" col-xs-10 col-sm-10 col-sm-push-2" id="ContainerDetailProduct" style="border-right:1px solid #eee; ">
+        <section id="part-BaseInformation">
+            <div class="clearfix"></div>
+            <div class="col-md-12" style="background:linear-gradient(-90deg,#ffffff,#faf9f9); height:auto; padding-bottom:15px; clear:right">
+                <div class="col-md-1" id="lightBoxImageProduct" style="padding-right:0; padding-left:0; padding-top:8px; ">
+                    @foreach (var item in Model.ProductShowViewModel.ImageProducts)
+                    {
+                        <a href="@Url.Content("~/Content/Images/Product/GallerySize/" + item.Image)" style="width:65px; height:40px; margin-bottom:5px;">
+                            <img src="@Url.Content("~/Content/Images/Product/GallerySize/" + item.Image)" style="width:65px; height:40px; margin-bottom:5px;" />
+                        </a>
+                    }
+                </div>
+                <div class="col-md-3" style="padding-right:0; padding-top:8px; padding-left:0;">
+                    <img src="~/Content/Images/Product/MainSize/@Model.ProductShowViewModel.PrimaryImage" style="width:auto; height:262px;" class="img-responsive" />
+                </div>
+
+                <div class="col-md-8">
+                    <div class="col-md-12" style="padding:0 !important; text-align:center; padding-bottom:7px;">
+                        <h1 class="center-block" style="color:black; font:bold 16px eramFont; padding-bottom:7px; border-bottom:2px solid white;">
+                            @Model.ProductShowViewModel.Name
+                        </h1>
+                    </div>
+                    <div class="col-md-12" style="border-bottom:2px solid white; line-height:1.9em !important; padding-bottom:15px; font:normal 14px eramFont;">
+                        @Html.Raw(Model.ProductShowViewModel.Explain.Substring(0, 400))
+                    </div>
+                    <div class="col-md-12" style="padding-top:10px;">
+                        <div class="col-md-6" id="containerStatusFavoriteUser">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <img src="~/Content/Images/Main/loadingAnimation.gif" />
+                                <span>
+                                    <script>
+                                        jQuery(document).ready(function () {
+                                            $.get('@Url.Action(MVC.Favorite.ActionNames.CheckFavoriteProduct,MVC.Favorite.Name)', { productId: '@Model.ProductShowViewModel.Id' }, function (data) {
+                                                $('#containerStatusFavoriteUser').empty().append(data);
+                                            })
+                                        });
+                                    </script>
+                                </span>
+                            }
+                            else
+                            {
+                                //style=" background:linear-gradient(-180deg,#f4bd78,#ef9c34); color:white;"
+
+                                <a id="btnFavorite" class="btn modal-link btnAdd" style="padding:8px 5px;" href="@Url.Action(MVC.Layout.ActionNames.LoginSite, MVC.Layout.Name)" data-toggle="modal" data-target="#ModalLogin">
+                                    <span>
+                                        <i class="glyphicon glyphicon-shopping-cart visible-xs"></i>
+                                    </span>
+                                    <span class="hidden-xs">
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span>اضافه به لیست علاقه مندی ها</span>
+                                    </span>
+                                </a>
+                            }
+                        </div>
+                        <div class="col-md-6">
+                            @using (Ajax.BeginForm(actionName: MVC.Product.ActionNames.AddToCart,
+                                controllerName: MVC.Product.Name,
+                                routeValues: new { 
+                                    product_Id = Model.ProductShowViewModel.Id, 
+                                    name = Model.ProductShowViewModel.Name, 
+                                    price = Model.ProductShowViewModel.Price, 
+                                    type = StatusTypeOrder.EWPR },
+                                ajaxOptions: new AjaxOptions
+                                {
+                                    HttpMethod = "POST",
+                                    OnBegin = "OnBeginAddToCart",
+                                    OnSuccess = "OnSuccessAddToCart",
+                                    OnFailure = "OnFailureAddToCart"
+                                },
+                                htmlAttributes: new { id = "formAddToCart" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="btn btnAdd" id="btnAddToCart" style="padding:8px 5px;">
+                                    <span>
+                                        <i class="glyphicon glyphicon-shopping-cart visible-xs"></i>
+                                    </span>
+                                    <span class="hidden-xs">
+                                        <span class="glyphicon glyphicon-shopping-cart"></span>
+                                        <span>اضافه کردن محصول به سبد خرید</span>
+                                    </span>
+                                </button>
+                            }
+
+                            <style type="text/css" lang="en">
+                            </style>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <label class="pull-left" style="margin-top:15px;">
+                            تعداد بازدید :
+                            <span style="font-size:19px; color:green">
+                                @Model.ProductShowViewModel.CountVisit.ToString()
+                            </span>
+                        </label>
+                        <label class="pull-right" style="margin-top:15px;">
+                            کد محصول :
+                            <span style="font-size:19px; color:green">
+                                EWPR-
+                                @string.Format(" {0}", ((Model.ProductShowViewModel.Id * 237) + 2323))
+                            </span>
+                        </label>
+                    </div>
+
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </section>
+        <br />
+        <section id="part-Details">
+            <br />
+            <div class=" btn-block col-md-12 SectionBase">
+                <header>
+                    <span class="glyphicon glyphicon-list SignSection">
+                    </span>
+                    <span class="TextSection">
+                        جزئیات محصول آموزشی
+                    </span>
+                </header>
+                <div class="clearfix"></div>
+                <br />
+                <div class="row">
+                    <div>
+                        <div class="col-md-3 DetailsProduct-Text-Question">
+                            پیشنهاد ویژه
+                        </div>
+                        <div class="col-md-9 DetailsProduct-Text-Answer">
+                            @if (Model.ProductShowViewModel.Recomend == (byte)StatusRecomend.SpecialRecomend)
+                            {
+                                <span>
+                                    پیشنهاد ویژه
+                                </span>
+                            }
+                            else
+                            {
+                                <span>
+                                    ------
+                                </span>
+                            }
+                        </div>
+                    </div>
+                    <div>
+                        <div class="col-md-3 DetailsProduct-Text-Question">
+                            قیمت محصول
+                        </div>
+                        <div class="col-md-9 DetailsProduct-Text-Answer">
+                            @string.Format("{0}", Model.ProductShowViewModel.Price, System.Globalization.CultureInfo.CreateSpecificCulture("fa-IR"))
+
+
+                        </div>
+                    </div>
+                    <div>
+                        <div class="col-md-3 DetailsProduct-Text-Question">
+                            مدت زمان آموزش
+                        </div>
+                        <div class="col-md-9 DetailsProduct-Text-Answer">
+                            <span>
+                                @string.Format("{0} ساعت {1} دقیقه", HourEducation, MinuteEducation)
+                            </span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="col-md-3 DetailsProduct-Text-Question">
+                            گروه آموزشی
+                        </div>
+                        <div class="col-md-9 DetailsProduct-Text-Answer">
+                            @Html.RouteLink(Model.ProductShowViewModel.Category.Name, "Category", new { categoryId = Model.ProductShowViewModel.Category.Category_Id, categoryName = UrlExtensions.ResolveTitleForUrl(Model.ProductShowViewModel.Category.Name) }, new { @class = "decoration_a" })
+                        </div>
+                    </div>
+                    <div>
+                        <div class="col-md-3 DetailsProduct-Text-Question">
+                            کمپانی سازنده محصول
+                        </div>
+                        <div class="col-md-9 DetailsProduct-Text-Answer">
+                            @Html.RouteLink(Model.ProductShowViewModel.Company.Name, "detailscompany", new { companyid = Model.ProductShowViewModel.Company.Company_Id, companyname = UrlExtensions.ResolveTitleForUrl(Model.ProductShowViewModel.Company.Name) }, new { @class = "decoration_a" })
+                        </div>
+                    </div>
+                    <div>
+                        <div class="col-md-3 DetailsProduct-Text-Question">
+                            برچسب ها
+                        </div>
+                        <div class="col-md-9 DetailsProduct-Text-Answer">
+                            @foreach (var item in Model.ProductShowViewModel.Labels)
+                            {
+                                <div class=" BaseInformationBottomLabel">
+                                    @item.Name
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="part-Explain" style="clear:both">
+            <br />
+            <br />
+            <div class=" btn-block col-md-12 SectionBase">
+                <header>
+                    <span class="glyphicon glyphicon-tasks SignSection">
+                    </span>
+                    <span class="TextSection">
+                        توضحیات مربوط به محصول آموزشی
+                    </span>
+                </header>
+                <div class="clearfix"></div>
+                <br />
+            </div>
+            <div class="col-md-12">
+                <br />
+                <p class="SectionExplain-Text">
+                    @Html.Raw(Model.ProductShowViewModel.Explain)
+                </p>
+            </div>
+        </section>
+        <br />
+        <br />
+        <div class="clearfix"></div>
+        <section id="part-Similar">
+            <div class=" btn-block col-md-12 SectionBase">
+                <header>
+                    <span class="glyphicon glyphicon-magnet SignSection">
+                    </span>
+                    <span class="TextSection">
+                        محصولات مشابه آموزشی
+                    </span>
+                </header>
+                <div class="clearfix"></div>
+                <br />
+
+            </div>
+            <br />
+            <div class="col-md-12">
+                @Html.Action(MVC.Product.ActionNames.SimilarProduct, MVC.Product.Name, new { id = Model.ProductShowViewModel.Category.Parent_Id })
+            </div>
+        </section>
+        <br />
+        <br />
+        <br />
+        <div class="clearfix"></div>
+        <section id="part-Comment">
+            <div class=" btn-block col-md-12 SectionBase">
+                <header>
+                    <span class="glyphicon glyphicon-user SignSection">
+                    </span>
+                    <span class="TextSection">
+                        نظرات کاربران
+                    </span>
+                </header>
+                <div class="clearfix"></div>
+                <br />
+
+            </div>
+
+            <br />
+            <div id="ContainerComment" data-addresscomment="@Url.Action(MVC.Comment.ActionNames.GetAllCommentForProduct,MVC.Comment.Name)" data-productid="@Model.ProductShowViewModel.Id">
+
+            </div>
+
+        </section>
+
+        <div class="clearfix"></div>
+        <br /><br />
+        <section id="part-SendComment">
+            <br />
+            <br />
+            <div class=" btn-block col-md-12 SectionBase">
+                <header>
+                    <span class="glyphicon glyphicon-comment SignSection">
+                    </span>
+                    <span class="TextSection">
+                        ارسال نظر
+                    </span>
+                </header>
+                <div class="clearfix"></div>
+                <br />
+            </div>
+            <br />
+            <div class="col-md-12">
+                <br />
+                <label class="AnnounceSend">
+                    متن مورد نظر خود را جهت ارسال وارد نمایید
+                </label>
+                <br />
+
+            </div>
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                using (Ajax.BeginForm(MVC.Comment.ActionNames.SendComment, MVC.Comment.Name,
+                   null, new AjaxOptions
+                   {
+                       HttpMethod = "POST",
+                       InsertionMode = InsertionMode.Replace,
+                       LoadingElementId = "divLoadninSendComment",
+                       UpdateTargetId = "resultComment",
+                       OnSuccess = "OnSuccessInsertComment"
+                   }, null))
+                {
+                    <div id="ContainerStatusCommentUser" class="col-md-12" style="padding:0;">
+                        <div id="divCoverSendComment"></div>
+                        @Html.HiddenFor(x => x.ProductShowViewModel.Id)
+                        <div class="col-md-12">
+                            @Html.TextAreaFor(x => x.SendCommentViewModel.Explain, new { @class = "SectionSendCommentTextArea", id = "SectionSendCommentTextArea" })
+                            @Html.ValidationMessageFor(x => x.SendCommentViewModel.Explain, "", new { @class = "text-danger" })
+                        </div>
+                        <br />
+                        <div class="col-md-12">
+                            <div class="col-md-2" style="padding:0;">
+                                <input id="btnSendComment" type="submit" value="ارسال نظر" class="btn btn-default" />
+                            </div>
+                            <div class="col-md-3">
+                                <img id="divLoadninSendComment" src="~/Content/Images/Main/loadingAnimation.gif" style="display:none" />
+                            </div>
+                            <div class="col-md-6" id="resultComment" style="color:red">
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            }
+            else
+            {
+                <a class="col-md-12 btn modal-link" id="ContainerStatusCommentUser" href="@Url.Action(MVC.Layout.ActionNames.LoginSite, MVC.Layout.Name)" data-toggle="modal" data-target="#ModalLogin">
+                    <div id="divCoverSendComment" style="background-color:#eee; opacity:0.6; width:100%; height:100%; position:absolute; z-index:50;"></div>
+                    <textarea class="SectionSendCommentTextArea"></textarea>
+                    <br />
+                    <div class="col-md-12">
+                        <br />
+                        <input id="btnSendComment" type="submit" value="ارسال نظر" class="btn btnAdd pull-right" />
+                    </div>
+                </a>
+            }
+
+            <br />
+            <br />
+            <br />
+        </section>
+
+        <div class="clearfix"></div>
+    </div>
+
+</div>
+
+
+
+<script src="~/Scripts/jquery-loader-information.js"></script>
+
+<link href="~/Content/adcss/jquery.lightbox-0.5.css" rel="stylesheet" />
+<script src="~/Scripts/adjs/jquery.lightbox-0.5.min.js"></script>
+
+<script type="text/javascript" lang="en">
+    $(function () {
+        $("#lightBoxImageProduct a").lightBox();
+        $('a[href*=#]:not([href=#])').click(function () {
+            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                if (target.length) {
+                    $('html,body').animate({
+                        scrollTop: target.offset().top
+                    }, 1000);
+                    return false;
+                }
+            }
+        });
+    });
+    function OnSuccessInsertComment() {
+        $('#part-SendComment #ContainerStatusCommentUser #SectionSendCommentTextArea').val(" ");
+    };
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*$(document).on("pageload", function () {
+        //var hash = window.location.hash.substring(1);
+        //if (hash != null)
+        //    document.location.href = hash;
+    });*@

@@ -1,0 +1,59 @@
+﻿@using eShop.WebApplication.DomainClasses.ViewModelClasses
+@model ConfirmSaleViewModel
+
+<div class="row">
+    <div class="col-md-12">
+        <div style="width:100%; height:40px; background-color:#eee; text-align:center; border-radius:5px 5px 0 0;">
+            <span style="font:normal 18px eramFont; text-align:center; margin-top:7px;">
+                ارسال کد رهگیری پستی در فناوران اطلاعات ارم وب شیراز
+            </span>
+        </div>
+        <div style="padding:15px;">
+            <p style="font:normal 15px eramFont; border-bottom:2px solid #eee;">
+                شما قصد ارسال کد رهگیری پستی برای موسوله ای با کد رهگیری سیستمی
+                <span>
+                    <label style="color:green">
+                        @MvcHtmlString.Create("EWTR-" + (Model.Sale_Id * 237 + 2323) + "").ToString()
+                    </label>
+                </span>
+                را دارید
+            </p>
+            <div class="clearfix"></div>
+            @using (Ajax.BeginForm(MVC.admin.Sale.ActionNames.ResultSendTrackingNumber, MVC.admin.Sale.Name, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, OnBegin = "OnBeginConfirmationSale", OnSuccess = "OnSuccessConfirmationSale", UpdateTargetId = "divResultConfirmSale", LoadingElementId = "imgLoadingInConfirmSale" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(x => x.Sale_Id)
+                @Html.HiddenFor(x => x.Usder_Id)
+                <p>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">شماره رهگیری</label>
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(x => x.TrackingNumber, new { @class = "form-control controlFocus" })
+                            @Html.ValidationMessageFor(x => x.TrackingNumber, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </p>
+                <p>
+                    <input type="submit" value="تائید سفارش" class="btn btn-primary" id="btnConfirm" onclick="$.validator.unobtrusive.parse($('form'));" />
+                    <img src="@Url.Content("~/Content/Images/Main/loadingAnimation.gif")" class="pull-right" id="imgLoadingInConfirmSale" style="display:none;" />
+                </p>
+            }
+            <div class="alert alert-info" id="divResultConfirmSale">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" lang="en">
+    function OnBeginConfirmationSale() {
+        $('#divResultConfirmSale').hide();
+    };
+    function OnSuccessConfirmationSale(data) {
+        $('#divResultConfirmSale').show();
+        $('#divResultConfirmSale').text(data.Result);
+    };
+    $(document).ready(function () {
+        $('#divResultConfirmSale').hide();
+    });
+</script>

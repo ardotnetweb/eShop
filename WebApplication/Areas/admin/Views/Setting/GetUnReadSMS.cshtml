@@ -1,0 +1,76 @@
+﻿@using eShop.WebApplication.DomainClasses.SMSViewModel
+@model List<InfoSMSViewModel>
+
+@{
+    ViewBag.Title = "GetUnReadSMS";
+    Layout = "~/Areas/admin/Views/Shared/_Main.cshtml";
+    var loadInfoUrl = Url.Action(actionName: MVC.admin.Setting.ActionNames.dataSMSInfo,controllerName: MVC.admin.Setting.Name);
+}
+
+<input type="hidden" value="1" id="PageNumber" name="PageNumber" />
+<div class="row">
+    <div class="col-md-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        شماره
+                    </th>
+                    <th>
+                        ارسال کننده
+                    </th>
+                    <th>
+                        تاریخ ارسال
+                    </th>
+                    <th>
+                        زمان ارسال
+                    </th>
+                    <th>
+                        متن ارسالی
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="MoreInfoDiv">
+                @{ Html.RenderPartial(partialViewName: MVC.admin.Setting.Views._dataSMS, model: Model); }
+            </tbody>
+        </table>
+
+        <br />
+
+        <div class="row controlitembutton">
+            <div class="controlItemButtonInnerDiv">
+                <div class="col-md-10 borderLeft">
+                    <input id="moreInfoButton" type="button" class="btn btn-primary btn-block" value="موارد بیشتر" />
+                </div>
+                <div class="col-md-2 center-block controlDisplay" id="ProgressDiv" align="center">
+                    <img src="@Url.Content("~/Content/Images/Main/loadingAnimation.gif")" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#moreInfoButton").InfiniteScroll({
+                moreInfoDiv: '#MoreInfoDiv',
+                progressDiv: '#ProgressDiv',
+                loadInfoUrl: '@loadInfoUrl',
+                loginUrl: '/login',
+                errorHandler: function () {
+                    alert('خطایی رخ داده است');
+                },
+                completeHandler: function () {
+                    $("#PageNumber").val(parseInt($("#PageNumber").val()) + 1);
+                },
+                noMoreInfoHandler: function () {
+                    $("#moreInfoButton").css("display", "none");
+                }
+            });
+        });
+    </script>
+}
+
+
+

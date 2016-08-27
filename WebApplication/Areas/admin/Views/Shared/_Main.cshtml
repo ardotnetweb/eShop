@@ -1,0 +1,380 @@
+﻿<!DOCTYPE html>
+@using Microsoft.AspNet.Identity
+@using WebApplication.BaseClassWebApplication
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    @BundleConfig.AddScripts("~/Scripts/Js", "~/Scripts/adjs/jquery-2.1.1.min.js",
+            "~/Scripts/adjs/jquery.validate.min.js",
+            "~/Scripts/adjs/jquery.unobtrusive-ajax.min.js",
+            "~/Scripts/adjs/jquery.validate.unobtrusive.min.js",
+            "~/Scripts/adjs/froala_editor.min.js",
+            "~/Scripts/adjs/fa.js",
+            "~/Scripts/adjs/bootstrap-filestyle.js",
+            "~/Scripts/adjs/scriptAdmin.js",
+            "~/Scripts/PersianDatePicker.min.js",
+            "~/Scripts/adjs/jquery-infiniti.js",
+            "~/Scripts/adjs/ajaxfileupload.js",
+            "~/Scripts/adjs/jquery.lightbox-0.5.min.js",
+            "~/Chosen/chosen.jquery.js",
+            "~/Chosen/chosen.proto.js",
+            "~/Scripts/Highcharts-4.0.1/js/highcharts.js",
+            "~/Scripts/Slider/ideal-image-slider.js",
+            "~/Scripts/Slider/iis-captions.js")
+
+    <script src="@BundleConfig.AddScriptUrl("~/Scripts/UI", "~/Scripts/jquery-ui-1.10.1.min.js")"></script>
+
+
+
+    @BundleConfig.AddStyles("~/Content/Style",
+            "~/Content/adcss/froala_editor.min.css",
+            "~/Content/adcss/bootstrap.min.css",
+            "~/Content/adcss/bootstrap-select-rtl.min.css",
+            "~/Content/PersianDatePicker.min.css",
+            "~/Content/adcss/jquery.lightbox-0.5.css",
+            "~/Content/Slider/normalize.css",
+            "~/Content/Slider/ideal-image-slider.css",
+            "~/Content/Slider/default.css",
+            "~/Chosen/chosen.min.css", "~/Content/themes/base/jquery-ui.css")
+
+
+    <link href="@Url.Content("~/Content/adcss/style.default.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/adcss/site.css")" rel="stylesheet" type="text/css" />
+
+
+
+
+</head>
+<body>
+    <header>
+        <div class="headerwrapper">
+            <div class="header-left">
+                <a href="@Url.Action(MVC.admin.Home.ActionNames.index,MVC.admin.Home.Name)" class="logo">
+                    <img src="~/Content/Images/Main/eramwebLogo.png" />
+                </a>
+                <div class="pull-right">
+                    <a href="" class="menu-collapse">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="pull-right">
+                    <div class="btn-group btn-group-list btn-group-messages">
+                        <button type="button" id="btnListContact" data-address="@Url.Action(MVC.admin.ContactUs.ActionNames.GetFiveContactUsLat,MVC.admin.ContactUs.Name)" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-envelope-o"></i>
+                            <span class="badge">
+                                @Html.Action(MVC.admin.ContactUs.ActionNames.GetCountMessageNotRead, MVC.admin.ContactUs.Name)
+                            </span>
+                        </button>
+                        <div class="dropdown-menu pull-right">
+                            <a href="@Url.Action(MVC.admin.Setting.ActionNames.SendSimpleSMS2,MVC.admin.Setting.Name)" class="link-right">
+                                <i class="glyphicon glyphicon-envelope"></i>
+                            </a>
+                            <h5>پیام های دریافتی</h5>
+                            <ul class="media-list dropdown-list"></ul>
+                            <div class="dropdown-footer text-center">
+                                <a class="decoration_a" href="@Url.Action(MVC.admin.ContactUs.ActionNames.Index, MVC.ContactUs.Name)">پیام های بیشتر</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="btn-group btn-group-option optionUser">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <ul class="dropdown-menu pull-right" role="menu">
+                            <li><a href="@Url.Action(MVC.admin.Manage.ActionNames.CompleteInformationUser, MVC.admin.Manage.Name, new { Id=User.Identity.GetUserId<int>() })"><i class="glyphicon glyphicon-user"></i> مشاهده پروفایل</a></li>
+                            <li><a href="@Url.Action(MVC.Account.ActionNames.ChangePassword, MVC.Account.Name, new { area="" })"><i class="glyphicon glyphicon-star"></i>تغیر رمز عبور</a></li>
+                            <li><a href="#"><i class="glyphicon glyphicon-question-sign"></i>راهنمای برنامه</a></li>
+                            <li><a href="@Url.Action(MVC.Home.ActionNames.Index, MVC.Home.Name, new { area="" })"><i class="glyphicon glyphicon-question-sign"></i>بخش نمایش</a></li>
+                            <li class="divider"></li>
+                            @using (Html.BeginForm(MVC.admin.Manage.ActionNames.LogOff, MVC.admin.Manage.Name, FormMethod.Post, new { id = "logoutForm" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <li>
+                                    <a href="javascript:document.getElementById('logoutForm').submit()"><i class="glyphicon glyphicon-log-out"></i>خروج از سیستم</a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section>
+        <div class="mainwrapper">
+            <div class="leftpanel">
+                <div class="media profile-left">
+                    <a class="pull-left profile-thumb" href="@Url.Action(MVC.admin.Home.ActionNames.index,MVC.admin.Home.Name)">
+                        <img class="img-circle" src="@Url.Content("~/Content/Images/Main/register_icon.png")" />
+                    </a>
+                    <div class="media-body">
+                        <a href="@Url.Action(MVC.admin.Home.ActionNames.index, MVC.admin.Home.Name)" class="decoration_a">
+                            <h4 class="media-heading" style="text-wrap:normal;">
+                                شرکت فناوران اطلاعات
+                            </h4>
+                            <small class="text-muted">ارم وب شیراز</small>
+                        </a>
+                    </div>
+                    <div class="media-content">
+                        <a class="decoration_a" href="@Url.Action(MVC.admin.Manage.ActionNames.CompleteInformationUser, MVC.admin.Manage.Name, new { Id=User.Identity.GetUserId<int>() })">
+                            @User.Identity.GetUserName().ToString()
+                        </a>
+                    </div>
+                </div>
+                <h5 class="leftpanel-title">
+                    منو مدیریتی فناوران اطلاعات ارم وب شیراز
+                </h5>
+                <ul class="nav nav-pills nav-stacked directBaseMasterPage">
+                    <li class="active">
+                        <a href="@Url.Action(MVC.admin.Home.ActionNames.index,MVC.admin.Home.Name)"><i class="glyphicon glyphicon-home"></i><span>صفحه اصلی</span></a>
+                    </li>
+                    <li class="parent">
+                        <a href=""><i class="fa fa-search"></i><span>جستجوی پیشرفته</span> </a>
+                        <ul class="children">
+                            <li>
+                                <a href="@Url.Action(actionName:MVC.admin.Category.ActionNames.SearchProductByCategory,controllerName:MVC.admin.Category.Name)"><span>جستجوی محصولات آموزشی</span></a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action(actionName:MVC.admin.Combination.ActionNames.Index,controllerName:MVC.admin.Combination.Name)">
+                                    <span>جستجوی کمپانی های سازنده </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="parent">
+                        <a href=""><i class="glyphicon glyphicon-picture"></i> <span>تصاویر اسلایدر صفحه نخست</span></a>
+                        <ul class="children">
+                            <li>
+                                <a href="@Url.Action(MVC.admin.Slider.ActionNames.Index,MVC.admin.Slider.Name)">
+                                    &nbsp;مشاده تصاویر موجود
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action(MVC.admin.Slider.ActionNames.CreateSlider,MVC.admin.Slider.Name)">
+                                    &nbsp;ایجاد تصاویر اسلایدر
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action(MVC.admin.Slider.ActionNames.DeleteImageSlider,MVC.admin.Slider.Name)">
+                                    &nbsp;حذف تصاویر اسلایدر
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="@Url.Action(MVC.admin.Sale.ActionNames.Index,MVC.admin.Sale.Name)">
+                            <span class="pull-right badge">
+                                @Html.Action(MVC.admin.Sale.ActionNames.GetCountNotConfirmed, MVC.admin.Sale.Name)
+                            </span>
+                            <i class="glyphicon glyphicon-th-large">
+                            </i><span>
+                                &nbsp;سفارشات
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="parent">
+                        <a href=""><i class="glyphicon glyphicon-user"></i> <span>کاربران سیستم</span></a>
+
+                        <ul class="children">
+                            <li>
+                                @Html.ActionLink("مشاهده اطلاعات پایه", MVC.admin.Manage.ActionNames.Index, MVC.admin.Manage.Name, null, null)
+                            </li>
+                            <li>
+                                @Html.ActionLink("کاربر جدید", MVC.admin.Manage.ActionNames.Register, MVC.admin.Manage.Name, null, null)
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="parent">
+                        <a href=""><i class="glyphicon glyphicon-th"></i> <span>پکیج های آموزشی محصولات</span></a>
+
+                        <ul class="children">
+                            <li>
+                                @Html.ActionLink("مشاهده اطلاعات پایه", MVC.admin.Package.ActionNames.Index, MVC.admin.Package.Name, null, null)
+                            </li>
+
+                            <li>
+                                @Html.ActionLink("ایجاد پکیج های آموزشی", MVC.admin.Package.ActionNames.CreatePackage, MVC.admin.Package.Name, null, null)
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="@Url.Action(MVC.admin.ContactUs.ActionNames.Index,MVC.admin.ContactUs.Name)">
+                            <span class="pull-right badge">
+                                @Html.Action(MVC.admin.ContactUs.ActionNames.GetCountMessageNotRead, MVC.admin.ContactUs.Name)
+                            </span>
+                            <i class="glyphicon glyphicon-envelope"></i><span>
+                                &nbsp;تماس با ما
+                            </span>
+                        </a>
+                    </li>
+                    <li class="parent">
+                        <a href=""><i class="glyphicon glyphicon-subtitles"></i> <span>کمپانی های سازنده محصولات</span></a>
+                        <ul class="children">
+                            <li>
+                                @Html.ActionLink(linkText: "مشاهده اطلاعات پایه", actionName: MVC.admin.Company.ActionNames.Index, controllerName: MVC.admin.Company.Name)
+                            </li>
+                            <li>
+                                @Html.ActionLink(linkText: "ایجاد کمپانی سازنده محصولات", actionName: MVC.admin.Company.ActionNames.CreateCompany, controllerName: MVC.admin.Company.Name)
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="parent">
+                        <a href=""><i class="fa fa-bars"></i> <span>گروه های سیستم</span></a>
+                        <ul class="children">
+                            <li>
+                                @Html.ActionLink(linkText: "مشاهده اطلاعات پایه", actionName: MVC.admin.Category.ActionNames.Index, controllerName: MVC.admin.Category.Name)
+                            </li>
+                            <li>
+                                @Html.ActionLink(linkText: "ایجاد گروه جدید", actionName: MVC.admin.Category.ActionNames.CreateCategory, controllerName: MVC.admin.Category.Name)
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="parent">
+                        <a href=""><i class="glyphicon glyphicon-th-large"></i> <span>محصولات آموزشی</span></a>
+                        <ul class="children">
+                            <li>
+                                @Html.ActionLink(linkText: "مشاهده اطلاعات پایه", actionName: MVC.admin.Product.ActionNames.Index, controllerName: MVC.admin.Product.Name)
+                            </li>
+                            <li>
+                                @Html.ActionLink(linkText: "ایجاد محصول جدید", actionName: MVC.admin.Product.ActionNames.CreateProduct, controllerName: MVC.admin.Product.Name)
+                            </li>
+                            <li>
+                                @Html.ActionLink("ایجاد لیست محصولات پیشنهادی", MVC.admin.Product.ActionNames.OfferProduct, MVC.admin.Product.Name, null, null)
+                            </li>
+                            <li>
+                                @Html.ActionLink("حذف و مشاهده محصولات پیشنهادی", MVC.admin.Product.ActionNames.ChageObsverOfferProduct, MVC.admin.Product.Name, null, null)
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="parent">
+                        <a href=""><i class="glyphicon glyphicon-tags"></i> <span>برچسب ها</span></a>
+                        <ul class="children">
+                            <li>
+                                @Html.ActionLink(linkText: "مشاهده اطلاعات پایه", actionName: MVC.admin.Label.ActionNames.Index, controllerName: MVC.admin.Label.Name)
+                            </li>
+                            <li>
+                                @Html.ActionLink(linkText: "ایجاد برچسب جدید", actionName: MVC.admin.Label.ActionNames.CreateLabel, controllerName: MVC.admin.Label.Name)
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="parent">
+                        <a href=""><i class="glyphicon glyphicon-comment"></i> <span>کامنت ها</span></a>
+                        <ul class="children">
+                            <li>
+                                @Html.ActionLink(linkText: "مشاهده اطلاعات پایه", actionName: MVC.admin.Comment.ActionNames.Index, controllerName: MVC.admin.Comment.Name)
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="parent">
+                        <a href=""><i class="glyphicon glyphicon-filter"></i> <span>مدیرت خطاها و تنظیمات App</span></a>
+                        <ul class="children">
+                            <li>
+                                @Html.ActionLink(linkText: "خطاهای ثبت شده", actionName: MVC.admin.Setting.ActionNames.Index, controllerName: MVC.admin.Setting.Name)
+                            </li>
+                            <li>
+                                @Html.ActionLink(linkText: "لیست IP  های خطرناک", actionName: MVC.admin.Setting.ActionNames.IndexIPDanger, controllerName: MVC.admin.Setting.Name)
+                            </li>
+                            <li>
+                                @Html.ActionLink(linkText: "لیست IP  های بلاک شده", actionName: MVC.admin.Block.ActionNames.Index, controllerName: MVC.admin.Block.Name)
+                            </li>
+                            <li>
+                                @Html.ActionLink(linkText: "مشاهده اطلاعات اولیه وارسال پیام", actionName: MVC.admin.Setting.ActionNames.ServiceSMS, controllerName: MVC.admin.Setting.Name)
+                            </li>
+                            <li>
+                                @Html.ActionLink(linkText: "لیست پیام های دریافتی خوانده شده", actionName: MVC.admin.Setting.ActionNames.GetReadSMS, controllerName: MVC.admin.Setting.Name)
+                            </li>
+                            <li>
+                                @Html.ActionLink(linkText: "لیست پیام های دریافتی خوانده نشده", actionName: MVC.admin.Setting.ActionNames.GetUnReadSMS, controllerName: MVC.admin.Setting.Name)
+                            </li>
+                            <li>
+                                <a>ارسال ایمیل</a>
+                            </li>
+                            <li>
+                                @Html.ActionLink(linkText: "کارهای زمانبندی شده", actionName: MVC.admin.Setting.ActionNames.SchedulerList, controllerName: MVC.admin.Setting.Name)
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="parent">
+                        <a href=""><i class="glyphicon glyphicon-list-alt"></i> <span>تنظیمات دیگر سیستم</span></a>
+                        <ul class="children">
+                            <li>
+                                @Html.ActionLink(linkText: "مشاهده اطلاعات استان", actionName: MVC.admin.Province.ActionNames.Index, controllerName: MVC.admin.Province.Name)
+                            </li>
+                            <li>
+                                @Html.ActionLink(linkText: "اضافه کردن استان جدید", actionName: MVC.admin.Province.ActionNames.CreateProvince, controllerName: MVC.admin.Province.Name)
+                            </li>
+                            <li>
+                                @Html.ActionLink(linkText: "مشاهده اطلاعات شهرستان ها", actionName: MVC.admin.City.ActionNames.Index, controllerName: MVC.admin.City.Name)
+                            </li>
+                            <li>
+                                @Html.ActionLink(linkText: "ااضافه کردن شهرستان جدید", actionName: MVC.admin.City.ActionNames.CreateCity, controllerName: MVC.admin.City.Name)
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="mainpanel">
+                <div class="contentpanel">
+                    <div class="col-md-12" style="border-bottom:2px solid #eee; padding-left:0;">
+                        <div class="col-md-7">
+                            <h5 style="font:normal 17px eramFont !important; color:green !important;">
+                                <span id="spanDate">امروز &nbsp;@Html.Action(MVC.admin.Home.ActionNames.GetDate, MVC.admin.Home.Name)</span>
+                                <span id="spanTime"></span>
+                            </h5>
+                        </div>
+                        <div class="col-md-5" style="padding-left:0;">
+                            <a class="btn btn-primary float" href="@Url.Action(MVC.admin.ContactUs.ActionNames.Index,MVC.admin.ContactUs.Name)"><i class="glyphicon glyphicon-envelope gly-spin"></i></a>
+                            <a class="btn btn-primary float" href="@Url.Action(MVC.admin.Sale.ActionNames.Index,MVC.admin.Sale.Name)"><i class="glyphicon glyphicon-bell gly-spin"></i></a>
+                            <a class="btn btn-primary float" href="@Url.Action(MVC.admin.Comment.ActionNames.Index,MVC.admin.Comment.Name)"><i class="glyphicon glyphicon-comment gly-spin"></i></a>
+                            <a class="btn btn-primary float" href="@Url.Action(MVC.admin.Setting.ActionNames.Index,MVC.admin.Setting.Name)"><i class="glyphicon glyphicon-cog gly-spin"></i></a>
+                            <a class="btn btn-primary float" id="refreshPage"><i class="glyphicon glyphicon-refresh gly-spin"></i></a>
+                            <a class="btn btn-primary float" href="@Url.Action(MVC.admin.Home.ActionNames.index, MVC.admin.Home.Name)"><i class="glyphicon glyphicon-th-large gly-spin"></i></a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div id="modal-container" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="body-content" id="Content">
+                        @RenderBody()
+                    </div>
+                    <div class="divLoading" id="divLoading">
+                        <img src="~/Content/Images/Main/Loadnig.GIF" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    @BundleConfig.AddScripts("~/Scripts/Bt",
+            "~/Scripts/adjs/bootstrap.min.js",
+            "~/Scripts/adjs/bootstrap-filestyle.js",
+            "~/Scripts/adjs/bootstrap-select.min.js",
+            "~/Scripts/adjs/custom.js",
+            "~/Scripts/adjs/moda_select_file.js",
+            "~/Scripts/adjs/ajaxfileupload.js",
+            "~/Scripts/adjs/ScriptMasterPage.js")
+
+
+    <script type="text/javascript" lang="en">
+        $('*[data-autocomplete-url]')
+       .each(function () {
+           $(this).autocomplete({
+               source: $(this).data("autocomplete-url")
+           });
+       });
+    </script>
+    @RenderSection("Scripts", false)
+</body>
+</html>

@@ -1,0 +1,21 @@
+﻿@model string
+<div class="row distanceTextBoxSearchWithDataTable">
+    <div class="col-sm-7 padingTextBoxSearchWithDataTable">
+        <label>
+            تعداد کل کمپانی های سازنده محصولات آموزشی <span>
+                @Model
+            </span> کمپانی مباشد
+        </label>
+    </div>
+    <div class="col-sm-1 padingTextBoxSearchWithDataTable">
+        <label class="pull-left">
+            جستجو
+        </label>
+    </div>
+    <div class="col-sm-4">
+        @using (Ajax.BeginForm(actionName: MVC.admin.Company.ActionNames.DataCompany, controllerName: MVC.admin.Company.Name, ajaxOptions: new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.Replace, LoadingElementId = "divLoadingTable", UpdateTargetId = "table-Content" }))
+        {
+            <input type="search" id="term" name="term" class="pull-right styleTextBoxSearch" data-autocomplete-url="@Url.Action(MVC.admin.Company.ActionNames.GetNameForAutoComplete, MVC.admin.Company.Name)" />
+        }
+    </div>
+</div>

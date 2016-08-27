@@ -1,0 +1,61 @@
+﻿@using eShop.WebApplication.DomainClasses.IdentityViewModel
+@model SendEmailProfileViewModel
+
+<div id="resultUpdate">
+
+</div>
+<div class="panel panel-default">
+    <div class="divLoading" id="divLoadingUpdateProfile">
+        <img src="@Url.Content("~/Content/Images/Main/Loadnig.GIF")" />
+    </div>
+    <div class="panel-heading">
+        <h4 class="fontSizeLarge">
+            ارسال نامه الکترونیکی
+        </h4>
+        <p class="fontSizeLargeTitle">
+            در این بخش شما می توانید اقدام به ارسال نامه الکترونیک به کاربر نمایید در ضمن نیازی به ذکر نام و نام خانوادگی کاربر نیست به صورت خودکار توسط سیستم انجام میگیرد در ضمن برای ایمیل هم یک قالب طراحی شده است و ایمیل داری یک قالب خاص می باشد
+        </p>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="breadcrumb" id="navBarMenu">
+                <li>
+                    <a href="@Url.Action(MVC.admin.Manage.ActionNames.Register,MVC.admin.Manage.Name)">ایجاد کاربر جدید در سیستم</a>
+                </li>
+                <li>
+                    <a href="@Url.Action(MVC.admin.Manage.ActionNames.Index,MVC.admin.Manage.Name)">مشاهده لیست کاربران سیستم</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    @using (Ajax.BeginForm(actionName: MVC.admin.Manage.ActionNames.SendEmail,controllerName: MVC.admin.Manage.Name,routeValues: null,ajaxOptions: new AjaxOptions{HttpMethod = "POST",InsertionMode = InsertionMode.Replace,LoadingElementId = "divLoadingUpdateProfile",UpdateTargetId = "resultUpdate"}))
+    {
+        <div class="panel-body">
+            @Html.HiddenFor(x => x.Name)
+            @Html.HiddenFor(x => x.Family)
+            <div class="col-md-12">
+                <h4 class="borderBottom padingBottom marginBottom">
+                    ارسال نامه الکترونیکی به
+                    <label>
+                        @string.Concat(Model.Name, " ", Model.Family)
+                    </label>
+                </h4>
+
+            </div>
+            <div class="marginBottom clearfix">
+                <div class="col-md-12  padingBottom">
+                    @Html.TextBoxFor(x => x.Subject, new { @class = "form-control controlFocus", placeholder = "موضوع نامه را وارد نمایید" })
+                </div>
+            </div>
+
+            <div class="marginBottom clearfix">
+                <div class="col-md-12  padingBottom">
+                    @Html.TextAreaFor(x => x.Explain, new { @class = "form-control controlFocus textAreaSendEmail", placeholder = "متن نامه را وارد نمایید" })
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <input type="submit" value="ارسال نامه الکترونیکی" class="btn btn-primary" onclick="$.validator.unobtrusive.parse($('form'));  " />
+        </div>
+    }
+</div>

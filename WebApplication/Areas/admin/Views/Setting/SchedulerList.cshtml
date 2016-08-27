@@ -1,0 +1,67 @@
+﻿@using eShop.WebApplication.DomainClasses.ViewModelClasses
+
+@model List<ScheduleShowViewModel>
+@{
+    ViewBag.Title = "SchedulerList";
+    Layout = "~/Areas/admin/Views/Shared/_Main.cshtml";
+}
+@Html.Partial(MVC.admin.Setting.Views._SolidHeaderScheduler)
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                Task Name
+            </th>
+            <th>
+                Date
+            </th>
+            <th>
+                Time
+            </th>
+            <th>
+                Last Run Date
+            </th>
+            <th>
+                Last Run Time
+            </th>
+            <th>
+                Is Paused
+            </th>
+            <th>
+                Last Run Successful
+            </th>
+        </tr>
+    </thead>
+    @for (int i = 0; i < Model.Count(); i++)
+    {
+        <tr>
+            <td class="col-md-1">
+                @MvcHtmlString.Create("" + (i + 1) + "")
+            </td>
+            <td class="col-md-3">
+                @Model[i].TaskName.ToString()
+            </td>
+            <td>
+                @Html.DisplayFor(x => Model[i].DateTime, "DisplayPersianDatePicker")
+            </td>
+            <td>
+                @if (Model[i].DateTime != null){ <span>@Model[i].DateTime.Value.TimeOfDay.ToString()</span> }else{ <span>---</span> }
+            </td>
+            <td>
+                @Html.DisplayFor(x => Model[i].LastRunTime, "DisplayPersianDatePicker")
+            </td>
+            <td>
+                @if (Model[i].LastRunTime != null){ <span>@Model[i].LastRunTime.Value.TimeOfDay.ToString()</span> }else{ <span>---</span> }
+            </td>
+            <td>
+                @Model[i].IsPaused.ToString()
+            </td>
+            <td>
+                @Model[i].LastRunWasSuccessful.ToString()
+            </td>
+        </tr>
+    }
+</table>

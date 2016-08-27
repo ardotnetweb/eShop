@@ -1,0 +1,196 @@
+﻿
+@{
+    ViewBag.Title = "createPackage";
+    Layout = "~/Areas/admin/Views/Shared/_Main.cshtml";
+}
+
+@{
+    var loadInfoUrl = Url.Action(actionName: MVC.admin.package.ActionNames.PagedIndex,
+        controllerName: MVC.admin.package.Name);
+}
+
+@Html.Partial(partialViewName: MVC.admin.package.Views._solidHeaderCreatePackage)
+<div class="panel-heading" style="border:1px solid #eee; height:auto">
+
+
+    <div class="col-md-12" id="containerRedirect">
+        <input type="hidden" name="Category_Id" id="Category_Id">
+        <input type="hidden" name="IdValue" value="" id="IdValue" />
+        <div class="divLoadingsubCategory" id="divLoadingsubCategory">
+            <img src="~/Content/Images/Main/loadningSamall.GIF" />
+        </div>
+
+        <div class="col-md-2">انتخاب گروه تکنولوژی ها</div>
+        <div class="col-md-4">
+            @Html.DropDownList("Id", (SelectList)ViewBag.Category,
+        "یکی از گروه ها را انتخاب نمایید",
+                                   new { id = "CategoryDropdown", @class = "form-control controlFocus" })
+        </div>
+        <div class="col-md-2" id="textSubCategory">انتخاب تکنولوژی توسعه</div>
+        <div class="col-md-3" id="dropDownListSubCategory">
+            @Html.DropDownList("Id", (SelectList)ViewBag.SubCategory,
+        "",
+         new { id = "SubCategoryDropdown", @class = "form-control controlFocus" })
+        </div>
+        <div class="col-md-1" id="divSearch">
+            <button type="button" class="btn btn-primary" id="moreInfoButton">
+                <span class="glyphicon glyphicon-search"></span>
+            </button>
+        </div>
+    </div>
+
+
+
+
+    <div class="clearfix"></div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table" id="tablePackage">
+            <thead>
+                <tr>
+                    <th>
+                        انتخاب
+                    </th>
+                    <th>
+                        نام محصول آموزشی
+                    </th>
+                    <th>
+                        مدت زمان آموزش
+                    </th>
+
+                    <th>
+                        کمپانی سازنده محصول آموزشی
+                    </th>
+                    <th>
+                        اطلاعات بیشتر
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="MoreInfoDiv"></tbody>
+        </table>
+    </div>
+    <br />
+    <div class="col-md-12">
+        <div class="col-md-5" id="Destination">
+        </div>
+        <div class="col-md-7 center-block" id="ProgressDiv" align="center" style="display: none">
+            <label>
+                سیستم در حال بارگذاری اطلاعات است لطفا چند لحظه تامل نمایید
+                &nbsp;&nbsp;&nbsp;
+            </label>
+            <img src="@Url.Content("~/Content/Images/Main/loadingInfiniti.gif")" />
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+<script type="text/javascript" lang="en">
+    var isActive = false;
+    var isLarge = false;
+    $(document).ready(function () {
+        $("#tablePackage").add("#textSubCategory").add("#dropDownListSubCategory").add("#divSearch").hide();
+
+        jQuery("#CategoryDropdown").change(
+        function () {
+
+            $("#dropDownListSubCategory").removeClass("col-md-4").addClass("col-md-3");
+            $("#containerRedirect").append("<div class=\"col-md-1\" id=\"divSearch\"></div>");
+            $("#moreInfoButton").detach().appendTo("#divSearch").text("بیشتر");
+
+            $("#MoreInfoDiv").empty();
+            $("#tablePackage").add("#textSubCategory").add("#dropDownListSubCategory")
+                .add("#divSearch").show();
+
+
+
+            $("#alertProduct").hide(600).css({ 'display': 'none' });
+
+            $("#nameCategory").text("");
+            $("#divLoadingsubCategory").css({ 'display': 'block' });
+            var id = $(this).find('option:selected').attr('value');
+            $("#Category_Id").val(id);
+            $("#SubCategoryDropdown").empty();
+            $("#document_company").fadeOut(600, function () {
+                $(this).empty().fadeIn(600);;
+            });
+
+            jQuery.getJSON("@Url.Action("GetAllSubCategory", "combination")",
+                { Id: $("#Category_Id").val() },
+                function (data) {
+                    if (data.length > 0) {
+                        $("#SubCategoryDropdown").append($('<option></option>').attr("value", "0").text("یکی از تکنولوژی های توسعه را انتخاب نمایید"));
+                        $("#textSubCategory").add("#dropDownListSubCategory").show();
+                    }
+                    else
+                        $("#divLoadingsubCategory").css({ 'display': 'none' });
+
+
+                    $("#SuMenuCategory").empty();
+
+
+                    jQuery.each(data, function (i) {
+                        var option = $('<option></option>').attr("value", data[i].Id).text(data[i].Name);
+                        $("#SubCategoryDropdown").append(option);
+
+                        var subMenuCategory = "<li><a id=\"" + data[i].Id + "\"><i class=\"fa fa-folder-o\"></i>" + data[i].Name + "</a></li>";
+                        $("#SuMenuCategory").append(subMenuCategory);
+
+                    });
+                    $("#divLoadingsubCategory").css({ 'display': 'none' });
+
+                });
+        });
+
+        jQuery("#SubCategoryDropdown").change(function () {
+            var productId = $(this).find('option:selected').attr('value');
+            $("#IdValue").val(productId);
+            $("#divSearch").show();
+        });
+
+
+
+        $("#moreInfoButton").InfiniteScroll({
+            moreInfoDiv: '#MoreInfoDiv',
+            progressDiv: '#ProgressDiv',
+            loadInfoUrl: '@loadInfoUrl',
+            loginUrl: '/login',
+            errorHandler: function () {
+                alert('خطایی رخ داده است');
+            },
+            completeHandler: function () {
+
+                if (!isActive) {
+                    $("#moreInfoButton").detach().prependTo("#Destination").text("موارد بیشتر");
+                    $("#tablePackage").show();
+                    $("#MoreInfoDiv").show();
+                    alert(isActive + "/ isActive");
+
+                }
+                else {
+                    isActive = true;
+                    alert(isActive + "/ isActive");
+
+                }
+                if (!isLarge) {
+                    $("#dropDownListSubCategory").removeClass("col-md-3").addClass("col-md-4");
+                    $("#divSearch").remove();
+                    alert(isLarge + "/ large");
+
+                } else {
+                    isLarge = true;
+                    alert(isLarge + "/ large");
+                    // اگر قرار است روی اطلاعات نمایش داده شده پردازش ثانوی صورت گیرد
+                }
+            },
+            noMoreInfoHandler: function () {
+                //alert('اطلاعات بیشتری یافت نشد');
+                $("#moreInfoButton").css("display", "none");
+            }
+        });
+    });
+</script>

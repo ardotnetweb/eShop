@@ -1,0 +1,125 @@
+﻿
+@{
+    ViewBag.Title = "updateComment";
+    Layout = "~/Areas/admin/Views/Shared/_Main.cshtml";
+}
+@using eShop.WebApplication.DomainClasses.AppClasses
+
+@model Comment
+
+
+
+<div id="result">
+
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="divLoadingContent" id="divLoadingContent">
+            <img src="~/Content/Images/Main/725.GIF" />
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 style="font-size:17px;">راهنمایی ایجاد گروه 1245</h4>
+                <p style="font-size:15px;">
+                    شما در این بخش می توانید گروه های آموزشی خود را وارد نمایید هر گروه می تواند یک پدر داشته باشد
+                    مثلا در بخش طراحی وب که شامل یک سری از تکنولوژی های مثل Jquery  و CSS ..
+                    می باشد که این دو تکنولوژی داری ریشه می باشند و ریشه آنها طراحی وب است
+                </p>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="breadcrumb" id="navBarMenu">
+                        <li>
+                            <a href="#">ایجاد گروه ----1245-- جدید</a>
+                        </li>
+                        <li>
+                            <a href="#"> نمایش دسته محصولات1245 تولیدی کمپانی</a>
+                        </li>
+                        <li>
+                            <a href="#">نمایش م12454تولیدی هر کمپانی</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            @using (Ajax.BeginForm(
+                actionName: MVC.admin.Comment.ActionNames.UpdateComment,
+                controllerName: MVC.admin.Comment.Name,
+                ajaxOptions: new AjaxOptions
+                            {
+                                HttpMethod = "POST",
+                                InsertionMode = InsertionMode.Replace,
+                                LoadingElementId = "divLoading",
+                                UpdateTargetId = "result"
+                            }))
+            {
+
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@Html.LabelFor(x => x.ApplicationUser.UserName)</label>
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(x => x.ApplicationUser.Name, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x.ApplicationUser.UserName, "",
+                                      new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@Html.LabelFor(x => x.Explain)</label>
+                            <div class="col-sm-9">
+                                @Html.TextAreaFor(x => x.Explain, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x.Explain, "",
+                                      new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-sm-9 col-sm-offset-3">
+                            <input type="submit" value="ذخیره سازی" class="btn btn-primary" />
+                            <input type="reset" value="خالی کردن باکس ها" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(function () {
+            $('#Explain').editable({
+                buttons: ["bold", "italic", "underline", "strikeThrough", "fontFamily",
+                    "fontSize", "color", "formatBlock", "align", "insertOrderedList",
+                    "insertUnorderedList", "outdent", "indent", "selectAll", "createLink",
+                    "insertImage", "insertVideo", "undo", "redo", "html", "save", "inserthorizontalrule"],
+                inlineMode: false,
+                inverseSkin: true,
+                preloaderSrc: '@Url.Content("~/Content/Images/Main/preloader.gif")',
+                allowedImageTypes: ["jpeg", "jpg", "png"],
+                height: 300,
+                language: "fa",
+                direction: "rtl",
+                fontList: ["Tahoma, Geneva", "Arial, Helvetica", "Impact, Charcoal"],
+                autosave: false,
+                autosaveInterval: 2500,
+                saveURL: '@Url.Action("uploadImageCompany", "company")',
+                saveParams: { postId: "123" },
+                spellcheck: true,
+                plainPaste: true,
+                imageButtons: ["removeImage", "replaceImage", "linkImage"],
+                borderColor: '#00008b',
+                imageUploadURL: '@Url.Action("uploadImageCompany", "company")',
+                imageParams: { postId: "123" },
+                enableScript: false
+            });
+        });
+    </script>
+}
+

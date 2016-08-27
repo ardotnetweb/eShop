@@ -1,0 +1,463 @@
+﻿@{
+    ViewBag.Title = "index";
+    Layout = "~/Areas/admin/Views/Shared/_Main.cshtml";
+}
+
+<div class="row" id="ContainerLoadBaseInformationPage">
+    <div style="float:none; margin:0px auto !important; width:150px;">
+        <img src="@Url.Content("~/Content/Images/Main/loadingAnimation.gif")" />
+    </div>
+</div>
+
+<div class="clearfix"></div>
+<br />
+<div class="col-md-12">
+    <div id="resultdiv">
+        @Html.Action(MVC.admin.Sale.ActionNames.ChartSaleSevenDayAgo, MVC.admin.Sale.Name)
+    </div>
+</div>
+
+@section Scripts
+{
+<script type="text/javascript" lang="en">
+    $(document).ready(function () {
+        $.get('@Url.Action(MVC.admin.Home.ActionNames.GetCount,MVC.admin.Home.Name)', null, function (data) {
+            $('#ContainerLoadBaseInformationPage').empty().append(data);
+        });
+    });
+</script>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<div class="row ">
+        <div class="col-sm-2 col-xs-4">
+            <div id="tile1" class="tile">
+                <div class="carousel slide" data-ride="carousel">
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner">
+                        <div class="item active text-center">
+                            <div>
+                                <span class="fa fa-bank bigicon"></span>
+                            </div>
+                            <div class="icontext">
+                                Capacity
+                            </div>
+                            <div class="icontext">
+                                170
+                            </div>
+                        </div>
+                        <div class="item text-center">
+                            <div>
+                                <span class="fa fa-bank bigicon"></span>
+                            </div>
+                            <div class="icontext">
+                                Capacity
+                            </div>
+                            <div class="icontext">
+                                320
+                            </div>
+                        </div>
+                        <div class="item text-center">
+                            <div>
+                                <span class="fa fa-bank bigicon"></span>
+                            </div>
+                            <div class="icontext">
+                                Capacity
+                            </div>
+                            <div class="icontext">
+                                440
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2 col-xs-4">
+            <div id="tile2" class="tile">
+                <div class="carousel slide" data-ride="carousel">
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner">
+                        <div class="item active text-center">
+                            <div>
+                                <span class="fa fa-lock bigicon"></span>
+                            </div>
+                            <div class="icontext">
+                                Available
+                            </div>
+                            <div class="icontext">
+                                0
+                            </div>
+                        </div>
+                        <div class="item text-center">
+                            <div>
+                                <span class="fa fa-unlock bigicon"></span>
+                            </div>
+                            <div class="icontext">
+                                Available
+                            </div>
+                            <div class="icontext">
+                                140
+                            </div>
+                        </div>
+                        <div class="item text-center">
+                            <div>
+                                <span class="fa fa-unlock bigicon"></span>
+                            </div>
+                            <div class="icontext">
+                                Available
+                            </div>
+                            <div class="icontext">
+                                22
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2 col-xs-4">
+            <div id="tile3" class="tile">
+                <div class="carousel slide" data-ride="carousel">
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner">
+                        <div class="item active text-center">
+                            <div>
+                                <span class="fa fa-star bigicon"></span>
+                            </div>
+                            <div class="icontext">
+                                Rating
+                            </div>
+                            <div class="icontext">
+                                9.5
+                            </div>
+                        </div>
+                        <div class="item text-center">
+                            <div>
+                                <span class="fa fa-star bigicon"></span>
+                            </div>
+                            <div class="icontext">
+                                Rating
+                            </div>
+                            <div class="icontext">
+                                7.9
+                            </div>
+                        </div>
+                        <div class="item text-center">
+                            <div>
+                                <span class="fa fa-star bigicon"></span>
+                            </div>
+                            <div class="icontext">
+                                Rating
+                            </div>
+                            <div class="icontext">
+                                9.9
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2 col-xs-4">
+            <div id="tile14" class="tile">
+                <div class="carousel slide" data-ride="carousel">
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner">
+                        <div class="item active text-center">
+                            <div>
+                                <span class="fa fa-cab bigicon"></span>
+                            </div>
+                            <div class="icontext">
+                                Cab
+                            </div>
+                            <div class="icontext">
+                                <span class="fa fa-check"></span>
+                            </div>
+                        </div>
+                        <div class="item text-center">
+                            <div>
+                                <span class="fa fa-cab bigicon"></span>
+                            </div>
+                            <div class="icontext">
+                                Cab
+                            </div>
+                            <div class="icontext">
+                                <span class="fa fa-close"></span>
+                            </div>
+                        </div>
+                        <div class="item text-center">
+                            <div>
+                                <span class="fa fa-cab bigicon"></span>
+                            </div>
+                            <div class="icontext">
+                                Cab
+                            </div>
+                            <div class="icontext">
+                                <span class="fa fa-check"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2 col-xs-4">
+            <div id="tile16" class="tile">
+                <div class="carousel slide" data-ride="carousel">
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner">
+                        <div class="item active text-center">
+                            <div>
+                                <span class="fa fa-language bigicon"></span>
+                            </div>
+                            <div class="icontext">
+                                International
+                            </div>
+                            <div class="icontext">
+                                <span class="fa fa-check"></span>
+                            </div>
+                        </div>
+                        <div class="item text-center">
+                            <div>
+                                <span class="fa fa-language bigicon"></span>
+                            </div>
+                            <div class="icontext">
+                                International
+                            </div>
+                            <div class="icontext">
+                                <span class="fa fa-close"></span>
+                            </div>
+                        </div>
+                        <div class="item text-center">
+                            <div>
+                                <span class="fa fa-language bigicon"></span>
+                            </div>
+                            <div class="icontext">
+                                International
+                            </div>
+                            <div class="icontext">
+                                <span class="fa fa-check"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2 col-xs-4">
+            <div id="tile15" class="tile">
+                <div class="carousel slide" data-ride="carousel">
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner">
+                        <div class="item active text-center">
+                            <div>
+                                <span class="fa fa-language bigicon"></span>
+                            </div>
+                            <div class="icontext">
+                                International
+                            </div>
+                            <div class="icontext">
+                                <span class="fa fa-check"></span>
+                            </div>
+                        </div>
+                        <div class="item text-center">
+                            <div>
+                                <span class="fa fa-language bigicon"></span>
+                            </div>
+                            <div class="icontext">
+                                International
+                            </div>
+                            <div class="icontext">
+                                <span class="fa fa-close"></span>
+                            </div>
+                        </div>
+                        <div class="item text-center">
+                            <div>
+                                <span class="fa fa-language bigicon"></span>
+                            </div>
+                            <div class="icontext">
+                                International
+                            </div>
+                            <div class="icontext">
+                                <span class="fa fa-check"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*@using WebApplication.Areas.admin.Controllers
+    @model List<Student>
+
+
+
+    <h2>Hello Index</h2>
+    <br />
+
+    @using (Ajax.BeginForm("index", "home", new AjaxOptions
+    {
+        HttpMethod = "POST"
+    }, new { id = "form_student" }))
+    {
+        for (int i = 0; i < Model.Count(); i++)
+        {
+            <input type="hidden" value="@i" name="[@i].key" />
+            @Html.TextBox("[" + i + "].value.Name", Model[i].Name)
+            <div class="ckbox ckbox-primary">
+                <input type="checkbox" value="true" name="[@i].value.Status" id="[@i].value.Status" data-val="true" />
+                <label for="[@i].value.Status"></label>
+            </div>
+            <hr />
+        }
+        <input type="submit" value="submit" class="btn btn-primary" />
+    }
+
+
+
+
+
+    <script type="text/javascript" lang="en">
+
+        $(document).ready(function () {
+            $("#form_student input[type=text]").prop('readonly', true)
+            .css({ border: 'none' });
+        });
+
+
+    </script>*@
+
+
+
+
+
+
+
+@*<div class="ckbox ckbox-primary">
+        <input type="checkbox" value="true" name="Status" id="Status" data-val="true" />
+        <label for="Status"></label>
+    </div>
+    <br />
+    @Html.TextBoxFor(x => x.Name)
+    <br />*@
+
+
+
+@*<input type="hidden" value="secendStudent" name="[1].key" />
+    @Html.TextBox("[1].value.Name")
+
+    <div class="ckbox ckbox-primary">
+        <input type="checkbox" value="true" name="[1].value.Status" id="[1].value.Status" data-val="true" />
+        <label for="[1].value.Status"></label>
+    </div>*@
+
+
+
+
+@*<input type="hidden" value="firstStudent" name="[0].key" />
+    @Html.TextBox("[0].value.Name")
+    <div class="ckbox ckbox-primary">
+        <input type="checkbox" value="true" name="[0].value.Status" id="[0].value.Status" data-val="true" />
+        <label for="[0].value.Status"></label>
+    </div>
+
+
+    <hr />
+
+
+    <input type="hidden" value="secendStudent" name="[1].key" />
+    @Html.TextBox("[1].value.Name")
+
+    <div class="ckbox ckbox-primary">
+        <input type="checkbox" value="true" name="[1].value.Status" id="[1].value.Status" data-val="true" />
+        <label for="[1].value.Status"></label>
+    </div>*@
+
+
+
+@*for (int i = 0; i < Model.Count(); i++)
+        {
+    <input type="hidden" value="@i" name="[@i].key" />
+    @Html.TextBox("[" + i + "].value.Name")
+    <div class="ckbox ckbox-primary">
+        <input type="checkbox" value="true" name="[@i].value.Status" id="[@i].value.Status" data-val="true" />
+        <label for="[@i].value.Status"></label>
+    </div>
+    <hr />
+        }
+    <input type="submit" value="submit" class="btn btn-primary" />*@

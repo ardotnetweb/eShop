@@ -1,0 +1,43 @@
+﻿@using eShop.WebApplication.DomainClasses.ViewModelClasses
+@model List<CompanyShowViewModel>
+@{
+    ViewBag.Title = "لیست کلیه کمپانی های سازنده محصولات آموزشی";
+    Layout = "~/Views/Shared/_MainSidebar.cshtml";
+}
+
+<div class="row ListCompany img-rounded">
+
+    <div class="col-md-12">
+        <h1 style="font:bold 16px eramFont; padding-bottom:8px; border-bottom:2px solid #eee;">
+            لیست کمپانی های سازنده محصولات آموزشی
+        </h1>
+    </div> 
+    <br />
+
+    <div>
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4 col-sm-6 col-xs-12" style="margin-bottom:23px;">
+                <a href="@Url.RouteUrl("DetailsCompany", new { companyId=item.Id,companyName=item.Name.Replace(' ','-') })">
+                    <div class="col-md-4 col-sm-4 col-xs-4" style=" padding-right:0;">
+                        <img src="~/Content/Images/Company/@item.PrimaryImage" style="width:80px; height:65px;" />
+                    </div>
+                    <div class="col-md-8 col-sm-8 col-xs-8" style="padding-right:0; border-bottom:2px solid #eee; padding-bottom:6px;">
+                        <div class="col-md-12" style="color:#999;font:bold 13px eramFont;">
+                            @item.Name
+                        </div>
+                        <div class="col-md-12">
+                            @string.Format("{0} محصول", item.countProduct.ToString())
+                        </div>
+                        <div class="col-md-12">
+                            @string.Format("{0} ساعت {1} دقیقه", item.countHour.Hours.ToString(), item.countHour.Minutes.ToString())
+                        </div>
+                    </div>
+                </a>
+                <div class="clearfix"></div>
+            </div>
+        }
+
+    </div>
+
+</div>

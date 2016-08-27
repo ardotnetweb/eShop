@@ -1,0 +1,163 @@
+﻿@using eShop.WebApplication.DomainClasses.IdentityViewModel
+
+@model List<ShowBaseInformationUser>
+
+@{
+    int page = ViewBag.page;
+    int currentPage = page + 1;
+    int max = ViewBag.TotalRecords / ViewBag.count;
+    int firstPage = ((currentPage - 2) <= 0) ? 0 : currentPage - 3;
+    int lastPage = ((currentPage + 2) >= max) ? max : currentPage + 3;
+}
+<div class="row">
+    <div class="col-md-12">
+        <div id="table-Content" class="table-responsive">
+            <table class="table tableCategory table-responsive">
+                <thead>
+                    <tr>
+                        <th>
+                            نام کاربری
+                        </th>
+                        <th>
+                            نام
+                        </th>
+                        <th>
+                            نام خانوادگی
+                        </th>
+                        <th>
+                            شماره موبایل
+                        </th>
+                        <th>
+                            وضعیت کاربر در سیستم
+                        </th>
+                        <th>
+                            دریافت پیام
+                        </th>
+                        <th>
+                            اطلاعات بیشتر
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Count(); i++)
+                    {
+                        <tr>
+                            <td>
+                                @Model[i].UserName
+                            </td>
+                            <td>
+                                @Model[i].Name
+                            </td>
+                            <td>
+                                @Model[i].Family
+                            </td>
+                            <td>
+                                @if (Model[i].Phone != null)
+                                {
+                                    <span>
+                                        @Model[i].Phone
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span>
+                                        -----
+                                    </span>
+                                }
+                            </td>
+                            <td>
+                                @if (Model[i].StatusDisableUser)
+                                {
+                                    <span class="greencolor">
+                                        کاربر غیر فعال است
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span>
+                                        کاربر فعال است
+                                    </span>
+                                }
+                            </td>
+                            <td>
+                                <span class="ckbox ckbox-primary pull-left">
+                                    @if (!Model[i].ReciveMessage)
+                                    {
+                                        <input type="checkbox" id="@MvcHtmlString.Create("checkBox" + i)" disabled>
+                                        <label for="@MvcHtmlString.Create("checkBox" + i)"></label>
+                                    }
+                                    else
+                                    {
+                                        <input type="checkbox" id="@MvcHtmlString.Create("checkBox" + i)" disabled checked>
+                                        <label for="@MvcHtmlString.Create("checkBox" + i)"></label>
+                                    }
+                                </span>
+                            </td>
+                            <td>
+                                <a class="decoration_a" href="@Url.Action(MVC.admin.Manage.ActionNames.CompleteInformationUser, MVC.admin.Manage.Name, new { Id = Model[i].Id })">
+                                    اطلاعات بیشتر
+                                </a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+            <div class="numberPaginStyle">
+                <div class="col-md-8">
+                    <ul class="pagingUl">
+                        <li id="first">
+                            @Ajax.ActionLink(linkText: "اولین", actionName: MVC.admin.Manage.ActionNames.DataUser, controllerName: MVC.admin.Manage.Name, routeValues: new { page = 0, term = ViewBag.term, count = ViewBag.count }, ajaxOptions: new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.Replace, LoadingElementId = "divLoadingTable", UpdateTargetId = "table-Content" }, htmlAttributes: new { @class = "decoration_a" })
+                        </li>
+                        @for (int i = firstPage; i <= lastPage; i++)
+                        {
+
+                            if (currentPage == max + 1)
+                            {
+                                <text>
+                                    <script>$('li#last').addClass("disableUl");</script></text>
+                            }
+                            else
+                            {
+                                <text>
+                                    <script>if ($('li#last').hasClass("disableUl")) $('li#last').addClass("disableUl");</script></text>
+                            }
+                            if (currentPage == 1)
+                            {
+                                <text>
+                                    <script>$('li#first').addClass("disableUl");</script></text>
+                            }
+                            else
+                            {
+                                <text>
+                                    <script>if ($('li#first').hasClass("disableUl")) $('li#first').addClass("disableUl");</script></text>
+                            }
+                            if (i + 1 == currentPage)
+                            {
+                                <li class="active"><a href="#">@MvcHtmlString.Create("" + (@i + 1) + "").ToString()</a></li>
+                            }
+                            else
+                            {
+                                <li>
+                                    @Ajax.ActionLink(linkText: MvcHtmlString.Create("" + (@i + 1) + "").ToString(), actionName: MVC.admin.Manage.ActionNames.DataUser, controllerName: MVC.admin.Manage.Name, routeValues: new { page = i, term = ViewBag.term, count = ViewBag.count }, ajaxOptions: new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.Replace, UpdateTargetId = "table-Content", LoadingElementId = "divLoadingTable" }, htmlAttributes: new { @class = "decoration_a" })
+                                </li>
+                            }
+                        }
+                        <li id="last">
+                            @Ajax.ActionLink(linkText: "آخرین", actionName: MVC.admin.Manage.ActionNames.DataUser, controllerName: MVC.admin.Manage.Name, routeValues: new { page = max, term = ViewBag.term, count = ViewBag.count }, ajaxOptions: new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.Replace, UpdateTargetId = "table-Content", LoadingElementId = "divLoadingTable" }, htmlAttributes: new { @class = "decoration_a" })
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    شما صفحه @currentPage از @(max + 1) هستید
+                </div>
+                <div class="statusClear"></div>
+            </div>
+
+        </div>
+        <div class="divLoadingTable" id="divLoadingTable">
+            <img src="~/Content/Images/Main/Loadnig.GIF" />
+        </div>
+    </div>
+</div>
+

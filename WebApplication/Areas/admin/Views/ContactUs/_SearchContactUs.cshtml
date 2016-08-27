@@ -1,0 +1,31 @@
+﻿@using eShop.WebApplication.DomainClasses.ViewModelClasses
+@model ContactUsCountViewModel
+
+<div class="row distanceTextBoxSearchWithDataTable">
+    <div class="col-sm-7 padingTextBoxSearchWithDataTable">
+        <label>
+            @string.Format("پیام های خوانده نشده {0} - پیام های خوانده شده {1} - کل پیام ها {2}",Model.CountUnRead, Model.CountRead, Model.Count)
+        </label>
+    </div>
+    <div class="col-sm-1 padingTextBoxSearchWithDataTable">
+        <label class="pull-left">
+            جستجو
+        </label>
+    </div>
+    <div class="col-sm-4">
+        @using (Ajax.BeginForm(actionName: MVC.admin.ContactUs.ActionNames.DataContactUs, controllerName: MVC.admin.ContactUs.Name, ajaxOptions: new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.Replace, LoadingElementId = "divLoadingTable", UpdateTargetId = "table-Content" }))
+        {
+            <input type="search" id="term" name="term" class="pull-right styleTextBoxSearch" />
+        }
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div style="width:100%; height:40px; background-color:#333; color:white; padding-top:7px; padding-right:7px; font:normal 17px eramFont;">
+            <span>
+                لیست کلی پیام های رسیده از بخش تماس با ما
+            </span>
+        </div>
+    </div>
+</div>
+

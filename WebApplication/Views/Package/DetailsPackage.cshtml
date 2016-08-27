@@ -1,0 +1,167 @@
+﻿@using eShop.WebApplication.DomainClasses.ViewModelClasses
+@model PackageViewModel
+
+@{
+    ViewBag.Title = string.Format("جزئیات پکیج آموزشی {0}", ViewBag.NamePackage);
+    Layout = "~/Views/Shared/_MainSidebar.cshtml";
+    var HourEducation = int.Parse(Model.TimeEducationPackage.Split(':')[0]);
+    var MinuteEducation = int.Parse(Model.TimeEducationPackage.Split(':')[1]);
+
+    if (MinuteEducation > 60)
+    {
+        HourEducation += MinuteEducation / 60;
+        MinuteEducation = MinuteEducation % 60;
+    }
+    var CountDay = 0;
+    var CountHour = Model.EndDatePackage.Subtract(Model.StartDatePackage).TotalHours;
+    if (CountHour > 24)
+    {
+        CountDay = Convert.ToInt32(CountHour / 24);
+        CountHour = CountHour % 24;
+    }
+}
+
+<div class="row img-rounded Package">
+    <div class="col-md-12">
+        <h1 style="font:bold 16px eramFont; padding-bottom:8px; border-bottom:2px solid #eee;">
+            نمایش جزئیات پکیج آموزشی
+        </h1>
+    </div>
+    <div>
+        <div class="col-md-8">
+            <div>
+                <div class="col-md-4 padingBottom marginBottom fontSizeLargeTitle borderBottom">
+                    عنوان پکیج آموزشی
+                </div>
+                <div class="col-md-8 padingBottom marginBottom fontSizeLargeTitle greencolor" style="text-align:center;">
+                    @Model.NamePackage
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div>
+                <div class="col-md-4 padingBottom marginBottom fontSizeLargeTitle borderBottom">
+                    قیمت بدون احتساب تخفیف
+                </div>
+                <div class="col-md-2 padingBottom marginBottom fontSizeLargeTitle greencolor">
+                    <span>
+                        @Model.OriginalPricePackage
+                    </span> تومان
+                </div>
+                <div class="col-md-4 padingBottom marginBottom fontSizeLargeTitle borderBottom">
+                    قیمت با احتساب تخفیف
+                </div>
+                <div class="col-md-2 padingBottom marginBottom fontSizeLargeTitle greencolor">
+                    <span>
+                        @Model.DisCountPricePackage
+                    </span> تومان
+                </div>
+            </div>
+
+            <div>
+                <div class="col-md-4 padingBottom marginBottom fontSizeLargeTitle borderBottom">
+                    تعداد محصولات پکیج
+                </div>
+                <div class="col-md-2 padingBottom marginBottom fontSizeLargeTitle greencolor">
+                    <span>
+                        @Model.ProductsPackage
+                    </span> محصول
+                </div>
+                <div class="col-md-4 padingBottom marginBottom fontSizeLargeTitle borderBottom">
+                    درصد تخفیف
+                </div>
+                <div class="col-md-2 padingBottom marginBottom fontSizeLargeTitle greencolor">
+                    % <span>
+                        @Model.PercentPackage
+                    </span>
+                </div>
+            </div>
+
+
+            <div>
+                <div class="col-md-4 padingBottom marginBottom fontSizeLargeTitle borderBottom">
+                    تاریخ شروع
+                </div>
+                <div class="col-md-2 padingBottom marginBottom fontSizeLargeTitle greencolor">
+                    @Html.DisplayFor(x => Model.StartDatePackage, "DisplayPersianDatePicker")
+                </div>
+                <div class="col-md-4 padingBottom marginBottom fontSizeLargeTitle borderBottom">
+                    تاریخ پایان
+                </div>
+                <div class="col-md-2 padingBottom marginBottom fontSizeLargeTitle greencolor">
+                    @Html.DisplayFor(x => Model.EndDatePackage, "DisplayPersianDatePicker")
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-md-4">
+            @if (Model.ImagePackage != null)
+            {
+                <img src="~/Content/Images/Package/@Model.ImagePackage" />
+            }
+            else
+            {
+                <img src="~/Content/Images/Package/NoImage_2.jpg" />
+            }
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-md-12">
+            <div>
+                <div class="col-md-4 padingBottom marginBottom fontSizeLargeTitle borderBottom">
+                    جمع زمان های آموزشی
+                </div>
+                <div class="col-md-2 padingBottom marginBottom fontSizeLargeTitle greencolor">
+                    <span>@HourEducation</span>&nbsp;
+                    <span>ساعت</span>&nbsp;
+                    <span>@MinuteEducation</span>&nbsp;
+                    <span>دقیقه</span>
+                </div>
+                <div class="col-md-4 padingBottom marginBottom fontSizeLargeTitle borderBottom">
+                    تعداد روز
+                </div>
+                <div class="col-md-2 padingBottom marginBottom fontSizeLargeTitle greencolor">
+                    <span>@CountDay</span>&nbsp;
+                    <span>روز</span>&nbsp;
+                    <span>@CountHour</span> &nbsp;
+                    <span>ساعت</span>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <br />
+        <br />
+        <div class="col-md-12">
+            <div class="col-md-2 fontSizeLargeTitle borderBottom">
+                توضیحات
+            </div>
+            <div class="col-md-10" style="border-right:1px solid #eee;">
+                <p style="line-height:2em;">
+                    @Html.Raw(Model.ExplainPackage)
+                </p>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+        <br /><br />
+        <div class="col-md-12">
+            <h3 style="font:bold 16px eramFont; padding-bottom:8px; border-bottom:2px solid #eee;">
+                محصولات آموزشی پکیج
+            </h3>
+        </div>
+
+        <div id="ContainerProductPackage">
+            <div style="width:100px; float:none;margin-left:auto; margin-right:auto; ">
+                <img src="~/Content/Images/Main/loadingAnimation.gif" />
+            </div>
+
+        </div>
+        <br /><br />
+    </div>
+</div>
+<script type="text/javascript" lang="en">
+    $(document).ready(function () {
+        $.get('@Url.Action(MVC.Package.ActionNames.LoadProductPerPackage, MVC.Package.Name)', { id: '@Model.Id' }, function (data) {
+            $('#ContainerProductPackage').empty().append(data);
+        });
+    });
+</script>

@@ -1,0 +1,116 @@
+﻿@{
+    ViewBag.Title = "detailsCompany";
+    Layout = "~/Areas/admin/Views/Shared/_Main.cshtml";
+}
+
+@using eShop.WebApplication.DomainClasses.AppClasses
+
+@model Company
+
+
+<div id="result">
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="divLoadingContent" id="divLoadingContent">
+            <img src="@Url.Content("~/Content/Images/Main/loadningMeidum.GIF")" />
+        </div>
+        <div class="panel panel-default">
+
+            <div class="panel-heading">
+                <h4 class="panel-title">نمایش اطلاعات کمپانی سازنده </h4>
+                <p>
+                    شما در این قسمت می توانید جزئات کمپانی سازنده محصولات آموزشی را مشاده نمایید در صورتی کف قصد داشته از دسته محصولات تولیدی هر کمپانی مطلع شوید لازم به ذکر است که حتما از منو های کنار گزینه جستجوی پیشرفته و زیر گروه جستجوی کمپانی های سازنده را انتخاب نمایید
+                </p>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="breadcrumb" id="navBarMenu">
+                        <li>
+                            <a href="@Url.Action(MVC.admin.Company.ActionNames.Index,MVC.admin.Company.Name)">لیست کمپانی های سازنده محصولات آموزشی</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action(MVC.admin.Company.ActionNames.CreateCompany,MVC.admin.Company.Name)"> ایجاد کمپانی سازنده محصولات آموزشی</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action(MVC.admin.Company.ActionNames.UpdateCompany, MVC.admin.Company.Name, new { Id = Model.Id })">ویرایش اطلاعات</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12 panelCategory">
+                        <label class="pull-right positionNotification">
+                            تعداد محصولات تولید شده توسط این کمپانی 30 محصول می باشد
+                        </label>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+
+                    <div class="form-group">
+                        <div class="col-sm-2">
+                            @Html.LabelFor(comapny => comapny.Name)
+                        </div>
+                        <div class="col-sm-4">
+                            @Model.Name
+                        </div>
+                        <div class="col-sm-4">
+                            <span>
+                                عنوان سایت سازنده : <br />
+                                @Model.Title
+                            </span>
+                            <br /><br />
+                            <span>
+                                تارنمای کمپانی سازنده :
+                                <a href="@Model.Address" target="_blank">@Model.Address</a>
+                            </span>
+                        </div>
+                        @if (Model.ImageLogo != null)
+                        {
+                            <div class="col-sm-2">
+                                <img src="@Url.Content("~/Content/Images/Company/" + Model.ImageLogo)" class="center-block imgLogo" />
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-sm-2">
+                                <img id="impPrev" class="ControlimgPrev img-circle" src="~/Content/Images/Company/NoImage_Samll.jpg" />
+                            </div>
+                        }
+                    </div>
+                    <hr />
+                    <div class="form-group">
+                        <div class="col-sm-3">
+                            <label class="control-label">
+                                @Html.LabelFor(company => company.Explain)
+                            </label>
+                            <hr />
+                        </div>
+
+                        <div class="col-sm-9">
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">
+                        </label>
+                        <div class="col-sm-9">
+                            @Html.Raw(Model.Explain)
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-sm-9 col-sm-offset-3">
+                        @Ajax.ActionLink(linkText: "حذف کمپانی سازنده جاری", actionName: MVC.admin.Company.ActionNames.DelteCompany, routeValues: new { Id = Model.Id }, ajaxOptions: new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "result", InsertionMode = InsertionMode.Replace, LoadingElementId = "divLoading" }, htmlAttributes: new { @class = "btn btn-primary mr5" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

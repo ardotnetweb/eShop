@@ -1,0 +1,118 @@
+﻿@model eShop.WebApplication.DomainClasses.IdentityViewModel.LoginViewModel
+@using Microsoft.AspNet.Identity
+@{
+    Layout = "~/Views/Shared/_MainSidebar.cshtml";
+    ViewBag.Title = "ورود به فناوران اطلاعات ارم وب شیراز";
+}
+
+<div class="row img-rounded" style="background-color:white;padding-top:25px; padding-bottom:25px;">
+    <div class="center-block">
+        <img src="~/Content/Images/Main/register_icon.png" class="center-block" />
+    </div>
+    <div class="center-block" style="text-align:center; margin-top:15px; margin-bottom:20px; padding-bottom:20px;">
+        <span class="center-block" style="font-size:17px;">
+            ورود به فناوران اطلاعات ارم وب
+        </span>
+    </div>
+    <div class="center-block"><div class="form-group col-md-4"></div></div>
+    @if (!User.Identity.IsAuthenticated)
+    {
+        <div class="col-md-5">
+            <div style="border:1px solid #eee; height:1px;"></div>
+            <br />
+            <div class="divLoading" id="divLoadingRegisterUser">
+                <img src="~/Content/Images/Main/loadningSamall.GIF" />
+            </div>
+            @using (Ajax.BeginForm(actionName: MVC.Account.ActionNames.Login,
+            controllerName: MVC.Account.Name,
+            routeValues: new { ReturnUrl = ViewBag.ReturnUrl },
+            ajaxOptions: new AjaxOptions
+            {
+                HttpMethod = "POST",
+                InsertionMode = InsertionMode.Replace,
+                LoadingElementId = "divLoadingRegisterUser",
+                OnSuccess = "OnSuccessLoginSite"
+            },
+            htmlAttributes: null))
+            {
+                @Html.AntiForgeryToken()
+
+                <div>
+                    <p style="font-size:16px;">
+                        رایانامه :
+                    </p>
+                </div>
+                <div class="form-group">
+                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control col-md-4 controlFocus" })
+                    @Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger" })
+                </div>
+                <div>
+                    <p style="font-size:16px;">
+                        رمز عبور :
+                    </p>
+                </div>
+                <div class="form-group">
+                    @Html.TextBoxFor(x => x.Password, new { @class = "form-control col-md-4 controlFocus", type = "password" })
+                    @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    !<div class="checkbox">
+                        <label>
+                            @Html.CheckBoxFor(x => x.RememberMe)
+                            مرا به یاد داشته باش !
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="ورود به فناوران اطلاعات ارم وب" class="btn btn-primary" style="width:100%;margin-top:20px; margin-bottom:20px;" />
+                </div>
+            }
+
+            <div class="form-group">
+                <div id="resultOperation">
+
+                </div>
+            </div>
+
+            <div style="border:1px solid #eee; height:1px;"></div>
+            <div class="form-group">
+                <br />
+
+                <span>
+                    <a class="a_redirect" href="@Url.Action(MVC.Account.ActionNames.ForgotPassword, MVC.Account.Name)">رمز عبور خود را فراموش کرده ام</a>
+                </span>
+                <br />
+
+                <span>
+                    <a class="a_redirect" href="@Url.Action(MVC.Account.ActionNames.Register, MVC.Account.Name)">می خواهم یک حساب کاربری در فناوران اطلاعات ارم وب ایجاد کنم</a>
+                </span>
+
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="col-md-12">
+            <div class="alert alert-white">
+                <p>
+                    شما در سیتم وارد شده اید برای تغیر سطح دسترسی در ابتدا از سیتم خارج شوید و دوباره به سیتم لاگین کنید
+                </p>
+            </div>
+        </div>
+    }
+</div>
+
+<br />
+
+
+<script type="text/javascript" lang="en">
+
+    function OnSuccessLoginSite(data) {
+        if (data.Status != true) {
+            $('#resultOperation').append(data.Result);
+        } else {
+            window.location.replace("http://localhost:19375" + data.Redirect);
+        }
+    };
+
+</script>

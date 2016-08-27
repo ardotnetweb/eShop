@@ -1,0 +1,85 @@
+﻿@using eShop.WebApplication.DomainClasses.IdentityViewModel
+
+@model SendSMSProfileViewModel
+
+<div id="resultUpdate">
+</div>
+
+<div class="panel panel-default">
+    <div class="divLoading" id="divLoadingUpdateProfile">
+        <img src="@Url.Content("~/Content/Images/Main/Loadnig.GIF")" />
+    </div>
+    <div class="panel-heading">
+        <h4 class="fontSizeLarge">
+            ارسال پیام کوتاه 
+        </h4>
+        <p class="fontSizeLargeTitle">
+            در این بخش شما می توانید اقدام به ارسال پیام کوتاه در سیستم نمایید در ضمن این امکان برای کاربرانی فعال است که پروفایل خود را تکمیل کرده باشند
+        </p>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="breadcrumb" id="navBarMenu">
+                <li>
+                    <a href="@Url.Action(MVC.admin.Manage.ActionNames.Register,MVC.admin.Manage.Name)">ایجاد کاربر جدید در سیستم</a>
+                </li>
+                <li>
+                    <a href="@Url.Action(MVC.admin.Manage.ActionNames.Index,MVC.admin.Manage.Name)">مشاهده لیست کاربران سیستم</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    @using (Ajax.BeginForm(actionName: MVC.admin.Manage.ActionNames.SendMessage,controllerName: MVC.admin.Manage.Name,ajaxOptions: new AjaxOptions{HttpMethod = "POST",InsertionMode = InsertionMode.Replace,LoadingElementId = "divLoadingUpdateProfile",UpdateTargetId = "resultUpdate"}))
+    {
+        @Html.AntiForgeryToken()
+        <div class="panel-body">
+            @Html.HiddenFor(x=>x.Phone)
+            <div class="col-md-12">
+                <h4 class="borderBottom padingBottom marginBottom">
+                    ارسال پیامک به
+                    @if(Model.FLName!=null)
+                    {
+                        <span>
+                            @Model.FLName
+                        </span>
+                    }
+                    else
+                    {
+                        <span>
+                            @Model.Email
+                        </span>
+                    }
+                    با شماره
+                    @if(Model.Phone!=null)
+                    {
+                        <span>
+                            @Model.Phone
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="greencolor">
+                            شماره ای از این کاربر نشده است
+                        </span>
+                    }
+                </h4>
+            </div>
+            <div class="marginBottom clearfix">
+                <div class="col-md-12  padingBottom">
+                    @Html.TextAreaFor(x => x.Explain, new { @class = "form-control controlFocus textAreaSendEmail", placeholder = "متن نامه را وارد نمایید" })
+                    @Html.ValidationMessageFor(x => x.Explain, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+          @if (Model.Phone != null)
+          {
+            <input type="submit" value="ارسال نامه الکترونیکی" class="btn btn-primary" onclick="$.validator.unobtrusive.parse($('form'));" />
+          }
+          else
+          {
+            <input type="submit" value="ارسال نامه الکترونیکی" class="btn btn-primary disabled" onclick="$.validator.unobtrusive.parse($('form'));" />
+          }
+         </div>
+    }
+</div>

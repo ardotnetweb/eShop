@@ -1,0 +1,189 @@
+﻿@model eShop.WebApplication.DomainClasses.ViewModelClasses.UserViewModel
+
+@{
+    ViewBag.Title = "مشاده و تغیر اطلاعات کاربری در فناوران اطلاعات ارم وب شیراز";
+    Layout = "~/Views/Shared/_Main.cshtml";
+}
+
+
+<br />
+<div class="row col-md-offset-1">
+    <div class="col-md-11">
+        <h2 class="center-block" style="font:normal 20px eramFont; text-align:center;">
+            <span class="center-block">
+                مشاهده و تغیر اطلاعات کاربر
+            </span>
+        </h2>
+    </div>
+</div>
+
+<div class="distanceTop"></div>
+
+<div class="row bs-wizard" style="border-bottom:0;">
+
+    <div class="col-xs-3 bs-wizard-step complete">
+        <div class="text-center bs-wizard-stepnum">1</div>
+        <div class="progress"><div class="progress-bar"></div></div>
+        <a href="#" class="bs-wizard-dot">
+            <span class="glyphicon glyphicon-ok" style="color:white;"></span>
+        </a>
+        <div class="bs-wizard-info text-center">
+            <a class="decoration_a" href="@Url.Action(MVC.Cart.ActionNames.Index,MVC.Cart.Name)">
+                سبد خرید
+            </a>
+        </div>
+    </div>
+
+    <div class="col-xs-3 bs-wizard-step active">
+        <!-- complete -->
+        <div class="text-center bs-wizard-stepnum">2</div>
+        <div class="progress"><div class="progress-bar"></div></div>
+        <a href="#" class="bs-wizard-dot">
+            @*<span class="glyphicon glyphicon-ok" style="color:white;"></span>*@
+        </a>
+        <div class="bs-wizard-info text-center">
+            آدرس و مشخصات
+        </div>
+    </div>
+
+    <div class="col-xs-3 bs-wizard-step disabled">
+        <div class="text-center bs-wizard-stepnum">3</div>
+        <div class="progress"><div class="progress-bar"></div></div>
+        <a href="#" class="bs-wizard-dot"></a>
+        <div class="bs-wizard-info text-center">تائید اطلاعات</div>
+    </div>
+    <div class="col-xs-3 bs-wizard-step disabled">
+        <div class="text-center bs-wizard-stepnum">4</div>
+        <div class="progress"><div class="progress-bar"></div></div>
+        <a href="#" class="bs-wizard-dot"></a>
+        <div class="bs-wizard-info text-center">انتخاب روش پرداخت</div>
+    </div>
+</div>
+
+
+<div class="distanceBottom"></div>
+<br /><br /><br />
+
+<div class="row col-md-offset-1">
+    <div class="col-md-11" style="font:normal 15px eramFont;">
+        <table class="table table-striped">
+            <tr>
+                <td>
+                    نام
+                </td>
+                <td>
+                    @MvcHtmlString.Create("" + (string.IsNullOrEmpty(Model.Name) ? "---" : Model.Name) + "").ToString()
+                </td>
+                <td>
+                    نام خانوادگی
+                </td>
+                <td>
+                    @MvcHtmlString.Create("" + (string.IsNullOrEmpty(Model.Family) ? "---" : Model.Family) + "").ToString()
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    شماره موبایل
+                </td>
+                <td>
+                    @MvcHtmlString.Create("" + (string.IsNullOrEmpty(Model.Phone) ? "---" : Model.Phone) + "").ToString()
+                </td>
+                <td>
+                    استان
+                </td>
+                <td>
+                    @MvcHtmlString.Create("" + (string.IsNullOrEmpty(Model.Province) ? "---" : Model.Province) + "").ToString()
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    شهرستان
+                </td>
+                <td>
+                    @MvcHtmlString.Create("" + (string.IsNullOrEmpty(Model.City) ? "---" : Model.City) + "").ToString()
+                </td>
+                <td>
+                    کد پستی
+                </td>
+                <td>
+                    @MvcHtmlString.Create("" + (string.IsNullOrEmpty(Model.PostallCode) ? "---" : Model.PostallCode) + "").ToString()
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    آدرس محل سکونت
+                </td>
+                <td colspan="3">
+                    @MvcHtmlString.Create("" + (string.IsNullOrEmpty(Model.Address) ? "---" : Model.Address) + "").ToString()
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <a href="@Url.Action(MVC.Account.ActionNames.CompleteInformation, MVC.Account.Name)" data-toggle="modal" class="modal-link btn btn-default pull-left" data-target="#ModalLogin" id="loadPartialCompleteInformation">
+                        <span class="hidden-xs">ویرایش اطلاعات</span>
+                        <i class="glyphicon glyphicon-log-in hide visible-xs "></i>
+                    </a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <br />
+    @using (Ajax.BeginForm(MVC.Account.ActionNames.CheckFullInformation, MVC.Account.Name, new AjaxOptions
+    {
+        OnBegin = "OnBeginCheckInformation",
+        HttpMethod = "GET",
+        InsertionMode = InsertionMode.Replace,
+        OnSuccess = "OnSuccessCheckInformation",
+        LoadingElementId = "divLoading"
+    }))
+    {
+        <div class="col-md-11" style="padding-left:9px;">
+            <div class="col-md-2 pull-left">
+                <input type="submit" value="تائید و ادامه" class="btn btn-primary pull-left" />
+            </div>
+            <div id="divLoading" class="col-md-3 pull-left" style="padding-top:7px; display:none;">
+                <span class="pull-left">
+                    <img src="~/Content/Images/Main/loadingAnimation.gif" />
+                </span>
+            </div>
+        </div>
+    }
+
+    <br /><br />
+    <div class="clearfix"></div>
+    <div id="alert-Complete-Information">
+        <div class="col-md-11">
+            <br /><br />
+            <div class="alert alert-white">
+                <p>
+
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<br /><br />
+
+
+
+<script>
+    function OnBeginCheckInformation() {
+        $('#alert-Complete-Information').hide();
+    };
+    function OnSuccessCheckInformation(data) {
+        if (data.Status == "true" && data.Address != null) {
+            window.location.href = data.Address;
+        }
+        else {
+            $('#alert-Complete-Information').show();
+            $('#alert-Complete-Information').find('p').html('لطفا نسبت به تکمیل اطلاعات خود اقدام نماید');
+        }
+    };
+    jQuery(document).ready(function () {
+        $('#alert-Complete-Information').hide();
+        $('#modal-container').on('hidden.bs.modal', function () {
+            window.location.reload();
+        })
+    });
+</script>

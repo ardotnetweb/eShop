@@ -1,0 +1,78 @@
+﻿
+<div id="OrderDetails">
+
+    <br />
+    @Html.Partial(MVC.Account.Views._SolidHeaderMangementUser, "خرید های من در سیستم")
+    <br />
+    <div class="row">
+        <div class="baseInfoUserHeaderWithGlyphiconTop">
+            <span class="glyphicon glyphicon-sort-by-order" style="margin:1px auto; font-size:33px;"></span>
+        </div>
+        <div class="baseInfoUserHeaderWithGlyphiconBottom">
+            خرید های من
+        </div>
+    </div>
+    <br />
+    <div class="row">
+
+        <div class="col-md-12">
+            <table class="table" style="font:normal 15px eramFont;">
+                <thead>
+                    <tr>
+                        <th>
+                            کد رهگیری
+                        </th>
+                        <th>
+                            تاریخ
+                        </th>
+                        <th>
+                            قیمت
+                        </th>
+                        <th>
+                            هزینه پست
+                        </th>
+                        <th colspan="2">
+                            وضعیت خرید
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="MoreInfoDiv">
+                    @Html.Action(MVC.Sale.ActionNames.GetDataTableConfirmed, MVC.Sale.Name, new { page = 0 })
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <br />
+        <div class="col-md-12">
+            <div class="col-md-10" id="Destination" style="border-left:1px solid #eee; border-top:1px solid #eee; padding-top:15px;">
+                <button type="button" class="btn btn-primary col-md-12" id="moreInfoButton" data-loadaddress="@Url.Action(MVC.Sale.ActionNames.GetDataTableConfirmed, MVC.Sale.Name)">
+                    <span>بازیابی  دیگر اطلاعات خرید ها</span>
+                </button>
+            </div>
+            <div class="col-md-2" style="border-top:1px solid #eee;padding-top:15px !important;">
+                <img id="ProgressDiv" src="@Url.Content("~/Content/Images/Main/loadingAnimation.gif")" class="center-block" style="display:none" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" lang="en">
+    $("#OrderDetails #moreInfoButton").InfiniteScroll({
+        moreInfoDiv: '#OrderDetails #MoreInfoDiv',
+        progressDiv: '#OrderDetails #ProgressDiv',
+        loadInfoUrl: $('#OrderDetails #moreInfoButton').data('loadaddress'),
+        loginUrl: '/login',
+        errorHandler: function () {
+            $("#OrderDetails #moreInfoButton").hide();
+            $('#ProgressDiv').hide();
+            alert("در پرداش در خواست خطایی ایجاد شده است ");
+
+        },
+        completeHandler: function () {
+        },
+        noMoreInfoHandler: function () {
+            $("#OrderDetails #moreInfoButton").hide();
+        }
+    });
+</script>

@@ -1,0 +1,64 @@
+﻿@using eShop.WebApplication.DomainClasses.ViewModelClasses
+@model UserViewModel
+@{
+    ViewBag.Title = "مدیریت اطلاعات کاربری در فناوران اطلاعات ارم وب شیراز";
+    Layout = "~/Views/Shared/_MainSidebar.cshtml";
+}
+<script src="~/Scripts/jquery-infiniti.js"></script>
+
+<div class="row BaseInformationCompany img-rounded">
+    <div class="row" style="padding:0;">
+        <br />
+        <div class="col-md-12" style="width:96%; margin-left:auto; margin-right:auto;">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 style="font:normal 19px eramFont !important; margin-top:-4px;">
+                        مشاهده و ویرایش اطلاعات کاربری
+                    </h3>
+                    <p style="font:normal 15px eramFont;">
+                        شما در این بخش می توانید لیست کلیه محصولات خریداری شده خود و ... را ببیند در ضمن می توانید اقدام به تغیر رمز عبور وو ویرایش اطلاعات کاربری خود داشته باشید
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="col-md-12">
+
+        <div class="divLoading" id="divLoadingUserInfo">
+            <img src="~/Content/Images/Main/loadningMeidum.GIF" />
+        </div>
+
+        <div class="tabbable" id="tabContentCompany">
+            <ul class="nav nav-tabs" id="directUserInfo">
+                <li class="active"><a href="#BaseInformationUserInfo" data-toggle="tab" data-address="@Url.Action(MVC.Account.ActionNames.GetBaseInfoUser, MVC.Account.Name)">مشاهده اطلاعات پایه</a></li>
+                <li><a href="#BaseInformationUserInfo" data-toggle="tab" data-address="@Url.Action(MVC.Sale.ActionNames.ConfirmedSale, MVC.Sale.Name)">خرید های من</a></li>
+                <li><a href="#BaseInformationUserInfo" data-toggle="tab" data-address="@Url.Action(MVC.Sale.ActionNames.GetDataTableNotConfirmed, MVC.Sale.Name)">سفارشات تائید نشده</a></li>
+                <li><a href="#BaseInformationUserInfo" data-toggle="tab" data-address="@Url.Action(MVC.Comment.ActionNames.BaseCommentUserInfo, MVC.Comment.Name)">نظرات ارسالی</a></li>
+                <li><a href="#BaseInformationUserInfo" data-toggle="tab" data-address="@Url.Action(MVC.Favorite.ActionNames.FavoriteUser, MVC.Favorite.Name)">لیست علاقه مندی ها</a></li>
+            </ul>
+            <div>
+                <div id="BaseInformationUserInfo">
+                    @Html.Partial(MVC.Account.Views._BaseInfoUser, Model)
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+</div>
+
+
+
+<script type="text/javascript" lang="en">
+    $(document).ready(function () {
+        $('div#tabContentCompany ul#directUserInfo li a').click(function () {
+            $('#divLoadingUserInfo').css({ 'display': 'block' });
+            $.get($(this).data('address'), null, function (data) {
+                $('#BaseInformationUserInfo').empty().append(data);
+                $('#divLoadingUserInfo').css({ 'display': 'none' });
+            })
+        });
+    });
+</script>
+
+

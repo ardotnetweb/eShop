@@ -1,0 +1,70 @@
+﻿@using eShop.WebApplication.DomainClasses.ViewModelClasses
+@model List<CompanyShowViewModel>
+
+<p>
+    <img src="@Url.Content("~/Content/Images/Main/logoo__.gif")" />
+</p>
+<div class="row divRow">
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-2 pull-right divCol">
+            <a href="@Url.RouteUrl("DetailsCompany", new { companyId = item.Id, companyName = item.Name.Replace(' ','-') })">
+                @item.Name
+                <br />
+                <span>
+                    @string.Format("{0} محصول", item.countProduct.ToString())
+                    <br />
+                    <span class="span">
+                        @string.Format("{0} ساعت {1} دقیقه", item.countHour.Hours.ToString(), item.countHour.Minutes.ToString())
+                    </span>
+                </span>
+            </a>
+        </div>
+
+    }
+
+</div>
+<div style="text-align:left ; border-top:2px solid #eee; padding-top:10px;" id="moreInfoCompany">
+    <a href="@Url.Action(MVC.Company.ActionNames.List,MVC.Company.Name)" class="a_redirect">مشاهده لیست کامل</a>
+</div>
+
+@*For Alert*@
+
+<script>
+    var positionClasses = {
+        topRight: 'toast-top-right',
+        bottomRight: 'toast-bottom-right',
+        bottomLeft: 'toast-bottom-left',
+        topLeft: 'toast-top-left',
+        topCenter: 'toast-top-center',
+        bottomCenter: 'toast-bottom-center'
+    };
+    var notify = $.connection.notificationHub;
+    notify.client.showNotification = function (data) {
+        toastr.options = {
+            showDuration: 300,
+            positionClass: positionClasses.bottomRight,
+            onclick: function () {
+                window.location.href = "http://www.inspectelement.us/product/detailsproduct/" + data.Id + "/" + data.Name;
+            }
+        };
+        toastr.info("محصول آموزشی جدیدی به سایت اضافه شد . برای مشاهده جزئات کلیک نمایید");
+    };
+
+    $.connection.hub.start().done(function () {
+        @{
+                            if (Request.Cookies["Alert"] != null)
+                            {
+                                var cookie = System.Web.HttpContext.Current.Request.Cookies["Alert"];
+                                var value = cookie.Value;
+                                if (value == "true")
+                                {
+                                    cookie.Expires = DateTime.Now.AddSeconds(-1);
+                                    Response.Cookies.Add(cookie);
+                                     <text>notify.server.sendNotification();</text>
+                                }
+                            }
+                        }
+    });
+</script>
+

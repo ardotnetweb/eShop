@@ -1,0 +1,107 @@
+﻿@{
+    ViewBag.Title = "UpdateCity";
+    Layout = "~/Areas/admin/Views/Shared/_Main.cshtml";
+}
+@using eShop.WebApplication.DomainClasses.AppClasses
+@model City
+
+
+<div id="result">
+</div>
+<div class="panel panel-default">
+
+    <div class="divLoadingContent" id="divLoadingContent">
+        <img src="@Url.Content("~/Content/Images/Main/Loadnig.GIF")" />
+    </div>
+    <div class="panel-heading">
+        <div class="panel-btns">
+            <a href="" class="panel-minimize tooltips" data-toggle="tooltip" title="Minimize Panel"><i class="fa fa-minus"></i></a>
+            <a href="" class="panel-close tooltips" data-toggle="tooltip" title="Close Panel"><i class="fa fa-times"></i></a>
+        </div>
+        <h4 class="panel-title">ویرایش یا حذف اطلاعات یک شهرستان</h4>
+        <p>
+            شما در این بخش می توانید اطلاعات شهرستان مربوطه را ویرایش کرده و استان مربوط به آن را تغیر دهید در صورت لزوم جدا از انجام این کار خوداری نمایید زیرا این شهر ها با توجه به انتخاب های کاربران سایت می باشد و در صورت تغیر در این
+            اطلاعات سیتم دچار مشکل میشود و نارضایتی کاربران را در بر دارد
+        </p>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="breadcrumb" id="navBarMenu">
+                <li>
+                    <a href="@Url.Action(MVC.admin.City.ActionNames.CreateCity,MVC.admin.City.Name)">ایجاد شهرستان وابسته به استان</a>
+                </li>
+                <li>
+                    <a href="@Url.Action(MVC.admin.City.ActionNames.Index,MVC.admin.City.Name)"> نمایش لیست شهرستانها با توجه به استان مربوطه</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+
+            <div class="form-group">
+                <div class="col-sm-2">
+                    نام شهرستان
+                </div>
+                <div class="col-sm-4 borderBottom padingBottom">
+                    @Model.Name
+                </div>
+                <div class="col-sm-2">
+                    استان
+                </div>
+                <div class="col-sm-4 borderBottom padingBottom">
+                    @Model.Province.Name
+                </div>
+            </div>
+            <br />
+            <div class="col-md-12">
+                <h3>
+                    ویرایش اطلاعات
+                </h3>
+                <hr />
+            </div>
+            @using (Ajax.BeginForm(actionName: MVC.admin.City.ActionNames.UpdateCity,controllerName: MVC.admin.City.Name,ajaxOptions: new AjaxOptions{UpdateTargetId = "result",InsertionMode = InsertionMode.Replace,HttpMethod = "POST",LoadingElementId = "divLoadingContent"}))
+            {
+                <div class="form-group">
+                    <div class="col-sm-2">
+                        نام شهرستان
+                    </div>
+                    <div class="col-sm-4">
+                        @Html.TextBoxFor(x => x.Name, new { @class = "form-control controlFocus" })
+                    </div>
+                    <div class="col-sm-2">
+                        انتخاب استان
+                    </div>
+                    <div class="col-sm-4">
+                        @Html.DropDownListFor(x => x.Province.Id,ViewBag.Provinces as SelectList,"یکی از گروه های آموزشی  را انتخاب نمایید",new { @class = "form-control controlFocus dropdownProvince chosen-rtl" })
+                        @Html.ValidationMessageFor(x => x.Province.Id, "",new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <input type="submit" value="ذخیره" class="btn btn-primary pull-right" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="panel-footer">
+        <div class="row">
+            <div class="col-sm-9 col-sm-offset-3">
+                @Ajax.ActionLink(linkText: "حذف گروه جاری",actionName: MVC.admin.City.ActionNames.DeleteCity,routeValues: new { Id = Model.Id },ajaxOptions: new AjaxOptions{HttpMethod = "POST",UpdateTargetId = "result",InsertionMode = InsertionMode.Replace,LoadingElementId = "divLoadingContent",},htmlAttributes: new { @class = "btn btn-primary mr5" })
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts
+{
+    <script type="text/javascript" lang="en">
+
+        $(".dropdownProvince").chosen({
+            width: "100%",
+            dataplaceholder: "لطفا تعدادی برچسب انتخاب نمایید"
+        }).css({ height: "60px" });
+    </script>
+}

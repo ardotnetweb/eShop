@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BD8D950F-56A2-4394-B115-88A8DA238C63}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>eShop.WebApplication.DomainClasses</RootNamespace>
+    <AssemblyName>eShop.WebApplication.DomainClasses</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.1.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.1.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\WebApplication\bin\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppClasses\AddressUser.cs" />
+    <Compile Include="AppClasses\AlertOperation.cs" />
+    <Compile Include="AppClasses\ApplicationUser.cs" />
+    <Compile Include="AppClasses\BlockModel.cs" />
+    <Compile Include="AppClasses\Category.cs" />
+    <Compile Include="AppClasses\City.cs" />
+    <Compile Include="AppClasses\Comment.cs" />
+    <Compile Include="AppClasses\Company.cs" />
+    <Compile Include="AppClasses\ContactUs.cs" />
+    <Compile Include="AppClasses\CustomRole.cs" />
+    <Compile Include="AppClasses\CustomUserClaim.cs" />
+    <Compile Include="AppClasses\CustomUserLogin.cs" />
+    <Compile Include="AppClasses\CustomUserRole.cs" />
+    <Compile Include="AppClasses\DisCount.cs" />
+    <Compile Include="AppClasses\Dispaly.cs" />
+    <Compile Include="AppClasses\eBook.cs" />
+    <Compile Include="AppClasses\ElmahModel.cs" />
+    <Compile Include="AppClasses\EnumApp.cs" />
+    <Compile Include="AppClasses\FavoriteUser.cs" />
+    <Compile Include="AppClasses\ImageProduct.cs" />
+    <Compile Include="AppClasses\Interest.cs" />
+    <Compile Include="AppClasses\IPLikeProduct.cs" />
+    <Compile Include="AppClasses\Label.cs" />
+    <Compile Include="AppClasses\LikeProduct.cs" />
+    <Compile Include="AppClasses\News.cs" />
+    <Compile Include="AppClasses\Order.cs" />
+    <Compile Include="AppClasses\Package.cs" />
+    <Compile Include="AppClasses\Product.cs" />
+    <Compile Include="AppClasses\Province.cs" />
+    <Compile Include="AppClasses\Sale.cs" />
+    <Compile Include="AppClasses\Slider.cs" />
+    <Compile Include="AppClasses\VisiteBook.cs" />
+    <Compile Include="AppClasses\VisitProduct.cs" />
+    <Compile Include="FileSizeAttribute.cs" />
+    <Compile Include="FileTypesAttribute.cs" />
+    <Compile Include="IdentityViewModel\ChangePasswordModel.cs" />
+    <Compile Include="IdentityViewModel\DetailsUpdateUserViewModel.cs" />
+    <Compile Include="IdentityViewModel\EditUserViewModel.cs" />
+    <Compile Include="IdentityViewModel\Enums.cs" />
+    <Compile Include="IdentityViewModel\ExternalLoginConfirmationViewModel.cs" />
+    <Compile Include="IdentityViewModel\ExternalLoginListViewModel.cs" />
+    <Compile Include="IdentityViewModel\ForgotPasswordViewModel.cs" />
+    <Compile Include="IdentityViewModel\LoginModel.cs" />
+    <Compile Include="IdentityViewModel\InformationUserViewModel.cs" />
+    <Compile Include="IdentityViewModel\RedirectModel.cs" />
+    <Compile Include="IdentityViewModel\ResetPasswordModel.cs" />
+    <Compile Include="IdentityViewModel\RoleViewModel.cs" />
+    <Compile Include="IdentityViewModel\SendEmailProfileViewModel.cs" />
+    <Compile Include="IdentityViewModel\ShowBaseInformationUser.cs" />
+    <Compile Include="IdentityViewModel\ShowInformationUserViewModel.cs" />
+    <Compile Include="MainViewModel\ExistAddressCompany.cs" />
+    <Compile Include="MainViewModel\ExistNameCompany.cs" />
+    <Compile Include="MainViewModel\ShowStatusCRUD.cs" />
+    <Compile Include="OtherViewModel\ElmahViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SMSViewModel\InfoAccountSMS.cs" />
+    <Compile Include="SMSViewModel\InfoSMSViewModel.cs" />
+    <Compile Include="SMSViewModel\SndSMSViewModel.cs" />
+    <Compile Include="Utility\Helper.cs" />
+    <Compile Include="ViewModelClasses\AlertViewModel.cs" />
+    <Compile Include="ViewModelClasses\AnswerContactViewModel.cs" />
+    <Compile Include="ViewModelClasses\BasketViewModel.cs" />
+    <Compile Include="ViewModelClasses\CategoryMenuViewModel.cs" />
+    <Compile Include="ViewModelClasses\CategorySearchViewModel.cs" />
+    <Compile Include="ViewModelClasses\ChartSaleViewModel.cs" />
+    <Compile Include="ViewModelClasses\ClasseListTechnology.cs" />
+    <Compile Include="ViewModelClasses\ClasseSearchCategory.cs" />
+    <Compile Include="ViewModelClasses\CommentModified.cs" />
+    <Compile Include="ViewModelClasses\CommentViewModel.cs" />
+    <Compile Include="ViewModelClasses\CompanyViewModel.cs" />
+    <Compile Include="ViewModelClasses\CompleteInformation.cs" />
+    <Compile Include="ViewModelClasses\ConfirmSaleViewModel.cs" />
+    <Compile Include="ViewModelClasses\ContactUsCountViewModel.cs" />
+    <Compile Include="ViewModelClasses\CountSite.cs" />
+    <Compile Include="ViewModelClasses\DeleteUserProfileViewModel.cs" />
+    <Compile Include="ViewModelClasses\DetailsProductShowViewModel.cs" />
+    <Compile Include="ViewModelClasses\DisableUserViewModel.cs" />
+    <Compile Include="ViewModelClasses\DropdownSearchViewModel.cs" />
+    <Compile Include="ViewModelClasses\DropListViewModel.cs" />
+    <Compile Include="ViewModelClasses\CategoryViewModel.cs" />
+    <Compile Include="ViewModelClasses\DetailsCategoryViewModel.cs" />
+    <Compile Include="ViewModelClasses\ImageProductAddViewModel.cs" />
+    <Compile Include="ViewModelClasses\LuceneProductModel.cs" />
+    <Compile Include="ViewModelClasses\OrderViewModel.cs" />
+    <Compile Include="ViewModelClasses\PackageViewModel.cs" />
+    <Compile Include="ViewModelClasses\ProductShowViewModel_.cs" />
+    <Compile Include="ViewModelClasses\ProductViewModel.cs" />
+    <Compile Include="ViewModelClasses\ProductViewModelExamAddToCart.cs" />
+    <Compile Include="ViewModelClasses\ProvinceCitySelect.cs" />
+    <Compile Include="ViewModelClasses\ResultGroupByChartViewModel.cs" />
+    <Compile Include="ViewModelClasses\ResultUltimateChartViewModel.cs" />
+    <Compile Include="ViewModelClasses\RssViewModel.cs" />
+    <Compile Include="ViewModelClasses\SaleCountViewModel.cs" />
+    <Compile Include="ViewModelClasses\SaleViewModel.cs" />
+    <Compile Include="ViewModelClasses\ScheduleShowViewModel1.cs" />
+    <Compile Include="ViewModelClasses\SendCommentViewModel.cs" />
+    <Compile Include="ViewModelClasses\ShowSliderViewModel.cs" />
+    <Compile Include="ViewModelClasses\SitemapViewModel.cs" />
+    <Compile Include="ViewModelClasses\StatusButtonFavoriteViewModel.cs" />
+    <Compile Include="ViewModelClasses\UpdateProfileUser.cs" />
+    <Compile Include="ViewModelClasses\UserViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

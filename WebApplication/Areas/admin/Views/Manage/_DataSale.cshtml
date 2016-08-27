@@ -1,0 +1,40 @@
+﻿@using eShop.WebApplication.DomainClasses.ViewModelClasses
+@model List<SaleViewModel>
+
+<tbody>
+    @foreach (var item in Model)
+        {
+        <tr>
+            <td class="greencolor">
+                @MvcHtmlString.Create("EWTR" + (item.Id * 237 + 2323) + "").ToString()
+            </td>
+            <td>
+                @Html.DisplayFor(x => item.Date, "DisplayPersianDatePicker")
+            </td>
+            <td>
+                @item.Price
+            </td>
+            <td>
+                @item.StatusTypePay
+            </td>
+            <td>
+                @if (item.StatusUltimate)
+                {
+                    <span class="greencolor">
+                        سفارش مورد تائید قرار گرفته است
+                    </span>
+                }
+                else
+                {
+                    <span>
+                        سفارش مورد تائید قرار نگرفته است
+                    </span>
+                }
+            </td>
+            <td>
+                <a class="decoration_a" href="@Url.Action(MVC.admin.Sale.ActionNames.DetailsSale, MVC.admin.Sale.Name, new { Id = item.Id })">اطلاعات بیشتر</a>
+            </td>
+        </tr>
+        }
+</tbody>
+

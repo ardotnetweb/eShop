@@ -1,0 +1,7 @@
+﻿@{
+    ViewBag.Title = "IndexIPDanger";
+    Layout = "~/Areas/admin/Views/Shared/_Main.cshtml";
+}
+@Html.Partial(MVC.admin.Setting.Views._SolidHeaderIPDanger)
+@Html.Action(actionName: MVC.admin.Setting.ActionNames.SerachIPDanger, controllerName: MVC.admin.Setting.Name)
+@Html.Action(actionName: MVC.admin.Setting.ActionNames.DataIPDanger, controllerName: MVC.admin.Setting.Name)

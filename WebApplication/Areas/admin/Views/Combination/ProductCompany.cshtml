@@ -1,0 +1,9 @@
+﻿@model int
+@{
+    ViewBag.Title = "productCompany";
+    Layout = "~/Areas/admin/Views/Shared/_Main.cshtml";
+}
+
+@Html.Partial(partialViewName: MVC.admin.Combination.Views._SolidHeaderProductCompany)
+
+@Html.Action(actionName: MVC.admin.Combination.ActionNames.dataCompanyProduct, controllerName: MVC.admin.Combination.Name, routeValues: new { Id = Model })

@@ -1,0 +1,52 @@
+﻿@using eShop.WebApplication.DomainClasses.AppClasses
+
+@model Label
+
+
+<div id="result">
+
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="divLoadingContent" id="divLoadingContent">
+            <img src="@Url.Content("~/Content/Images/Main/loadningMeidum.GIF")" />
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 style="font-size:17px;">مشاده جزئیات برچسب و حذف آن</h4>
+                <p style="font-size:15px;">
+                    در این بخش امکان مشاهده جزئیات برچسب و حذف آنو وجود دارد دقت لازمه صورت گیرد که بعد از حذف برچسب دیگر امکان بازیابی آن وجودندارد
+                </p>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="breadcrumb" id="navBarMenu">
+                        <li>
+                            <a href="@Url.Action(MVC.admin.Label.ActionNames.CreateLabel, MVC.admin.Label.Name)">ایجاد برچسب حدید</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action(MVC.admin.Label.ActionNames.Index, MVC.admin.Label.Name)">لیست برچسب ها</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">@Html.LabelFor(x => x.Name)</label>
+                        <div class="col-sm-9 borderBottom padingBottom" style="font:normal 16px eramFont; color:green;">
+                            @Html.DisplayFor(x => x.Name, new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-sm-9 col-sm-offset-3">
+                        @Ajax.ActionLink(linkText: "حذف برچسب جاری",actionName: MVC.admin.Label.ActionNames.DeleteLabel,controllerName: MVC.admin.Label.Name,routeValues: new { Id = Model.Id },ajaxOptions: new AjaxOptions{HttpMethod = "POST",InsertionMode = InsertionMode.Replace,LoadingElementId = "divLoading",UpdateTargetId = "result"},htmlAttributes: new { @class = "btn btn-primary" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

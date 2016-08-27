@@ -1,0 +1,42 @@
+﻿@using eShop.WebApplication.DomainClasses.AppClasses
+@model List<ImageProduct>
+
+
+
+
+<div id="GalleryCarousel" class="carousel slide" data-ride="carousel" style="padding-right:0; margin-top:-10px;">
+    <div class="carousel-inner">
+        @for (int i = 0; i < Model.Count(); i += 3)
+        {
+            if (i < 3)
+            {
+                <div class="item active">
+                    @for (int j = i; j < i + 3; j++)
+                    {
+                        <div class="col-md-4 col-sm-3 col-xs-6">
+                            <img src="~/Content/Images/Product/GallerySize/@Model[j].Image" class="Gallery-Image" />
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <div class="item">
+                    @for (int j = i; j < i + 3; j++)
+                    {
+                        <div class="col-md-4 col-sm-3 col-xs-6">
+                            <img src="~/Content/Images/Product/GallerySize/@Model[j].Image" class="Gallery-Image" />
+                        </div>
+                    }
+                </div>
+            }
+        }
+    </div>
+
+    <a class="left carousel-control Gallery-NextSlider" data-target="#GalleryCarousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a class="right carousel-control Gallery-PrevSlider" data-target="#GalleryCarousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+</div>

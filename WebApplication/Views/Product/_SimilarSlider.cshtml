@@ -1,0 +1,75 @@
+﻿@using eShop.WebApplication.DomainClasses.ViewModelClasses
+@model List<ProductShowViewModel>
+
+
+@if (Model.Count() > 0)
+{
+    <div id="CarouselSimilerProduct" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner" role="listbox">
+
+            @for (int i = 0; i < Model.Count(); i += 6)
+            {
+                if (i < 6)
+                {
+                    <div class="item active">
+                        @for (int j = i; j < i + 6; j++)
+                        {
+                            if (j < Model.Count())
+                            {
+                                <div class="col-md-2 boxImageSimmilar">
+                                    <a href="@Url.RouteUrl("DetailsProduct", new { productId = Model[j].Id, productName = UrlExtensions.ResolveTitleForUrl(Model[j].Name) })">
+                                        <img src="~/Content/Images/Product/MainSize/@Model[j].PrimaryImage" class="ImageSimilar" />
+                                    </a>
+                                    <br />
+                                    <a class="LinkImageSimilar decoration_a" href="@Url.RouteUrl("DetailsProduct", new { productId = Model[j].Id, productName = UrlExtensions.ResolveTitleForUrl(Model[j].Name) })">
+                                        @Model[j].Name
+                                    </a>
+                                </div>
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div class="item">
+                        @for (int j = i; j < i + 6; j++)
+                        {
+                            if (j < Model.Count())
+                            {
+                                <div class="col-md-2 boxImageSimmilar">
+                                    <a href="@Url.RouteUrl("DetailsProduct", new { productId = Model[j].Id, productName = UrlExtensions.ResolveTitleForUrl(Model[j].Name) })">
+                                        <img src="~/Content/Images/Product/MainSize/@Model[j].PrimaryImage" class="ImageSimilar" />
+                                    </a>
+                                    <br />
+                                    <a class="LinkImageSimilar decoration_a" href="@Url.RouteUrl("DetailsProduct", new { productId = Model[j].Id, productName = UrlExtensions.ResolveTitleForUrl(Model[j].Name) })">
+                                        @Model[j].Name
+                                    </a>
+                                </div>
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                    </div>
+                }
+            }
+        </div>
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-white">
+                <p>
+                    هیچ گونه محصول مشابه ای برای این محصول وجو ندارد
+                </p>
+            </div>
+        </div>
+    </div>
+}

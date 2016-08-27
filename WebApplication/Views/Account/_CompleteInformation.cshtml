@@ -1,0 +1,170 @@
+﻿@using eShop.WebApplication.DomainClasses.ViewModelClasses
+@model UpdateProfileUserViewModel
+<div class="containerCompleteInformation">
+    <div class="HeaderContainerLogin">
+        <span style="font-size:17px;">
+            تکمیل مشخصات کاربری در فناوران اطلاعات ارم وب
+        </span>
+    </div>
+    <br />
+
+    @BundleConfig.AddScripts("~/Scripts/LevelScripts",
+                             "~/Scripts/jquery.validate.min.js",
+                             "~/Scripts/jquery.unobtrusive-ajax.min.js",
+                             "~/Scripts/jquery.validate.unobtrusive.js")
+
+    @using (Ajax.BeginForm(MVC.Account.ActionNames.CompleteInformation, MVC.Account.Name, new AjaxOptions
+    {
+        HttpMethod = "POST",
+        LoadingElementId = "divLoadingCompleteInformationPartial",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "divUpdateCompleteInformationPartial",
+        OnSuccess = "OnSuccessCompleteInformation"
+    }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="divLoading" id="divLoadingCompleteInformationPartial">
+            <img src="~/Content/Images/Main/loadningSamall.GIF" />
+        </div>
+        <div>
+            <div class="col-md-3 textCompleteInformation marginBottom">نام</div>
+            <div class="col-md-9 marginBottom">
+                @Html.TextBoxFor(x => x.Name, new { @class = "form-control controlFocus" })
+                @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div>
+            <div class="col-md-3 textCompleteInformation marginBottom">نام خانوادگی</div>
+            <div class="col-md-9 marginBottom">
+                @Html.TextBoxFor(x => x.Family, new { @class = "form-control controlFocus" })
+                @Html.ValidationMessageFor(x => x.Family, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div>
+            <div class="col-md-3 textCompleteInformation marginBottom">شماره موبایل</div>
+            <div class="col-md-9 marginBottom">
+                @Html.TextBoxFor(x => x.Phone, new { @class = "form-control controlFocus" })
+                @Html.ValidationMessageFor(x => x.Phone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div>
+            <div class="col-md-3 textCompleteInformation marginBottom">استان</div>
+            <div class="col-md-9 marginBottom">
+                @Html.DropDownListFor(x => x.Province_Id, (IEnumerable<SelectListItem>)ViewBag.Province
+                     , "انتخاب استان", new { @class = "form-control controlFocus", id = "dropProvince" })
+                @Html.ValidationMessageFor(x => x.Province_Id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div>
+            <div class="col-md-3 textCompleteInformation marginBottom">شهرستان</div>
+            <div class="col-md-9 marginBottom">
+                @Html.DropDownListFor(x => x.City_Id, (IEnumerable<SelectListItem>)ViewBag.City
+                     , "", new { @class = "form-control controlFocus", id = "dropCity" })
+                @Html.ValidationMessageFor(x => x.City_Id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div>
+            <div class="col-md-3 textCompleteInformation marginBottom">کد پستی</div>
+            <div class="col-md-9 marginBottom">
+                @Html.TextBoxFor(x => x.PostalCode, new { @class = "form-control controlFocus" })
+                @Html.ValidationMessageFor(x => x.PostalCode, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div>
+            <div class="col-md-3 textCompleteInformation marginBottom">آدرس</div>
+            <div class="col-md-9 marginBottom">
+                @Html.TextAreaFor(x => x.Address, new { @class = "form-control controlFocus" })
+                @Html.ValidationMessageFor(x => x.Address, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div>
+            <div class="col-md-3 textCompleteInformation marginBottom">دریافت پیام کوتاه</div>
+            <div class="col-md-9 marginBottom">
+                @if (Model.ReciveMessage)
+                {
+                    <div class="ckbox ckbox-default pull-right">
+                        <input type="checkbox" name="ReciveMessage" id="ReciveMessage" data-val="true" value="true" checked="checked">
+                        <label for="ReciveMessage"></label>
+                    </div>
+                }
+                else
+                {
+                    <div class="ckbox ckbox-default pull-right">
+                        <input type="checkbox" name="ReciveMessage" id="ReciveMessage" data-val="true" value="true">
+                        <label for="ReciveMessage"></label>
+                    </div>
+                }
+            </div>
+        </div>
+        <div>
+            <div class="col-md-3 textCompleteInformation marginBottom"></div>
+            <div class="col-md-9 marginBottom">
+                <input type="submit" value="ذخیره اطلاعات" class="btn btn-primary" onclick="$.validator.unobtrusive.parse($('form'));" />
+            </div>
+        </div>
+    }
+    <br />
+    <div class="clearfix">
+    </div>
+        <div class="col-md-12">
+            <div id="divUpdateCompleteInformationPartial">
+
+            </div>
+        </div>
+
+    <div class="clearfix">
+    </div>
+    <div class="col-md-12" id="alertReload">
+        <div class="alert alert-info">
+            <p>
+                در صورتی تا 5 ثانیه صفحه را بروز رسانی ننمایید به صورت خود کار بروز رسانی می شود
+            </p>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" lang="en">
+    function OnSuccessCompleteInformation() {
+        $('#alertReload').show();
+        setTimeout(function () {
+            window.location.reload();
+        }, 7000);
+    };
+
+    jQuery(document).ready(function () {
+        $('#alertReload').hide();
+        jQuery('#dropProvince').change(function () {
+            $("#dropCity").empty();
+            $("#dropCity").append($('<option></option>').text("انتخاب شهرستان"));
+            jQuery.getJSON('@Url.Action(MVC.Account.ActionNames.GetAllCityById,MVC.Account.Name)', { province_Id: $(this).val() }, function (data) {
+                jQuery.each(data, function (index) {
+                    var option = $('<option></option>').attr("value", data[index].Id).text(data[index].Name);
+                    $("#dropCity").append(option);
+                });
+            });
+
+        });
+
+        if ('@Model.City_Id' != null) {
+            $("#dropCity").empty();
+            $("#dropCity").append($('<option></option>').text("انتخاب شهرستان"));
+            jQuery.getJSON('@Url.Action(MVC.Account.ActionNames.GetAllCityById,MVC.Account.Name)', { province_Id: '@Model.Province_Id' }, function (data) {
+                jQuery.each(data, function (index) {
+                    if (data[index].Id == '@Model.City_Id') {
+                        var option = $('<option></option>').attr("value", data[index].Id).text(data[index].Name).attr("selected", "selected");
+                    }
+                    else {
+                        var option = $('<option></option>').attr("value", data[index].Id).text(data[index].Name);
+                    }
+                    $("#dropCity").append(option);
+                });
+            });
+        }
+    });
+</script>

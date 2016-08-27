@@ -1,0 +1,74 @@
+﻿@using eShop.WebApplication.DomainClasses.ViewModelClasses
+
+@model List<ProductPackageViewModel>
+
+@if (Model.Count() > 0)
+{
+    foreach (var item in Model)
+    {
+        <div style="border-bottom:1px solid #eee; margin-bottom:7px;">
+            <div class="col-md-10">
+                <div>
+                    <div class="col-md-2 fontSize padingBottom2_ marginBottom2_">
+                        نام محصول
+                    </div>
+                    <div class="col-md-10 fontSize padingBottom2_ marginBottom2_ borderBottom">
+                        <a class="decoration_a" href="@Url.RouteUrl("DetailsProduct", new { productId=item.Id , productName=item.Name.Replace(' ','-') })">
+                            @item.Name
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <div class="col-md-3 padingBottom2_ fontSize marginBottom2_">
+                        تاریخ درج محصول
+                    </div>
+                    <div class="col-md-3 padingBottom2_ fontSize marginBottom2_ borderBottom">
+                        @Html.DisplayFor(x => item.Date, "DisplayPersianDatePicker")
+                    </div>
+                    <div class="col-md-3 padingBottom2_ fontSize marginBottom2_">
+                        مدت زمان آموزش
+                    </div>
+                    <div class="col-md-3 padingBottom2_ fontSize marginBottom2_ borderBottom">
+                        <span>@item.Time</span>
+                    </div>
+
+                </div>
+                <div>
+                    <div class="col-md-3 padingBottom2_ fontSize marginBottom2_">
+                        دسته گروه آموزشی
+                    </div>
+                    <div class="col-md-3 padingBottom2_ fontSize marginBottom2_">
+                        <a class="decoration_a">
+                            @item.Category_Name
+                        </a>
+                    </div>
+                    <div class="col-md-3 padingBottom2_ fontSize marginBottom2_">
+                        قیمت محصول
+                    </div>
+                    <div class="col-md-3 padingBottom2_ fontSize marginBottom2_">
+                        <span>
+                            @item.PricePackage
+                        </span> تومان
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-2">
+                <img src="~/Content/Images/Product/ThumbLine_New/@item.PrimaryImage" class="img-circle borderimageCircle" />
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    }
+}
+else
+{
+    <div class="col-md-12">
+        <div class="alert alert-info">
+            <p>
+                هیچ محصولی برای این پکیج آموزشی ثبت نشده است
+            </p>
+        </div>
+    </div>
+}
+
+

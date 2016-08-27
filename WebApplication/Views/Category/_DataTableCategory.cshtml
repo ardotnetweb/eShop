@@ -1,0 +1,203 @@
+﻿@using eShop.WebApplication.DomainClasses.AppClasses
+
+@model List<eShop.WebApplication.DomainClasses.ViewModelClasses.ProductShowViewModel>
+@{
+    int page = ViewBag.page;
+    int currentPage = page + 1;
+    int max = (ViewBag.TotalRecords - 1) / ViewBag.count;
+    int firstPage = ((currentPage - 2) <= 0) ? 0 : currentPage - 3;
+    int lastPage = ((currentPage + 2) >= max) ? max : currentPage + 3;
+    var disableRightLeft = (firstPage == 0 && lastPage == 0) ? true : false;
+    var disableRight = (currentPage == firstPage + 1) ? true : false;
+    var disableLeft = (currentPage == lastPage + 1) ? true : false;
+}
+
+<div class="col-md-7">
+    <ul class="MenuPaging pull-left">
+        <li class="first">
+            @Ajax.ActionLink(linkText: "صفحه اول", actionName: MVC.Category.ActionNames.GetDataTable, controllerName: MVC.Category.Name, routeValues: new { arrayCategory = ViewBag.arrayCategory, arrayCompany = ViewBag.arrayCompany, search = ViewBag.search, order = ViewBag.order, term = ViewBag.term, count = ViewBag.count, page = 0 }, ajaxOptions: new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.Replace, LoadingElementId = "divLoading", UpdateTargetId = "result", OnSuccess = "OnSuccess" }, htmlAttributes: new { @class = "decoration_a pull-left disableRight" })
+        </li>
+        @for (int i = firstPage; i <= lastPage; i++)
+        {
+            if (i + 1 == currentPage)
+            {
+                <li class="active disable"><a href="#">@MvcHtmlString.Create("" + (@i + 1) + "").ToString()</a></li>
+            }
+            else
+            {
+                <li>
+                    @Ajax.ActionLink(linkText: MvcHtmlString.Create("" + (@i + 1) + "").ToString(), actionName: MVC.Category.ActionNames.GetDataTable, controllerName: MVC.Category.Name, routeValues: new { arrayCategory = ViewBag.arrayCategory, arrayCompany = ViewBag.arrayCompany, search = ViewBag.search, order = ViewBag.order, term = ViewBag.term, count = ViewBag.count, page = i }, ajaxOptions: new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.Replace, UpdateTargetId = "result", OnBegin = "OnBegin", OnSuccess = "OnSuccess", OnComplete = "OnComplete" }, htmlAttributes: new { @class = "decoration_a pull-left" })
+                </li>
+            }
+        }
+        <li class="last">
+            @Ajax.ActionLink(linkText: "صفحه آخر", actionName: MVC.Category.ActionNames.GetDataTable, controllerName: MVC.Category.Name, routeValues: new { arrayCategory = ViewBag.arrayCategory, arrayCompany = ViewBag.arrayCompany, search = ViewBag.search, order = ViewBag.order, term = ViewBag.term, count = ViewBag.count, page = max }, ajaxOptions: new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.Replace, UpdateTargetId = "result", LoadingElementId = "divLoading", OnSuccess = "OnSuccess" }, htmlAttributes: new { @class = "decoration_a pull-left disableLeft" })
+        </li>
+        @if (disableRightLeft)
+        {
+            <text>
+                <script>
+                    disableRightLeft();
+                </script>
+            </text>
+        }
+        @if (disableLeft)
+        {
+            <text>
+                <script>
+                    disableLeft();
+                </script>
+            </text>
+        }
+        @if (disableRight)
+        {
+            <text>
+                <script>
+                    disableRight();
+                </script>
+            </text>
+        }
+    </ul>
+</div>
+
+<div class="clearfix"></div>
+<br />
+
+@foreach (var item in Model)
+{
+    <div class="prod-box col-sm-6 col-md-4 col-lg-3 padingBox">
+        <div class="pro thumbnail">
+            <div class="caption">
+                <a>
+                    <div class="zoom-container"><img src="/Content/Images/Product/MainSize/@item.PrimaryImage" alt="..."></div>
+                    @if (item.Name.Length <= 26)
+                    {
+                        <h3 class="pro-name" style=" margin-top:11px; text-align:center !important;">
+                            @Html.RouteLink(string.Format("{0}", item.Name).ToString(), "DetailsProduct", new { productId = item.Id, productName = UrlExtensions.ResolveTitleForUrl(item.Name) }, new { @class = "decoration_a" })
+                        </h3>
+                    }
+                    else
+                    {
+                        <h3 class="pro-name" style=" margin-top:11px;text-align:center !important;">
+                            @Html.RouteLink(string.Format("{0}", item.Name.Substring(0, 26)).ToString(), "DetailsProduct", new { productId = item.Id, productName = UrlExtensions.ResolveTitleForUrl(item.Name) }, new { @class = "decoration_a" })
+                        </h3>
+                    }
+                </a>
+                @if (item.Explain != null)
+                {
+                    <p class="description" style="font-size:13px !important; letter-spacing:1px;">
+                        @WebUtility.HtmlDecode(item.Explain)
+                    </p>
+                }
+                else
+                {
+
+                    <p class="description" style="font-size:13px !important; letter-spacing:1px;">
+                        توضیحاتی ثبت نشده است
+                    </p>
+                }
+                <a class="AddToCart" role="button" data-productid="@item.Id" data-name="@item.Name" data-price="@item.Price">
+                    <ul class="add-cart">
+                        <li>
+                            <svg height="42" width="17">
+                                <polygon points="17,0 17,42 0,34 0,8" class="part1" />
+                            </svg>
+                        </li>
+                        <li>
+                            <span class="part2 glyphicon glyphicon-shopping-cart"></span>
+                        </li>
+                        <li>
+                            <svg height="42" width="17">
+                                <polygon points="17,34 14,30 0,30" class="part3" />
+                            </svg>
+                        </li>
+                    </ul>
+                </a>
+                <span class="price">
+                    <svg height="55" width="200">
+                        <line x1="0" x2="120" y1="0" y2="0" stroke="#dddddd"
+                              stroke-width="2" />
+                        <line x1="120" y1="0" x2="150" y2="50" stroke="#dddddd" />
+                        <line x1="150" y1="50" x2="180" y2="50" stroke="#dddddd" />
+                        <circle cx="180" cy="50" r="3" stroke="#dddddd" />
+                    </svg>
+                    <span style="color:green">
+                        @item.Price
+                </span><br />
+                <span class="tmn">&nbsp;تومان&nbsp;</span>
+            </span>
+        </div>
+    </div>
+</div>
+
+}
+
+<div class=clearfix></div>
+<div class="col-md-12">
+    <ul class="MenuPaging pull-left">
+        <li class="first">
+            @Ajax.ActionLink(linkText: "صفحه اول", actionName: MVC.Category.ActionNames.GetDataTable, controllerName: MVC.Category.Name, routeValues: new { arrayCategory = ViewBag.arrayCategory, arrayCompany = ViewBag.arrayCompany, search = ViewBag.search, order = ViewBag.order, term = ViewBag.term, count = ViewBag.count, page = 0 }, ajaxOptions: new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.Replace, LoadingElementId = "divLoading", UpdateTargetId = "result", OnSuccess = "OnSuccess" }, htmlAttributes: new { @class = "decoration_a pull-left disableRight" })
+        </li>
+        @for (int i = firstPage; i <= lastPage; i++)
+        {
+            if (i + 1 == currentPage)
+            {
+                <li class="active disable"><a href="#">@MvcHtmlString.Create("" + (@i + 1) + "").ToString()</a></li>
+            }
+            else
+            {
+                <li>
+                    @Ajax.ActionLink(linkText: MvcHtmlString.Create("" + (@i + 1) + "").ToString(), actionName: MVC.Category.ActionNames.GetDataTable, controllerName: MVC.Category.Name, routeValues: new { arrayCategory = ViewBag.arrayCategory, arrayCompany = ViewBag.arrayCompany, search = ViewBag.search, order = ViewBag.order, term = ViewBag.term, count = ViewBag.count, page = i }, ajaxOptions: new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.Replace, UpdateTargetId = "result", OnBegin = "OnBegin", OnSuccess = "OnSuccess", OnComplete = "OnComplete" }, htmlAttributes: new { @class = "decoration_a pull-left" })
+                </li>
+            }
+        }
+        <li class="last">
+            @Ajax.ActionLink(linkText: "صفحه آخر", actionName: MVC.Category.ActionNames.GetDataTable, controllerName: MVC.Category.Name, routeValues: new { arrayCategory = ViewBag.arrayCategory, arrayCompany = ViewBag.arrayCompany, search = ViewBag.search, order = ViewBag.order, term = ViewBag.term, count = ViewBag.count, page = max }, ajaxOptions: new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.Replace, UpdateTargetId = "result", LoadingElementId = "divLoading", OnSuccess = "OnSuccess" }, htmlAttributes: new { @class = "decoration_a pull-left disableLeft" })
+        </li>
+        @if (disableRightLeft)
+        {
+            <text>
+                <script>
+                    disableRightLeft();
+                </script>
+            </text>
+        }
+        @if (disableLeft)
+        {
+            <text>
+                <script>
+                    disableLeft();
+                </script>
+            </text>
+        }
+        @if (disableRight)
+        {
+            <text>
+                <script>
+                    disableRight();
+                </script>
+            </text>
+        }
+    </ul>
+</div>
+
+<script src="~/Scripts/jquery-loader-information.js"></script>
+<script type="text/javascript" lang="en">
+    $(document).ready(function () {
+        $('.AddToCart').click(function () {
+            OnBeginAddToCart();
+            $.post("@Url.Action(MVC.Product.ActionNames.Add,MVC.Product.Name)",
+                {
+                    product_Id: $(this).data('productid'),
+                    name: $(this).data('name'),
+                    price: $(this).data('price')
+                },
+                function (data) {
+                    OnSuccessAddToCart(data);
+                }).error(function () {
+                    OnFailureAddToCart();
+                });
+        });
+    });
+
+</script>

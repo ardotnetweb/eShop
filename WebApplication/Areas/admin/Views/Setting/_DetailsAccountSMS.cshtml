@@ -1,0 +1,64 @@
+﻿@using eShop.WebApplication.DomainClasses.SMSViewModel
+@model InfoAccountSMS
+
+<div class="row" >
+    <div class="col-md-12 marginBottom">
+
+        <div class="col-sm-3">
+            میزان اعتبار شما :
+        </div>
+        <div class="col-sm-3 borderBottom padingBottom3 padingTop3 backgroundColorItem">
+            @Model.Creadit.ToString()
+            <span>
+                تومان
+            </span>
+        </div>
+
+        <div class="col-sm-3">
+            تعداد کل پیام های دریافتی :
+        </div>
+        <div class="col-sm-3 borderBottom padingBottom3 padingTop3 backgroundColorItem">
+            <span>
+                @Model.CountRecive
+            </span>
+            <span>
+                پیامک
+            </span>
+        </div>
+
+    </div>
+    <div class="col-md-12 marginBottom">
+        <div class="col-sm-3">
+            تعداد پیامک های دریافتی خوانده نشده :
+        </div>
+        <div class="col-sm-3 borderBottom padingBottom3 padingTop3 backgroundColorItem">
+            @Model.CountUnRead
+            <span>
+                پیامک
+            </span>
+        </div>
+        <div class="col-sm-3">
+            تعداد پیامک های دریافتی خوانده شده :
+        </div>
+        <div class="col-sm-3 borderBottom padingBottom3 padingTop3 backgroundColorItem">
+            @Model.CountRead
+            <span>
+                پیامک
+            </span>
+        </div>
+    </div>
+
+
+    <div class="col-md-12 marginBottom">
+        <div class="col-sm-3">
+            تعداد پیامک های ارسال شده :
+        </div>
+        <div class="col-sm-3 borderBottom padingBottom3 padingTop3 backgroundColorItem">
+            @Model.CountSend
+            <span>
+                پیامک
+            </span>
+        </div>
+    </div>
+</div>
+<hr />

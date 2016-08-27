@@ -1,0 +1,59 @@
+﻿@using eShop.WebApplication.DomainClasses.ViewModelClasses
+
+@model List<OrderViewModel>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 center BaseOrderModal">
+            <div class="HeaderOrderModal">
+                <span style=" font:normal 18px eramFont;">
+                    لیست کالاهای سفارش
+                </span>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-left:20px; margin-top:3px;">
+                    <span aria-hidden="true" class="glyphicon glyphicon-remove-circle"></span>
+                </button>
+            </div>
+            <div class="BodyOrderModal">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                #
+                            </th>
+                            <th class="col-md-8">
+                                نام محصول
+                            </th>
+                            <th>
+                                تعداد
+                            </th>
+                            <th>
+                                قیمت
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < Model.Count(); i++)
+                        {
+                            <tr>
+                                <td>
+                                    @MvcHtmlString.Create("" + (i + 1) + "")
+                                </td>
+                                <td>
+                                    <a href="@Url.RouteUrl("DetailsProduct", new { productId = Model[i].Product_Id, productName = Model[i].Name.Replace(' ','-') })" class="decoration_a">
+                                    @Model[i].Name
+                                    </a>
+                                </td>
+                                <td>
+                                    @Model[i].Quantity
+                                </td>
+                                <td>
+                                    @Model[i].Price
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

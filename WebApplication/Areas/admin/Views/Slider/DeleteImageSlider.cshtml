@@ -1,0 +1,77 @@
+﻿@{
+    Layout = "~/Areas/admin/Views/Shared/_Main.cshtml";
+}
+@using eShop.WebApplication.DomainClasses.ViewModelClasses
+@model List<DeleteSliderViewModel>
+
+
+<div id="result">
+    @ViewData["deleteImageProduct"]
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="divLoadingContent" id="divLoadingContent">
+            <img src="@Url.Content("~/Content/Images/Main/Loadnig.GIF")" />
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="fontSizeLarge">حذف تصاویر اسلایدر</h4>
+                <p class="fontSizeLargeTitle">
+                    در این بخش می توانید از مجموع تصاویری را که برای اسلایدر در صفحه نخست انتخاب کرده بودید هر کدام از آنها یا همگی با توجه در خواست شما مورد حذف قرار گیرند
+                </p>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="breadcrumb" id="navBarMenu">
+                        <ul class="breadcrumb" id="navBarMenu">
+                            <li>
+                                <a href="@Url.Action(MVC.admin.Slider.ActionNames.Index,MVC.admin.Slider.Name)">مشاهده تصاویر آپلود شده اسلایدر</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action(MVC.admin.Slider.ActionNames.CreateSlider,MVC.admin.Slider.Name)">آپلود تصاویر اسلایدر</a>
+                            </li>
+                        </ul>
+                    </ul>
+                </div>
+            </div>
+            @using (Ajax.BeginForm(actionName: MVC.admin.Slider.ActionNames.DeleteImageSlider, controllerName: MVC.admin.Slider.Name, routeValues: null, ajaxOptions: new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "result", LoadingElementId = "divLoadingContent", InsertionMode = InsertionMode.Replace }))
+            {
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="form-group checkboxDeleteImage">
+                            @for (int i = 0; i < Model.Count(); i++)
+                            {
+                                <div class="col-sm-3 borderWhole">
+                                    <div class="deleteImageProduct">
+
+                                        <img src="~/Content/Images/Slider/@Model[i].ImageSlider" width="240" height="200" />
+                                    </div>
+                                    <br />
+                                    <div class="ckbox ckbox-primary">
+                                        <input type="checkbox" id="@MvcHtmlString.Create("checkBox" + @i)" value="@Model[i].Id/@Model[i].ImageSlider" name="checkboxImage" />
+                                        <label for="@MvcHtmlString.Create("checkBox" + @i)"></label>
+                                    </div>
+                                    <div>
+                                        @if (Model[i].Title.Length <= 34)
+                                        {<label>@Model[i].Title</label>}
+                                        else
+                                        {<label>@Model[i].Title.Substring(0, 34).ToString()</label>}
+                                    </div>
+
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <input type="submit" class="btn btn-primary pull-left" value="حذف تصاویر آموزشی انتخاب شده" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

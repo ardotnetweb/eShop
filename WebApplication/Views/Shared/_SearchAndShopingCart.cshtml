@@ -1,0 +1,39 @@
+﻿
+<div class="container" id="SearchAndShoping">
+    <span class="visible-xs" style="width:100%; height:20px;"></span>
+    <div class="row">
+        <div class="col-md-3 col-sm-12 col-xs-12">
+            <div class="row">
+                <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12" style="padding-top:7px;">
+                    <br />
+                    <a href="@Url.Action(MVC.Cart.ActionNames.Index, MVC.Cart.Name)" class="btn-success_ decoration_a" style="font:normal 13px eramFont;color:white !important; padding:9px 13px; border-radius:3px; border:none;">
+                        <span class="glyphicon glyphicon-shopping-cart"></span>
+                        <span>مشاهده محتویات سبد خرید شما</span>
+                        <span class="img-circle CountProductinButtom" style="margin-right:6px;">10</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12 col-xs-12" id="SearchBoxDiv">
+            <div class="row">
+                <div class="col-lg-12 col-sm-12 col-md-12">
+                    <br />
+                    @using (Html.BeginForm(MVC.Search.ActionNames.Index, MVC.Search.Name, FormMethod.Get))
+                    {
+                        <input name="term" type="text" class="form-control controlFocus" data-autocomplete-url="@Url.Action(MVC.Search.ActionNames.AutoCompleteSearch, MVC.Search.Name)" placeholder="نام محصول آموزشی را جهت جستجو وارد نمایید" />
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-12 col-xs-12">
+            <div class="row">
+                <div class="col-lg-12 col-sm-12 col-md-12">
+                    <a href="@Url.Action(MVC.Home.ActionNames.Index,MVC.Home.Name)">
+                        <img src="~/Content/Images/Main/_mainLogo.png" class="pull-left" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

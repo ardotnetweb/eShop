@@ -1,0 +1,93 @@
+﻿@{
+    ViewBag.Title = "detailsDataPackage";
+    Layout = "~/Areas/admin/Views/Shared/_Main.cshtml";
+    
+    
+}
+@using eShop.WebApplication.DomainClasses.ViewModelClasses
+@model PackageViewModel
+
+<input type="hidden" value="@Model.Id" name="Package_Id" id="Package_Id" />
+<div id="resultDelete">
+
+</div>
+<div class="row borderBottom marginBottom padingBottom">
+    <div class="col-md-12">
+        <div class="btn-group mr5 FloutButton">
+            <button type="button" class="btn btn-primary">انتخاب Action برای پکیج</button>
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu MenuButton" role="menu">
+
+                <li>
+                    @Html.ActionLink(linkText: "ویرایش اطلاعات اصلی",actionName: MVC.admin.Package.ActionNames.UpdatePackage,controllerName: MVC.admin.Package.Name,routeValues: new { id = Model.Id },htmlAttributes: new { @class = "decoration_a" })
+                </li>
+                <li>
+                    @Html.ActionLink(linkText: "اضافه کردن محصول جدید",actionName: MVC.admin.Package.ActionNames.AddProductPackage,controllerName: MVC.admin.Package.Name,routeValues: new { id = Model.Id },htmlAttributes: new { @class = "decoration_a" })
+                </li>
+                <li>
+                    @Html.ActionLink(linkText: "حذف محصولات پکیج",actionName: MVC.admin.Package.ActionNames.DeleteProductPackage,controllerName: MVC.admin.Package.Name,routeValues: new { Model.Id },htmlAttributes: new { @class = "decoration_a" })
+                </li>
+                <li class="divider"></li>
+                <li>
+                    @Ajax.ActionLink(linkText: "حذف  پکیج",actionName: MVC.admin.Package.ActionNames.DeletePackage,controllerName: MVC.admin.Package.Name,routeValues: new { id = Model.Id },ajaxOptions: new AjaxOptions{HttpMethod = "POST",InsertionMode = InsertionMode.Replace,LoadingElementId = "divLoading",UpdateTargetId = "resultDelete"},htmlAttributes: new { @class = "decoration_a" })
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+@Html.Partial(partialViewName: MVC.admin.Package.Views._BaseInformationPackage, model: Model)
+<div class="row borderBottom">
+    <div class="col-md-2">توضحیات مربوط به پکیج آموزشی</div>
+    <div class="col-md-10 borderRight textColor">
+        @Html.Raw(Model.ExplainPackage)
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12" style=" padding:8px 0;">
+        <h4 class="text-center">
+            مجموعه محصولات آموزشی پکیج :
+            &nbsp;&nbsp;
+            <span>
+                Learning ASP MVC With Scot Alen
+            </span>
+        </h4>
+    </div>
+</div>
+<div class="row" id="loadingElement">
+    <div class="col-md-12" id="ElementLoading">
+        <img src="@Url.Content("~/Content/Images/Main/loadingAnimation.gif")" class="center-block" />
+    </div>
+</div>
+<div id="result">
+
+</div>
+
+
+@section Scripts
+{
+    <script type="text/javascript" lang="en">
+        $(document).ready(function () {
+            var id = $("#Package_Id").val();
+            $("#loadingElement").show();
+            $.ajax({
+                cache: false,
+                type: "GET",
+                url: "@Url.Action(MVC.admin.Package.ActionNames.LoadProductPerPackage, MVC.admin.Package.Name)",
+                data: { "id": id },
+                success: function (data) {
+                    $("#result").fadeOut(600, function () {
+                        $(this).html(data).fadeIn(1500);
+                    });
+                    $("#loadingElement").hide();
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    $("#loadingElement").hide();
+                    alert('Failed to retrieve books.');
+                }
+            });
+        });
+    </script>
+}

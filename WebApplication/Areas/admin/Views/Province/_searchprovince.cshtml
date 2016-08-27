@@ -1,0 +1,45 @@
+﻿@model int
+<div class="row distanceTextBoxSearchWithDataTable">
+    <div class="col-sm-6 padingTextBoxSearchWithDataTable">
+        <label>
+            تعداد کل استان های ثبت شده <span>
+                @Model.ToString()
+                استان
+            </span> می باشد
+        </label>
+    </div>
+    <div class="col-sm-1 padingTextBoxSearchWithDataTable">
+        <label class="pull-left">
+            جستجو :
+        </label>
+    </div>
+    <div class="col-sm-4">
+        <input type="search" id="term" name="term" class="pull-right styleTextBoxSearch"  />
+    </div>
+    <div class="col-sm-1">
+        <button type="submit" class="btn btn-primary">
+            <span class="glyphicon glyphicon-search"></span>
+        </button>
+    </div>
+</div>
+
+
+<script type="text/javascript" lang="en">
+    $("#term").keyup(function () {
+        var term = jQuery.trim(this.value);
+        $.getJSON("@Url.Action(MVC.admin.Province.ActionNames.serachDataProvince,MVC.admin.Province.Name)",
+        { term: term }, function (data) {
+            $("#result").empty();
+            $.each(data, function (index) {
+                $("#result").append
+                    (" <div class=\"col-md-2 cityStyle\">" +
+                    data[index].Name + "<a class=\"pull-right colorWhite\" href=\"/admin/Province/UpdateProvince/" +
+                    data[index].Id + "\">ویرایش</a></div>")
+                .hide();
+                $("#result").fadeIn(300);
+            })
+
+        });
+    });
+</script>
+

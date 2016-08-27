@@ -1,0 +1,175 @@
+﻿@using WebApplication.ViewModels
+
+@model PackageEditViewModel
+
+@{
+    Layout = "~/Areas/admin/Views/Shared/_Main.cshtml";
+}
+
+<div class="row borderBottom padingTop padingBottom marginBottom" id="divCalculated">
+    <div class="col-md-12">
+        @using (Html.BeginForm(actionName: MVC.admin.Package.ActionNames.UpdatePackage,controllerName: MVC.admin.Package.Name, method: FormMethod.Post,htmlAttributes: new { id = "uploadForm", enctype = "multipart/form-data" }))
+        {
+            <input type="hidden" value="@Model.Id" name="Id" />
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">نام پکیج آموزشی</label>
+                <div class="col-sm-4">
+                    @Html.TextBoxFor(x => x.Name, new { @class = "form-control controlFocus" })
+                    @Html.ValidationMessageFor(x => x.Name, "",new { @class = "text-danger" })
+                </div>
+                <label class="col-sm-2 control-label">درصد تخفیف</label>
+                <div class="col-sm-4">
+                    @Html.TextBoxFor(x => x.Percent, new { @class = "form-control controlFocus", id = "txtpercent", onkeypress = "return isNumberKey(event)", style = "width:25%;font-size:19px;", maxlength = "2" })
+                    <span id="txtAlert" class="text-danger">لطفا مقدار درصد تخفیف را وارد نمایید</span>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">قیمت واقعی پکیج</label>
+                <div class="col-sm-4">
+                    @Html.TextBoxFor(x => x.OriginalPrice, new { @class = "form-control controlFocus", disabled = "disabled", id = "txtOriginalPrice", style = "font-size:19px;" })
+                    @Html.ValidationMessageFor(x => x.OriginalPrice, "",new { @class = "text-danger" })
+                </div>
+                <label class="col-sm-2 control-label">قیمت پکیج با احتساب تخفبف</label>
+                <div class="col-sm-4">
+                    @Html.TextBoxFor(x => x.DisCountPrice, new { @class = "form-control controlFocus", id = "txtDisCountPrice", style = "font-size:19px;" })
+                    @Html.ValidationMessageFor(x => x.DisCountPrice, "",new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">تاریخ شروع پکیج را وارد نمایید</label>
+                <div class="col-sm-4">
+                    @Html.EditorFor(x => x.StartDate, "PersianDatePicker")
+                    @Html.ValidationMessageFor(x => x.StartDate, "",new { @class = "text-danger" })
+                </div>
+                <label class="col-sm-2 control-label">تاریخ پایان پکیج را وارد نمایید</label>
+                <div class="col-sm-4">
+                    @Html.EditorFor(x => x.EndDate, "PersianDatePicker")
+                    @Html.ValidationMessageFor(x => x.EndDate, "",new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">وضعیت نمایش پکیج</label>
+                <div class="col-sm-4">
+
+                    @if (Model.IsShow)
+                    {
+                        <div class="ckbox ckbox-primary">
+                            <input type="checkbox" value="true" name="IsShow" id="IsShow" data-val="true" checked="checked" />
+                            <label for="IsShow"></label>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="ckbox ckbox-primary">
+                            <input type="checkbox" value="true" name="IsShow" id="IsShow" data-val="true" />
+                            <label for="IsShow"></label>
+                        </div>
+                    }
+                </div>
+
+                <div class="col-sm-6">
+                    <input type="button" value="محاسبه درصد تخفیفات محصولات انتخاب شده"
+                           id="btnCalculated" class="btn btn-primary pull-right" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">توضحیات مربوط به پکیج</label>
+                <div class="col-sm-10">
+                    @Html.TextAreaFor(x => x.Explain)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">@Html.LabelFor(x => x.Image)</label>
+                <div class="col-sm-2">
+                    @Html.TextBoxFor(x => x.Image, new { type = "file", @class = "form-control controlFocus", id = "controlUpload", name = "controlUpload", onchange = "ShowPreviewImageUpload(this);" })
+                </div>
+                <div class="col-sm-1" id="fileUpload">
+                    <input type="button" id="calerImageUploaded" class="btn btn-primary"
+                           value="پاکسازی کنترل بارگذاری" />
+                </div>
+                <div class="col-sm-7">
+                    @if (Model.ImageLogo != null)
+                    {
+                        <img id="impPrev" class="ControlimgPrev img-circle" style="max-width:120px; max-height:120px;" src="~/Content/Images/Package/@Model.ImageLogo" />
+                    }
+                    else
+                    {
+                        <img id="impPrev" class="ControlimgPrev img-circle" style="max-width:120px; max-height:120px;" src="~/Content/Images/Package/NoImage_2.jpg" />
+                    }
+                </div>
+            </div>
+            <div class="row" style="border-top:1px solid #eee;padding-top:20px; margin-top:10px; padding-bottom:10px;">
+                <div class="col-sm-12">
+                    <input type="submit" value="ذخیره سازی" class="btn btn-primary" />
+                    <input type="reset" value="خالی کردن باکس ها" class="btn btn-default" />
+
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+@section Scripts
+{
+    <script type="text/javascript" lang="en">
+        $(function () {
+            $('#Explain').editable({
+                buttons: ["bold", "italic", "underline", "strikeThrough", "fontFamily",
+                    "fontSize", "color", "formatBlock", "align", "insertOrderedList",
+                    "insertUnorderedList", "outdent", "indent", "selectAll", "createLink",
+                    "undo", "redo", "html", "save", "inserthorizontalrule"],
+                inlineMode: false,
+                inverseSkin: true,
+                preloaderSrc: '@Url.Content("~/Content/Images/Main/preloader.gif")',
+                allowedImageTypes: ["jpeg", "jpg", "png"],
+                height: 300,
+                language: "fa",
+                direction: "rtl",
+                fontList: ["Tahoma, Geneva", "Arial, Helvetica", "Impact, Charcoal"],
+                autosave: false,
+                autosaveInterval: 2500,
+                saveURL: '@Url.Action("FroalaUploadImage", "product")',
+                saveParams: { postId: "123" },
+                spellcheck: true,
+                plainPaste: true,
+                imageButtons: ["removeImage", "replaceImage", "linkImage"],
+                borderColor: '#00008b',
+                imageParams: { postId: "123" },
+                enableScript: false
+            });
+
+            $("#txtAlert").hide();
+            $.trim($("#txtpercent").val());
+            var disCountpercent=@Model.Percent;
+            var countProduct=@Model.ProductsPackage;
+            var originalPrice = $("#txtOriginalPrice").val();
+            var disCountPrice = @Model.DisCountPrice;
+
+
+            jQuery("#btnCalculated").click(function () {
+                $.trim($("#txtpercent").val());
+                if ($("#txtpercent").val().length > 0 && $("#txtpercent").val().length <= 2) {
+
+                    $("#txtAlert").css({ 'display': 'none' });
+                    disCountpercent = $("#txtpercent").val();
+                    disCountPrice = originalPrice - ((originalPrice * disCountpercent) / 100);
+                    $("#txtOriginalPrice").val(originalPrice);
+                    $("#txtDisCountPrice").val(disCountPrice);
+                    $("#loadingbtnCalculated").css({ 'display': 'none' });
+                }
+                else
+                    $("#txtAlert").css({ 'display': 'block' });
+            });
+        });
+    </script>
+}
+
+
+
+

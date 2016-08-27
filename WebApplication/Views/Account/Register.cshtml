@@ -1,0 +1,100 @@
+﻿@{
+    ViewBag.Title = "عضویت در فناوران اطلاعات ارم وب شیراز";
+    Layout = "~/Views/Shared/_MainSidebar.cshtml";
+
+}
+
+
+@BundleConfig.AddScripts("~/Scripts/LevelScripts",
+                             "~/Scripts/jquery.validate.min.js",
+                             "~/Scripts/jquery.unobtrusive-ajax.min.js",
+                             "~/Scripts/jquery.validate.unobtrusive.js")
+
+
+@model RegisterViewModel_
+
+<div class="row img-rounded" style="background-color:white;padding-top:25px; padding-bottom:25px;">
+    <div class="center-block">
+        <img src="~/Content/Images/Main/register_icon.png" class="center-block" />
+    </div>
+    <div class="center-block" style="text-align:center; margin-top:15px; margin-bottom:20px; padding-bottom:20px;">
+        <span class="center-block" style="font-size:17px;">
+            ثبت نام در فناوران اطلاعات ارم وب
+        </span>
+    </div>
+    <div class="center-block"><div class="form-group col-md-4"></div></div>
+
+    <div class="col-md-5">
+        <div style="border:1px solid #eee; height:1px;"></div>
+        <br />
+        <div class="divLoading" id="divLoadingRegisterUser">
+            <img src="~/Content/Images/Main/loadningSamall.GIF" />
+        </div>
+        @using (Ajax.BeginForm(actionName: MVC.Account.ActionNames.Register,
+            controllerName: MVC.Account.Name,
+            routeValues: null,
+            ajaxOptions: new AjaxOptions
+            {
+                HttpMethod = "POST",
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = "resultOperation",
+                LoadingElementId = "divLoadingRegisterUser"
+            },
+            htmlAttributes: null))
+        {
+            @Html.AntiForgeryToken()
+            <div>
+                <p style="font-size:16px;">
+                    رایانامه :
+                </p>
+            </div>
+            <div class="form-group">
+                @Html.TextBoxFor(x => x.Email, new { @class = "form-control col-md-4 controlFocus" })
+                @Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger" })
+            </div>
+            <div>
+                <p style="font-size:16px;">
+                    رمز عبور :
+                </p>
+            </div>
+            <div class="form-group">
+                @Html.TextBoxFor(x => x.Password, new { @class = "form-control col-md-4 controlFocus", type = "password" })
+                @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger" })
+            </div>
+            <div>
+                <p style="font-size:16px;">
+                    تکرار رمز عبور :
+                </p>
+            </div>
+            <div class="form-group">
+                @Html.TextBoxFor(x => x.ConfirmPassword, new { @class = "form-control col-md-4 controlFocus", type = "password" })
+                @Html.ValidationMessageFor(x => x.ConfirmPassword, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <input type="submit" value="تائید عضویت در فناوران اطلاعات ارم وب" class="btn btn-primary" style="width:100%;margin-top:20px; margin-bottom:20px;" />
+            </div>
+
+        }
+
+        <div class="form-group">
+            <div id="resultOperation">
+
+            </div>
+        </div>
+
+        <div style="border:1px solid #eee; height:1px;"></div>
+        <div class="form-group">
+
+            <br />
+            <span>
+                <a class="a_redirect" href="@Url.Action(MVC.Account.ActionNames.ForgotPassword, MVC.Account.Name)">رمز عبور خود را فراموش کرده ام</a>
+            </span>
+            <br />
+            <span>
+                <a class="a_redirect" href="@Url.Action(MVC.Account.ActionNames.Login, MVC.Account.Name)">من قبلا در فناوران اطلاعات ارم وب حساب کاربری ایجاد کرده ام</a>
+            </span>
+        </div>
+    </div>
+</div>
+<br />
+

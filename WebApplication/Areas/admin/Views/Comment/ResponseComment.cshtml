@@ -1,0 +1,107 @@
+﻿@{
+    ViewBag.Title = "responseComment";
+    Layout = "~/Areas/admin/Views/Shared/_Main.cshtml";
+}
+@using eShop.WebApplication.DomainClasses.AppClasses
+@model Comment
+
+
+<div class="media" style=" padding:10px;">
+    <div class="media-body">
+        <a class="pull-left">
+            <img src="~/Content/Images/Main/user.png" style="width:65px; height:65px; margin:0 10px 2px 12px;" class="img-circle" />
+        </a>
+        <div class="media-heading">
+            <label class="pull-right">
+                سه شنبه 19 دی 1394
+                &nbsp;&nbsp;&nbsp;
+                ساعت 10:30
+            </label>
+            <label class="pull-left text-primary">Miooo Darush Zandian</label>
+        </div>
+        <br />
+        شما در این قسمت می توانید اطلاعات گروه یا زیر گروه مورد نظرتان را مشاهده نمایید و در صورت نیاز اقدام به حذف نمایید
+        شما در این قسمت می توانید اطلاعات گروه یا زیر گروه مورد نظرتان را مشاهده نمایید و در صورت نیاز اقدام به حذف نمایید
+        شما در این قسمت می توانید اطلاعات گروه یا زیر گروه مورد نظرتان را مشاهده نمایید و در صورت نیاز اقدام به حذف نمایید
+        شما در این قسمت
+
+    </div>
+    <br />
+    <div style="border:1px solid #eee; padding:12px 5px; border-left:none; border-right:none;">
+        <div class="col-md-6">
+            <div class="ckbox ckbox-primary">
+                <input type="checkbox" id="checkBoxdisplayStatus"
+                       name="checkboxImage" />
+                <label for="checkBoxdisplayStatus">
+                    وضعیت نمایش کامنت
+                </label>
+            </div>
+        </div>
+        <div class="col-md-6 text-left">
+            <a>
+                Learning ASP MVC With Scot Alen
+            </a>
+        </div>
+        <div style="clear:both;"></div>
+
+    </div>
+    <div class="col-md-12" style="border-bottom:1px solid #eee;  padding:5px 5px;">
+        <a>
+            مشاهده دیگر کامنت های این محصول
+        </a>
+        <div class="pull-right">
+            <span class="glyphicon glyphicon-remove-sign">
+            </span>
+        </div>
+    </div>
+    <div class="col-md-12" style="border-bottom:1px solid #eee;  padding:5px 5px;">
+        <label>
+            پاسخ به کامنت
+        </label>
+
+    </div>
+
+    
+    <div class="col-md-12" style="border-bottom:1px solid #eee;  padding:5px 5px;">
+        @Html.TextArea("Explain")
+    </div>
+
+    <div class="col-md-12" style="border-bottom:1px solid #eee;  padding:5px 5px;">
+       <input type="submit" value="ارسال پاسخ" class="btn btn-primary pull-right" />
+    </div>
+</div>
+
+
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(function () {
+            $('#Explain').editable({
+                buttons: ["bold", "italic", "underline", "strikeThrough", "fontFamily",
+                    "fontSize", "color", "formatBlock", "align", "insertOrderedList",
+                    "insertUnorderedList", "outdent", "indent", "selectAll", "createLink",
+                    "insertImage", "insertVideo", "undo", "redo", "html", "save", "inserthorizontalrule"],
+                inlineMode: false,
+                inverseSkin: true,
+                preloaderSrc: '@Url.Content("~/Content/Images/Main/preloader.gif")',
+                allowedImageTypes: ["jpeg", "jpg", "png"],
+                height: 300,
+                language: "fa",
+                direction: "rtl",
+                fontList: ["Tahoma, Geneva", "Arial, Helvetica", "Impact, Charcoal"],
+                autosave: false,
+                autosaveInterval: 2500,
+                saveURL: '@Url.Action("uploadImageCompany", "company")',
+                saveParams: { postId: "123" },
+                spellcheck: true,
+                plainPaste: true,
+                imageButtons: ["removeImage", "replaceImage", "linkImage"],
+                borderColor: '#00008b',
+                imageUploadURL: '@Url.Action("uploadImageCompany", "company")',
+                imageParams: { postId: "123" },
+                enableScript: false
+            });
+        });
+    </script>
+}

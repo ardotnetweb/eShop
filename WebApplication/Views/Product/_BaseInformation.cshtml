@@ -1,0 +1,20 @@
+﻿@using eShop.WebApplication.DomainClasses.ViewModelClasses
+@model List<ProductShowViewModel>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.RouteLink(item.Name.ToString(), "DetailsProduct", new { productId = item.Id, productName = item.Name.Replace(' ', '-') }, new { @class="decoration_a" })
+        </td>
+        <td>
+            @item.Date
+        </td>
+        <td>
+            @item.Time
+        </td>
+        <td>
+            @Html.RouteLink("اطلاعات بیشتر", "DetailsProduct", new { productId = item.Id, productName = item.Name.Replace(' ', '-') }, new { @class = "decoration_a" })
+        </td>
+    </tr>
+}

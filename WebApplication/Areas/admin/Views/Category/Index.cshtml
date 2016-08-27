@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "index";
+    Layout = "~/Areas/admin/Views/Shared/_Main.cshtml";
+}
+
+@Html.Partial(partialViewName: MVC.admin.Category.Views._SolidHeaderCategory)
+
+@Html.Action(actionName: MVC.admin.Category.ActionNames.SearchCategory,
+            controllerName: MVC.admin.Category.Name)
+
+@Html.Action(actionName: MVC.admin.Category.ActionNames.DataCategory,
+            controllerName: MVC.admin.Category.Name)

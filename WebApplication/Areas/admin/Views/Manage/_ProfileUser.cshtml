@@ -1,0 +1,194 @@
+﻿@using eShop.WebApplication.DomainClasses.IdentityViewModel
+@model ShowInformationUserViewModel
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4 class="fontSizeLarge">
+            مشاهده اطلاعات پروفایل
+        </h4>
+        <p class="fontSizeLargeTitle">
+            در این بخش شما می توانید اطلاعات کاربر را مشاده نمایید
+        </p>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="breadcrumb" id="navBarMenu">
+                <li>
+                    <a href="@Url.Action(MVC.admin.Manage.ActionNames.Register,MVC.admin.Manage.Name)">ایجاد کاربر جدید در سیستم</a>
+                </li>
+                <li>
+                    <a href="@Url.Action(MVC.admin.Manage.ActionNames.Index,MVC.admin.Manage.Name)">مشاهده لیست کاربران سیستم</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="col-sm-12">
+            <h3 class="borderBottom padingBottom marginBottom">
+                ویرایش اطلاعات کاربری :
+                <label>
+                    @string.Concat(Model.ApplicationUser.Name, " ", Model.ApplicationUser.Family)
+                </label>
+            </h3>
+        </div>
+
+        <div class="form-group borderBottom">
+            <label class="col-sm-2 control-label">ایمیل</label>
+            <div class="col-sm-4">
+                @Model.ApplicationUser.Email
+            </div>
+            <label class="col-sm-2 control-label">شماره موبایل</label>
+            <div class="col-sm-4">
+                @if (Model.ApplicationUser.Phone != null)
+                {
+                    <label>
+                        @Model.ApplicationUser.Phone
+                    </label>
+                }
+                else
+                {
+                    <label>
+                        پروفایل تکمیل نشده است
+                    </label>
+                }
+            </div>
+        </div>
+
+        <div class="form-group borderBottom">
+            <label class="col-sm-2 control-label">نام</label>
+            <div class="col-sm-4">
+                @if (Model.ApplicationUser.Name != null)
+                {
+                    <label>
+                        @Model.ApplicationUser.Name
+                    </label>
+                }
+                else
+                {
+                    <label>
+                        پروفایل تکمیل نشده است
+                    </label>
+                }
+            </div>
+            <label class="col-sm-2 control-label">نام خانوادگی</label>
+            <div class="col-sm-4">
+                @if (Model.ApplicationUser.Family != null)
+                {
+                    <label>
+                        @Model.ApplicationUser.Family
+                    </label>
+                }
+                else
+                {
+                    <label>
+                        پروفایل تکمیل نشده است
+                    </label>
+                }
+            </div>
+        </div>
+
+        <div class="form-group borderBottom">
+            <label class="col-sm-2 control-label">نام کاربری</label>
+            <div class="col-sm-4">
+                @Model.ApplicationUser.Email
+            </div>
+            <label class="col-sm-2 control-label">سطوح دسترسی</label>
+            <div class="col-sm-4">
+                @foreach (var item in Model.RolesUser)
+                {
+                    switch (item)
+                    {
+                        case "private":
+                            @Html.Label("مدیر ارشد سیستم", new { @class = "control-label" })
+                            break;
+                        case "protect":
+                        @Html.Label("مدیر سیستم", new { @class = "control-label" })
+                            break;
+                        case "public":
+                        @Html.Label("کاربر معمولی سیستم", new { @class = "control-label" })
+                            break;
+                    }
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                }
+            </div>
+        </div>
+
+
+
+        <div class="form-group borderBottom">
+            <label class="col-sm-2 control-label">تاریخ غیر فعال شدن</label>
+            <div class="col-sm-4">
+                @if (Model.ApplicationUser.DateDisableUser.Year > 2010)
+                {
+                    <label>
+                        @Model.ApplicationUser.DateDisableUser
+                    </label>
+                }
+                else
+                {
+                    <label>
+                        تاریخی ثبت نشده است
+                    </label>
+                }
+            </div>
+            <label class="col-sm-2 control-label">وضعیت کاربر</label>
+            <div class="col-sm-4">
+                @if (Model.ApplicationUser.StatusDisableUser)
+                {
+                    <label>کاربر غیر فعال است</label>
+                }
+                else
+                {
+                    <label>کاربر فعال است</label>
+                }
+            </div>
+        </div>
+
+
+        <div class="form-group borderBottom">
+            <label class="col-sm-2 control-label">آدرس</label>
+            <div class="col-sm-10">
+                @if (Model.ApplicationUser.Address != null)
+                {
+                    <label>
+                        @string.Format("{0} / {1} / {2} / {3}", Model.ApplicationUser.Province,Model.ApplicationUser.City,Model.ApplicationUser.Address,Model.ApplicationUser.PostalCode)
+                    </label>
+                }
+                else
+                {
+                    <label>
+                        پروفایل تکمیل نشده است
+                    </label>
+                }
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">دریافت پیامک</label>
+            <div class="col-sm-4">
+                @if (Model.ApplicationUser.ReciveMessage != null)
+                {
+                    if (Model.ApplicationUser.ReciveMessage)
+                    {
+                        <label>
+                            بلی
+                        </label>
+                    }
+                    else
+                    {
+                        <label>
+                            خیر
+                        </label>
+                    }
+                }
+                else
+                {
+                    <label>
+                        پروفایل تکمیل نشده است
+                    </label>
+                }
+            </div>
+        </div>
+
+    </div>
+</div>

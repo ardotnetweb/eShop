@@ -1,0 +1,21 @@
+﻿@model int
+<div class="row distanceTextBoxSearchWithDataTable">
+    <div class="col-sm-7 padingTextBoxSearchWithDataTable">
+        <label>
+            تعداد کل کاربران سیستم
+            <span>@Model.ToString()</span>
+            کاربر می باشد
+        </label>
+    </div>
+    <div class="col-sm-1 padingTextBoxSearchWithDataTable">
+        <label class="pull-left">
+            جستجو
+        </label>
+    </div>
+    <div class="col-sm-4">
+        @using (Ajax.BeginForm(actionName: MVC.admin.Manage.ActionNames.DataUser, controllerName: MVC.admin.Manage.Name, ajaxOptions: new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.Replace, LoadingElementId = "divLoadingTable", UpdateTargetId = "table-Content" }))
+        {
+            <input type="search" id="term" name="term" class="pull-right styleTextBoxSearch" />
+        }
+    </div>
+</div>

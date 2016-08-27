@@ -1,0 +1,189 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>
+        @ViewBag.Title
+    </title>
+    <noscript>
+        <meta http-equiv="refresh" content="0;url=http://www.inspectelement.us/Content/NoScript.html">
+    </noscript>
+    @BundleConfig.AddStyles("~/Content/OneLevel", "~/Content/bootstrap-rtl.css")
+
+    @BundleConfig.AddStyles("~/Content/Two/TwoLevel",
+            "~/Content/css/lastCssBootstrap.css",
+            "~/Content/css/site.css",
+            "~/Content/css/yamm.css",
+            "~/Content/Notify/animate.css",
+            "~/Content/Notify/font-awesome.min.css",
+            "~/Content/toastr.min.css")
+
+
+    @BundleConfig.AddScripts("~/Scripts/Two/TwoLevel",
+            "~/Scripts/adjs/jquery.validate.min.js",
+            "~/Scripts/adjs/jquery.unobtrusive-ajax.min.js",
+            "~/Scripts/adjs/jquery.validate.unobtrusive.min.js",
+            "~/Scripts/adjs/jquery.validate.min.js",
+            "~/Scripts/adjs/jquery.unobtrusive-ajax.min.js",
+            "~/Scripts/adjs/jquery.validate.unobtrusive.min.js",
+            "~/Scripts/Notify/jquery.noty.packaged.min.js")
+
+    @BundleConfig.AddScripts("~/Scripts/OneLevel",
+            "~/Scripts/jquery-1.8.2.min.js",
+            "~/Scripts/respond.min.js",
+            "~/Scripts/bootstrap-rtl.js",
+            "~/Scripts/jquery-scroll-infiniti.js",
+            "~/Scripts/jquery.signalR-2.0.2.min.js",
+            "~/Scripts/toastr.min.js")
+
+    @BundleConfig.AddScripts("~/Scripts/UI", "~/Scripts/jquery-ui-1.10.1.min.js")
+    @BundleConfig.AddStyles("~/Content/Level/Three/UI", "~/Content/themes/base/jquery-ui.css")
+    <script src="~/signalr/hubs"></script>
+</head>
+<body>
+    @Html.Action(MVC.Layout.ActionNames.Navbar, MVC.Layout.Name)
+    @Html.Partial(MVC.Shared.Views._SearchAndShopingCart)
+    <br />
+    <br />
+    <div class="BaseContentSite">
+        <div class="container Inner-BaseContentSite">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="row">
+                        <div class="col-lg-11 col-md-6 col-xs-12 col-sm-6 img-rounded NewseBookOther">
+                            @Html.Action(MVC.Layout.ActionNames.SidebarNewProduct, MVC.Layout.Name)
+                        </div>
+
+                        <div class="col-lg-11 col-md-6 col-xs-12 col-sm-6 img-rounded NewseBookOther">
+                            @Html.Action(MVC.Layout.ActionNames.SidebarOfferProduct, MVC.Layout.Name)
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9 body-content">
+                    @RenderBody()
+                    <div id="modal-container" class="modal fade" role="dialog">
+                        <div class="modal-content">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 img-rounded NameCompany" id="NameCompanyBottomMaster">
+                    @Html.Action(MVC.Layout.ActionNames.BottomExplainCompany, MVC.Layout.Name)
+                </div>
+            </div>
+
+        </div>
+        <div class="FooterBase">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-x-12 FooterMenu">
+                        <br />
+                        <!---->
+                        <h4>
+                            راهنمای سایت
+                        </h4>
+
+                        <br />
+                        <ul>
+                            <li><a href="#">روش خرید آنلاین</a></li>
+                            <li><a href="#">راهنمای استفاده از سیستم</a></li>
+                            <li><a href="#">روش خرید پستی</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-x-12 FooterMenu">
+                        <br />
+                        <h4>
+                            دیگر
+                        </h4>
+                        <br />
+                        <ul>
+                            <li><a href="#">تماس با ما</a></li>
+                            <li><a href="#">درباره ما</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-x-12 NewsRegister">
+                        <br />
+                        <h4>
+                            عضویت در فناوران اطلاعات ارم وب
+                        </h4>
+                        <br />
+                        <p>
+                            با عضویت در سایت از جدیدترین فیلن های آموزشی برنامه نویسی و طراحی وب
+                            بر روی گوشی خود مطلع شوید
+                        </p>
+                        <div style="text-align:center">
+                            <a class="btn decoration_a" href="@Url.Action(MVC.Account.ActionNames.Login,MVC.Account.Name)" style=" margin-left:auto !important;font:normal 13px eramFont; background-color:white !important; color:black !important;">
+                                <span class="glyphicon glyphicon-user"></span>
+                                <span>عضویت در فناوران اطلاعات ارم وب</span>
+                            </a>
+                            <br />
+                        </div>
+                        <div class="splitdivInFooter"></div>
+                        <div style="text-align:center">
+                            <a id="rotator">
+                                <img src="~/Content/Images/Main/facebook.png" />
+                            </a>
+                            <a id="rotator">
+                                <img src="~/Content/Images/Main/google_plus.png" />
+                            </a>
+                            <a id="rotator">
+                                <img src="~/Content/Images/Main/twitter.png" />
+                            </a>
+                            <a id="rotator">
+                                <img src="~/Content/Images/Main/youtube-icon.png" />
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="BaseLastFooter">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9 ExplainSite">
+                        تمامی حقوق این سایت متعلق به شرکت فناوران اطلاعات ارم وب شیراز می باشد هر گونه کپی برداری از مطالب آن بدون ذکر منع پیگرد قانونی دارد
+                    </div>
+                    <div class="col-lg-3 CopyRight">
+                       Inspectelement.us - &copy; 2014 - @DateTime.Now.Year.ToString()
+                    </div>
+                </div>
+            </div>
+        </div>
+        @RenderSection("Scripts", false)
+        <script type="text/javascript">
+            $(function () {
+                $('body').on('click', '.modal-link', function (e) {
+                    e.preventDefault();
+                    $(this).attr('data-target', '#modal-container');
+                    $(this).attr('data-toggle', 'modal');
+                    $("#result").empty();
+                });
+                $('body').on('click', '.modal-close-btn', function () {
+                    $('#modal-container').modal('hide');
+                });
+                $('#modal-container').on('hidden.bs.modal', function () {
+                    $(this).removeData('bs.modal');
+                });
+            });
+            $('*[data-autocomplete-url]')
+               .each(function () {
+                   $(this).autocomplete({
+                       source: $(this).data("autocomplete-url"),
+                       minLength: 2,
+                       delay: 5,
+                       select: function (event, ui) {
+                           window.location = ui.item.url;
+                       }
+                   });
+               });
+        </script>
+    </div>
+</body>
+</html>

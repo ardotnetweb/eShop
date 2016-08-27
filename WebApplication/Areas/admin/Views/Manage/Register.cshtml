@@ -1,0 +1,103 @@
+﻿@{
+    ViewBag.Title = "Register";
+    Layout = "~/Areas/admin/Views/Shared/_Main.cshtml";
+    int id = 0;
+}
+@using WebApplication.ViewModels
+@model RegisterViewModel
+
+<div id="result">
+
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="divLoadingContent" id="divLoadingContent">
+            <img src="@Url.Content("~/Content/Images/Main/loadningMeidum.GIF")" />
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="fontSizeLarge">ایجاد کاربر جدید</h4>
+                <p class="fontSizeLargeTitle">
+                    در این بخش شما می توانید اقدام به ایجاد کاربر جدید نمایید در ضمن در زمان تعین سطح دسترسی دقت لازم صورت گیرد
+                </p>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="breadcrumb" id="navBarMenu">
+                        <li>
+                            <a href="@Url.Action(MVC.admin.Manage.ActionNames.Register,MVC.admin.Manage.Name)">ایجاد کاربر جدید در سیستم</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action(MVC.admin.Manage.ActionNames.Index,MVC.admin.Manage.Name)">مشاهده لیست کاربران سیستم</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            @using (Ajax.BeginForm(MVC.admin.Manage.ActionNames.Register, MVC.admin.Manage.Name,null,new AjaxOptions{HttpMethod = "POST",InsertionMode = InsertionMode.Replace,LoadingElementId = "divLoadingContent",UpdateTargetId = "result"}, null))
+            {
+                @Html.AntiForgeryToken()
+                <div class="panel-body">
+                    <div class="row">
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Email, new { @class = "col-sm-3 control-label" })
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control controlFocus" })
+                                @Html.ValidationMessageFor(x => x.Email,"", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Password, new { @class = "col-sm-3 control-label" })
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(m => m.Password, new { @class = "form-control controlFocus" })
+                                @Html.ValidationMessageFor(x => x.Password,"", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-sm-3 control-label" })
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(m => m.ConfirmPassword, new { @class = "form-control controlFocus" })
+                                @Html.ValidationMessageFor(x => x.ConfirmPassword,"", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"></label>
+                            <div class="col-sm-9">
+                                @foreach (var item in (SelectList)ViewBag.RoleId)
+                                {
+                                    <div class="ckbox ckbox-primary">
+                                        <input type="checkbox" name="SelectedRoles" value="@item.Value" id="@MvcHtmlString.Create("checkBox" + @id)" />
+
+                                        @switch (item.Value)
+                                        {
+                                            case "private":
+                                                @Html.Label("مدیر ارشد سیستم -- کاربران این گروه به عنوان مدیران اصلی سیستم محسوب می شوند", new { @class = "control-label", @for = MvcHtmlString.Create("checkBox" + @id) })
+                                                break;
+                                            case "protect":
+                                            @Html.Label("مدیر سیستم -- کاربران این گروه جزو مدیران سایت ولی با سطح دسترسی کمتر می باشند", new { @class = "control-label", @for = MvcHtmlString.Create("checkBox" + @id) })
+                                                break;
+                                            case "public":
+                                            @Html.Label("کاربر معمولی سیستم-- این کاربران در سیستم همان خرید کنندگان یا مشتریان سایت هستند", new { @class = "control-label", @for = MvcHtmlString.Create("checkBox" + @id) })
+                                                break;
+                                        }
+                                    </div>
+                                        id = id + 1;
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-sm-9 col-sm-offset-3">
+                            <input type="submit" value="ذخیره سازی" class="btn btn-primary" />
+                            <input type="reset" value="خالی کردن باکس ها" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

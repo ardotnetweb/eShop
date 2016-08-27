@@ -1,0 +1,23 @@
+﻿@using eShop.WebApplication.DomainClasses.AppClasses
+@model List<ContactUsShowViewModel>
+
+@foreach (var item in Model)
+{
+    <li class="media mediaLiMessageContact">
+        @if (!item.StatusRead)
+        { <span class="badge badge-success">New</span> }
+        <div class="media-body">
+            <strong>
+                <a href="@Url.Action(MVC.admin.Manage.ActionNames.CompleteInformationUser, MVC.admin.Manage.Name, new { Id=item.User_Id })">
+                    @item.FLName
+                </a>
+            </strong>
+            <div class="clearfix"></div>
+            <p>@Html.Raw(item.Explain)</p>
+            <small class="date">
+                <i class="fa fa-clock-o"></i>
+                @Html.DisplayFor(x => item.Date, "DisplayPersianDatePicker")
+            </small>
+        </div>
+    </li>
+}

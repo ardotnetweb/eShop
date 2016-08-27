@@ -1,0 +1,164 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/admin/Views/Shared/_Main.cshtml";
+}
+
+@Html.Partial(partialViewName: MVC.admin.Combination.Views._SolidHeaderCategory_SubCategory)
+<div class="panel-heading borderWhole">
+    <div class="col-md-12">
+        <div class="divLoadingsubCategory" id="divLoadingsubCategory">
+            <img src="@Url.Content("~/Content/Images/Main/loadningSamall.GIF")" />
+        </div>
+        <input type="hidden" name="Category_Id" value="" id="Category_Id" />
+        <div class="col-md-2">انتخاب گروه تکنولوژی ها</div>
+        <div class="col-md-4">
+            @Html.DropDownList("Id", (SelectList)ViewBag.Category,"یکی از گروه ها را انتخاب نمایید",new { id = "CategoryDropdown", @class = "form-control controlFocus" })
+        </div>
+        <div class="col-md-2">انتخاب تکنولوژی توسعه</div>
+        <div class="col-md-4" id="ContainerDropDownListSubCategory">
+            @Html.DropDownList("Id", (SelectList)ViewBag.SubCategory,"",new { id = "SubCategoryDropdown", @class = "form-control controlFocus" })
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+
+<br />
+<div class="col-sm-9">
+
+    <div class="borderBottom marginBottom">
+        <p class="pull-left">
+            نمایش اطلاعات کمپانی های سازنده
+        </p>
+        <div class="pull-right">
+            گروه آموزشی&nbsp; &nbsp;
+            <label id="nameCategory"></label>
+        </div>
+        <span class="clearfix"></span>
+    </div>
+    <div class="alert alert-info statusDisplayNone" id="alertProduct">
+        <p>
+            هیچ کدام از کمانی های سازنده محصولات آموزشی محصولی را برای این گروه از تکنلوژی توسعه تولید نکرده اند
+        </p>
+    </div>
+    <div class="divLoadingTable" id="divLoadingDataSubCategory">
+        <img src="@Url.Content("~/Content/Images/Main/loadningMeidum.GIF")" />
+    </div>
+    <div class="row media-manager" id="document_company">
+
+    </div>
+</div>
+
+<div class="col-sm-3">
+    <div class="media-manager-sidebar">
+        <div class="btn-primary padingRight padingTop padingBottom">
+            لیست تکنولوژی ها
+        </div>
+        <div class="mb30"></div>
+        <h5 class="lg-title">
+            <a class="pull-right">
+                List Of Name Technology
+            </a>
+        </h5>
+        <br />
+        <ul class="folder-list" id="SuMenuCategory"></ul>
+        <div class="mb30"></div>
+    </div>
+</div>
+
+
+
+
+@section Scripts
+{
+    <script type="text/javascript" lang="en">
+        $(document).ready(function () {
+            jQuery("#CategoryDropdown").change(
+                function () {
+                    $("#alertProduct").hide(600).css({ 'display': 'none' });
+
+                    $("#nameCategory").text("");
+                    $("#divLoadingsubCategory").css({ 'display': 'block' });
+                    var id = $(this).find('option:selected').attr('value');
+                    $("#Category_Id").val(id);
+                    $("#SubCategoryDropdown").empty();
+                    $("#document_company").fadeOut(600, function () {
+                        $(this).empty().fadeIn(600);;
+                    });
+
+                    jQuery.getJSON("@Url.Action(actionName:MVC.admin.Combination.ActionNames.GetAllSubCategory,controllerName:MVC.admin.Combination.Name)",
+                        { Id: $("#Category_Id").val() },
+                        function (data) {
+                            if (data.length > 0)
+                                $("#SubCategoryDropdown").append($('<option></option>').attr("value", "0").text("یکی از تکنولوژی های توسعه را انتخاب نمایید"));
+                            else
+                                $("#divLoadingsubCategory").css({ 'display': 'none' });
+
+                            $("#SuMenuCategory").empty();
+                            jQuery.each(data, function (i) {
+                                var option = $('<option></option>').attr("value", data[i].Id).text(data[i].Name);
+                                $("#SubCategoryDropdown").append(option);
+                                var subMenuCategory = "<li><a id=\"" + data[i].Id + "\"><i class=\"fa fa-folder-o\"></i>" + data[i].Name + "</a></li>";
+                                $("#SuMenuCategory").append(subMenuCategory);
+                            });
+                            $("#divLoadingsubCategory").css({ 'display': 'none' });
+                        });
+                });
+
+            jQuery("#SubCategoryDropdown").change(
+                function () {
+                    var id = $(this).find('option:selected').attr('value');
+                    var text = $(this).find('option:selected').text();
+                    $("#divLoadingDataSubCategory").css({ 'display': 'block' });
+                    $.ajax({
+                        cache: false,
+                        type: "GET",
+                        url: "@Url.Action(actionName:MVC.admin.Combination.ActionNames.GetAllCompanyByCategoryId,controllerName:MVC.admin.Combination.Name)",
+                        data: { "Id": id },
+                        success: function (data) {
+                            $("#document_company").empty();
+                            if (data.length > 4) {
+                                $("#alertProduct").fadeOut(600).css({ 'display': 'none' });
+                                $(data).hide().appendTo("#document_company").fadeIn(1000);
+                            } else {
+                                $("#alertProduct").fadeIn(600).css({ 'display': 'block' });
+                            }
+                            $("#divLoadingDataSubCategory").css({ 'display': 'none' });
+                            $("#nameCategory").text(text);
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) {
+                            $("#divLoadingDataSubCategory").css({ 'display': 'none' });
+                            alert('Failed to retrieve books.');
+                        }
+                    });
+                });
+
+            $(document).on('click', 'ul#SuMenuCategory li a', function (e) {
+                var text = $(this).text();
+                $("#divLoadingDataSubCategory").css({ 'display': 'block' });
+                $.ajax({
+                    cache: false,
+                    type: "GET",
+                    url: "@Url.Action(actionName:MVC.admin.Combination.ActionNames.GetAllCompanyByCategoryId,controllerName:MVC.admin.Combination.Name)",
+                    data: { "Id": $(this).attr('id') },
+                    success: function (data) {
+                        $("#document_company").empty();
+                        if (data.length > 4) {
+                            $("#alertProduct").fadeOut(600).css({ 'display': 'none' });
+                            $(data).hide().appendTo("#document_company").fadeIn(1000);
+                        } else {
+                            $("#alertProduct").fadeIn(600).css({ 'display': 'block' });
+                        }
+                        $("#divLoadingDataSubCategory").css({ 'display': 'none' });
+                        $("#nameCategory").text(text);
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        $("#divLoadingDataSubCategory").css({ 'display': 'none' });
+                        alert('Failed to retrieve books.');
+                    }
+                });
+            });
+
+
+        });
+    </script>
+}

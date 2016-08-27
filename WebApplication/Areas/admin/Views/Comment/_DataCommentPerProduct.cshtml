@@ -1,0 +1,134 @@
+﻿@using eShop.WebApplication.DomainClasses.ViewModelClasses
+@model List<CommentViewModel>
+
+@if (Model.Count() > 0)
+{
+    for (int i = 0; i < Model.Count(); i++)
+    {
+        var highlight = " ";
+        if (!Model[i].ReadStatus)
+        {
+            highlight = "StatusReadHighlight";
+        }
+        <div class="col-md-12 BaseSectionComment" id="@MvcHtmlString.Create("Comment-"+(Model[i].Id*237+2323)+"")">
+            <br />
+            <header>
+                <label>@Model[i].UserName</label>
+                <span class="pull-right">
+                    @Html.DisplayFor(x => Model[i].DateTime, "DisplayPersianDatePicker")
+                </span>
+                <div class="btn-group pull-right">
+                    <a id="btnRedirectComment" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="border:none !important; background-color:transparent !important; margin-left:50px !important;">
+                        <i class="fa fa-cog"></i>
+                    </a>
+                    <ul class="dropdown-menu pull-right helpComment" role="menu">
+                        @if (Model[i].ReadStatus)
+                        {
+                            <li class="MarkedRead disabled">
+                                <a data-id="@Model[i].Id">علامت گذاری خوانده شده</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="MarkedRead">
+                                <a data-id="@Model[i].Id">علامت گذاری خوانده شده</a>
+                            </li>
+                        }
+
+                        <li>
+                            <a data-id="@Model[i].Id">ویرایش کامنت</a>
+                        </li>
+                        <li>
+                            <a href="#BoxSendComment" data-id="@Model[i].Id">پاسخ به کامنت</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li class="DeleteComment">
+                            <a data-id="@Model[i].Id">حذف کامنت</a>
+                        </li>
+                    </ul>
+                </div>
+                @if (Model[i].ReadStatus)
+                {
+                    <span class="glyphicon glyphicon-eye-open pull-right Display" style="margin:5px 30px 15px 0;"></span>
+                }
+                else
+                {
+                    <span class="glyphicon glyphicon-eye-close pull-right Display" style="margin:5px 30px 15px 0;"></span>
+                }
+            </header>
+            <br />
+            <div class="@MvcHtmlString.Create("col-md-12 " + highlight)">
+                <p class="Comment">
+                    @Html.Raw(Model[i].Explain.ToString())
+                </p>
+            </div>
+
+        </div>
+    }
+}
+else
+{
+    <div class="col-md-12">
+        <div class="alert alert-info">
+            <p>
+                هیچ گونه نظری برای این محصول ثبت نشده است
+            </p>
+        </div>
+    </div>
+}
+
+
+<script type="text/javascript" lang="en">
+    $(document).ready(function () {
+
+        $(document).on('click', 'div.BaseSectionComment ul.helpComment li.MarkedRead a', function () {
+            var $this = $(this);
+            ShowLoading($this);
+            $.get('@Url.Action(MVC.admin.Comment.ActionNames.ChangeStatusRead,MVC.admin.Comment.Name)', { Id: $this.data('id') }, function (data) {
+                if (data.Result == "true") {
+                    $this.closest('div.BaseSectionComment').children('div.StatusReadHighlight').removeClass('StatusReadHighlight');
+                    $this.closest('li').addClass('disabled');
+                    $this.closest('header').children('span.Display').removeClass();
+                    $this.closest('header').children('span:eq(1)').addClass('glyphicon').addClass('glyphicon-eye-open').addClass('pull-right').addClass('Display');
+                }
+                else {
+                    alert('عدم موفقیت در تغیر وضعیت علامت گذاری پیام به عنوان خوانده شده');
+                }
+                HideLoading($this);
+            });
+        });
+
+
+
+        $(document).on('click', 'div.BaseSectionComment ul.helpComment li.DeleteComment a', function () {
+            var $this = $(this);
+            ShowLoading($this);
+            $.get('@Url.Action(MVC.admin.Comment.ActionNames.DeleteComment,MVC.admin.Comment.Name)', { Id: $this.data('id') }, function (data) {
+                if (data.Result == "true") {
+                    $this.closest('div.BaseSectionComment').fadeOut(500, function () {
+                        $this.closest('div.BaseSectionComment').remove();
+                    });
+                }
+                else {
+                    alert('عدم موفقیت در حذف کامنت');
+                }
+                HideLoading($this);
+            });
+        });
+
+
+        function ShowLoading($this) {
+            $this.closest("div.BaseSectionComment").attr("disabled", true).
+                css({ 'background-color': '#eee', 'opacity': '.6' });
+        };
+        function HideLoading($this) {
+            $this.closest("div.BaseSectionComment").attr("disabled", false).
+                css({ 'background-color': 'transparent', 'opacity': '1' });
+        };
+    });
+</script>
+<style type="text/css" lang="en">
+    ul.helpComment li a:hover {
+        cursor: pointer;
+    }
+</style>

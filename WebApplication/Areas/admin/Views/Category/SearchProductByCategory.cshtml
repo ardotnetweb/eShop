@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "SearchProductByCategory";
+    Layout = "~/Areas/admin/Views/Shared/_Main.cshtml";
+}
+
+<div class="row">
+    <div class="col-sm-3">
+        <h5 class="btn-primary Title_h5_CategorySerach">
+            <label class="Title_h5_CategorySerach_Label">
+                لیست تکنولوژی ها
+            </label>
+        </h5>
+        @Html.Action(actionName: MVC.admin.Category.ActionNames.SidebarCategorySearch,controllerName: MVC.admin.Category.Name)
+    </div>
+    <div class="col-sm-9">
+        <div class="well mt10">
+            @Html.Action(actionName: MVC.admin.Product.ActionNames.NavbarCategoryCompanySearchProduct,controllerName: MVC.admin.Product.Name)
+        </div>
+        <div id="searchCategoryContent">
+            @Html.Action(actionName: MVC.admin.Product.ActionNames.DataProductFirstLoad,controllerName: MVC.admin.Product.Name)
+        </div>
+    </div>
+</div>

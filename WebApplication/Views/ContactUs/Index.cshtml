@@ -1,0 +1,142 @@
+﻿@using Microsoft.AspNet.Identity
+@model eShop.WebApplication.DomainClasses.AppClasses.ContactUsViewModel
+
+@{
+    ViewBag.Title = "ارتباط با فناوران اطلاعات ارم وب شیراز";
+    Layout = "~/Views/Shared/_MainSidebar.cshtml";
+}
+<div class="row BaseInformationCompany img-rounded">
+    <div class="col-md-12">
+        <div class="col-md-3">
+            <h3 style="font:normal 25px eramFont; padding-bottom:5px; border-bottom:2px solid #eee;">ارتباط با ما</h3>
+        </div>
+        <div class="ClearStatus"></div>
+        <div class="col-md-12">
+            <p style="font:normal 15px eramFont;">
+                دوستان محترم :
+            </p>
+            <p style="font:normal 15px eramFont;">
+                از طریق این فرم می توانید نظرات و پیشنهادات خودتان را با در میان بگدارید و به ما در این راه برای بهبودی هر چه بهتر سایت کمک کنید . پیشاپیش از همه شما ها تشکر می کنیم
+            </p>
+        </div>
+    </div>
+
+    <input type="hidden" value="@Url.Action(MVC.ContactUs.ActionNames.CaptchaImage,MVC.ContactUs.Name)" id="addressLoadImage" />
+    @if (User.Identity.IsAuthenticated)
+    {
+        using (Ajax.BeginForm(MVC.ContactUs.ActionNames.Index, MVC.ContactUs.Name, new AjaxOptions
+        {
+            LoadingElementId = "divLoadingSendMessage",
+            InsertionMode = InsertionMode.Replace,
+            HttpMethod = "POST",
+            UpdateTargetId = "resultOperation",
+            OnSuccess = "OnSuccessSendMessage"
+        }, new { id = "formSendMessage" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            <div class="col-md-12" style="margin-right:15px;">
+                <div class="divLoading" id="divLoadingSendMessage">
+                    <img src="~/Content/Images/Main/loadningMeidum.GIF" />
+                </div>
+                <div class="form-horizontal">
+                    <hr />
+                    <br />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group ">
+                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2 textalignLabel" })
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control controlFocus" } })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Family, htmlAttributes: new { @class = "control-label col-md-2 textalignLabel" })
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.Family, new { htmlAttributes = new { @class = "form-control controlFocus" } })
+                            @Html.ValidationMessageFor(model => model.Family, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2 textalignLabel" })
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control controlFocus" } })
+                            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Explain, htmlAttributes: new { @class = "control-label col-md-2 textalignLabel" })
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.Explain, new { htmlAttributes = new { @class = "form-control controlFocus" } })
+                            @Html.ValidationMessageFor(model => model.Explain, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2 textalignLabel">تصویر امنیتی</label>
+                        <div class="col-md-6">
+                            <img class="captcha-image" src="@Url.Action("CaptchaImage", "ContactUs", routeValues: new { rdnDate = DateTime.Now.Ticks })" />
+                            <span id="refreshImageCapcha" class="refresh-captcha glyphicon glyphicon-refresh"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2 textalignLabel">عبارت تصویر</label>
+                        <div class="col-md-6">
+                            @Html.TextBoxFor(model => model.CaptchaInputText, new { autocomplete = "off", @class = "form-control controlFocus" })
+                            @Html.ValidationMessageFor(model => model.CaptchaInputText, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-2">
+                            <input type="submit" value="ارسال پیام" class="btn btn-default" />
+                        </div>
+                        <div class="col-md-8" id="resultOperation">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="col-md-12">
+            <div class="alert alert-white">
+                <p>
+                    کاربر محترم : برای استفاده از این امکان در سایت خواهشمندیم در ابتدا در سایت 
+                    <a class="decoration_a" href="@Url.Action(MVC.Account.ActionNames.Register,MVC.Account.Name)">
+                        (ثبت نام)
+                    </a>
+                    نمایید
+                    یا اگر عضو سایت هستید از طریق این 
+                    <a class="decoration_a" href="@Url.Action(MVC.Account.ActionNames.Login,MVC.Account.Name)">
+                        (لینک)
+                    </a>
+                    وارد سایت شوید
+                </p>
+                <p>
+                  ارسال پیام فقط برای اعضائ سایت امکان پذیر است
+                </p>
+            </div>
+        </div>
+    }
+</div>
+
+
+
+
+<script type="text/javascript">
+    $('#refreshImageCapcha').on('click', function (e) {
+        e.preventDefault();
+        $('.captcha-image').attr('src', $('#addressLoadImage').val() + "?t=" + new Date().getTime());
+    });
+    function OnSuccessSendMessage() {
+        $('#formSendMessage').find('textarea').val(" ");
+        $('#CaptchaInputText').val(" ");
+    };
+</script>
+

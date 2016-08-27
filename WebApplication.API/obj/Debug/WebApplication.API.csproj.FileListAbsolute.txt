@@ -1,0 +1,14 @@
+C:\Users\Abolfazl\Desktop\eShop\WebApplication.API\bin\WebApplication.API.dll.config
+C:\Users\Abolfazl\Desktop\eShop\WebApplication.API\bin\WebApplication.API.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication.API\bin\WebApplication.API.pdb
+C:\Users\Abolfazl\Desktop\eShop\WebApplication.API\bin\Newtonsoft.Json.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication.API\bin\System.Net.Http.Formatting.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication.API\bin\System.Web.Http.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication.API\bin\System.Web.Http.WebHost.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication.API\bin\Newtonsoft.Json.xml
+C:\Users\Abolfazl\Desktop\eShop\WebApplication.API\bin\System.Net.Http.Formatting.xml
+C:\Users\Abolfazl\Desktop\eShop\WebApplication.API\bin\System.Web.Http.xml
+C:\Users\Abolfazl\Desktop\eShop\WebApplication.API\bin\System.Web.Http.WebHost.xml
+C:\Users\Abolfazl\Desktop\eShop\WebApplication.API\obj\Debug\WebApplication.API.csprojResolveAssemblyReference.cache
+C:\Users\Abolfazl\Desktop\eShop\WebApplication.API\obj\Debug\WebApplication.API.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication.API\obj\Debug\WebApplication.API.pdb

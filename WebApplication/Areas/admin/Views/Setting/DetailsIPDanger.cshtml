@@ -1,0 +1,73 @@
+﻿@{
+    ViewBag.Title = "DetailsIPDanger";
+    Layout = "~/Areas/admin/Views/Shared/_Main.cshtml";
+}
+
+@using eShop.WebApplication.DomainClasses.AppClasses
+@model List<ElmahModel>
+
+<div class="divLoadingTable" id="divLoadingTable">
+    <img src="@Url.Content("~/Content/Images/Main/Loadnig.GIF")" />
+</div>
+<div id="resultDeleteElmahError">
+
+</div>
+
+@Html.Partial(partialViewName: MVC.admin.Setting.Views._SolidHeaderDetailsIPDanger)
+
+
+
+<div class="table-responsive">
+    <table class="table tableCategory">
+        <thead>
+            <tr>
+                <th>
+                    اینترنت پروتکل
+                </th>
+                <th>
+                    متد HTTP
+                </th>
+                <th>
+                    پیام
+                </th>
+                <th>
+                    تاریخ
+                </th>
+                <th>
+                    زمان
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.IP
+                    </td>
+                    <td>
+                        @item.HttpMethod
+                    </td>
+                    <td>
+                        @item.Message
+                    </td>
+                    <td>
+                        @Html.DisplayFor(x => item.Date, "DisplayPersianDatePicker")
+                    </td>
+                    <td>
+                        @item.Time
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="row">
+        <div class="col-md-12">
+
+            @using (Ajax.BeginForm(actionName: MVC.admin.Setting.ActionNames.DeleteIPDanger, controllerName: MVC.admin.Setting.Name, routeValues: null, ajaxOptions: new AjaxOptions { HttpMethod = "POST", LoadingElementId = "divLoadingTable", UpdateTargetId = "resultDeleteElmahError", InsertionMode = InsertionMode.Replace }))
+            {
+                <input name="IPAddress" id="IP" value="@Model[0].IP" type="hidden" />
+                <input type="submit" value="حذف پیام ها و بلاک اینترنت پروتکل" class="btn btn-primary" />}
+        </div>
+    </div>
+</div>

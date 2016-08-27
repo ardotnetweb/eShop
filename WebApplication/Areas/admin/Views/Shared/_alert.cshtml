@@ -1,0 +1,12 @@
+﻿@using eShop.WebApplication.DomainClasses.ViewModelClasses
+@model AlertViewModel
+<div class="row">
+    <div class="col-md-12">
+        <div class="@("alert" + " " + "alert-"+@Model.Status)">
+            <button aria-hidden="true" data-dismiss="alert" class="close" type="button">&times;</button>
+            <strong>
+                @Model.Alert
+            </strong>
+        </div>
+    </div>
+</div>

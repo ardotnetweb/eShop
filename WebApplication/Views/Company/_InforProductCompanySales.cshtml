@@ -1,0 +1,34 @@
+﻿@using eShop.WebApplication.DomainClasses.ViewModelClasses
+@model CompanyInformationToCart
+
+<br />
+<p class="alert alert-info">
+    این کمپانی
+    <span>
+        @Model.Quantity.ToString()
+    </span>
+    محصول آموزشی از دسته های مختلف را تولید کرده است تمامی جزئات محصولات تولیدی در
+    تب قبل قابل مشاهده است
+</p>
+<div class="col-md-12" style="background-color:#f7f7f7; padding:12px 2px !important;font-size:15px;">
+    <div class="col-md-2">
+        تعداد محصول
+    </div>
+    <div class="col-md-2">
+
+        <span>
+            @Model.Quantity.ToString()
+        </span> محصول
+    </div>
+    <div class="col-md-2">
+        قیمت کلیه محصولات
+    </div>
+    <div class="col-md-2">
+        <span>
+        @Model.Price.ToString()
+        </span> تومان
+    </div>
+    <div class="clearfix"></div>
+</div>
+<div class="clearfix"></div>
+<br />

@@ -1,0 +1,80 @@
+﻿@using eShop.WebApplication.DomainClasses.ViewModelClasses
+
+@model List<PackageViewModel>
+@foreach (var item in Model)
+{
+    <li class="media LiPackage">
+        <a class="pull-left" href="@Url.Action(actionName: MVC.admin.Package.ActionNames.DetailsDataPackage,controllerName: MVC.admin.Package.Name,routeValues: new { Id = item.Id })">
+            <img class="media-object img-circle img-online imgPackage"
+                 src="~/Content/Images/Package/@item.ImagePackage" alt="...">
+        </a>
+
+
+        <div class="media-body">
+            <div class="pull-right media-option">
+                @if (item.IsShowPackage)
+                {
+                    <span class="glyphicon glyphicon-bell"></span>
+                }
+                else
+                {
+                    <span class="glyphicon glyphicon-lock"></span>
+                }
+                &nbsp; | &nbsp;
+                <span class="spanPercent">@item.PercentPackage</span>% &nbsp;
+                <i class="fa fa-paperclip mr5"></i>
+                <small>
+                    <span class="spanAnnounceText">تاریخ شروع : </span>
+                    <span class="spanAnnounceValue">
+                        @Html.DisplayFor(x => item.StartDatePackage, "DisplayPersianDatePicker")
+                    </span>
+                    <span class="spanAnnounceText">..  تاریخ پایان :</span>
+                    <span class="spanAnnounceValue">
+                        @Html.DisplayFor(x => item.EndDatePackage, "DisplayPersianDatePicker")
+                    </span>
+                </small>
+                <a href=""><i class="fa fa-star"></i></a>
+                <div class="btn-group">
+                    <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-cog"></i>
+                    </a>
+                    <ul class="dropdown-menu pull-right" role="menu">
+                        <li>
+                            @Html.ActionLink(linkText: "مشاهده جزئیات",actionName: MVC.admin.Package.ActionNames.DetailsDataPackage,controllerName: MVC.admin.Package.Name,routeValues: new { id = item.Id },htmlAttributes: new { @class="decoration_a" })
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            @Html.ActionLink(linkText: "ویرایش اطلاعات اصلی",actionName: MVC.admin.Package.ActionNames.UpdatePackage,controllerName: MVC.admin.Package.Name,routeValues: new { id = item.Id },htmlAttributes: new { @class = "decoration_a" })
+                        </li>
+                        <li>
+                            @Html.ActionLink(linkText: "اضافه کردن محصول جدید",actionName: MVC.admin.Package.ActionNames.AddProductPackage,controllerName: MVC.admin.Package.Name,routeValues: new { id = item.Id },htmlAttributes: new { @class = "decoration_a" })
+                        </li>
+                        <li>
+                            @Html.ActionLink(linkText: "حذف محصولات پکیج",actionName: MVC.admin.Package.ActionNames.DeleteProductPerPackage,controllerName: MVC.admin.Package.Name,routeValues: new { id = item.Id },htmlAttributes: new { @class = "decoration_a" })
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <a class="decoration_a" href="@Url.Action(actionName: MVC.admin.Package.ActionNames.DetailsDataPackage,controllerName: MVC.admin.Package.Name,routeValues: new { Id = item.Id })">
+                <h5 style="color:#636E7B !important;">@item.NamePackage</h5>
+            </a>
+            <p>
+                <div class="row surfacedivAnnouncePackage center-block backgroundColor">
+                    <div class="col-md-2">قیمت اصلی محصولات</div>
+                    <div class="col-md-1 spanAnnouncePriceAndCount">
+                        <span>@item.OriginalPricePackage</span>&nbsp;تومان
+                    </div>
+                    <div class="col-md-2">قیمت محاسبه شده</div>
+                    <div class="col-md-1 spanAnnouncePriceAndCount">
+                        <span>@item.DisCountPricePackage</span>&nbsp;تومان
+                    </div>
+                    <div class="col-md-2">تعداد محصولات </div>
+                    <div class="col-md-1 spanAnnouncePriceAndCount">
+                        <span>@item.ProductsPackage &nbsp;</span>محصول
+                    </div>
+                </div>
+            </p>
+        </div>
+    </li>
+
+}

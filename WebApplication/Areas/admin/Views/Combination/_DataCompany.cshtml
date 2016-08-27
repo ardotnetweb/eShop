@@ -1,0 +1,52 @@
+﻿@using eShop.WebApplication.DomainClasses.ViewModelClasses
+@model List<CompanyViewModel>
+
+@foreach (var item in Model)
+{
+    <div class="col-xs-6 col-sm-4 col-md-3 document marginTop">
+        <div class="thmb">
+            <div class="announceCompany">
+                @if (item.NameCompany.Length <= 20)
+                {
+                    <label class="text-muted">
+                        @item.NameCompany
+                    </label>
+
+                }
+                else
+                {
+                    <label class="text-muted">
+                        ...
+                        @item.NameCompany.Substring(0, 17).ToString()
+                    </label>
+                }
+            </div>
+            <div class="thmb-prev">
+                <img src="~/Content/Images/Company/@item.ImageCompany" class="img-responsive center-block" />
+            </div>
+            <div class="announceCompany_div_title">
+                @if (item.TitleCompany.Length <= 25)
+                {
+                    <small class="text-muted">
+                        @item.TitleCompany
+                    </small>
+                }
+                else
+                {
+                    <small class="text-muted">
+                        ...
+                        @item.TitleCompany.Substring(0, 22).ToString()
+                    </small>
+                }
+
+            </div>
+            <div class="announceCompany_direct">
+                <a class="pull-left decoration_a" target="_blank" href="@Url.Action(actionName: MVC.admin.Combination.ActionNames.productCompany, controllerName: MVC.admin.Combination.Name, routeValues: new { id = item.IdCompany })">محصولات</a>
+                <a class="pull-right decoration_a" target="_blank" href="@Url.Action(actionName: MVC.admin.Company.ActionNames.DetailsCompany, controllerName: MVC.admin.Company.Name, routeValues: new { id = item.IdCompany })">کمپانی</a>
+                <span class="clearfix"></span>
+            </div>
+        </div>
+    </div>
+}
+
+

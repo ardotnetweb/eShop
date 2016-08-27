@@ -1,0 +1,85 @@
+﻿@{
+    ViewBag.Title = "detailsCategory";
+    Layout = "~/Areas/admin/Views/Shared/_Main.cshtml";
+}
+
+@using eShop.WebApplication.DomainClasses.AppClasses
+
+@model Category
+
+
+<div id="result">
+</div>
+
+<div class="panel panel-default">
+
+    <div class="panel-heading">
+        <div class="panel-btns">
+            <a href="" class="panel-minimize tooltips" data-toggle="tooltip" title="Minimize Panel"><i class="fa fa-minus"></i></a>
+            <a href="" class="panel-close tooltips" data-toggle="tooltip" title="Close Panel"><i class="fa fa-times"></i></a>
+        </div>
+        <h4 class="panel-title">نمایش اطلاعات گروه محصولات آموزشی </h4>
+        <p>
+            شما در این قسمت می توانید اطلاعات گروه یا زیر گروه مورد نظرتان را مشاهده نمایید
+            و در صورت نیاز اقدام به حذف نمایید
+        </p>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="breadcrumb" id="navBarMenu">
+                <li>
+                    <a href="@Url.Action(MVC.admin.Category.ActionNames.CreateCategory,MVC.admin.Category.Name)">
+                        ایجاد گروه آموزشی جدید
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action(MVC.admin.Category.ActionNames.Index,MVC.admin.Category.Name)">
+                        نمایش لیست گروه های آموزشی
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action(MVC.admin.Category.ActionNames.UpdateCategory, MVC.admin.Category.Name, new { Id = Model.Id })">
+                        ویرایش اطلاعات گروه آموزشی
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+
+            <div class="form-group">
+                <div class="col-sm-2">
+                    @Html.LabelFor(category => category.Name)
+                </div>
+                <div class="col-sm-4">
+                    @Model.Name
+                </div>
+                <div class="col-sm-2">
+                    @Html.LabelFor(category => category.Parent)
+                </div>
+                <div class="col-sm-2">
+                    @if (Model.Parent != null)
+                    {
+                        <label>
+                            این گروه آموزشی ریشه دارد
+                        </label>
+                    }
+                    else
+                    {
+                        <label>
+                            این گروه آموزشی ریشه ندارد
+                        </label>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <div class="row">
+            <div class="col-sm-9 col-sm-offset-3">
+                @Ajax.ActionLink(linkText: "حذف گروه جاری", actionName: MVC.admin.Category.ActionNames.DeleteCategory, routeValues: new { Id = Model.Id }, ajaxOptions: new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "result", InsertionMode = InsertionMode.Replace, LoadingElementId = "divLoading", }, htmlAttributes: new { @class = "btn btn-primary mr5" })
+            </div>
+        </div>
+    </div>
+</div>

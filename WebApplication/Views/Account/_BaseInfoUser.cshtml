@@ -1,0 +1,104 @@
+﻿@using eShop.WebApplication.DomainClasses.ViewModelClasses
+@model UserViewModel
+
+<br />
+@Html.Partial(MVC.Account.Views._SolidHeaderMangementUser, "نمایش و ویرایش مشخصات پایه ای کاربر")
+<br />
+
+<div class="row" style="">
+    <div class="baseInfoUserHeaderWithGlyphiconTop">
+        <span class="glyphicon glyphicon-user" style="margin:1px auto; font-size:33px;"></span>
+    </div>
+    <div class="baseInfoUserHeaderWithGlyphiconBottom">
+        اطلاعات کاربر
+    </div>
+</div>
+<br />
+<table class="table" id="tableInfoUserSection" style="font:normal 14px eramFont;">
+    <tr>
+        <td>
+            نام
+        </td>
+        <td>
+            @MvcHtmlString.Create("" + (string.IsNullOrEmpty(Model.Name) ? "---" : Model.Name) + "").ToString()
+        </td>
+        <td>
+            نام خانوادگی
+        </td>
+        <td>
+            @MvcHtmlString.Create("" + (string.IsNullOrEmpty(Model.Family) ? "---" : Model.Family) + "").ToString()
+        </td>
+    </tr>
+    <tr>
+        <td>
+            شماره موبایل
+        </td>
+        <td>
+            @MvcHtmlString.Create("" + (string.IsNullOrEmpty(Model.Phone) ? "---" : Model.Phone) + "").ToString()
+        </td>
+        <td>
+            استان
+        </td>
+        <td>
+            @MvcHtmlString.Create("" + (string.IsNullOrEmpty(Model.Province) ? "---" : Model.Province) + "").ToString()
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            شهرستان
+        </td>
+        <td>
+            @MvcHtmlString.Create("" + (string.IsNullOrEmpty(Model.City) ? "---" : Model.City) + "").ToString()
+        </td>
+        <td>
+            کد پستی
+        </td>
+        <td>
+            @MvcHtmlString.Create("" + (string.IsNullOrEmpty(Model.PostallCode) ? "---" : Model.PostallCode) + "").ToString()
+        </td>
+    </tr>
+    <tr>
+        <td>
+            آدرس محل سکونت
+        </td>
+        <td colspan="3">
+            @MvcHtmlString.Create("" + (string.IsNullOrEmpty(Model.Address) ? "---" : Model.Address) + "").ToString()
+        </td>
+    </tr>
+    <tr>
+        <td>
+            دریافت پیام
+        </td>
+        <td colspan="3">
+            @MvcHtmlString.Create("" + (string.IsNullOrEmpty(Model.ReciveMessage) ? "---" : Model.ReciveMessage) + "").ToString()
+        </td>
+    </tr>
+    <tr>
+        <td colspan="4">
+            <a href="@Url.Action(MVC.Account.ActionNames.CompleteInformation, MVC.Account.Name)" data-toggle="modal" class="modal-link decoration_a pull-left" data-target="#ModalLogin" id="loadPartialCompleteInformation">
+                <span class="hidden-xs">ویرایش اطلاعات</span>
+                <i class="glyphicon glyphicon-log-in hide visible-xs "></i>
+            </a>
+        </td>
+    </tr>
+</table>
+
+<div id="BaseTotalInfo">
+    <br />
+    <div style="width:150px; margin-right:auto; margin-left:auto; height:20px;">
+        <img src="~/Content/Images/Main/loadingAnimation.gif" />
+    </div>
+</div>
+
+
+
+
+
+<script type="text/javascript" lang="en">
+    $(document).ready(function () {
+        $.get('@Url.Action(MVC.Account.ActionNames.GetCountInfoUser,MVC.Account.Name)', null, function (data) {
+            $('#BaseTotalInfo').empty().append(data);
+        });
+    });
+</script>

@@ -1,0 +1,32 @@
+﻿@using eShop.WebApplication.DomainClasses.ViewModelClasses
+
+@model List<CommentViewModel_>
+
+@if (Model.Count() > 0)
+{
+    for (int i = 0; i < Model.Count; i++)
+    {
+        <tr>
+            <td>
+                <a class="decoration_a" href="@Url.Action(MVC.Product.ActionNames.DetailSProduct, MVC.Product.Name)/@Model[i].product_Id/@UrlExtensions.ResolveTitleForUrl(Model[i].product_Name)#@MvcHtmlString.Create("Comment-" + (Model[i].Id * 233 + 2323) + "")">
+                    @Html.Raw(Model[i].Explain)
+                </a>
+            </td>
+            <td class="col-md-2" style="text-align:center">
+                <span>
+                    @Html.DisplayFor(x => Model[i].DateTime, "DisplayPersianDatePicker")
+                </span>
+            </td>
+        </tr>
+    }
+}
+else
+{
+    <div class="col-md-12">
+        <div class="alert alert-white">
+            <p>
+                هیچ آیتمی ثبت نشده است
+            </p>
+        </div>
+    </div>
+}

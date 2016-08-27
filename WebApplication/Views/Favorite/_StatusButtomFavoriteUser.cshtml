@@ -1,0 +1,35 @@
+﻿
+@using eShop.WebApplication.DomainClasses.ViewModelClasses
+@model StatusButtonFavoriteViewModel
+
+@if (Model.Status)
+{
+    <a class="btn btn-primary_" id="btnFavorite">
+        <span>
+            <i class="glyphicon glyphicon-ok visible-xs"></i>
+        </span>
+        <span class="hidden-xs">
+            <span class="glyphicon glyphicon-heart"></span>
+            <span>به این محصول علاقه مند هستم</span>
+        </span>
+    </a>
+}
+else
+{
+
+    <a class="btn btnAdd" id="btnFavorite_" data-addressfavorite="@Url.Action(MVC.Favorite.ActionNames.AddProductToFavorite,MVC.Favorite.Name)"
+       data-productid="@Model.Product_Id" style="padding:8px 5px;">
+        <span>
+            <i class="glyphicon glyphicon-shopping-cart visible-xs"></i>
+        </span>
+        <span class="hidden-xs">
+            <span class="glyphicon glyphicon-heart"></span>
+            <span>اضافه به لیست علاقه مندی ها</span>
+        </span>
+    </a>
+}
+
+<style type="text/css" lang="en">
+    #btnFavorite:hover {
+    }
+</style>

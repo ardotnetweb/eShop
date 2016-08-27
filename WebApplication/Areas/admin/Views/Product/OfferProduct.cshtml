@@ -1,0 +1,198 @@
+﻿@{
+    ViewBag.Title = "OfferProduct";
+    Layout = "~/Areas/admin/Views/Shared/_Main.cshtml";
+}
+
+<div id="result">
+</div>
+
+
+@Html.Partial(partialViewName: MVC.admin.Product.Views._SolidHeaderOfferProduct)
+
+<div style="width:auto; height:auto; position:relative;">
+    <div class="divLoadingContent" id="divLoadingContentBase">
+        <img src="@Url.Content("~/Content/Images/Main/loadningMeidum.GIF")" />
+    </div>
+    <div style="width:auto; height:auto; position:relative;">
+
+        <div class="lockOfferTable" id="lockOfferTable"></div>
+        <div class="panel-heading borderWhole">
+            <div class="col-md-12">
+                <div class="divLoadingsubCategory" id="divLoadingsubCategory">
+                    <img src="@Url.Content("~/Content/Images/Main/loadningSamall.GIF")" />
+                </div>
+                <input type="hidden" name="Category_Id" value="" id="Category_Id" />
+                <div class="col-md-2">انتخاب گروه تکنولوژی ها</div>
+                <div class="col-md-4">
+                    @Html.DropDownList("Id", (SelectList)ViewBag.Category, "یکی از گروه ها را انتخاب نمایید", new { id = "CategoryDropdown", @class = "form-control" })
+                </div>
+                <div class="col-md-2">انتخاب تکنولوژی توسعه</div>
+                <div class="col-md-4" id="ContainerDropDownListSubCategory">
+                    @Html.DropDownList("Id", (SelectList)ViewBag.SubCategory, "", new { id = "SubCategoryDropdown", @class = "form-control" })
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div>
+            <div class="col-md-12">
+                <div class="divLoadingContent" id="divLoadingContent">
+                    <img src="@Url.Content("~/Content/Images/Main/loadningMeidum.GIF")" />
+                </div>
+                <div id="ProductContainer" class="row">
+                </div>
+                <br />
+            </div>
+            <div class="col-md-12">
+                <input type="button" id="calculatedOffer" value="تائید نهایی"
+                       data-idcategory="" class="btn btn-primary" />
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-md-12" id="ContainersubmitUltimate">
+            <div class="alert alert-info marginTop padingTop">
+                <p>
+                    شما از جدول بالا به تعداد
+                    <span id="countOffer">
+
+                    </span>
+                    محصول را به عنوان مصولات پیشنهادی انتخاب کرده اید برای تایید نهایی بر روی گزینه زیر کلیک کنید
+                </p>
+                <p>
+                    <input type="submit" value="تائید نهایی محصولات انتخابی" class="btn btn-primary" id="submitUltimate" />
+                    &nbsp;&nbsp;
+                    <input type="submit" value="باطل کردن انتخاب ها" class="btn btn-default" id="submitCancel" />
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts
+{
+<script type="text/javascript" lang="en">
+
+    var keepArrayIdProduct = [];
+
+    function OnCompleteDataOffer() {
+        var $this = $("table#tableOfferProduct").find("input:checkBox");
+        jQuery.each($this, function () {
+            var Id = $(this).attr('value');
+            if (keepArrayIdProduct.indexOf(Id) != -1) {
+                $("table#tableOfferProduct").find("input:checkBox#" + Id).attr('checked', 'true');
+            }
+        });
+    };
+
+    $(document).ready(function () {
+        $(document).on('change', '#tableOfferProduct input:checkbox', function () {
+            if ($(this).is(':checked')) {
+                keepArrayIdProduct.push($(this).attr('value'));
+            } else {
+                var IdProduct = $(this).attr('value');
+                keepArrayIdProduct = jQuery.grep(keepArrayIdProduct, function (value) {
+                    return value != IdProduct;
+                });
+            }
+        })
+        jQuery('#submitUltimate').click(function () {
+            jQuery('#lockOfferTable').css({ display: 'none' });
+            $('#divLoadingContentBase').css({ display: 'block' });
+
+            $('#SubCategoryDropdown').empty();
+            jQuery.get('@Url.Action(MVC.admin.Product.ActionNames.SaverOfferProduct,MVC.admin.Product.Name)'
+                , { Ids: keepArrayIdProduct.toString() }, function (data) {
+                    $('#result').append(data);
+                    $('#divLoadingContentBase').css({ display: 'none' });
+                    jQuery('#ProductContainer').empty();
+                    jQuery('#ContainersubmitUltimate').hide();
+                })
+        });
+
+        jQuery('#calculatedOffer').click(function () {
+            if (keepArrayIdProduct.length > 0) {
+                jQuery('#ContainersubmitUltimate').fadeIn(800);
+                jQuery(this).fadeOut(100);
+
+                $('#ContainersubmitUltimate p span#countOffer').text(keepArrayIdProduct.length);
+                jQuery('#lockOfferTable').css({ display: 'block' });
+            }
+        });
+
+
+        jQuery('#submitCancel').click(function () {
+            keepArrayIdProduct = [];
+            location.reload();
+        });
+
+        jQuery('#ContainersubmitUltimate').hide();
+        jQuery("#calculatedOffer").hide();
+        jQuery("#CategoryDropdown").change(
+    function () {
+        $("#alertProduct").hide(600).css({ 'display': 'none' });
+
+        $("#nameCategory").text("");
+        $("#divLoadingsubCategory").css({ 'display': 'block' });
+        var id = $(this).find('option:selected').attr('value');
+        $("#Category_Id").val(id);
+        $("#SubCategoryDropdown").empty();
+        $("#document_company").fadeOut(600, function () {
+            $(this).empty().fadeIn(600);;
+        });
+        jQuery.getJSON("@Url.Action(actionName:MVC.admin.Combination.ActionNames.GetAllSubCategory,controllerName:MVC.admin.Combination.Name)",
+            { Id: $("#Category_Id").val() },
+            function (data) {
+                if (data.length > 0)
+                    $("#SubCategoryDropdown").append($('<option></option>').attr("value", "0").text("یکی از تکنولوژی های توسعه را انتخاب نمایید"));
+                else
+                    $("#divLoadingsubCategory").css({ 'display': 'none' });
+
+                $("#SuMenuCategory").empty();
+                jQuery.each(data, function (i) {
+                    var option = $('<option></option>').attr("value", data[i].Id).text(data[i].Name);
+                    $("#SubCategoryDropdown").append(option);
+                    var subMenuCategory = "<li><a id=\"" + data[i].Id + "\"><i class=\"fa fa-folder-o\"></i>" + data[i].Name + "</a></li>";
+                    $("#SuMenuCategory").append(subMenuCategory);
+                });
+                $("#divLoadingsubCategory").css({ 'display': 'none' });
+            });
+    });
+
+        jQuery("#SubCategoryDropdown").change(function () {
+            var id = $(this).find('option:selected').attr('value');
+            $("#divLoadingContent").css({ 'display': 'block' });
+
+            jQuery("#calculatedOffer").hide();
+
+
+            $('#calculatedOffer').data('idcategory', id);
+
+            $.ajax({
+                cache: false,
+                type: "GET",
+                url: "@Url.Action(MVC.admin.Product.ActionNames.DataTableOffer,MVC.admin.Product.Name)",
+                data: { "technology": id, "term": "", "count": 15, "page": 0 },
+                success: function (data) {
+                    jQuery("#calculatedOffer").show();
+                    keepArrayIdProduct = [];
+                    $("#ProductContainer").empty();
+                    $("#ProductContainer").append(data);
+                    $("#divLoadingContent").css({ 'display': 'none' });
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    // $("#divLoadingDataSubCategory").css({ 'display': 'none' });
+                    alert('Failed to retrieve books.');
+                }
+            })
+        });
+    });
+</script>
+}
+
+

@@ -1,0 +1,114 @@
+﻿@using eShop.WebApplication.DomainClasses.SMSViewModel
+@model SndSMSViewModel
+
+@{
+    ViewBag.Title = "ServiceSMS";
+    Layout = "~/Areas/admin/Views/Shared/_Main.cshtml";
+}
+<div id="resultSend">
+
+</div>
+<br />
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="divLoading" id="divLoadingSendSMS2">
+            <img src="@Url.Content("~/Content/Images/Main/Loadnig.GIF")" />
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="fontSizeLarge">
+                    مشاهده اطلاعات اولیه پیام کوتاه
+                </h4>
+                <p class="fontSizeLargeTitle">
+                    در این بخش شما می توانید اطلاعات مربوط به حساب سامانه پیام کوتاه خود به شماره 500010006060600 را مشاهده کنید و در ضممن امکان ارسال پیام کوتاه نیز وجود دارد
+                </p>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="breadcrumb" id="navBarMenu">
+                        <li>
+                            <a href="#">مشاهده اطلاعات پایه گروه های آموزشی</a>
+                        </li>
+                        <li>
+                            <a href="#"> مشاهده کلیه محصولات آموزشی این گروه</a>
+                        </li>
+                        <li>
+                            <a href="#">مشاهده کلیه کمپانی های سازنده محصولات این گروه آموزشی</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <br />
+            <div class="row" id="loadingElement">
+                <div class="col-md-12" id="ElementLoading">
+                    <img src="@Url.Content("~/Content/Images/Main/loadingAnimation.gif")" class="center-block" />
+                </div>
+            </div>
+            <div id="result">
+
+            </div>
+
+            @using (Ajax.BeginForm(actionName: MVC.admin.Setting.ActionNames.SendSimpleSMS2,controllerName: MVC.admin.Setting.Name,ajaxOptions: new AjaxOptions{HttpMethod = "POST",InsertionMode = InsertionMode.Replace,LoadingElementId = "divLoadingSendSMS2",UpdateTargetId = "resultSend"})){
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <h2>
+                                    ارسال پیام کوتاه
+                                </h2>
+                            </div>
+                        </div>
+                        <br /><br />
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">متن پیام کوتاه</label>
+                            <div class="col-sm-9">
+                                <textarea name="Body" class="controlFocus form-control texareaResize"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">شماره گیرنده</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="Phone" class="controlFocus form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-sm-9 col-sm-offset-3">
+                            <input type="submit" value="ذخیره سازی" class="btn btn-primary" />
+                            <input type="reset" value="خالی کردن باکس ها" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+@section Scripts
+{
+<script type="text/javascript" lang="en">
+    $(document).ready(function () {
+        $("#loadingElement").show();
+        $.ajax({
+            cache: false,
+            type: "GET",
+            url: "@Url.Action(MVC.admin.Setting.ActionNames.getInfoAccount, MVC.admin.Setting.Name)",
+            data: null,
+            success: function (data) {
+                $("#result").fadeOut(600, function () {
+                    $(this).html(data).fadeIn(1500);
+                });
+                $("#loadingElement").hide();
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                $("#loadingElement").hide();
+                alert('Failed to retrieve Information / Plese Try.');
+            }
+        });
+    });
+</script>
+}

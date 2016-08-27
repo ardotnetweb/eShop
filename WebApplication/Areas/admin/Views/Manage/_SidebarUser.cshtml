@@ -1,0 +1,41 @@
+﻿@model int
+
+<ul class="nav nav-pills nav-stacked nav-contacts ulCompleteInformationUser">
+    <li class="active">
+        <a href="">
+            تنظمات ، سطح دسترسی ، ویرایش و ...
+        </a>
+    </li>
+    <li>
+        @Ajax.ActionLink("مشاهده اطلاعات پایه", actionName: MVC.admin.Manage.ActionNames.ProfileUser, controllerName: MVC.admin.Manage.Name, routeValues: new { Id = Model }, ajaxOptions: new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "resultSectionUser", LoadingElementId = "divLoadingProfile" }, htmlAttributes: new { @class = "decoration_a" })
+    </li>
+    <li>
+        @Ajax.ActionLink("ویرایش پروفایل", actionName: MVC.admin.Manage.ActionNames.UpdateProfile, controllerName: MVC.admin.Manage.Name, routeValues: new { Id = Model }, ajaxOptions: new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "resultSectionUser", LoadingElementId = "divLoadingProfile" }, htmlAttributes: new { @class = "decoration_a" })
+    </li>
+    <li>
+        @Ajax.ActionLink("کامنت های کاربر", actionName: MVC.admin.Manage.ActionNames.CommentUser, controllerName: MVC.admin.Manage.Name, routeValues: new { Id = Model }, ajaxOptions: new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "resultSectionUser", LoadingElementId = "divLoadingProfile" }, htmlAttributes: new { @class = "decoration_a" })
+    </li>
+    <li>
+        @Ajax.ActionLink(" خرید های کاربر", actionName: MVC.admin.Manage.ActionNames.DataSaleUser, controllerName: MVC.admin.Manage.Name, routeValues: new { Id = Model }, ajaxOptions: new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "resultSectionUser", LoadingElementId = "divLoadingProfile" }, htmlAttributes: new { @class = "decoration_a" })
+    </li>
+    <li>
+        @Ajax.ActionLink("لیست علاقه مندی های کاربر", actionName: MVC.admin.Product.ActionNames.FavoriteListUser, controllerName: MVC.admin.Product.Name, routeValues: new { Id = Model }, ajaxOptions: new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "resultSectionUser", LoadingElementId = "divLoadingProfile" }, htmlAttributes: new { @class = "decoration_a" })
+    </li>
+    <li>
+        <a>
+            دستیابی کاربر به سیستم با نقشه گوگل
+        </a>
+    </li>
+    <li>
+        @Ajax.ActionLink("ارسال نامه الکترونیکی", actionName: MVC.admin.Manage.ActionNames.SendEmail, controllerName: MVC.admin.Manage.Name, routeValues: new { Id = Model }, ajaxOptions: new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "resultSectionUser", LoadingElementId = "divLoadingProfile" }, htmlAttributes: new { @class = "decoration_a" })
+    </li>
+    <li>
+        @Ajax.ActionLink("ارسال پیامک", actionName: MVC.admin.Manage.ActionNames.SendMessage, controllerName: MVC.admin.Manage.Name, routeValues: new { Id = Model }, ajaxOptions: new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "resultSectionUser", LoadingElementId = "divLoadingProfile" }, htmlAttributes: new { @class = "decoration_a" })
+    </li>
+    <li>
+        @Ajax.ActionLink("حذف کاربر از سیستم", actionName: MVC.admin.Manage.ActionNames.DeleteUser, controllerName: MVC.admin.Manage.Name, routeValues: new { Id = Model }, ajaxOptions: new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "resultSectionUser", LoadingElementId = "divLoadingProfile" }, htmlAttributes: new { @class = "decoration_a" })
+    </li>
+    <li>
+        @Ajax.ActionLink("غیر فعال کردن کاربر", actionName: MVC.admin.Manage.ActionNames.DisableUser, controllerName: MVC.admin.Manage.Name, routeValues: new { Id = Model }, ajaxOptions: new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "resultSectionUser", LoadingElementId = "divLoadingProfile" }, htmlAttributes: new { @class = "decoration_a" })
+    </li>
+</ul>

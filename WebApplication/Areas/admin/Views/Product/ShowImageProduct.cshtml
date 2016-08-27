@@ -1,0 +1,145 @@
+﻿@{
+    ViewBag.Title = "showImageProduct";
+    Layout = "~/Areas/admin/Views/Shared/_Main.cshtml";
+}
+
+@using eShop.WebApplication.DomainClasses.ViewModelClasses
+@model ProductShowViewModel
+
+
+
+<div id="result">
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="divLoadingContent" id="divLoadingContent">
+            <img src="@Url.Content("~/Content/Images/Main/725.GIF")" />
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="fontSizeLarge">مشاهده تصاویر محصول آموزشی</h4>
+                <p class="fontSizeLargeTitle">
+                    شما در این بخش می توانید تصاویر مربوط به محصول آموزشی انتخابی را ویرایش نمایید
+                </p>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="breadcrumb" id="navBarMenu">
+                        <li>
+                            <a href="@Url.Action(MVC.admin.Product.ActionNames.CreateProduct, MVC.admin.Product.Name)">ایجاد محصول آموزشی جدید</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action(MVC.admin.Product.ActionNames.Index,MVC.admin.Product.Name)"> نمایش کلیه محصولات آموزشی</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action(MVC.admin.Product.ActionNames.OfferProduct,MVC.admin.Product.Name)">ایجاد لیست محصولات پیشنهادی</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action(MVC.admin.Product.ActionNames.ChageObsverOfferProduct, MVC.admin.Product.Name)">حذف محصولات از دسته پیشنهاد ها</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action(MVC.admin.Product.ActionNames.UpdateProduct, MVC.admin.Product.Name, new { Id = Model.Id })">ویرایش اطلاعات محصول</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action(MVC.admin.Product.ActionNames.DetailsProduct, MVC.admin.Product.Name, new { Id = Model.Id })">مشاهده حزئیات محصول</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">
+                            گروه آموزشی
+                        </label>
+                        <div class="col-sm-5 borderBottom padingBottom3 padingTop3 backgroundColorItem">
+                            @Model.Category_Name
+                        </div>
+                        <label class="col-sm-2 control-label">
+                            کمپانی سازنده
+                        </label>
+                        <div class="col-sm-2 borderBottom padingBottom3 padingTop3 backgroundColorItem">
+                            @Model.Company_Name
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">
+                            موضوع
+                        </label>
+                        <div class="col-sm-9 borderBottom padingBottom3 padingTop3 backgroundColorItem">
+                            @Model.Name
+                        </div>
+                    </div>
+                    <hr />
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">
+                            نمایش تصاویر آموزشی موجود مربوط به آموزش :
+                        </label>
+                        <div class="col-sm-9">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">
+                        </label>
+                        <div class="col-sm-9" id="lightBoxImageProduct">
+
+                            @if (Model.ImageProducts.Count() != 0)
+                            {
+                                foreach (var item in Model.ImageProducts)
+                                {
+                                    <div class="col-sm-4 borderWhole">
+                                        <div class="positionImageLightBox">
+                                            <a href="@Url.Content("~/Content/Images/Product/GallerySize/" + item.Image)" class="formImageLightBox">
+                                                <img src="@Url.Content("~/Content/Images/Product/GallerySize/" + item.Image)" class="formImageLightBox" />
+                                            </a>
+                                        </div>
+                                        <br />
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <div class="alert alert-info">
+                                    <p>
+                                        با عرض پوزش : هیچ گونه تصویری برای این محصول ثبت نشده است
+                                    </p>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-sm-9 col-sm-offset-3">
+                        @if (Model.ImageProducts.Count() != 0)
+                        {
+                            @Html.ActionLink(linkText: "حذف تصاویر محصول آموزشی", actionName: MVC.admin.Product.ActionNames.DeleteImageProduct, controllerName: MVC.admin.Product.Name, routeValues: new { Id = Model.Id }, htmlAttributes: new { @class = "btn btn-primary" })
+                        }
+                        &nbsp;&nbsp;&nbsp;
+                        @if (Model.ImageProducts.Count() != 6)
+                        {
+                            @Html.ActionLink(linkText: "اضافه کردن تصاویر آموزشی", actionName: MVC.admin.Product.ActionNames.CreateImageProduct, controllerName: MVC.admin.Product.Name, routeValues: new { Id = Model.Id }, htmlAttributes: new { @class = "btn btn-primary" })
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript" lang="en">
+        $(function () {
+            $("#lightBoxImageProduct a").lightBox();
+        });
+    </script>
+}
+

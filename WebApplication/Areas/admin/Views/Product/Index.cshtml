@@ -1,0 +1,9 @@
+﻿@{
+    Layout = "~/Areas/admin/Views/Shared/_Main.cshtml";
+}
+
+@Html.Partial(partialViewName: MVC.admin.Product.Views._SolidHeaderProduct)
+
+@Html.Action(actionName: MVC.admin.Product.ActionNames.SearchProduct, controllerName: MVC.admin.Product.Name)
+
+@Html.Action(actionName: MVC.admin.Product.ActionNames.DataProduct, controllerName: MVC.admin.Product.Name)

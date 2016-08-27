@@ -1,0 +1,90 @@
+﻿@{
+    ViewBag.Title = "deleteImageProduct";
+    Layout = "~/Areas/admin/Views/Shared/_Main.cshtml";
+}
+
+@using eShop.WebApplication.DomainClasses.ViewModelClasses
+
+@model ProductShowViewModel
+
+
+<div id="result">
+    @ViewData["deleteImageProduct"]
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="divLoadingContent" id="divLoadingContent">
+            <img src="@Url.Content("~/Content/Images/Main/725.GIF")" />
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="fontSizeLarge">راهنمایی حذف تصاویر محصولات آموزشی</h4>
+                <p class="fontSizeLargeTitle">
+                    شما در این بخش می توانید تصاویر محصول آموزشی مربوطه را ویرایش نمایید یعنی فقط امکان حذف در این بخش وجود دارد  در صورتی که قصد اضافه کردن محصول آموزشی جدید را داشته باشدی 
+                    باید یک مرحه به عقب برگردید یا از منوی  زیر نمایش تصاویر مجموعه را انتخاب نمایید 
+                </p>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="breadcrumb" id="navBarMenu">
+                        <li>
+                            <a href="@Url.Action(MVC.admin.Product.ActionNames.CreateProduct, MVC.admin.Product.Name)">ایجاد محصول آموزشی جدید</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action(MVC.admin.Product.ActionNames.Index,MVC.admin.Product.Name)"> نمایش لیست محصولات</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action(MVC.admin.Product.ActionNames.OfferProduct,MVC.admin.Product.Name)">ایجاد لیست محصولات پیشنهادی</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action(MVC.admin.Product.ActionNames.ChageObsverOfferProduct, MVC.admin.Product.Name)">حذف محصولات از دسته پیشنهاد ها</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action(MVC.admin.Product.ActionNames.UpdateProduct, MVC.admin.Product.Name, new { Id = Model.Id })">ویرایش اطلاعات محصول</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action(MVC.admin.Product.ActionNames.DetailsProduct, MVC.admin.Product.Name, new { Id = Model.Id })">مشاهده حزئیات محصول</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action(MVC.admin.Product.ActionNames.ShowImageProduct, MVC.admin.Product.Name, new { Id = Model.Id })">نمایش تصاویر محصول</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            @using (Html.BeginForm(actionName: MVC.admin.Product.ActionNames.DeleteImageProduct, controllerName: MVC.admin.Product.Name, routeValues: null))
+            {
+                <input type="hidden" value="@Model.Id" name="Id" />
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="form-group checkboxDeleteImage">
+                            @for (int i = 0; i < Model.ImageProducts.Count; i++)
+                            {
+                                <div class="col-sm-3 borderWhole">
+                                    <div class="deleteImageProduct">
+
+                                        <img src="~/Content/Images/Product/GallerySize/@Model.ImageProducts[i].Image" width="240" height="200" />
+                                    </div>
+                                    <br />
+                                    <div class="ckbox ckbox-primary">
+                                        <input type="checkbox" id="@MvcHtmlString.Create("checkBox" + @i)" value="@Model.ImageProducts[i].Id/@Model.ImageProducts[i].Image"
+                                               name="checkboxImage" />
+
+                                        <label for="@MvcHtmlString.Create("checkBox" + @i)"></label>
+                                    </div>
+
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <input type="submit" class="btn btn-primary pull-left" value="حذف تصاویر آموزشی انتخاب شده" />          
+                         </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

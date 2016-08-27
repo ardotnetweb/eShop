@@ -1,0 +1,199 @@
+﻿@using eShop.WebApplication.DomainClasses.AppClasses
+@model List<ContactUsShowViewModel>
+
+@{
+    int page = ViewBag.page;
+    int currentPage = page + 1;
+    int max = ViewBag.TotalRecords / ViewBag.count;
+    int firstPage = ((currentPage - 2) <= 0) ? 0 : currentPage - 3;
+    int lastPage = ((currentPage + 2) >= max) ? max : currentPage + 3;
+}
+
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="clearfix"></div>
+        <div id="table-Content">
+
+            <ul class="media-list msg-list" id="MoreInfoDiv">
+                @for (int i = 0; i < Model.Count(); i++)
+                {
+                    var highlight = " ";
+                    if (!Model[i].StatusRead)
+                    {
+                        highlight = "highlighted";
+                    }
+                    <li class="@MvcHtmlString.Create("parentLi media "+highlight)">
+                        <div class="ckbox ckbox-primary pull-left">
+                            @if (!Model[i].StatusAnswer)
+                            {
+                                <input type="checkbox" id="@MvcHtmlString.Create("checkBox" + i)" disabled>
+                                <label for="@MvcHtmlString.Create("checkBox" + i)"></label>
+                            }
+                            else
+                            {
+                                <input type="checkbox" id="@MvcHtmlString.Create("checkBox" + i)" disabled checked>
+                                <label for="@MvcHtmlString.Create("checkBox" + i)"></label>
+                            }
+                        </div>
+                        <div class="media-body">
+                            <div class="pull-right media-option">
+                                <i class="fa fa-paperclip mr5"></i>
+                                <small>
+                                    @Html.DisplayFor(x => Model[i].Date, "DisplayPersianDatePicker")
+                                </small>
+                                <a href=""><i class="fa fa-star"></i></a>
+                                <div class="btn-group">
+                                    <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                        <i class="fa fa-cog"></i>
+                                    </a>
+                                    <ul id="MangeMessage" class="dropdown-menu pull-right" role="menu">
+                                        @if (!Model[i].StatusRead)
+                                        {
+                                            <li class="MarkRead">
+                                                <a data-id="@Model[i].Id">علامت گذاری به عنوان خوانده شده</a>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li class="MarkRead disabled">
+                                                <a data-id="@Model[i].Id">علامت گذاری به عنوان خوانده شده</a>
+                                            </li>
+                                        }
+
+                                        @if (!Model[i].StatusAnswer)
+                                        {
+                                            <li class="AnswerSMS">
+                                                <a href="@Url.Action(MVC.admin.ContactUs.ActionNames.AnswerContact, MVC.admin.ContactUs.Name, new { user_Id = Model[i].User_Id, contact_Id = Model[i].Id, flName = Model[i].FLName })" data-toggle="modal" class="modal-link" data-target="#ModalLoadPartial" id="loadPartialTrackingNumberSale" data-id="@Model[i].Id">
+                                                    پاسخ با پیام کوتاه
+                                                </a>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li class="AnswerSMS disabled">
+                                                <a href="@Url.Action(MVC.admin.ContactUs.ActionNames.AnswerContact, MVC.admin.ContactUs.Name, new { user_Id = Model[i].User_Id, contact_Id = Model[i].Id, flName = Model[i].FLName })" data-toggle="modal" class="modal-link" data-target="#ModalLoadPartial" id="loadPartialTrackingNumberSale" data-id="@Model[i].Id">
+                                                    پاسخ با پیام کوتاه
+                                                </a>
+                                            </li>
+                                        }
+
+                                        <li class="divider"></li>
+                                        <li class="DeleteMessage">
+                                            <a data-id="@Model[i].Id">حذف پیام</a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <h3 class="sender">@Model[i].FLName</h3>
+                            <p style="line-height:1.9em !important;">
+                                @Model[i].Explain
+                            </p>
+                        </div>
+                    </li>
+
+                }
+            </ul>
+            <div class="numberPaginStyle">
+                <div class="col-md-8">
+                    <ul class="pagingUl">
+                        <li id="first">
+                            @Ajax.ActionLink(linkText: "اولین",actionName: MVC.admin.ContactUs.ActionNames.DataContactUs,controllerName: MVC.admin.ContactUs.Name,routeValues: new { term = ViewBag.term, count = ViewBag.count, page = 0 },ajaxOptions: new AjaxOptions{HttpMethod = "Post",InsertionMode = InsertionMode.Replace,LoadingElementId = "divLoadingTable",UpdateTargetId = "table-Content"}, htmlAttributes: new { @class = "decoration_a" })
+                        </li>
+                        @for (int i = firstPage; i <= lastPage; i++)
+                        {
+
+                            if (currentPage == max + 1)
+                            {
+                                 <text><script>$('li#last').addClass("disableUl");</script></text>
+                            }
+                            else
+                            {
+                                  <text><script>if ($('li#last').hasClass("disableUl"))$('li#last').addClass("disableUl");</script></text>
+                            }
+                            if (currentPage == 1)
+                            {
+                                <text><script>$('li#first').addClass("disableUl");</script></text>
+                            }
+                            else
+                            {
+                                <text><script>if ($('li#first').hasClass("disableUl"))$('li#first').addClass("disableUl");</script></text>
+                            }
+                            if (i + 1 == currentPage)
+                            {
+                              <li class="active"><a href="#">@MvcHtmlString.Create("" + (@i + 1) + "").ToString()</a></li>
+                            }
+                            else
+                            {
+                        <li>
+                            @Ajax.ActionLink(linkText: MvcHtmlString.Create("" + (@i + 1) + "").ToString(),actionName: MVC.admin.ContactUs.ActionNames.DataContactUs,controllerName: MVC.admin.ContactUs.Name,routeValues: new { term = ViewBag.term, count = ViewBag.count, page = i },ajaxOptions: new AjaxOptions{HttpMethod = "Post",InsertionMode = InsertionMode.Replace,UpdateTargetId = "table-Content",LoadingElementId = "divLoadingTable"}, htmlAttributes: new { @class = "decoration_a" })
+                        </li>
+                            }
+                        }
+                        <li id="last">
+                            @Ajax.ActionLink(linkText: "آخرین",actionName: MVC.admin.ContactUs.ActionNames.DataContactUs,controllerName: MVC.admin.ContactUs.Name,routeValues: new { term = ViewBag.term, count = ViewBag.count, page = max },ajaxOptions: new AjaxOptions{HttpMethod = "Post",InsertionMode = InsertionMode.Replace,UpdateTargetId = "table-Content",LoadingElementId = "divLoadingTable"}, htmlAttributes: new { @class = "decoration_a" })
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    شما صفحه @currentPage از @(max + 1) هستید
+                </div>
+                <div class="statusClear"></div>
+            </div>
+
+        </div>
+        <div class="divLoadingTable" id="divLoadingTable">
+            <img src="@Url.Content("~/Content/Images/Main/Loadnig.GIF")" />
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" lang="en">
+    $(document).ready(function () {
+        $(document).on('click', 'ul#MangeMessage li.MarkRead a', function () {
+            var $this = $(this);
+            ShowLoading($this);
+            $.post('@Url.Action(MVC.admin.ContactUs.ActionNames.ChageStatusRead,MVC.admin.ContactUs.Name)', { id: $this.data('id') }, function (data) {
+                if (data.Result == "true")
+                    $this.closest('li.parentLi').removeClass('highlighted');
+                else
+                    alert("خطایی رخ داد است. مجدد تلاش نمایید");
+                HideLoading($this);
+            });
+        });
+
+
+        $(document).on('click', 'ul#MangeMessage li.DeleteMessage a', function () {
+            var $this = $(this);
+            ShowLoading($this);
+            $.post('@Url.Action(MVC.admin.ContactUs.ActionNames.DeleteMessage,MVC.admin.ContactUs.Name)', { id: $this.data('id') }, function (data) {
+                if (data.Result == "true") {
+                    $this.closest('li.parentLi').fadeOut(500, function () {
+                        $this.closest('li.parentLi').remove();
+                    });
+                }
+                else
+                    alert("خطایی رخ داد است. مجدد تلاش نمایید");
+                HideLoading($this);
+            });
+        });
+
+        function ShowLoading($this) {
+            $this.closest("li.parentLi").attr("disabled", true).
+                css({ 'background-color': '#eee', 'opacity': '.6' });
+        };
+        function HideLoading($this) {
+            $this.closest("li.parentLi").attr("disabled", false).
+                css({ 'background-color': 'transparent', 'opacity': '1' });
+        };
+
+    });
+</script>
+
+<style type="text/css" lang="en">
+    ul#MangeMessage li a:hover {
+        cursor: pointer !important;
+    }
+</style>

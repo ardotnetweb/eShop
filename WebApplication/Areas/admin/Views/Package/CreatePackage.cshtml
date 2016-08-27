@@ -1,0 +1,434 @@
+﻿@{
+    ViewBag.Title = "createPackage";
+    Layout = "~/Areas/admin/Views/Shared/_Main.cshtml";
+}
+
+@using WebApplication.ViewModels
+
+@model PackageAddViewModel
+@{
+    var loadInfoUrl = Url.Action(actionName: MVC.admin.Package.ActionNames.PagedIndex,controllerName: MVC.admin.Package.Name);
+}
+
+
+<div id="result" class="row">
+</div>
+
+@Html.Partial(partialViewName: MVC.admin.Package.Views._SolidHeaderCreatePackage)
+<div class="panel-heading borderBottom">
+
+
+    <div class="col-md-12" id="containerRedirect">
+        <input type="hidden" name="Category_Id" id="Category_Id">
+        <input type="hidden" name="IdValue" value="" id="IdValue" />
+        <input type="hidden" name="PageNumber" value="" id="PageNumber" />
+
+
+        <div class="divLoadingsubCategory" id="divLoadingsubCategory">
+            <img src="@Url.Content("~/Content/Images/Main/loadningSamall.GIF")" />
+        </div>
+
+        <div class="col-md-2">انتخاب گروه تکنولوژی ها</div>
+        <div class="col-md-4">
+            @Html.DropDownList("Id", (SelectList)ViewBag.Category, "یکی از گروه ها را انتخاب نمایید", new { id = "CategoryDropdown", @class = "form-control" })
+        </div>
+
+        <div class="col-md-2" id="textSubCategory">انتخاب تکنولوژی توسعه</div>
+        <div class="col-md-3" id="dropDownListSubCategory">
+            @Html.DropDownList("Id", (SelectList)ViewBag.SubCategory, "", new { id = "SubCategoryDropdown", @class = "form-control" })
+        </div>
+        <div class="col-md-1" id="divSearch">
+            <button type="button" class="btn btn-primary" id="moreInfoButton">
+                <span class="glyphicon glyphicon-search"></span>
+            </button>
+        </div>
+    </div>
+
+
+
+
+    <div class="clearfix"></div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table" id="tablePackage">
+            <thead>
+                <tr>
+                    <th>
+                        انتخاب
+                    </th>
+                    <th>
+                        نام محصول آموزشی
+                    </th>
+                    <th>
+                        قیمت محصول
+                    </th>
+                    <th>
+                        مدت زمان آموزش
+                    </th>
+
+                    <th>
+                        کمپانی سازنده محصول آموزشی
+                    </th>
+                    <th>
+                        اطلاعات بیشتر
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="MoreInfoDiv"></tbody>
+        </table>
+    </div>
+    <br />
+    <div class="col-md-12 borderBottom padingBottom">
+        <div class="col-md-10" id="Destination">
+        </div>
+        <div class="col-md-1 center-block" id="ProgressDiv" align="center" style="display: none">
+            <img src="@Url.Content("~/Content/Images/Main/loadingAnimation.gif")" />
+        </div>
+    </div>
+
+
+</div>
+
+
+<div class="row borderBottom padingTop padingBottom marginTop" id="divCalculated">
+    <div class="col-md-12">
+        @using (Ajax.BeginForm(actionName: MVC.admin.Package.ActionNames.CalculatedUltimated,controllerName: MVC.admin.Package.Name,ajaxOptions: new AjaxOptions{HttpMethod = "POST",OnSuccess = "doUpload"},routeValues: null,htmlAttributes: new { id = "uploadForm" }))
+        {
+            <div class="form-group">
+                <label class="col-sm-2 control-label">@Html.LabelFor(x => x.Name)</label>
+                <div class="col-sm-4">
+                    @Html.TextBoxFor(x => x.Name, new { @class = "form-control controlFocus" })
+                    @Html.ValidationMessageFor(x => x.Name, "",new { @class = "text-danger" })
+                </div>
+                <label class="col-sm-2 control-label">@Html.LabelFor(x => x.Percent)</label>
+                <div class="col-sm-4">
+                    @Html.TextBoxFor(x => x.Percent, new { @class = "form-control controlFocus", id = "txtpercent", onkeypress = "return isNumberKey(event)", style = "width:25%;font-size:19px;", maxlength = "2" })
+                    <span id="txtAlert" class="text-danger">لطفا مقدار درصد تخفیف را وارد نمایید</span>
+
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="col-sm-2 control-label">@Html.LabelFor(x => x.OriginalPrice)</label>
+                <div class="col-sm-4">
+                    @Html.TextBoxFor(x => x.OriginalPrice, new { @class = "form-control controlFocus", id = "txtOriginalPrice", style = "font-size:19px;" })
+                    @Html.ValidationMessageFor(x => x.OriginalPrice, "",new { @class = "text-danger" })
+                </div>
+                <label class="col-sm-2 control-label">@Html.LabelFor(x => x.DisCountPrice)</label>
+                <div class="col-sm-4">
+                    @Html.TextBoxFor(x => x.DisCountPrice, new { @class = "form-control controlFocus", id = "txtDisCountPrice", style = "font-size:19px;" })
+                    @Html.ValidationMessageFor(x => x.DisCountPrice, "",new { @class = "text-danger" })
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="col-sm-2 control-label">@Html.LabelFor(x => x.StartDate)</label>
+                <div class="col-sm-4">
+                    @Html.EditorFor(x => x.StartDate, "PersianDatePicker")
+                    @Html.ValidationMessageFor(x => x.StartDate, "",new { @class = "text-danger" })
+                </div>
+                <label class="col-sm-2 control-label">@Html.LabelFor(x => x.EndDate)</label>
+                <div class="col-sm-4">
+                    @Html.EditorFor(x => x.EndDate)
+                    @Html.ValidationMessageFor(x => x.EndDate, "",new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">وضعیت نمایش پکیج</label>
+                <div class="col-sm-4">
+                    <div class="ckbox ckbox-primary pull-left">
+                        <input type="checkbox" id="checkbox1">
+                        <label for="checkbox1"></label>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <input type="button" value="محاسبه درصد تخفیفات محصولات انتخاب شده"
+                           id="btnCalculated" class="btn btn-primary pull-right" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">@Html.LabelFor(x => x.Explain)</label>
+                <div class="col-sm-10">
+                    @Html.TextAreaFor(x => x.Explain)
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="col-sm-2 control-label">تصویر پکیج آموزشی</label>
+                <div class="col-sm-2">
+                    <input type="file" class="form-control" id="controlUpload" name="controlUpload" onchange="ShowPreviewImageUpload(this);" />
+                </div>
+                <div class="col-sm-1" id="fileUpload">
+                    <input type="button" id="calerImageUploaded" class="btn btn-primary"
+                           value="پاکسازی کنترل بارگذاری" />
+                </div>
+                <div class="col-sm-7">
+                    <img id="impPrev" class="ControlimgPrev img-circle" />
+                </div>
+            </div>
+            
+            <div class="row ControlButton">
+                <div class="col-sm-12">
+                    <input type="submit" value="ذخیره سازی" class="btn btn-primary" />
+                    <input type="reset" value="خالی کردن باکس ها" class="btn btn-default" />
+
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="row" id="divCalculatedResult">
+    <div class="col-md-12">
+        <p>
+            در صد تخفیفات برای محصولات پکیج : <span class="showNumber"></span>%
+        </p>
+        <p>
+            تعداد محصولات انتخاب شده پکیج : <span class="showNumber"></span> محصول
+        </p>
+        <p>
+            قیمت کل محصولات انتخاب شده بدون محاسبه درصد تخفیف : <span class="showNumber"></span>  تومان
+        </p>
+        <p>
+            قیمت کل محصولات انتخاب شده همراه با محاسبه درصد تخفیف : <span class="showNumber"></span>  تومان
+        </p>
+    </div>
+</div>
+
+
+@section Scripts
+{
+    <script type="text/javascript" lang="en">
+
+    var arrayCheckBox;
+    var isShow = false;
+
+    function doUpload(data, status, xhr) {
+        $("#divLoading").css({ 'display': 'block' });
+        if ($("#checkbox1").is(":checked")) isShow = true; else isShow = false;
+        $.ajaxFileUpload({
+            url: "@Url.Action(MVC.admin.Package.ActionNames.UploadFiles, MVC.admin.Package.Name)",
+            secureuri: false,
+            fileElementId: "controlUpload", // آي دي المان ورودي فايل
+            dataType: "json",
+            data:
+                {
+                    id: data.Id,
+                    array: arrayCheckBox.toString(),
+                    isShow: isShow,
+                    SubCategory_Id: $("#IdValue").val()
+                },
+            complete: function () {
+                $("#divLoading").css({ 'display': 'none' });
+
+            },
+            success: function (successData, successStatus) {
+                $("#divLoading").css({ 'display': 'none' });
+
+                $("#divCalculatedResult").add("#divCalculated").add("#tablePackage").hide();
+                if (successData.result == "success") {
+                    createAlert("success", "عملیات ایجاد پکیج جدید با موفقیت صورت گرفت");
+                    $("#moreInfoButton").add("#textSubCategory").add("#dropDownListSubCategory").hide();
+                    location.href = "#Content";
+                }
+                if (successData.result == "fail") {
+                    createAlert("warning", "در عملیات ایجاد پکیج جدید خطایی رخ داده است . دوباره امتحان کنید در صورت تکرار بیش ار چند بار توسعه دهنده سیستم را مطلع کنید");
+                    $("#moreInfoButton").add("#textSubCategory").add("#dropDownListSubCategory").hide();
+                    location.href = "#Content";
+                }
+                if (successData.result == "duplicate") {
+                    createAlert("info", "عدم موفقیت در ایجاد پکیج جدید به دلیل تکراری بودن نام پکیج. لطفا در انتخاب نام پکیج دقت نمایید");
+                    $("#moreInfoButton").add("#textSubCategory").add("#dropDownListSubCategory").hide();
+                    location.href = "#Content";
+                }
+
+            },
+            error: function (errorData, errorStatus, e) {
+                $("#divCalculatedResult").add("#divCalculated").hide();
+                if (successData.result == "fail") {
+                    createAlert("warning", "در عملیات ایجاد پکیج جدید خطایی رخ داده است . دوباره امتحان کنید در صورت تکرار بیش ار چند بار توسعه دهنده سیستم را مطلع کنید");
+                    $("#moreInfoButton #textSubCategory #dropDownListSubCategory").hide();
+                    location.href = "#result";
+                }
+                $("#divLoading").css({ 'display': 'none' });
+
+            }
+        });
+    }
+    var isActive = true;
+    var isLarge = false;
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+    $(document).ready(function () {
+
+
+        $("#textSubCategory").add("#divCalculatedResult").add("#divCalculated").add("#dropDownListSubCategory").add("#moreInfoButton").add("#tablePackage").add("#txtAlert").hide();
+        jQuery("#CategoryDropdown").change(
+        function () {
+            $("#divCalculatedResult").add("#divCalculated").hide();
+
+            $("#PageNumber").val("1");
+            $("#moreInfoButton").add("#tablePackage").add("#txtAlert").add("#MoreInfoDiv").hide();
+            $("#divLoadingsubCategory").css({ 'display': 'block' });
+            $("#Category_Id").val($(this).find('option:selected').attr('value'));
+
+            $("#SubCategoryDropdown").add("#MoreInfoDiv").empty();
+
+
+            jQuery.getJSON("@Url.Action(MVC.admin.Combination.ActionNames.GetAllSubCategory,MVC.admin.Combination.Name)",
+            { Id: $("#Category_Id").val() },
+            function (data) {
+                if (data.length > 0) {
+                    $("#SubCategoryDropdown").append($('<option></option>').attr("value", "0").text("یکی از تکنولوژی های توسعه را انتخاب نمایید"));
+                    $("#textSubCategory").add("#dropDownListSubCategory").show();
+                }
+                else {
+                    $("#divLoadingsubCategory").css({ 'display': 'none' });
+                    createAlert("info", "گروه انتخابی شما هیچ گونه تکنولوژی توسعه ای ندارد");
+
+                }
+
+
+                $("#SuMenuCategory").empty();
+
+
+                jQuery.each(data, function (i) {
+                    var option = $('<option></option>').attr("value", data[i].Id).text(data[i].Name);
+                    $("#SubCategoryDropdown").append(option);
+
+                    var subMenuCategory = "<li><a id=\"" + data[i].id + "\"><i class=\"fa fa-folder-o\"></i>" + data[i].Name + "</a></li>";
+                    $("#SuMenuCategory").append(subMenuCategory);
+
+                });
+                $("#divLoadingsubCategory").css({ 'display': 'none' });
+
+            });
+        });
+
+        var isShow = false;
+        var isHide = false;
+        jQuery(document).on('change', '#MoreInfoDiv :checkbox', function () {
+
+            if ($("#MoreInfoDiv :checkbox:checked").length >= 4) {
+                $("#divCalculated").show();
+            }
+            else
+                $("#divCalculated").hide();
+        });
+        jQuery("#btnCalculated").click(function () {
+            $.trim($("#txtpercent").val());
+            if ($("#txtpercent").val().length > 0 && $("#txtpercent").val().length <= 2) {
+
+                $("#loadingbtnCalculated").css({ 'display': 'block' });
+                $("#txtAlert").css({ 'display': 'none' });
+
+                arrayCheckBox = new Array($("#MoreInfoDiv :checkbox:checked").length);
+
+
+                var disCountpercent = $("#txtpercent").val();
+                var countProduct = arrayCheckBox.length;
+                var disCountPrice = 0;
+                var originalPrice = 0;
+                $("#MoreInfoDiv :checkbox:checked").each(function (index) {
+                    arrayCheckBox[index] = $(this).attr('value').split('/')[0];
+                    originalPrice += parseInt($(this).attr('value').split('/')[1]);
+                });
+                disCountPrice = originalPrice - ((originalPrice * disCountpercent) / 100);
+                $("#divCalculatedResult").fadeIn(1500);
+
+                $("#divCalculatedResult span:eq(0)").text(disCountpercent);
+                $("#divCalculatedResult span:eq(1)").text(countProduct);
+                $("#divCalculatedResult span:eq(2)").text(originalPrice.toLocaleString('fa-IR'));
+                $("#divCalculatedResult span:eq(3)").text(disCountPrice.toLocaleString('fa-IR'));
+
+                $("#txtOriginalPrice").val(originalPrice);
+                $("#txtDisCountPrice").val(disCountPrice);
+
+
+
+                $("#loadingbtnCalculated").css({ 'display': 'none' });
+            }
+            else
+                $("#txtAlert").css({ 'display': 'block' });
+        });
+
+
+
+        jQuery("#SubCategoryDropdown").change(function () {
+            var productId = $(this).find('option:selected').attr('value');
+            $("#IdValue").val(productId);
+            $("#moreInfoButton").show();
+            $("#MoreInfoDiv").empty();
+            $("#PageNumber").val("1");
+            $("#tablePackage").hide();
+            $("#divCalculatedResult").add("#txtAlert").hide();
+            $("#divCalculated").hide();
+            if (!isActive)
+                $("#moreInfoButton").detach().prependTo("#divSearch").html("<span class=\"glyphicon glyphicon-search\"></span>");
+            isActive = true;
+
+        });
+
+        $("#moreInfoButton").InfiniteScroll({
+            moreInfoDiv: '#MoreInfoDiv',
+            progressDiv: '#ProgressDiv',
+            loadInfoUrl: '@loadInfoUrl',
+            loginUrl: '/login',
+            errorHandler: function () {
+                alert('خطایی رخ داده است');
+            },
+            completeHandler: function () {
+                $("#PageNumber").val(parseInt($("#PageNumber").val()) + 1);
+                $("#tablePackage").add("#MoreInfoDiv").show();
+                $("#tablePackage").show();
+                if (isActive) {
+                    $("#moreInfoButton").detach().prependTo("#Destination").addClass('col-md-11').text("موارد بیشتر");
+                    isActive = false;
+                }
+
+            },
+            noMoreInfoHandler: function () {
+                $("#moreInfoButton").hide();
+            }
+        });
+
+
+
+
+        $('#Explain').editable({
+            buttons: ["bold", "italic", "underline", "strikeThrough", "fontFamily",
+                "fontSize", "color", "formatBlock", "align", "insertOrderedList",
+                "insertUnorderedList", "outdent", "indent", "selectAll", "createLink",
+                 "undo", "redo", "html", "inserthorizontalrule"],
+            inlineMode: false,
+            inverseSkin: true,
+            preloaderSrc: '@Url.Content("~/Content/Images/Main/preloader.gif")',
+            allowedImageTypes: ["jpeg", "jpg", "png"],
+            height: 300,
+            language: "fa",
+            direction: "rtl",
+            fontList: ["Tahoma, Geneva", "Arial, Helvetica", "Impact, Charcoal"],
+            autosave: false,
+            autosaveInterval: 2500,
+            saveURL: '@Url.Action("FroalaUploadImage", "product")',
+            saveParams: { postId: "123" },
+            spellcheck: true,
+            plainPaste: true,
+            imageButtons: ["removeImage", "replaceImage", "linkImage"],
+            borderColor: '#00008b',
+            imageParams: { postId: "123" },
+            enableScript: false
+        });
+    });
+
+
+    </script>
+}
+

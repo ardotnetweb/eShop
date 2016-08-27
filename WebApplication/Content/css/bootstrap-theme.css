@@ -1,0 +1,404 @@
+
+/*
+default-color: # 
+primary-color:  #1570A6(blue)
+success-color:  #D94206(orange)
+info-color: #7CBB00(green)
+warning-color: 
+danger-color: 
+*/
+.padingBox {
+    padding-right: 5px;
+    padding-left: 5px;
+    margin-bottom: 20px;
+}
+
+
+.main-container {
+    background: #fff;
+    -webkit-box-shadow: 1px 1px 10px rgba(0, 0, 0, .25);
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, .25);
+}
+
+
+.padingBox .thumbnail a:first-child:hover {
+    /*color: #D94206; red*/
+    text-decoration: none;
+}
+
+
+/*# sourceMappingURL=bootstrap-theme.css.map */
+
+/*-------------------------------------- pro -------------------------------------*/
+.thumbnail:hover {
+    border-color: #eee;
+}
+
+.pro {
+    height: 300px;
+    display: block;
+    overflow: hidden;
+}
+
+    .pro .btn {
+        padding: 1px;
+    }
+
+    .pro img {
+        padding-top: 5px;
+        padding-bottom: 5px;
+        max-height: 160px;
+    }
+
+    .pro .pro-name {
+        height: 31px;
+        display: block;
+        overflow: hidden;
+        text-align: left;
+        font-size: 100%;
+        font-weight: bold;
+        line-height: 15px;
+        margin: 0;
+        padding: 0;
+        margin-bottom: 20px;
+    }
+
+    .pro .price {
+        font-size: 115%;
+        font-weight: bold;
+        color: #1570A6;
+    }
+
+/*------------------------------ list/grid view ---------------------------------------------*/
+@import url(http://fonts.googleapis.com/css?family=Varela+Round);
+
+.grid-active span {
+    color: green;
+}
+
+.list-active span {
+    color: green;
+}
+
+.list, .grid {
+    display: inline-block;
+    padding: 1px 10px;
+    cursor: pointer;
+    background: #f7f7f7;
+    box-shadow: 2px 3px #eee;
+    color: #fff;
+    font-weight: bold;
+}
+
+.list {
+    border-right: 1px #bbb solid;
+    border-radius: 3px 0 0 3px;
+}
+
+.grid {
+    border-left: 1px #ddd solid;
+    border-radius: 0 3px 3px 0;
+}
+
+/*------------------------------ grid */
+.pro .price svg {
+    position: absolute;
+    left: 5px;
+    stroke: #999;
+    fill: #fff;
+}
+
+.prod-box .price span {
+    float: left;
+}
+
+.prod-box .price .tmn {
+    color: #999;
+    font-weight: normal;
+    float: left;
+}
+
+.prod-box .description {
+    display: none !important;
+    font-size: 16px;
+}
+
+.prod-box .add-cart {
+    right: 0;
+    padding: 0 6px;
+    position: absolute;
+    z-index: 999;
+}
+
+    .prod-box .add-cart li {
+        margin: 0;
+        padding: 0;
+        float: right;
+        list-style: none;
+    }
+
+        .prod-box .add-cart li .glyphicon {
+            margin: 0 !important;
+            top: 8px;
+            height: 26px;
+            font-size: 20px;
+        }
+
+        .prod-box .add-cart li .glyphicon-shopping-cart {
+            padding: 4px;
+            font-size: 20px;
+            color: #fff;
+        }
+
+        .prod-box .add-cart li .part1 {
+            fill:#666;
+        }
+
+        .prod-box .add-cart li .part2 {
+            background: #666;
+        }
+
+    .prod-box .add-cart:hover li .part1 {
+        fill: #666;
+    }
+
+    .prod-box .add-cart:hover li .part2 {
+        background:#666;
+    }
+
+    .prod-box .add-cart li .part3 {
+        fill: #999;
+    }
+
+/*------------------------------ list */
+.prod-box-list img {
+    float: right;
+    margin-left: 5px !important;
+    margin-top: 20px;
+}
+
+.prod-box-list .pro {
+    height: 200px;
+}
+
+.prod-box-list .caption {
+    padding-left: 200px;
+    height: 178px !important;
+    overflow: hidden;
+}
+
+    .prod-box-list .caption .pro-name {
+        font-size: 120%;
+        font-weight: bold;
+        text-align: right !important;
+        margin: 10px 0;
+    }
+
+.prod-box-list .description {
+    font-size: 100% !important;
+    font-weight: normal !important;
+}
+
+    .prod-box-list .description:hover {
+        /*color: #333;*/
+    }
+
+.prod-box-list .price {
+    font-size: 180%;
+    font-weight: bold;
+    position: absolute !important;
+    top: 15px;
+    left: 0px;
+    padding-left: 15px;
+}
+
+    .prod-box-list .price .tmn {
+        font-size: 90%;
+        color: #999;
+        font-weight: normal;
+        float: left;
+    }
+
+.prod-box-list .btn {
+    position: absolute !important;
+    bottom: 35px;
+    left: 20px;
+}
+
+.prod-box-list .add-cart {
+    left: 0;
+    top: 150px;
+    padding: 0 6px;
+    position: absolute;
+    z-index: 999;
+}
+
+    .prod-box-list .add-cart li {
+        margin: 0;
+        padding: 0;
+        float: left;
+        list-style: none;
+    }
+
+        .prod-box-list .add-cart li .glyphicon {
+            margin: 0 !important;
+            top: 8px;
+            height: 26px;
+            font-size: 20px;
+        }
+
+        .prod-box-list .add-cart li .glyphicon-shopping-cart {
+            padding: 4px;
+            font-size: 20px;
+            color: #fff;
+        }
+
+        .prod-box-list .add-cart li .part1 {
+            fill: #666;
+        }
+
+        .prod-box-list .add-cart li .part2 {
+            background: #666;
+        }
+
+    .prod-box-list .add-cart:hover li .part1 {
+        fill:#666;
+    }
+
+    .prod-box-list .add-cart:hover li .part2 {
+        background: #666;
+    }
+
+    .prod-box-list .add-cart li .part3 {
+        fill: #999;
+        display: none;
+    }
+/************************* img-zoomer  ***********************************************/
+.prod-box .zoom-container {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    width: 100%;
+    height: 160px;
+    font-size: 16px;
+    font-size: 1rem;
+    border: 1px solid #fff;
+    vertical-align: top;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+    .prod-box .zoom-container img {
+        margin: 0 auto;
+        display: block;
+        -webkit-transition: all .5s ease .5s; /* Safari and Chrome */
+        -moz-transition: all .5s ease .5s; /* Firefox */
+        -ms-transition: all .5s ease .5s; /* IE 9 */
+        -o-transition: all .5s ease .5s; /* Opera */
+        transition: all .5s ease .5s;
+    }
+
+    .prod-box .zoom-container:hover img {
+        -webkit-transform: scale(1.25) rotate(7deg); /* Safari and Chrome */
+        -moz-transform: scale(1.25) rotate(7deg); /* Firefox */
+        -ms-transform: scale(1.25) rotate(7deg); /* IE 9 */
+        -o-transform: scale(1.25) rotate(7deg); /* Opera */
+        transform: scale(1.25) rotate(7deg);
+    }
+
+.pro.thumbnail {
+    padding: 0;
+}
+
+
+/***************************************Menu**********************************/
+
+#aside-menu .caret {
+    float: left;
+    margin: 6px 0;
+    border-top: 4px solid transparent;
+    border-right: 4px solid;
+    border-bottom: 4px solid transparent;
+}
+
+
+
+#aside-menu .navbar-header {
+    background-color: #080808;
+    // background: #999 url(../img/footer_lodyas.png);
+    color: #D94206;
+    width: 100%;
+    border-radius: 0;
+    font: normal 15px eramFont;
+}
+
+    #aside-menu .navbar-header .navbar-brand {
+        color: #f9f9f9;
+        font: normal 19px eramFont;
+        height: 40px;
+        line-height: 0.2em;
+        border: none;
+    }
+
+#aside-menu-collapse .nav li {
+    float: none;
+}
+
+#aside-menu-collapse .nav .aside-menu-item ul {
+    top: 0;
+    right: 100%;
+}
+
+#aside-menu li {
+    border-top: 1px solid #eee;
+}
+
+    #aside-menu li:first-child {
+        border-top: none;
+    }
+
+    #aside-menu li a {
+        display: block;
+        padding: 10px 20px;
+        clear: both;
+        font-weight: normal;
+        line-height: 1.42857143;
+        white-space: nowrap;
+    }
+
+.multi-level {
+    border-radius: 0;
+}
+
+
+#aside-menu .navbar-nav {
+    float: none;
+}
+
+#aside-menu-collapse {
+    padding: 0;
+}
+
+    #aside-menu-collapse ul.nav-Menu-Side-Product li {
+        background-color: #f7f7f7;
+        color: black;
+        font: normal 15px eramFont;
+    }
+
+        #aside-menu-collapse ul.nav-Menu-Side-Product li:hover {
+            background-color: #ffffff;
+            color: black;
+        }
+
+    #aside-menu-collapse ul li ul li a {
+        background-color: #ffffff;
+    }
+
+        #aside-menu-collapse ul li ul li a:hover {
+            background-color: #f7f7f7;
+            color: black;
+            font: normal 15px eramFont;
+        }
+/***************************************End Menu**********************************/
+

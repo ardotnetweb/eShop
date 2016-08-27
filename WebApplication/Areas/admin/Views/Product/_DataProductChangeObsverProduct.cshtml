@@ -1,0 +1,70 @@
+﻿@using eShop.WebApplication.DomainClasses.ViewModelClasses
+
+@model List<ProductShowViewModel>
+
+<div id="table-Content" class="table-responsive">
+    <table class="table tableCategory" id="tableOfferProduct">
+        <thead>
+            <tr>
+                <th>
+                    انتخاب پیشنهاد
+                </th>
+                <th>
+                    نام محصول
+                </th>
+                <th>
+                    مدت زمان آموزش
+                </th>
+                <th>
+                    تاریخ درج محصول
+                </th>
+                <th>
+                    دسته گروه آموزشی
+                </th>
+                <th>
+                    کمپانی سازنده
+                </th>
+
+                <th>قیمت</th>
+
+                <th>اطلاعات بیشتر</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Count(); i++)
+            {
+                <tr>
+                    <td>
+                        <div class="ckbox ckbox-primary">
+                            <input type="checkbox" id="@MvcHtmlString.Create(Model[i].Id.ToString())" value="@Model[i].Id"
+                                   name="checkboxImage" data-id="@Model[i].Id" />
+                            <label for="@MvcHtmlString.Create(Model[i].Id.ToString())"></label>
+                        </div>
+                    </td>
+                    <td>
+                        @Model[i].Name.ToString()
+                    </td>
+                    <td>
+                        @Model[i].Time.ToString()
+                    </td>
+                    <td>
+                        @Html.DisplayFor(x => Model[i].Date, "DisplayPersianDatePicker")
+                    </td>
+                    <td>
+                        @Model[i].Category_Name
+                    </td>
+                    <td>
+                        @Model[i].Company_Name
+                    </td>
+                    <td>
+                        @Model[i].Price
+                    </td>
+                    <td>
+                        @Html.ActionLink(linkText: "موارد بیشتر", actionName: MVC.admin.Product.ActionNames.DetailsProduct, controllerName: MVC.admin.Product.Name, routeValues: new { Id = @Model[i].Id }, htmlAttributes: new { @class = "decoration_a" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

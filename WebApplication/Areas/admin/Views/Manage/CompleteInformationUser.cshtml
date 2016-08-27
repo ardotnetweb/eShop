@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "CompleteInformationUser";
+    Layout = "~/Areas/admin/Views/Shared/_Main.cshtml";
+}
+
+@model int
+
+<div class="row">
+
+    <div class="col-sm-3">
+        @Html.Partial(MVC.admin.Manage.Views._SidebarUser, Model)
+    </div>
+    <div class="col-md-9">
+        <div class="divLoading" id="divLoadingProfile">
+            <img src="@Url.Content("~/Content/Images/Main/Loadnig.GIF")" />
+        </div>
+        <div id="resultSectionUser">
+
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+<script type="text/javascript" lang="en">
+    $(document).ready(function () {
+        $('#divLoadingProfile').css({ 'display': 'block' });
+        jQuery.get('@Url.Action(MVC.admin.Manage.ActionNames.ProfileUser, MVC.admin.Manage.Name)', { Id: '@Model' }, function (data) {
+            $('#resultSectionUser').empty().append(data);
+            $('#divLoadingProfile').css({ 'display': 'none' });
+        });
+    });
+</script>
+}
+

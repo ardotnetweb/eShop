@@ -1,0 +1,144 @@
+﻿@{
+    ViewBag.Title = "ChageObsverOfferProduct";
+    Layout = "~/Areas/admin/Views/Shared/_Main.cshtml";
+}
+
+<div id="resultOperation">
+
+</div>
+
+@Html.Partial(MVC.admin.Product.Views._SolidHeaderObseverChangeOfferProduct)
+
+<div style="width:auto; height:auto; position:relative;">
+    <div class="panel-heading borderWhole">
+        <div class="col-md-12">
+            <div class="divLoadingsubCategory" id="divLoadingsubCategory">
+                <img src="@Url.Content("~/Content/Images/Main/loadningSamall.GIF")" />
+            </div>
+            <input type="hidden" name="Category_Id" value="" id="Category_Id" />
+            <div class="col-md-2">انتخاب گروه تکنولوژی ها</div>
+            <div class="col-md-4">
+                @Html.DropDownList("Id", (SelectList)ViewBag.Category, "یکی از گروه ها را انتخاب نمایید", new { id = "CategoryDropdown", @class = "form-control controlFocus" })
+            </div>
+            <div class="col-md-2">انتخاب تکنولوژی توسعه</div>
+            <div class="col-md-4" id="ContainerDropDownListSubCategory">
+                @Html.DropDownList("Id", (SelectList)ViewBag.SubCategory, "", new { id = "SubCategoryDropdown", @class = "form-control controlFocus" })
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="row" id="ContainerOffer">
+        <div class="col-md-12" id="LoadingBefor">
+            <br />
+            <img src="@Url.Content("~/Content/Images/Main/loadingAnimation.gif")" class="center-block" />
+        </div>
+        <div class="col-md-12" id="result">
+        </div>
+        <div class="col-md-12 marginTop padingTop borderTop" id="ContainercalculatedOffer">
+            <div class="col-md-2">
+                <input type="button" id="btnDeleteProduct" class="btn btn-primary" value="حذف محصولات انتخابی از دسته محصولات پیشنهادی" />
+            </div>
+            <div class="col-md-10" id="loadingElementSubmit">
+                <img src="@Url.Content("~/Content/Images/Main/loadingAnimation.gif")" class="center-block" />
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+</div>
+
+@section Scripts
+{
+<script type="text/javascript" lang="en">
+    jQuery(document).ready(function () {
+        var arrayCheckBox = [];
+        $(document).on('change', '#result :checkbox', function () {
+            var checkBox = $('#result input:checkbox').length;
+            var checkBoxChecked = $('#result input:checkbox:checked').length;
+            var checkBoxUnChecked = checkBox - checkBoxChecked;
+
+
+            if ($(this).is(':checked')) {
+                arrayCheckBox.push($(this).attr('value').split('/')[0]);
+            } else {
+                //در اینجا باید آرایه هم پاس داده شود / grep
+                var IdProduct = $(this).attr('value').split('/')[0];
+                arrayCheckBox = jQuery.grep(arrayCheckBox, function (value) {
+                    return value != IdProduct;
+                });
+            }
+        });
+
+        $("#LoadingBefor").css({ 'display': 'none' });
+        jQuery('#btnDeleteProduct').add('#loadingElementSubmit').hide();
+
+        jQuery("#CategoryDropdown").change(function () {
+            $("#divLoadingsubCategory").css({ 'display': 'block' });
+            var id = $(this).find('option:selected').attr('value');
+            $("#Category_Id").val(id);
+            $("#SubCategoryDropdown").empty();
+            $("#document_company").fadeOut(600, function () {
+                $(this).empty().fadeIn(600);;
+            });
+
+            jQuery.getJSON("@Url.Action(actionName:MVC.admin.Combination.ActionNames.GetAllSubCategory,controllerName:MVC.admin.Combination.Name)", { Id: $("#Category_Id").val() }, function (data) {
+                if (data.length > 0)
+                    $("#SubCategoryDropdown").append($('<option></option>').attr("value", "0").text("یکی از تکنولوژی های توسعه را انتخاب نمایید"));
+                else
+                    $("#divLoadingsubCategory").css({ 'display': 'none' });
+                $("#SuMenuCategory").empty();
+                jQuery.each(data, function (i) {
+                    var option = $('<option></option>').attr("value", data[i].Id).text(data[i].Name);
+                    $("#SubCategoryDropdown").append(option);
+                    var subMenuCategory = "<li><a id=\"" + data[i].Id + "\"><i class=\"fa fa-folder-o\"></i>" + data[i].Name + "</a></li>";
+                    $("#SuMenuCategory").append(subMenuCategory);
+                });
+                $("#divLoadingsubCategory").css({ 'display': 'none' });
+            });
+        });
+
+        jQuery('#btnDeleteProduct').click(function () {
+
+            if (arrayCheckBox.length > 0) {
+                $('#loadingElementSubmit').show();
+                jQuery.get('@Url.Action(MVC.admin.Product.ActionNames.DeleteOfferProduct,MVC.admin.Product.Name)',
+                    { Ids: arrayCheckBox.toString() }, function (data) {
+                        $('#resultOperation').append(data);
+                        $('#ContainerOffer').hide();
+                        setTimeout(function () {
+                            location.reload();
+                        }, 10000);
+                    })
+            }
+            else
+                alert("شما آیتمی را برای حذف از دسته پیشنهادات انتخاب نکرده اید");
+        });
+
+        jQuery("#SubCategoryDropdown").change(function () {
+            var id = $(this).find('option:selected').attr('value');
+            $("#LoadingBefor").css({ 'display': 'block' });
+            $.ajax({
+                cache: false,
+                type: "GET",
+                url: "@Url.Action(MVC.admin.Product.ActionNames.DataTableChangeObcerProduct, MVC.admin.Product.Name)",
+                data: { id: id },
+                success: function (data) {
+
+                    $("#result").empty();
+                    $("#result").append(data);
+
+
+                    jQuery('#btnDeleteProduct').show();
+                    $("#LoadingBefor").css({ 'display': 'none' });
+
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    $("#LoadingBefor").css({ 'display': 'none' });
+                    alert('Failed to retrieve books.');
+                }
+            })
+        });
+    });
+</script>
+}

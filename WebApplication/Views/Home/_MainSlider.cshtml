@@ -1,0 +1,53 @@
+﻿@using eShop.WebApplication.DomainClasses.AppClasses
+@model List<Slider>
+
+
+@BundleConfig.AddStyles("~/Content/Slider/OneLevel",
+    "~/Content/Slider/normalize.css",
+    "~/Content/Slider/ideal-image-slider.css",
+    "~/Content/Slider/default.css")
+
+<div class="row img-rounded">
+    <div class="col-lg-12 BaseSliderImagePading img-rounded" style="padding:0;">
+        <div class="slide BaseSliderImagePading">
+            <div class="carousel-inner BaseSliderImagePading img-rounded">
+                <div id="slider" style="width:100% !important;" class="img-rounded">
+                    @for (int i = 0; i < Model.Count(); i++)
+                    {
+                        <a href="@Model[i].Address" class="img-rounded">
+                            <img src="~/Content/Images/Slider/@Model[i].Image" width="900" height="350" data-caption="#caption-@i" class="img-rounded" />
+                        </a>
+                    }
+                </div>
+                @for (int i = 0; i < Model.Count(); i++)
+                {
+                    if (Model[i].Explain != null && Model[i].Title != null)
+                    {
+                        <div id="caption-@i" style="display:none; float:right !important; ">
+                            <h4>
+                                @Model[i].Title
+                            </h4>
+                            <p>
+                                @Model[i].Explain
+                            </p>
+                            <p>
+                                مشاهده جزئات بیشتر این پکیج آموزشی
+                            </p>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+
+@BundleConfig.AddScripts("~/Scripts/Slider/OneLevel",
+    "~/Scripts/Slider/ideal-image-slider.js",
+    "~/Scripts/Slider/iis-captions.js")
+
+<script>
+    var slider = new IdealImageSlider.Slider('#slider');
+    slider.addCaptions();
+    slider.start();
+</script>

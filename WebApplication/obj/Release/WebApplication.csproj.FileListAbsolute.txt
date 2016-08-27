@@ -1,0 +1,605 @@
+K:\eShop\WebApplication\bin\WebApplication.dll.config
+K:\eShop\WebApplication\bin\WebApplication.dll
+K:\eShop\WebApplication\bin\WebApplication.pdb
+K:\eShop\WebApplication\bin\Antlr3.Runtime.dll
+K:\eShop\WebApplication\bin\DNTScheduler.dll
+K:\eShop\WebApplication\bin\DotNet.Highcharts.dll
+K:\eShop\WebApplication\bin\Effortless.Net.Encryption.dll
+K:\eShop\WebApplication\bin\Elmah.dll
+K:\eShop\WebApplication\bin\EntityFramework.dll
+K:\eShop\WebApplication\bin\EntityFramework.SqlServer.dll
+K:\eShop\WebApplication\bin\eShop.WebApplication.DataLayer.dll
+K:\eShop\WebApplication\bin\eShop.WebApplication.DomainClasses.dll
+K:\eShop\WebApplication\bin\eShop.WebApplication.ServiceLayer.dll
+K:\eShop\WebApplication\bin\Kendo.DynamicLinq.dll
+K:\eShop\WebApplication\bin\Microsoft.AspNet.Identity.Core.dll
+K:\eShop\WebApplication\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+K:\eShop\WebApplication\bin\Microsoft.AspNet.Identity.Owin.dll
+K:\eShop\WebApplication\bin\Microsoft.AspNet.SignalR.Core.dll
+K:\eShop\WebApplication\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+K:\eShop\WebApplication\bin\Microsoft.Owin.dll
+K:\eShop\WebApplication\bin\Microsoft.Owin.Host.SystemWeb.dll
+K:\eShop\WebApplication\bin\Microsoft.Owin.Security.Cookies.dll
+K:\eShop\WebApplication\bin\Microsoft.Owin.Security.dll
+K:\eShop\WebApplication\bin\Microsoft.Owin.Security.OAuth.dll
+K:\eShop\WebApplication\bin\Microsoft.Web.Infrastructure.dll
+K:\eShop\WebApplication\bin\Newtonsoft.Json.dll
+K:\eShop\WebApplication\bin\Owin.dll
+K:\eShop\WebApplication\bin\StructureMap.dll
+K:\eShop\WebApplication\bin\StructureMap.Net4.dll
+K:\eShop\WebApplication\bin\StructureMap.Web.dll
+K:\eShop\WebApplication\bin\System.Linq.Dynamic.dll
+K:\eShop\WebApplication\bin\System.Web.Helpers.dll
+K:\eShop\WebApplication\bin\System.Web.Mvc.dll
+K:\eShop\WebApplication\bin\System.Web.Optimization.dll
+K:\eShop\WebApplication\bin\System.Web.Razor.dll
+K:\eShop\WebApplication\bin\System.Web.WebPages.Deployment.dll
+K:\eShop\WebApplication\bin\System.Web.WebPages.dll
+K:\eShop\WebApplication\bin\System.Web.WebPages.Razor.dll
+K:\eShop\WebApplication\bin\T4MVCExtensions.dll
+K:\eShop\WebApplication\bin\WebGrease.dll
+K:\eShop\WebApplication\bin\eShop.WebApplication.DataLayer.pdb
+K:\eShop\WebApplication\bin\eShop.WebApplication.DomainClasses.pdb
+K:\eShop\WebApplication\bin\eShop.WebApplication.ServiceLayer.pdb
+K:\eShop\WebApplication\bin\Antlr3.Runtime.pdb
+K:\eShop\WebApplication\bin\EntityFramework.xml
+K:\eShop\WebApplication\bin\EntityFramework.SqlServer.xml
+K:\eShop\WebApplication\bin\Kendo.Mvc.xml
+K:\eShop\WebApplication\bin\Microsoft.AspNet.Identity.Core.xml
+K:\eShop\WebApplication\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+K:\eShop\WebApplication\bin\Microsoft.AspNet.Identity.Owin.xml
+K:\eShop\WebApplication\bin\Microsoft.AspNet.SignalR.Core.xml
+K:\eShop\WebApplication\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+K:\eShop\WebApplication\bin\Microsoft.Owin.xml
+K:\eShop\WebApplication\bin\Microsoft.Owin.Host.SystemWeb.xml
+K:\eShop\WebApplication\bin\Microsoft.Owin.Security.xml
+K:\eShop\WebApplication\bin\Microsoft.Owin.Security.Cookies.xml
+K:\eShop\WebApplication\bin\Microsoft.Owin.Security.OAuth.xml
+K:\eShop\WebApplication\bin\Newtonsoft.Json.xml
+K:\eShop\WebApplication\bin\StructureMap.pdb
+K:\eShop\WebApplication\bin\StructureMap.Net4.pdb
+K:\eShop\WebApplication\bin\StructureMap.Web.pdb
+K:\eShop\WebApplication\bin\System.Web.Helpers.xml
+K:\eShop\WebApplication\bin\System.Web.Mvc.xml
+K:\eShop\WebApplication\bin\System.Web.Optimization.xml
+K:\eShop\WebApplication\bin\System.Web.Razor.xml
+K:\eShop\WebApplication\bin\System.Web.WebPages.xml
+K:\eShop\WebApplication\bin\System.Web.WebPages.Deployment.xml
+K:\eShop\WebApplication\bin\System.Web.WebPages.Razor.xml
+K:\eShop\WebApplication\bin\bg-BG\Kendo.Mvc.resources.dll
+K:\eShop\WebApplication\bin\cs-CZ\Kendo.Mvc.resources.dll
+K:\eShop\WebApplication\bin\da-DK\Kendo.Mvc.resources.dll
+K:\eShop\WebApplication\bin\de-DE\Kendo.Mvc.resources.dll
+K:\eShop\WebApplication\bin\es-ES\Kendo.Mvc.resources.dll
+K:\eShop\WebApplication\bin\fr-FR\Kendo.Mvc.resources.dll
+K:\eShop\WebApplication\bin\it-IT\Kendo.Mvc.resources.dll
+K:\eShop\WebApplication\bin\nl-NL\Kendo.Mvc.resources.dll
+K:\eShop\WebApplication\bin\pl-PL\Kendo.Mvc.resources.dll
+K:\eShop\WebApplication\bin\pt-BR\Kendo.Mvc.resources.dll
+K:\eShop\WebApplication\bin\pt-PT\Kendo.Mvc.resources.dll
+K:\eShop\WebApplication\bin\ro-RO\Kendo.Mvc.resources.dll
+K:\eShop\WebApplication\bin\ru-RU\Kendo.Mvc.resources.dll
+K:\eShop\WebApplication\bin\sv-SE\Kendo.Mvc.resources.dll
+K:\eShop\WebApplication\bin\tr-TR\Kendo.Mvc.resources.dll
+K:\eShop\WebApplication\bin\uk-UA\Kendo.Mvc.resources.dll
+K:\eShop\WebApplication\bin\zh-CN\Kendo.Mvc.resources.dll
+K:\eShop\WebApplication\obj\Release\WebApplication.csprojResolveAssemblyReference.cache
+K:\eShop\WebApplication\obj\Release\WebApplication.dll
+K:\eShop\WebApplication\obj\Release\WebApplication.pdb
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\WebApplication.dll.config
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\WebApplication.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\WebApplication.pdb
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Antlr3.Runtime.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\DNTScheduler.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\DotNet.Highcharts.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Effortless.Net.Encryption.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Elmah.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\EntityFramework.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\EntityFramework.SqlServer.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\eShop.WebApplication.DataLayer.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\eShop.WebApplication.DomainClasses.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\eShop.WebApplication.ServiceLayer.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Kendo.DynamicLinq.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Microsoft.AspNet.SignalR.Core.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Microsoft.Owin.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Microsoft.Owin.Security.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Newtonsoft.Json.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Owin.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\StructureMap.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\StructureMap.Net4.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\StructureMap.Web.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\System.Linq.Dynamic.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\System.Web.Helpers.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\System.Web.Mvc.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\System.Web.Optimization.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\System.Web.Razor.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\System.Web.WebPages.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\System.Web.WebPages.Razor.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\T4MVCExtensions.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\WebGrease.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\eShop.WebApplication.DataLayer.pdb
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\eShop.WebApplication.DomainClasses.pdb
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\eShop.WebApplication.ServiceLayer.pdb
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Antlr3.Runtime.pdb
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\EntityFramework.xml
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\EntityFramework.SqlServer.xml
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Kendo.Mvc.xml
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Microsoft.Owin.xml
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Microsoft.Owin.Security.xml
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Newtonsoft.Json.xml
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\StructureMap.pdb
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\StructureMap.Net4.pdb
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\StructureMap.Web.pdb
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\System.Web.Helpers.xml
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\System.Web.Mvc.xml
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\System.Web.Optimization.xml
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\System.Web.Razor.xml
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\System.Web.WebPages.xml
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\System.Web.WebPages.Razor.xml
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\bg-BG\Kendo.Mvc.resources.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\cs-CZ\Kendo.Mvc.resources.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\da-DK\Kendo.Mvc.resources.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\de-DE\Kendo.Mvc.resources.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\es-ES\Kendo.Mvc.resources.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\fr-FR\Kendo.Mvc.resources.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\it-IT\Kendo.Mvc.resources.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\nl-NL\Kendo.Mvc.resources.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\pl-PL\Kendo.Mvc.resources.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\pt-BR\Kendo.Mvc.resources.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\pt-PT\Kendo.Mvc.resources.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\ro-RO\Kendo.Mvc.resources.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\ru-RU\Kendo.Mvc.resources.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\sv-SE\Kendo.Mvc.resources.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\tr-TR\Kendo.Mvc.resources.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\uk-UA\Kendo.Mvc.resources.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\zh-CN\Kendo.Mvc.resources.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\obj\Release\WebApplication.csprojResolveAssemblyReference.cache
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\obj\Release\WebApplication.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\obj\Release\WebApplication.pdb
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\ICSharpCode.SharpZipLib.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Lucene.Net.Contrib.Analyzers.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Lucene.Net.Contrib.Core.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Lucene.Net.Contrib.FastVectorHighlighter.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Lucene.Net.Contrib.Highlighter.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Lucene.Net.Contrib.Memory.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Lucene.Net.Contrib.Queries.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Lucene.Net.Contrib.Regex.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Lucene.Net.Contrib.SimpleFacetedSearch.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Lucene.Net.Contrib.Snowball.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Lucene.Net.Contrib.SpellChecker.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Lucene.Net.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Lucene.Net.pdb
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Lucene.Net.xml
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Lucene.Net.Contrib.Analyzers.pdb
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Lucene.Net.Contrib.Analyzers.xml
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Lucene.Net.Contrib.Core.pdb
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Lucene.Net.Contrib.Core.xml
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Lucene.Net.Contrib.FastVectorHighlighter.pdb
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Lucene.Net.Contrib.FastVectorHighlighter.xml
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Lucene.Net.Contrib.Highlighter.pdb
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Lucene.Net.Contrib.Highlighter.xml
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Lucene.Net.Contrib.Memory.pdb
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Lucene.Net.Contrib.Memory.xml
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Lucene.Net.Contrib.Queries.pdb
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Lucene.Net.Contrib.Queries.xml
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Lucene.Net.Contrib.Regex.pdb
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Lucene.Net.Contrib.Regex.xml
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Lucene.Net.Contrib.SimpleFacetedSearch.pdb
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Lucene.Net.Contrib.SimpleFacetedSearch.xml
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Lucene.Net.Contrib.Snowball.pdb
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Lucene.Net.Contrib.Snowball.xml
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Lucene.Net.Contrib.SpellChecker.pdb
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\Lucene.Net.Contrib.SpellChecker.xml
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\StructureMap.xml
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\StructureMap.Web.xml
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\System.Net.Http.Formatting.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\System.Web.Http.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\System.Web.Http.WebHost.dll
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\System.Net.Http.Formatting.xml
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\System.Web.Http.xml
+C:\Users\Abolfazl\Desktop\eShop\WebApplication\bin\System.Web.Http.WebHost.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\obj\Release\WebApplication.csprojResolveAssemblyReference.cache
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\obj\Release\WebApplication.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\obj\Release\WebApplication.pdb
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\WebApplication.dll.config
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\WebApplication.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\WebApplication.pdb
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Antlr3.Runtime.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\DotNet.Highcharts.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Effortless.Net.Encryption.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Elmah.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\EntityFramework.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\EntityFramework.SqlServer.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\eShop.WebApplication.DataLayer.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\eShop.WebApplication.DomainClasses.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\eShop.WebApplication.ServiceLayer.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\ICSharpCode.SharpZipLib.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Kendo.DynamicLinq.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Lucene.Net.Contrib.Analyzers.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Lucene.Net.Contrib.Core.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Lucene.Net.Contrib.FastVectorHighlighter.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Lucene.Net.Contrib.Highlighter.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Lucene.Net.Contrib.Memory.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Lucene.Net.Contrib.Queries.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Lucene.Net.Contrib.Regex.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Lucene.Net.Contrib.SimpleFacetedSearch.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Lucene.Net.Contrib.Snowball.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Lucene.Net.Contrib.SpellChecker.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Lucene.Net.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Microsoft.AspNet.Identity.Core.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Microsoft.AspNet.Identity.Owin.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Microsoft.AspNet.SignalR.Core.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Microsoft.Owin.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Microsoft.Owin.Host.SystemWeb.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Microsoft.Owin.Security.Cookies.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Microsoft.Owin.Security.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Microsoft.Owin.Security.OAuth.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Microsoft.Web.Infrastructure.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Newtonsoft.Json.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Owin.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\StructureMap.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\StructureMap.Net4.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\StructureMap.Web.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\System.Linq.Dynamic.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\System.Net.Http.Formatting.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\System.Web.Helpers.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\System.Web.Http.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\System.Web.Http.WebHost.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\System.Web.Mvc.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\System.Web.Optimization.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\System.Web.Razor.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\System.Web.WebPages.Deployment.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\System.Web.WebPages.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\System.Web.WebPages.Razor.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\T4MVCExtensions.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\WebGrease.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\eShop.WebApplication.DataLayer.pdb
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\eShop.WebApplication.DomainClasses.pdb
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\eShop.WebApplication.ServiceLayer.pdb
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Antlr3.Runtime.pdb
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\EntityFramework.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\EntityFramework.SqlServer.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Kendo.Mvc.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Lucene.Net.pdb
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Lucene.Net.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Lucene.Net.Contrib.Analyzers.pdb
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Lucene.Net.Contrib.Analyzers.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Lucene.Net.Contrib.Core.pdb
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Lucene.Net.Contrib.Core.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Lucene.Net.Contrib.FastVectorHighlighter.pdb
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Lucene.Net.Contrib.FastVectorHighlighter.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Lucene.Net.Contrib.Highlighter.pdb
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Lucene.Net.Contrib.Highlighter.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Lucene.Net.Contrib.Memory.pdb
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Lucene.Net.Contrib.Memory.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Lucene.Net.Contrib.Queries.pdb
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Lucene.Net.Contrib.Queries.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Lucene.Net.Contrib.Regex.pdb
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Lucene.Net.Contrib.Regex.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Lucene.Net.Contrib.SimpleFacetedSearch.pdb
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Lucene.Net.Contrib.SimpleFacetedSearch.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Lucene.Net.Contrib.Snowball.pdb
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Lucene.Net.Contrib.Snowball.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Lucene.Net.Contrib.SpellChecker.pdb
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Lucene.Net.Contrib.SpellChecker.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Microsoft.AspNet.Identity.Core.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Microsoft.AspNet.Identity.Owin.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Microsoft.AspNet.SignalR.Core.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Microsoft.Owin.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Microsoft.Owin.Host.SystemWeb.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Microsoft.Owin.Security.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Microsoft.Owin.Security.Cookies.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Microsoft.Owin.Security.OAuth.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\Newtonsoft.Json.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\StructureMap.pdb
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\StructureMap.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\StructureMap.Net4.pdb
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\StructureMap.Web.pdb
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\StructureMap.Web.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\System.Net.Http.Formatting.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\System.Web.Helpers.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\System.Web.Http.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\System.Web.Http.WebHost.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\System.Web.Mvc.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\System.Web.Optimization.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\System.Web.Razor.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\System.Web.WebPages.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\System.Web.WebPages.Deployment.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\System.Web.WebPages.Razor.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\bg-BG\Kendo.Mvc.resources.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\cs-CZ\Kendo.Mvc.resources.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\da-DK\Kendo.Mvc.resources.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\de-DE\Kendo.Mvc.resources.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\es-ES\Kendo.Mvc.resources.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\fr-FR\Kendo.Mvc.resources.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\it-IT\Kendo.Mvc.resources.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\nl-NL\Kendo.Mvc.resources.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\pl-PL\Kendo.Mvc.resources.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\pt-BR\Kendo.Mvc.resources.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\pt-PT\Kendo.Mvc.resources.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\ro-RO\Kendo.Mvc.resources.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\ru-RU\Kendo.Mvc.resources.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\sv-SE\Kendo.Mvc.resources.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\tr-TR\Kendo.Mvc.resources.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\uk-UA\Kendo.Mvc.resources.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication\bin\zh-CN\Kendo.Mvc.resources.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\WebApplication.dll.config
+I:\Roshanzamir's Project\eShop\WebApplication\bin\WebApplication.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\WebApplication.pdb
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Antlr3.Runtime.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\DotNet.Highcharts.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Effortless.Net.Encryption.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Elmah.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\EntityFramework.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\EntityFramework.SqlServer.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\eShop.WebApplication.DataLayer.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\eShop.WebApplication.DomainClasses.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\eShop.WebApplication.ServiceLayer.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\ICSharpCode.SharpZipLib.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Kendo.DynamicLinq.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Lucene.Net.Contrib.Analyzers.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Lucene.Net.Contrib.Core.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Lucene.Net.Contrib.FastVectorHighlighter.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Lucene.Net.Contrib.Highlighter.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Lucene.Net.Contrib.Memory.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Lucene.Net.Contrib.Queries.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Lucene.Net.Contrib.Regex.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Lucene.Net.Contrib.SimpleFacetedSearch.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Lucene.Net.Contrib.Snowball.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Lucene.Net.Contrib.SpellChecker.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Lucene.Net.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Microsoft.AspNet.Identity.Core.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Microsoft.AspNet.Identity.Owin.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Microsoft.AspNet.SignalR.Core.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Microsoft.Owin.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Microsoft.Owin.Host.SystemWeb.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Microsoft.Owin.Security.Cookies.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Microsoft.Owin.Security.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Microsoft.Owin.Security.OAuth.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Microsoft.Web.Infrastructure.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Newtonsoft.Json.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Owin.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\StructureMap.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\StructureMap.Net4.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\StructureMap.Web.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\System.Linq.Dynamic.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\System.Net.Http.Formatting.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\System.Web.Helpers.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\System.Web.Http.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\System.Web.Http.WebHost.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\System.Web.Mvc.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\System.Web.Optimization.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\System.Web.Razor.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\System.Web.WebPages.Deployment.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\System.Web.WebPages.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\System.Web.WebPages.Razor.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\T4MVCExtensions.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\WebGrease.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\eShop.WebApplication.DataLayer.pdb
+I:\Roshanzamir's Project\eShop\WebApplication\bin\eShop.WebApplication.DomainClasses.pdb
+I:\Roshanzamir's Project\eShop\WebApplication\bin\eShop.WebApplication.ServiceLayer.pdb
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Antlr3.Runtime.pdb
+I:\Roshanzamir's Project\eShop\WebApplication\bin\EntityFramework.xml
+I:\Roshanzamir's Project\eShop\WebApplication\bin\EntityFramework.SqlServer.xml
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Kendo.Mvc.xml
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Lucene.Net.pdb
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Lucene.Net.xml
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Lucene.Net.Contrib.Analyzers.pdb
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Lucene.Net.Contrib.Analyzers.xml
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Lucene.Net.Contrib.Core.pdb
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Lucene.Net.Contrib.Core.xml
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Lucene.Net.Contrib.FastVectorHighlighter.pdb
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Lucene.Net.Contrib.FastVectorHighlighter.xml
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Lucene.Net.Contrib.Highlighter.pdb
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Lucene.Net.Contrib.Highlighter.xml
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Lucene.Net.Contrib.Memory.pdb
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Lucene.Net.Contrib.Memory.xml
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Lucene.Net.Contrib.Queries.pdb
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Lucene.Net.Contrib.Queries.xml
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Lucene.Net.Contrib.Regex.pdb
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Lucene.Net.Contrib.Regex.xml
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Lucene.Net.Contrib.SimpleFacetedSearch.pdb
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Lucene.Net.Contrib.SimpleFacetedSearch.xml
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Lucene.Net.Contrib.Snowball.pdb
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Lucene.Net.Contrib.Snowball.xml
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Lucene.Net.Contrib.SpellChecker.pdb
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Lucene.Net.Contrib.SpellChecker.xml
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Microsoft.AspNet.Identity.Core.xml
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Microsoft.AspNet.Identity.Owin.xml
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Microsoft.AspNet.SignalR.Core.xml
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Microsoft.Owin.xml
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Microsoft.Owin.Host.SystemWeb.xml
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Microsoft.Owin.Security.xml
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Microsoft.Owin.Security.Cookies.xml
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Microsoft.Owin.Security.OAuth.xml
+I:\Roshanzamir's Project\eShop\WebApplication\bin\Newtonsoft.Json.xml
+I:\Roshanzamir's Project\eShop\WebApplication\bin\StructureMap.pdb
+I:\Roshanzamir's Project\eShop\WebApplication\bin\StructureMap.xml
+I:\Roshanzamir's Project\eShop\WebApplication\bin\StructureMap.Net4.pdb
+I:\Roshanzamir's Project\eShop\WebApplication\bin\StructureMap.Web.pdb
+I:\Roshanzamir's Project\eShop\WebApplication\bin\StructureMap.Web.xml
+I:\Roshanzamir's Project\eShop\WebApplication\bin\System.Net.Http.Formatting.xml
+I:\Roshanzamir's Project\eShop\WebApplication\bin\System.Web.Helpers.xml
+I:\Roshanzamir's Project\eShop\WebApplication\bin\System.Web.Http.xml
+I:\Roshanzamir's Project\eShop\WebApplication\bin\System.Web.Http.WebHost.xml
+I:\Roshanzamir's Project\eShop\WebApplication\bin\System.Web.Mvc.xml
+I:\Roshanzamir's Project\eShop\WebApplication\bin\System.Web.Optimization.xml
+I:\Roshanzamir's Project\eShop\WebApplication\bin\System.Web.Razor.xml
+I:\Roshanzamir's Project\eShop\WebApplication\bin\System.Web.WebPages.xml
+I:\Roshanzamir's Project\eShop\WebApplication\bin\System.Web.WebPages.Deployment.xml
+I:\Roshanzamir's Project\eShop\WebApplication\bin\System.Web.WebPages.Razor.xml
+I:\Roshanzamir's Project\eShop\WebApplication\bin\bg-BG\Kendo.Mvc.resources.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\cs-CZ\Kendo.Mvc.resources.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\da-DK\Kendo.Mvc.resources.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\de-DE\Kendo.Mvc.resources.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\es-ES\Kendo.Mvc.resources.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\fr-FR\Kendo.Mvc.resources.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\it-IT\Kendo.Mvc.resources.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\nl-NL\Kendo.Mvc.resources.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\pl-PL\Kendo.Mvc.resources.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\pt-BR\Kendo.Mvc.resources.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\pt-PT\Kendo.Mvc.resources.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\ro-RO\Kendo.Mvc.resources.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\ru-RU\Kendo.Mvc.resources.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\sv-SE\Kendo.Mvc.resources.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\tr-TR\Kendo.Mvc.resources.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\uk-UA\Kendo.Mvc.resources.dll
+I:\Roshanzamir's Project\eShop\WebApplication\bin\zh-CN\Kendo.Mvc.resources.dll
+I:\Roshanzamir's Project\eShop\WebApplication\obj\Release\WebApplication.csprojResolveAssemblyReference.cache
+I:\Roshanzamir's Project\eShop\WebApplication\obj\Release\WebApplication.dll
+I:\Roshanzamir's Project\eShop\WebApplication\obj\Release\WebApplication.pdb
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\WebApplication.dll.config
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\WebApplication.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\WebApplication.pdb
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Antlr3.Runtime.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\DotNet.Highcharts.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Effortless.Net.Encryption.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Elmah.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\EntityFramework.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\EntityFramework.SqlServer.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\eShop.WebApplication.DataLayer.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\eShop.WebApplication.DomainClasses.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\eShop.WebApplication.ServiceLayer.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\ICSharpCode.SharpZipLib.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Kendo.DynamicLinq.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Lucene.Net.Contrib.Analyzers.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Lucene.Net.Contrib.Core.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Lucene.Net.Contrib.FastVectorHighlighter.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Lucene.Net.Contrib.Highlighter.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Lucene.Net.Contrib.Memory.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Lucene.Net.Contrib.Queries.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Lucene.Net.Contrib.Regex.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Lucene.Net.Contrib.SimpleFacetedSearch.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Lucene.Net.Contrib.Snowball.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Lucene.Net.Contrib.SpellChecker.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Lucene.Net.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Microsoft.AspNet.SignalR.Core.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Microsoft.Owin.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Microsoft.Owin.Security.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Newtonsoft.Json.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Owin.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\StructureMap.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\StructureMap.Net4.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\StructureMap.Web.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\System.Linq.Dynamic.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\System.Net.Http.Formatting.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\System.Web.Helpers.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\System.Web.Http.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\System.Web.Http.WebHost.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\System.Web.Mvc.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\System.Web.Optimization.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\System.Web.Razor.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\System.Web.WebPages.Deployment.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\System.Web.WebPages.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\System.Web.WebPages.Razor.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\T4MVCExtensions.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\WebGrease.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\eShop.WebApplication.DataLayer.pdb
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\eShop.WebApplication.DomainClasses.pdb
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\eShop.WebApplication.ServiceLayer.pdb
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Antlr3.Runtime.pdb
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\EntityFramework.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\EntityFramework.SqlServer.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Kendo.Mvc.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Lucene.Net.pdb
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Lucene.Net.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Lucene.Net.Contrib.Analyzers.pdb
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Lucene.Net.Contrib.Analyzers.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Lucene.Net.Contrib.Core.pdb
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Lucene.Net.Contrib.Core.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Lucene.Net.Contrib.FastVectorHighlighter.pdb
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Lucene.Net.Contrib.FastVectorHighlighter.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Lucene.Net.Contrib.Highlighter.pdb
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Lucene.Net.Contrib.Highlighter.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Lucene.Net.Contrib.Memory.pdb
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Lucene.Net.Contrib.Memory.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Lucene.Net.Contrib.Queries.pdb
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Lucene.Net.Contrib.Queries.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Lucene.Net.Contrib.Regex.pdb
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Lucene.Net.Contrib.Regex.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Lucene.Net.Contrib.SimpleFacetedSearch.pdb
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Lucene.Net.Contrib.SimpleFacetedSearch.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Lucene.Net.Contrib.Snowball.pdb
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Lucene.Net.Contrib.Snowball.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Lucene.Net.Contrib.SpellChecker.pdb
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Lucene.Net.Contrib.SpellChecker.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Microsoft.Owin.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Microsoft.Owin.Security.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\Newtonsoft.Json.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\StructureMap.pdb
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\StructureMap.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\StructureMap.Net4.pdb
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\StructureMap.Web.pdb
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\StructureMap.Web.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\System.Net.Http.Formatting.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\System.Web.Helpers.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\System.Web.Http.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\System.Web.Http.WebHost.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\System.Web.Mvc.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\System.Web.Optimization.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\System.Web.Razor.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\System.Web.WebPages.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\System.Web.WebPages.Deployment.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\System.Web.WebPages.Razor.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\bg-BG\Kendo.Mvc.resources.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\cs-CZ\Kendo.Mvc.resources.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\da-DK\Kendo.Mvc.resources.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\de-DE\Kendo.Mvc.resources.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\es-ES\Kendo.Mvc.resources.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\fr-FR\Kendo.Mvc.resources.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\it-IT\Kendo.Mvc.resources.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\nl-NL\Kendo.Mvc.resources.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\pl-PL\Kendo.Mvc.resources.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\pt-BR\Kendo.Mvc.resources.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\pt-PT\Kendo.Mvc.resources.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\ro-RO\Kendo.Mvc.resources.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\ru-RU\Kendo.Mvc.resources.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\sv-SE\Kendo.Mvc.resources.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\tr-TR\Kendo.Mvc.resources.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\uk-UA\Kendo.Mvc.resources.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\bin\zh-CN\Kendo.Mvc.resources.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\obj\Release\WebApplication.csprojResolveAssemblyReference.cache
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\obj\Release\WebApplication.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\WebApplication\obj\Release\WebApplication.pdb

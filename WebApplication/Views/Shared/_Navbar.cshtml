@@ -1,0 +1,200 @@
+﻿@using Microsoft.AspNet.Identity
+@using eShop.WebApplication.DomainClasses.ViewModelClasses
+@model List<CategoryMenuViewModel>
+
+
+<div class="nav navbar-fixed-top navbar-Top-User">
+    <div class="navbar-top navbar-Top-User-BackGround">
+        <div class="container">
+            <div class="row navbar-Top-User-Row">
+                <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12 pull-left">
+                    <div class="pull-left">
+                        <ul class="userMenu">
+                            <li>
+                                <a href="@Url.Action(MVC.ContactUs.ActionNames.Index, MVC.ContactUs.Name)">
+                                    <span class="hidden-xs">ارتباط با ما</span>
+                                    <span>
+                                        <i class="glyphicon glyphicon-info-sign hide visible-xs"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="hidden-xs">
+                                        500010006060600
+                                        <i class="glyphicon glyphicon-envelope"></i>
+                                    </span>
+                                    <span>
+                                        <i class="glyphicon glyphicon-envelope hide visible-xs">
+                                        </i>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12 no-margin no-padding">
+                    <div class="pull-right">
+                        <ul class="userMenu">
+                            @if (Request.IsAuthenticated)
+                            {
+                                using (Html.BeginForm(MVC.Account.ActionNames.LogOff, MVC.Account.Name, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <li style="margin-right:-5px;">
+                                        <a href="@Url.Action(MVC.Account.ActionNames.Management,MVC.Account.Name)">
+                                            <span class="hidden-xs">
+                                                @string.Format("سلام {0}", User.Identity.GetUserName())
+                                            </span>
+                                            <i class="glyphicon glyphicon-user hide visible-xs"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action(MVC.Account.ActionNames.Management,MVC.Account.Name)">
+                                            <span class="hidden-xs">مدیریت حساب کاربری</span>
+                                            <i class="glyphicon glyphicon-info-sign hide visible-xs "></i>
+                                        </a>
+                                    </li>
+                                    if (User.IsInRole("private") || User.IsInRole("protect"))
+                                    {
+                                        <li>
+                                            <a href="@Url.Action(MVC.admin.Home.ActionNames.index, MVC.admin.Home.Name, new { area="admin" })">
+                                                <span class="hidden-xs">مدیریت اطلاعات سایت</span>
+                                                <i class="glyphicon glyphicon-import hide visible-xs"></i>
+                                            </a>
+                                        </li>
+                                    }
+                                    <li>
+                                        <a class="decoration_a" href="@Url.Action(MVC.Account.ActionNames.ChangePassword,MVC.Account.Name)">
+                                            <span class="hidden-xs">تغیر رمز عبور</span>
+                                            <i class="glyphicon glyphicon-import hide visible-xs"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:document.getElementById('logoutForm').submit()">
+                                            <span class="hidden-xs">خروج از سیستم</span>
+                                            <i class="glyphicon glyphicon-log-out hide visible-xs "></i>
+                                        </a>
+                                    </li>
+                                }
+                            }
+                            else
+                            {
+                                <li style="margin-right:-5px;">
+                                    <a href="@Url.Action(MVC.Account.ActionNames.Register, MVC.Account.Name)">
+                                        <span class="hidden-xs">ایجاد حساب کاربری</span>
+                                        <i class="glyphicon glyphicon-user hide visible-xs"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action(MVC.Layout.ActionNames.LoginSite, MVC.Layout.Name)" data-toggle="modal" class="modal-link" data-target="#ModalLoadPartial" id="loadPartial">
+                                        <span class="hidden-xs">ورود به سیستم</span>
+                                        <i class="glyphicon glyphicon-log-in hide visible-xs "></i>
+                                    </a>
+                                </li>
+                            }
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container navbar-Content-Base">
+        <div class="clearfix"></div>
+        <div class="navbar navbar-default yamm navbar-Content-Base-Default" style="border:none;">
+            @*<p class="navbar-text navbar-left">Programin Web   SMS : 500010006060600</p>*@
+            <div class="navbar-header">
+                <button type="button" data-toggle="collapse" data-target="#navbar-collapse"
+                        class="navbar-toggle" style="color:black">
+                    <span class="icon-bar">
+                    </span><span class="icon-bar">
+                    </span><span class="icon-bar">
+                    </span>
+                </button>
+            </div>
+            <div id="navbar-collapse" class="navbar-collapse collapse" style=" width:100%; padding-right:0 !important;">
+                <ul class="nav navbar-nav ulBase" style="font:normal 15px eramFont;">
+                    <li>
+                        <a href="/">
+                            صفحه اصلی
+                        </a>
+                    </li>
+
+                    <li class="dropdown yamm-fw">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">تکنولوژی ها و محصولات<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+
+                            <div class="container">
+                                <li class="grid-demo">
+                                    <div class="row OriginalMenu">
+
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-lg-11 col-md-10 col-sm-9 col-xs-11 ExpalinLastMenuTop">
+                                                    بهترین تکنولوژی ها از آن مایکروسافت است
+                                                    (یک روز بدون یادگیری یک روز از دست رفته است)
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-lg-11 col-md-10 col-sm-9 col-xs-11 ExpalinLastMenu">
+                                                    در این بخش تمامی گروها و زیر گروهای محصولات فروشگاه نمایش داده شده است
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @foreach (var item in Model)
+                                        {
+                                            <div class="col-sm-2">
+                                                <ul class="UnderMenu">
+                                                    <li>
+                                                        <p>
+                                                            <strong>@item.Name</strong>
+                                                        </p>
+                                                    </li>
+                                                    @foreach (var technology in item.Category)
+                                                    {
+                                                        <li>
+                                                            <a class="directFeed" href="@Url.Action(MVC.Rss.ActionNames.Tag, MVC.Rss.Name, new { name = technology.Name.Replace(" ", string.Empty) })">
+                                                                <img src="~/Content/Images/Main/feed.png" />
+                                                            </a>
+                                                            @Html.RouteLink(technology.Name.ToString(), "Category", new { categoryId = technology.Id, categoryName = UrlExtensions.ResolveTitleForUrl(technology.Name) }, new { @class = "directCategory" })
+                                                        </li>
+                                                    }
+                                                </ul>
+                                            </div>
+                                        }
+                                        <div class="col-sm-2">
+                                            <div style="width:170px;height:350px; background-color:#f8f8f8;" class="img-responsive">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </li>
+                            </div>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="@Url.Action(MVC.Company.ActionNames.List, MVC.Company.Name)">
+                            کمپانی های سازنده
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="@Url.Action(MVC.ContactUs.ActionNames.Index, MVC.ContactUs.Name)">
+                            تماس با ما
+                        </a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        
+    </div>
+
+</div>

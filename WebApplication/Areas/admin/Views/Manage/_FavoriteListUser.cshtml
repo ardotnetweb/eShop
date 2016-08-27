@@ -1,0 +1,43 @@
+﻿@using eShop.WebApplication.DomainClasses.ViewModelClasses
+
+@model List<ProductShowProfileViewModel>
+
+<div id="table-Content">
+    <table class="table tableCategory">
+        <thead>
+            <tr>
+                <th>
+                    نام محصول
+                </th>
+                <th>
+                    دسته گروه آموزشی
+                </th>
+                <th>
+                    کمپانی سازنده
+                </th>
+                <th>
+                    تاریخ درج محصول
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink(linkText: item.Name,actionName: MVC.admin.Product.ActionNames.DetailsProduct,controllerName: MVC.admin.Product.Name,routeValues: new { Id = item.Id },htmlAttributes: new { @class = "decoration_a" })
+                    </td>
+                    <td>
+                        @item.Category_Name
+                    </td>
+                    <td>
+                        @Html.ActionLink(linkText: item.Company_Name,actionName: MVC.admin.Company.ActionNames.DetailsCompany,controllerName: MVC.admin.Company.Name,routeValues: new { Id = item.Id },htmlAttributes: new { @class = "decoration_a" })
+                    </td>
+                    <td>
+                        @Html.DisplayFor(x => item.Date, "DisplayPersianDatePicker")
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

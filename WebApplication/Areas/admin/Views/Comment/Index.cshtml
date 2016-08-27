@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "index";
+    Layout = "~/Areas/admin/Views/Shared/_Main.cshtml";
+}
+@using eShop.WebApplication.DomainClasses.ViewModelClasses
+@model List<CommentViewModel>
+@{
+    var loadInfoUrl = Url.Action(actionName: MVC.admin.Comment.ActionNames.PagedIndex,
+        controllerName: MVC.admin.Comment.Name);
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <input type="hidden" value="1" id="Pag
+               
+               ber" name="PageNumber" />
+        <div class="btn-dark" style="padding:3px 6px;">
+            <h4>
+                لیست کلی کامنت های محصولات
+            </h4>
+        </div>
+
+        <ul class="media-list msg-list" id="MoreInfoDiv">
+            @{ Html.RenderPartial(partialViewName: MVC.admin.Comment.Views._DataComment, model: Model); }
+        </ul>
+
+        <div class="row controlitembutton">
+            <div class="controlItemButtonInnerDiv">
+                <div class="col-md-10 borderLeft">
+                    <input id="moreInfoButton" type="button" class="btn btn-primary btn-block" value="موارد بیشتر" />
+
+                </div>
+                <div class="col-md-2 center-block controlDisplay" id="ProgressDiv" align="center">
+                    <img src="@Url.Content("~/Content/Images/Main/loadingAnimation.gif")" />
+                </div>
+
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#moreInfoButton").InfiniteScroll({
+                moreInfoDiv: '#MoreInfoDiv',
+                progressDiv: '#ProgressDiv',
+                loadInfoUrl: '@loadInfoUrl',
+                loginUrl: '/login',
+                errorHandler: function () {
+                    alert('خطایی رخ داده است');
+                },
+                completeHandler: function () {
+                    $("#PageNumber").val(parseInt($("#PageNumber").val()) + 1);
+                    // اگر قرار است روی اطلاعات نمایش داده شده پردازش ثانوی صورت گیرد
+                },
+                noMoreInfoHandler: function () {
+                    //alert('اطلاعات بیشتری یافت نشد');
+                    $("#moreInfoButton").css("display", "none");
+                }
+            });
+        });
+    </script>
+}

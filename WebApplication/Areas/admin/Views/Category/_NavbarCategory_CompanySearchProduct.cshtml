@@ -1,0 +1,33 @@
+﻿@using eShop.WebApplication.DomainClasses.ViewModelClasses
+
+@model ClasseCategory_ProductSearchViewModel
+
+@using (Ajax.BeginForm(actionName: MVC.admin.Product.ActionNames.DataProductFirstLoadSearch, controllerName: MVC.admin.Product.Name, ajaxOptions: new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.Replace, LoadingElementId = "divLoadingSearch", UpdateTargetId = "table-Content" }))
+{
+    <div class="row">
+        <div class="col-sm-3">
+            @Html.DropDownListFor(x => x.Category_Id,
+                                (IEnumerable<SelectListItem>)ViewBag.Categories,
+                                "گروه آموزشی",
+               new { @class = "form-control controlFocus selected outlineBox" })
+        </div>
+        <div class="col-sm-3">
+            @Html.DropDownListFor(x => x.Company_Id,
+                                (IEnumerable<SelectListItem>)ViewBag.Companies,
+                                "کمپانی",
+                  new { @class = "form-control controlFocus selected outlineBox" })
+        </div>
+        <div class="col-sm-5">
+            @Html.TextBoxFor(x => x.Term, new { @class = "form-control controlFocus outlineBox", placeholder = "نام محصول را تایپ نمایید" })
+        </div>
+        <div class="col-sm-1">
+            <button type="submit" class="btn btn-default outlineBox">
+                <span class="glyphicon glyphicon-search"></span>
+            </button>
+        </div>
+    </div>
+}
+
+
+
+

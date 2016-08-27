@@ -1,0 +1,72 @@
+﻿@{
+    ViewBag.Title = "CreateProvince";
+    Layout = "~/Areas/admin/Views/Shared/_Main.cshtml";
+}
+@using WebApplication.ViewModels
+@model ProvinceAddViewModel
+<div id="result">
+
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="divLoadingContent" id="divLoadingContent">
+            <img src="@Url.Content("~/Content/Images/Main/loadningMeidum.GIF")" />
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-btns">
+                    <a href="" class="panel-minimize tooltips" data-toggle="tooltip" title="Minimize Panel"><i class="fa fa-minus"></i></a>
+                    <a href="" class="panel-close tooltips" data-toggle="tooltip" title="Close Panel"><i class="fa fa-times"></i></a>
+                </div>
+                <h4 class="panel-title">ایجاد استان جدید</h4>
+                <p>
+                    شما در این قسمت می توانید اقدام به ایجاد کردن استان جدید نمایید
+                </p>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="breadcrumb" id="navBarMenu">
+                        <li>
+                            <a href="@Url.Action(MVC.admin.Province.ActionNames.CreateProvince,MVC.admin.Province.Name)">ایجاد استان جدید</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action(MVC.admin.Province.ActionNames.Index,MVC.admin.Province.Name)">مشاده لیست استان ها</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            @using (Ajax.BeginForm(actionName: MVC.admin.Province.ActionNames.CreateProvince, controllerName: MVC.admin.Province.Name, routeValues: null, ajaxOptions: new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "result", LoadingElementId = "divLoadingContent" }, htmlAttributes: null))
+            {
+                @Html.AntiForgeryToken()
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>
+                                اضافه کردن استان جدید
+                            </h3>
+                            <hr />
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-2">
+                                نام استان
+                            </div>
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(x => x.Name, new { @class = "form-control controlFocus", autocomplete = "off" })
+                                @Html.ValidationMessageFor(x => x.Name, "",new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-sm-9 col-sm-offset-3">
+                            <input type="submit" value="ذخیره استان جدید" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

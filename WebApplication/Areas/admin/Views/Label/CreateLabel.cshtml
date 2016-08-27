@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "createCategory";
+    Layout = "~/Areas/admin/Views/Shared/_Main.cshtml";
+}
+
+@using eShop.WebApplication.DomainClasses.AppClasses
+
+@model Label
+
+
+<div id="result">
+
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="divLoadingContent" id="divLoadingContent">
+            <img src="@Url.Content("~/Content/Images/Main/725.GIF")" />
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 style="font-size:17px;">ایجاد برچسب جدید</h4>
+                <p style="font-size:15px;">
+                    در این بخش شما می توانید یک برچسب جدید را تعریف نمایید
+                </p>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="breadcrumb" id="navBarMenu">
+                        <li>
+                            <a href="@Url.Action(MVC.admin.Label.ActionNames.CreateLabel, MVC.admin.Label.Name)">ایجاد برچسب حدید</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action(MVC.admin.Label.ActionNames.Index, MVC.admin.Label.Name)">لیست برچسب ها</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            @using (Ajax.BeginForm(actionName: MVC.admin.Label.ActionNames.CreateLabel,controllerName: MVC.admin.Label.Name,ajaxOptions: new AjaxOptions{HttpMethod = "POST",InsertionMode = InsertionMode.Replace,LoadingElementId = "divLoading",UpdateTargetId = "result"}))
+            {
+
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@Html.LabelFor(x => x.Name)</label>
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(x => x.Name, new { @class = "form-control controlFocus" })
+                                @Html.ValidationMessageFor(x => x.Name, "",new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-sm-9 col-sm-offset-3">
+                            <input type="submit" value="ذخیره سازی" class="btn btn-primary" />
+                            <input type="reset" value="خالی کردن باکس ها" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

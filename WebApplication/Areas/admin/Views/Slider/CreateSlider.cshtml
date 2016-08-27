@@ -1,0 +1,95 @@
+﻿@{
+    ViewBag.Title = "createSlider";
+    Layout = "~/Areas/admin/Views/Shared/_Main.cshtml";
+}
+
+@using eShop.WebApplication.DomainClasses.ViewModelClasses
+@model ShowSliderViewModel
+<script src="http://localhost:4014/Scripts/js/FileUpload.js"></script>
+<div id="result">
+    @TempData["createSlider"]
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="divLoadingContent" id="divLoadingContent">
+            <img src="@Url.Content("~/Content/Images/Main/725.GIF")" />
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="fontSizeLarge">آپلود کردن تصاویر اسلایدر در صفحه نخست</h4>
+                <p class="fontSizeLargeTitle">
+                    در این قسمت شما می تواینید تصاویر مر بوط به اسلایدر در صفحه نخست را آپلود نمایید دقت کنید که بهترین سایز برای تصاویر آپلودی باید با عرض 350 و طول 900 باشد در غیر این صورت سیستم به صورت اتوماتیک سایز تصاویر را به این عرض در می آورد و در این 
+                    بین ممکن است کیفیت تصاویر از دست برود پس در زمان آپلود تصاویر به سایز آن دقت کنید
+                </p>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="breadcrumb" id="navBarMenu">
+                        <li>
+                            <a href="@Url.Action(MVC.admin.Slider.ActionNames.Index,MVC.admin.Slider.Name)">مشاهده تصاویر آپلود شده اسلایدر</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action(MVC.admin.Slider.ActionNames.DeleteImageSlider,MVC.admin.Slider.Name)">حذف تصاویر اسلایدر</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            @using (Html.BeginForm(actionName: MVC.admin.Slider.ActionNames.CreateSlider,controllerName: MVC.admin.Slider.Name,method: FormMethod.Post,htmlAttributes: new { enctype = "multipart/form-data" }))
+            {
+                <div class="panel-body">
+                    <div class="row">
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@Html.LabelFor(x => x.TitleSlider)</label>
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(x => x.TitleSlider, new { @class = "form-control controlFocus" })
+                                @Html.ValidationMessageFor(x => x.TitleSlider, "",new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@Html.LabelFor(x => x.AddressSlider)</label>
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(x => x.AddressSlider, new { @class = "form-control controlFocus" })
+                                @Html.ValidationMessageFor(x => x.AddressSlider, "",new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@Html.LabelFor(x => x.ExplainSlider)</label>
+                            <div class="col-sm-9">
+                                @Html.TextAreaFor(x => x.ExplainSlider, new { @class = "form-control controlFocus", style = "max-height:100px;min-height:100px;" })
+                                @Html.ValidationMessageFor(x => x.ExplainSlider, "",new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@Html.LabelFor(x => x.ImageSlider)</label>
+                            <div class="col-sm-2">
+                                @Html.TextBoxFor(x => x.ImageSlider, new { type = "file", @class = "form-control", id = "controlUpload", name = "controlUpload", onchange = "ShowPreviewImageUpload(this);" })
+                            </div>
+                            <div class="col-sm-1" id="fileUpload">
+                                <input type="button" id="calerImageUploaded" class="btn btn-primary"
+                                       value="پاکسازی کنترل بارگذاری" />
+                            </div>
+                            <div class="col-sm-6">
+                                <img id="impPrev" class="ControlimgPrev img-circle" />
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-sm-9 col-sm-offset-3">
+                            <input type="submit" value="ذخیره سازی" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

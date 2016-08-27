@@ -1,0 +1,37 @@
+﻿@using eShop.WebApplication.DomainClasses.ViewModelClasses
+@model List<PackageShowViewModel>
+
+@if (Model.Count() > 0)
+{
+    <div class="row img-rounded Package">
+
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <header style="">
+                    <h5>
+                        <a href="@Url.RouteUrl("DetailsPackage", new { packageId = item.Id, packageName = UrlExtensions.ResolveTitleForUrl(item.Name) })">
+                        @item.Name
+                        </a>
+                    </h5>
+                </header>
+                <div class="PackageExplain">
+                    @if (item.Explain.Length < 85)
+                    {
+                        <span>
+                            @Html.Raw(item.Explain)
+                        </span>
+                    }
+                    else
+                    {
+                        <span>
+                            @Html.Raw(string.Format("{0}", item.Explain.Substring(0, 65)));
+                        </span>
+                    }
+                    <br /><br />
+                    <img src="~/Content/Images/Package/@item.Image" style="border:1px solid #eee;" />
+                </div>
+            </div>
+        }
+    </div>
+}

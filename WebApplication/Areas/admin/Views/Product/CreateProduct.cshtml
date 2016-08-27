@@ -1,0 +1,443 @@
+﻿@{
+    Layout = "~/Areas/admin/Views/Shared/_Main.cshtml";
+}
+
+@using eShop.WebApplication.DomainClasses.ViewModelClasses
+@model ProductViewModel
+
+
+
+
+<div id="result">
+    @Html.Raw(TempData["createProduct"])
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="divLoadingContent" id="divLoadingContent">
+            <img src="@Url.Content("~/Content/Images/Main/725.GIF")" />
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="fontSizeLarge">ایجاد محصول آموزشی جدید</h4>
+                <p class="fontSizeLargeTitle">
+                    شما در این قسمت می توانید محصول آموزشی خود را بر اساس کمپانی سازنده و یک سری برچسب و ساعات آموزش و ...
+                    ایجاد نمایید در ضمن هر محصول آموزشی می تواند 6 تصویر اضافه داشته باشد و وجود تصویر اصلی برای محصول آموزشی الزامی است
+                </p>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="breadcrumb" id="navBarMenu">
+                        <li>
+                            <a href="@Url.Action(MVC.admin.Product.ActionNames.CreateProduct, MVC.admin.Product.Name)">ایجاد محصول آموزشی جدید</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action(MVC.admin.Product.ActionNames.Index,MVC.admin.Product.Name)"> نمایش کلیه محصولات آموزشی</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action(MVC.admin.Product.ActionNames.OfferProduct,MVC.admin.Product.Name)">ایجاد لیست محصولات پیشنهادی</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action(MVC.admin.Product.ActionNames.ChageObsverOfferProduct, MVC.admin.Product.Name)">حذف محصولات از دسته پیشنهاد ها</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            @using (Html.BeginForm(actionName: MVC.admin.Product.ActionNames.CreateProduct,controllerName: MVC.admin.Product.Name,method: FormMethod.Post,htmlAttributes: new { enctype = "multipart/form-data" }))
+            {
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@Html.LabelFor(x => x.Name)</label>
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(x => x.Name, new { @class = "form-control controlFocus" })
+                                @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger", autocomplete = "off" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@Html.LabelFor(x => x.Time)</label>
+                            <div class="col-sm-3">
+                                @Html.TextBoxFor(x => x.Time, new { @class = "form-control controlFocus", autocomplete = "off", id = "txtcontainerTimes", style = "font-size:19px;" })
+                                @Html.ValidationMessageFor(x => x.Time, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-sm-1 center-block" style="padding-top:3px;">
+                                <button id="moreInfprmationTimes">
+                                    <span class="glyphicon glyphicon-cog" style="padding-top:3px;"></span>
+                                </button>
+                            </div>
+                            <div id="contaniermoreInfprmationTimes">
+                                <label class="col-sm-1">ساعت : </label>
+                                <div class="col-sm-1">
+                                    <input type="text" maxlength="3" id="txtHour" class="form-control controlFocus" autocomplete="off" onkeypress="return isNumberKey(event)" />
+                                </div>
+                                <label class="col-sm-1">دقیقه : </label>
+                                <div class="col-md-1">
+                                    <input type="text" maxlength="2" id="txtMinutes" class="form-control controlFocus" autocomplete="off" onkeypress="return isNumberKey(event)" />
+                                </div>
+                                <div class="col-sm-1">
+                                    <input type="button" id="submitTimes" value="تایید" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@Html.LabelFor(x => x.Price)</label>
+                            <div class="col-sm-3">
+                                @Html.TextBoxFor(x => x.Price, new { @class = "form-control controlFocus", id = "txtOriginalPrice", maxlength = "6", style = "font-size:19px;", autocomplete = "off", onkeypress = "return isNumberKey(event)" })
+                                @Html.ValidationMessageFor(x => x.Price, "", new { @class = "text-danger" })
+                            </div>
+                            <label class="col-sm-3 control-label">@Html.LabelFor(x => x.Date)</label>
+                            <div class="col-sm-3">
+                                @Html.EditorFor(x => x.Date, "PersianDatePicker")
+                                @Html.ValidationMessageFor(x => x.Date, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@Html.LabelFor(x => x.Image)</label>
+                            <div class="col-sm-2">
+                                @Html.TextBoxFor(x => x.Image, new { type = "file", @class = "form-control", id = "controlUpload", name = "controlUpload", onchange = "ShowPreviewImageUpload(this);" })
+                                @Html.ValidationMessageFor(x => x.Image, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-sm-1" id="fileUpload">
+                                <input type="button" id="calerImageUploaded" class="btn btn-primary"
+                                       value="پاکسازی کنترل بارگذاری" />
+                            </div>
+                            <div class="col-sm-6">
+                                <img id="impPrev" class="img-circle" style="max-width:120px;max-height:120px;" />
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="position:relative">
+                            <label class="col-sm-3 control-label">
+                                @Html.LabelFor(x => x.Category_Id)
+                            </label>
+                            <div class="col-sm-9">
+                                @Html.DropDownListFor(x => x.Category_Id, ViewBag.Categories as SelectList, "یکی از گروه های آموزشی  را انتخاب نمایید", new { @class = "form-control controlFocus dropdownGroup chosen-rtl" })
+                                @Html.ValidationMessageFor(x => x.Category_Id, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">
+                                @Html.LabelFor(x => x.Company_Id)
+                            </label>
+                            <div class="col-sm-9">
+                                @Html.DropDownListFor(x => x.Company_Id, (IEnumerable<SelectListItem>)ViewBag.Companies, "یکی از کمپانی ها را انتخاب نمایید", new { @class = "form-control controlFocus dropdownGCompany chosen-rtl" })
+                                @Html.ValidationMessageFor(x => x.Company_Id, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@Html.LabelFor(x => x.Labels)</label>
+                            <div class="col-sm-9">
+                                @Html.ListBoxFor(x => x.Labels, ViewBag.Labels as MultiSelectList, new { @class = "form-control controlFocus listBoxLabels chosen-rtl" })
+                                @Html.ValidationMessageFor(x => x.Labels, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@Html.LabelFor(x => x.Explain)</label>
+                            <div class="col-sm-9">
+                                @Html.TextAreaFor(x => x.Explain, new { @class = "form-control controlFocus" })
+                                @Html.ValidationMessageFor(x => x.Explain, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">بارگذاری تصاویر بیشتر</label>
+                            <div class="col-sm-9">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"></label>
+                            <div class="col-sm-9">
+                                <br />
+                                <hr />
+                                <div class="col-sm-4 marginButtonContainerUpload">
+                                    <div class="containerFileUpload">
+                                        <input type="file" name="ImageProductAdditinal" class="selected" onchange="ShowPreviewBackground(this)" />
+                                    </div>
+                                    <div class="containerFileUploadImg">
+                                        <img />
+                                    </div>
+                                    <div class="spanBlock">
+                                        <br />
+                                        <span>
+                                            سایز تصویر :
+                                        </span>
+                                        <span>
+
+                                        </span>
+                                        <br />
+                                        <span>
+                                            حجم تصویر :
+                                        </span>
+                                        <span>
+
+                                        </span>
+                                        <br />
+                                        <span>
+                                            نوع تصویر:
+                                        </span>
+                                        <span>
+
+                                        </span>
+                                    </div>
+                                    <br />
+                                    <div class="divbtnUploadImage">
+                                        <input type="button" class="btn btn-danger" id="btnUploadImage" value="حذف تصویر" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 marginButtonContainerUpload">
+                                    <div class="containerFileUpload">
+                                        <input type="file" name="ImageProductAdditinal" class="selected" onchange="ShowPreviewBackground(this)" />
+                                    </div>
+                                    <div class="containerFileUploadImg">
+                                        <img />
+                                    </div>
+                                    <div class="spanBlock">
+                                        <br />
+                                        <span>
+                                            سایز تصویر :
+                                        </span>
+                                        <span>
+
+                                        </span>
+                                        <br />
+                                        <span>
+                                            حجم تصویر :
+                                        </span>
+                                        <span>
+
+                                        </span>
+                                        <br />
+                                        <span>
+                                            نوع تصویر:
+                                        </span>
+                                        <span>
+
+                                        </span>
+                                    </div>
+                                    <br />
+                                    <div class="divbtnUploadImage">
+                                        <input type="button" class="btn btn-danger" id="btnUploadImage" value="حذف تصویر" />
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4 marginButtonContainerUpload">
+                                    <div class="containerFileUpload">
+                                        <input type="file" name="ImageProductAdditinal" class="selected" onchange="ShowPreviewBackground(this)" />
+                                    </div>
+                                    <div class="containerFileUploadImg">
+                                        <img />
+                                    </div>
+                                    <div class="spanBlock">
+                                        <br />
+                                        <span>
+                                            سایز تصویر :
+                                        </span>
+                                        <span>
+
+                                        </span>
+                                        <br />
+                                        <span>
+                                            حجم تصویر :
+                                        </span>
+                                        <span>
+
+                                        </span>
+                                        <br />
+                                        <span>
+                                            نوع تصویر:
+                                        </span>
+                                        <span>
+
+                                        </span>
+                                    </div>
+                                    <br />
+                                    <div class="divbtnUploadImage">
+                                        <input type="button" class="btn btn-danger" id="btnUploadImage" value="حذف تصویر" />
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4 marginButtonContainerUpload">
+                                    <div class="containerFileUpload">
+                                        <input type="file" name="ImageProductAdditinal" class="selected" onchange="ShowPreviewBackground(this)" />
+                                    </div>
+                                    <div class="containerFileUploadImg">
+                                        <img />
+                                    </div>
+                                    <div class="spanBlock">
+                                        <br />
+                                        <span>
+                                            سایز تصویر :
+                                        </span>
+                                        <span>
+
+                                        </span>
+                                        <br />
+                                        <span>
+                                            حجم تصویر :
+                                        </span>
+                                        <span>
+
+                                        </span>
+                                        <br />
+                                        <span>
+                                            نوع تصویر:
+                                        </span>
+                                        <span>
+
+                                        </span>
+                                    </div>
+                                    <br />
+                                    <div class="divbtnUploadImage">
+                                        <input type="button" class="btn btn-danger" id="btnUploadImage" value="حذف تصویر" />
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4 marginButtonContainerUpload">
+                                    <div class="containerFileUpload">
+                                        <input type="file" name="ImageProductAdditinal" class="selected" onchange="ShowPreviewBackground(this)" />
+                                    </div>
+                                    <div class="containerFileUploadImg">
+                                        <img />
+                                    </div>
+                                    <div class="spanBlock">
+                                        <br />
+                                        <span>
+                                            سایز تصویر :
+                                        </span>
+                                        <span>
+
+                                        </span>
+                                        <br />
+                                        <span>
+                                            حجم تصویر :
+                                        </span>
+                                        <span>
+
+                                        </span>
+                                        <br />
+                                        <span>
+                                            نوع تصویر:
+                                        </span>
+                                        <span>
+
+                                        </span>
+                                    </div>
+                                    <br />
+                                    <div class="divbtnUploadImage">
+                                        <input type="button" class="btn btn-danger" id="btnUploadImage" value="حذف تصویر" />
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4 marginButtonContainerUpload">
+                                    <div class="containerFileUpload">
+                                        <input type="file" name="ImageProductAdditinal" class="selected" onchange="ShowPreviewBackground(this)" />
+                                    </div>
+                                    <div class="containerFileUploadImg">
+                                        <img />
+                                    </div>
+                                    <div class="spanBlock">
+                                        <br />
+                                        <span>
+                                            سایز تصویر :
+                                        </span>
+                                        <span>
+
+                                        </span>
+                                        <br />
+                                        <span>
+                                            حجم تصویر :
+                                        </span>
+                                        <span>
+
+                                        </span>
+                                        <br />
+                                        <span>
+                                            نوع تصویر:
+                                        </span>
+                                        <span>
+
+                                        </span>
+                                    </div>
+                                    <br />
+                                    <div class="divbtnUploadImage">
+                                        <input type="button" class="btn btn-danger" id="btnUploadImage" value="حذف تصویر" />
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-sm-9 col-sm-offset-3">
+                            <input type="submit" value="ذخیره سازی" class="btn btn-primary" />
+                            <input type="reset" value="خالی کردن باکس ها" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+</div>
+
+
+@section Scripts
+{
+    <script type="text/javascript" lang="en">
+
+        $(".dropdownGroup").chosen({
+            width: "100%",
+            dataplaceholder: "لطفا تعدادی برچسب انتخاب نمایید"
+        }).css({ height: "60px" });
+
+        $(".dropdownGCompany").chosen({
+            width: "100%",
+            dataplaceholder: "لطفا تعدادی برچسب انتخاب نمایید"
+        }).css({ height: "60px" });
+
+        $(".listBoxLabels").chosen({
+            width: "100%",
+            dataplaceholder: "لطفا تعدادی برچسب انتخاب نمایید"
+        });
+
+        $(function () {
+            $('#Explain').editable({
+                buttons: ["bold", "italic", "underline", "strikeThrough", "fontFamily",
+                    "fontSize", "color", "formatBlock", "align", "insertOrderedList",
+                    "insertUnorderedList", "outdent", "indent", "selectAll", "createLink",
+                    "insertImage", "insertVideo", "undo", "redo", "html", "save", "inserthorizontalrule"],
+                inlineMode: false,
+                inverseSkin: true,
+                preloaderSrc: '@Url.Content("~/Content/Images/Main/preloader.gif")',
+                allowedImageTypes: ["jpeg", "jpg", "png"],
+                height: 300,
+                language: "fa",
+                direction: "rtl",
+                fontList: ["Tahoma, Geneva", "Arial, Helvetica", "Impact, Charcoal"],
+                autosave: false,
+                autosaveInterval: 2500,
+                saveURL: '@Url.Action("FroalaUploadImage", "product")',
+                saveParams: { postId: "123" },
+                spellcheck: true,
+                plainPaste: true,
+                imageButtons: ["removeImage", "replaceImage", "linkImage"],
+                borderColor: '#00008b',
+                imageUploadURL: '@Url.Action("FroalaUploadImage", "product")',
+                imageParams: { postId: "123" },
+                enableScript: false
+            });
+        });
+    </script>
+}
+

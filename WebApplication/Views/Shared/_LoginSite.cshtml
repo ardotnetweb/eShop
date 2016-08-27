@@ -1,0 +1,91 @@
+﻿@model eShop.WebApplication.DomainClasses.IdentityViewModel.LoginViewModel
+
+@BundleConfig.AddScripts("~/Scripts/LevelScripts",
+                             "~/Scripts/jquery.validate.min.js",
+                             "~/Scripts/jquery.unobtrusive-ajax.min.js",
+                             "~/Scripts/jquery.validate.unobtrusive.js")
+
+
+
+
+<div class="containerLogin" id="ModalLoadPartial">
+    <div class="HeaderContainerLogin">
+        <span style="font-size:17px;">
+            ورود به فناوران اطلاعات ارم وب
+        </span>
+    </div>
+    <br />
+    <div class="divLoading" id="divLoadingLoginPartial">
+        <img src="~/Content/Images/Main/loadningSamall.GIF" />
+    </div>
+    <div class="bodyContainerLogin">
+        @using (Ajax.BeginForm(actionName: MVC.Account.ActionNames.Login,
+            controllerName: MVC.Account.Name,
+            routeValues: new { ReturnUrl = ViewBag.ReturnUrl },
+            ajaxOptions: new AjaxOptions
+            {
+                HttpMethod = "POST",
+                InsertionMode = InsertionMode.Replace,
+                LoadingElementId = "divLoadingLoginPartial",
+                OnSuccess = "OnSuccessLoginPartial"
+            },
+            htmlAttributes: null))
+        {
+            @Html.AntiForgeryToken()
+            <p>رایا نامه : </p>
+            <p>
+                @Html.TextBoxFor(x => x.Email, new { @class = "form-control col-md-4 controlFocus" })
+                @Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger" })
+            </p>
+            <p>رمز عبور: </p>
+            <p>
+                @Html.TextBoxFor(x => x.Password, new { @class = "form-control col-md-4 controlFocus", type = "password" })
+                @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger" })
+            </p>
+            <p>
+                !<div style="">
+                    <div class="checkbox">
+                        <label>
+                            @Html.CheckBoxFor(x => x.RememberMe)
+                            مرا به یاد داشته باش !
+                        </label>
+                    </div>
+                </div>
+            </p>
+
+            <p>
+                <input type="submit" class="btn btn-primary" style="width:100%; margin-top:10px;" value="ورود به فناوران اطلاعات ارم وب"
+                       onclick="$.validator.unobtrusive.parse($('form'));" />
+            </p>
+        }
+
+        <div id="resultOperationLoginPartial">
+        </div>
+    </div>
+
+    <br />
+    <div class="form-group">
+        <div id="resultOperationLoginPartial">
+
+        </div>
+    </div>
+    <div class="FooterContainerLogin">
+        <span>
+            <a class="a_redirect" href="@Url.Action(MVC.Account.ActionNames.Register, MVC.Account.Name)">می خواهم یک حساب کاربری در فناوران اطلاعات ارم وب ایجاد کنم</a>
+        </span>
+        <div>
+            <a class="a_redirect" href="@Url.Action(MVC.Account.ActionNames.ForgotPassword, MVC.Account.Name)">رمز عبور خود را فراموش کرده ام</a>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" lang="en">
+
+    function OnSuccessLoginPartial(data) {
+        if (data.Status != true) {
+            $('#resultOperationLoginPartial').empty().append(data.Result);
+        } else {
+            window.location.replace("http://localhost:19375" + data.Redirect);
+        }
+    };
+
+</script>

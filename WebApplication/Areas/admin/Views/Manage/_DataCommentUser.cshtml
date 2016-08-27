@@ -1,0 +1,54 @@
+﻿@using eShop.WebApplication.DomainClasses.ViewModelClasses
+@model List<CommentViewModel>
+
+@for (int i = 0; i < Model.Count; i++)
+{
+    var highlight = " ";
+    if (!Model[i].DisplayStatus)
+    {
+        highlight = "highlighted";
+    }
+    <li class="@MvcHtmlString.Create("media "+highlight)">
+        <div class="ckbox ckbox-primary pull-left">
+            @if (!Model[i].DisplayStatus)
+            {
+                <input type="checkbox" id="@MvcHtmlString.Create("checkBox" + @i)" disabled>
+                <label for="@MvcHtmlString.Create("checkBox" + @i)"></label>
+            }
+            else
+            {
+                <input type="checkbox" id="@MvcHtmlString.Create("checkBox" + @i)" disabled checked>
+                <label for="@MvcHtmlString.Create("checkBox" + @i)"></label>
+            }
+        </div>
+        <div class="media-body">
+            <div class="pull-right media-option">
+                <i class="fa fa-paperclip mr5"></i>
+                <small>@Model[i].DateTime</small>
+                <a href=""><i class="fa fa-star"></i></a>
+                <div class="btn-group">
+                    <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-cog"></i>
+                    </a>
+                    <ul class="dropdown-menu pull-right" role="menu">
+                        <li>
+                            @Html.ActionLink(linkText: "پاسخ به کامنت",actionName: MVC.admin.Comment.ActionNames.ResponseComment,controllerName: MVC.admin.Comment.Name,routeValues: new { Id = Model[i].Id },htmlAttributes: null)
+                        </li>
+                        <li>
+                            @Html.ActionLink(linkText: "ویرایش کامنت",actionName: MVC.admin.Comment.ActionNames.UpdateComment,controllerName: MVC.admin.Comment.Name,routeValues: new { Id = Model[i].Id },htmlAttributes: null)
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            @Html.ActionLink(linkText: "اطلاعات بیشتر",actionName: MVC.admin.Comment.ActionNames.ResponseComment,controllerName: MVC.admin.Comment.Name,routeValues: new { Id = Model[i].Id },htmlAttributes: null)
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <h3 class="sender">@Model[i].UserName</h3>
+            <p>
+                @Html.Raw(Model[i].Explain)
+            </p>
+        </div>
+    </li>
+}
+

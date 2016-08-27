@@ -1,0 +1,214 @@
+﻿@using eShop.WebApplication.DomainClasses.ViewModelClasses
+@model SaleViewModel
+
+@{
+    ViewBag.Title = "DetailsSale";
+    Layout = "~/Areas/admin/Views/Shared/_Main.cshtml";
+}
+
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="divLoadingContent" id="divLoadingContent">
+            <img src="@Url.Content("~/Content/Images/Main/Loadnig.GIF")" />
+        </div>
+        <div class="panel panel-default">
+
+            <div class="panel-heading">
+                <h4 class="fontSizeLarge">مشاهده جزئیات سفارش </h4>
+                <p class="fontSizeLargeTitle">
+                    در این بخش جزئیات سفارش به همراه امکان تائید سفارش ارسال کد رهگیری و مشاهده محصولات سفارش امکان پذیر است لطفا قبل از تائید سفار دقت لازمه صورت گیرد زیرا بعد از تائید سفارش امکان غیر فعال سازی آن وجود ندارد
+                </p>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="breadcrumb" id="navBarMenu">
+                        <li>
+                            <a href="#">لیست کلیه سفارشات سیستم تائید شده و تائید نشده ها</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <div>
+                                <div class="col-sm-2">
+                                </div>
+                                @if (Model.StatusUltimate)
+                                {
+                                    <div class="col-sm-2 distanceDiv pull-right" style="pointer-events:none;">
+                                        <a href="@Url.Action(MVC.admin.Sale.ActionNames.ConfirmSale, MVC.admin.Sale.Name, new { Sale_Id = Model.Id, User_Id = Model.User_Id })" data-toggle="modal" class="modal-link btn btn-default pull-left" data-target="#ModalLoadPartial" id="loadPartialConfirmationSale">
+                                            تائید مرسوله
+                                        </a>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="col-sm-2 distanceDiv pull-right">
+                                        <a href="@Url.Action(MVC.admin.Sale.ActionNames.ConfirmSale, MVC.admin.Sale.Name, new { Sale_Id = Model.Id, User_Id = Model.User_Id })" data-toggle="modal" class="modal-link btn btn-default pull-left" data-target="#ModalLoadPartial" id="loadPartialConfirmationSale">
+                                            تائید مرسوله
+                                        </a>
+                                    </div>
+                                }
+                                <div class="col-sm-2 distanceDiv pull-right">
+                                    <a href="@Url.Action(MVC.admin.Sale.ActionNames.SendTrackingNumber, MVC.admin.Sale.Name, new { Sale_Id = Model.Id, User_Id = Model.User_Id })" data-toggle="modal" class="modal-link btn btn-default pull-left" data-target="#ModalLoadPartial" id="loadPartialTrackingNumberSale">
+                                        کد رهگیری پستی
+                                    </a>
+
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+
+                            <div style="border-bottom:2px solid #eee; width:100%; height:2px; margin-bottom:10px;"></div>
+
+                            <div>
+                                <div class="col-sm-2 distanceDiv">
+                                    کد رهگیری سیتمی
+                                </div>
+                                <div class="col-sm-4 splitdiv distanceDiv">
+                                    <span>
+                                        <label class="greencolor">
+                                            @MvcHtmlString.Create("EWTR-" + (Model.Id * 237 + 2323) + "").ToString()
+                                        </label>
+                                    </span>
+                                </div>
+                                <div class="col-sm-2 distanceDiv">
+                                    تاریخ
+                                </div>
+                                <div class="col-sm-4 splitdiv distanceDiv">
+                                    @Html.DisplayFor(x => Model.Date, "DisplayPersianDatePicker")
+                                </div>
+                            </div>
+                            <div>
+                                <div class="col-sm-2 distanceDiv">
+                                    قیمت
+                                </div>
+                                <div class="col-sm-4 splitdiv distanceDiv">
+                                    @Model.Price
+                                    <span>تومان</span>
+
+                                </div>
+                                <div class="col-sm-2 distanceDiv">
+                                    وضعیت پرداخت
+                                </div>
+                                <div class="col-sm-4 splitdiv distanceDiv">
+                                    @Model.StatusTypePay
+                                </div>
+                            </div>
+                            <div>
+                                <div class="col-sm-2 distanceDiv">
+                                    نام کاربر
+                                </div>
+                                <div class="col-sm-4 splitdiv distanceDiv">
+                                    @Model.FLName
+                                </div>
+                                <div class="col-sm-2 distanceDiv">
+                                    وضعیت ارسال
+                                </div>
+                                <div class="col-sm-4 splitdiv distanceDiv">
+                                    @if (Model.StatusSend)
+                                    { <span class="greencolor">
+                                        بسته ارسال شده است
+                                    </span> }
+                                    else
+                                    {
+                                        <span class="graycolor">
+                                            بسته ارسال نشده است
+                                        </span>
+                                    }
+                                </div>
+                            </div>
+                            <div>
+                                <div class="col-sm-2 distanceDiv">
+                                    هزینه پست
+                                </div>
+                                <div class="col-sm-4 splitdiv distanceDiv">
+                                    @Model.Postage
+                                    <span>تومان</span>
+
+                                </div>
+                                <div class="col-sm-2 distanceDiv">
+                                    وضعیت تائید محصول
+                                </div>
+                                <div class="col-sm-4 splitdiv distanceDiv">
+                                    @if (Model.StatusUltimate)
+                                    { <span class="greencolor">محصول مورد تائید قرار گرفت</span> }
+                                    else
+                                    {
+                                        <span class="graycolor">
+                                            محصول هنوز مورد تائید قرار نگرفته است
+                                        </span>
+                                    }
+                                </div>
+                            </div>
+                            <div>
+                                <div class="col-sm-2 distanceDiv">
+                                    کد رهگیری پستی
+                                </div>
+                                <div class="col-sm-4 splitdiv distanceDiv">
+                                    @if (Model.TrackingNumber != null)
+                                    {
+                                        <span class="greencolor">
+                                            @Model.TrackingNumber.ToString()
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="graycolor">هنوز مرسوله به پست تحویل داده نشده است</span>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <p style="text-align:center; font:normal 18px eramFont;">
+                    مشاهده محصولات سفارش
+                </p>
+                <div style="width:100%; height:1px; background-color:#eee; margin-bottom:20px;"></div>
+                <br />
+
+                <div class="row" id="DestinationOrderDetails">
+                    <div style="text-align:center; float:none; margin:10px auto;">
+                        <img src="@Url.Content("~/Content/Images/Main/loadingAnimation.gif")" />
+                    </div>
+                </div>
+                <br />
+                <div id="resultRemove">
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-sm-9 col-sm-offset-3">
+                        @Ajax.ActionLink(linkText: "حذف سفارش",actionName: MVC.admin.Sale.ActionNames.DeleteSale,controllerName: MVC.admin.Sale.Name,routeValues: new { Id = Model.Id },ajaxOptions: new AjaxOptions{HttpMethod = "POST",OnSuccess = "OnSuccessRemoveSale",InsertionMode = InsertionMode.Replace,LoadingElementId = "divLoadingContent"},htmlAttributes: new { @class = "btn btn-primary mr5" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+<script type="text/javascript" lang="en">
+    function OnSuccessRemoveSale(data) {
+        $('#resultRemove').empty().append(data);
+        setTimeout(function () {
+            window.location.reload();
+        }, 5000);
+    };
+    $(document).ready(function () {
+        $.get('@Url.Action(MVC.admin.Order.ActionNames.GetDataOrder,MVC.admin.Order.Name)', { id: '@Model.Id' }, function (data) {
+            $('#DestinationOrderDetails').empty().append(data);
+        });
+    });
+</script>
+
+}

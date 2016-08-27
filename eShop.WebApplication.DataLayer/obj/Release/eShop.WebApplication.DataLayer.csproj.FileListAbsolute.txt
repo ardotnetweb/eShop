@@ -1,0 +1,86 @@
+K:\eShop\eShop.WebApplication.DataLayer\bin\Release\eShop.WebApplication.DataLayer.dll.config
+K:\eShop\eShop.WebApplication.DataLayer\bin\Release\eShop.WebApplication.DataLayer.dll
+K:\eShop\eShop.WebApplication.DataLayer\bin\Release\eShop.WebApplication.DataLayer.pdb
+K:\eShop\eShop.WebApplication.DataLayer\bin\Release\EntityFramework.dll
+K:\eShop\eShop.WebApplication.DataLayer\bin\Release\EntityFramework.SqlServer.dll
+K:\eShop\eShop.WebApplication.DataLayer\bin\Release\eShop.WebApplication.DomainClasses.dll
+K:\eShop\eShop.WebApplication.DataLayer\bin\Release\Microsoft.AspNet.Identity.Core.dll
+K:\eShop\eShop.WebApplication.DataLayer\bin\Release\Microsoft.AspNet.Identity.EntityFramework.dll
+K:\eShop\eShop.WebApplication.DataLayer\bin\Release\eShop.WebApplication.DomainClasses.pdb
+K:\eShop\eShop.WebApplication.DataLayer\bin\Release\EntityFramework.xml
+K:\eShop\eShop.WebApplication.DataLayer\bin\Release\EntityFramework.SqlServer.xml
+K:\eShop\eShop.WebApplication.DataLayer\bin\Release\Microsoft.AspNet.Identity.Core.xml
+K:\eShop\eShop.WebApplication.DataLayer\bin\Release\Microsoft.AspNet.Identity.EntityFramework.xml
+K:\eShop\eShop.WebApplication.DataLayer\obj\Release\eShop.WebApplication.DataLayer.csprojResolveAssemblyReference.cache
+K:\eShop\eShop.WebApplication.DataLayer\obj\Release\eShop.WebApplication.DataLayer.dll
+K:\eShop\eShop.WebApplication.DataLayer\obj\Release\eShop.WebApplication.DataLayer.pdb
+C:\Users\Abolfazl\Desktop\eShop\eShop.WebApplication.DataLayer\bin\Release\eShop.WebApplication.DataLayer.dll.config
+C:\Users\Abolfazl\Desktop\eShop\eShop.WebApplication.DataLayer\bin\Release\eShop.WebApplication.DataLayer.dll
+C:\Users\Abolfazl\Desktop\eShop\eShop.WebApplication.DataLayer\bin\Release\eShop.WebApplication.DataLayer.pdb
+C:\Users\Abolfazl\Desktop\eShop\eShop.WebApplication.DataLayer\bin\Release\EntityFramework.dll
+C:\Users\Abolfazl\Desktop\eShop\eShop.WebApplication.DataLayer\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\Abolfazl\Desktop\eShop\eShop.WebApplication.DataLayer\bin\Release\eShop.WebApplication.DomainClasses.dll
+C:\Users\Abolfazl\Desktop\eShop\eShop.WebApplication.DataLayer\bin\Release\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Abolfazl\Desktop\eShop\eShop.WebApplication.DataLayer\bin\Release\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Abolfazl\Desktop\eShop\eShop.WebApplication.DataLayer\bin\Release\eShop.WebApplication.DomainClasses.pdb
+C:\Users\Abolfazl\Desktop\eShop\eShop.WebApplication.DataLayer\bin\Release\EntityFramework.xml
+C:\Users\Abolfazl\Desktop\eShop\eShop.WebApplication.DataLayer\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\Abolfazl\Desktop\eShop\eShop.WebApplication.DataLayer\bin\Release\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Abolfazl\Desktop\eShop\eShop.WebApplication.DataLayer\bin\Release\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Abolfazl\Desktop\eShop\eShop.WebApplication.DataLayer\obj\Release\eShop.WebApplication.DataLayer.csprojResolveAssemblyReference.cache
+C:\Users\Abolfazl\Desktop\eShop\eShop.WebApplication.DataLayer\obj\Release\eShop.WebApplication.DataLayer.dll
+C:\Users\Abolfazl\Desktop\eShop\eShop.WebApplication.DataLayer\obj\Release\eShop.WebApplication.DataLayer.pdb
+I:\sample\sample\abofazl's  project\eramweb\eShop\eShop.WebApplication.DataLayer\bin\Release\eShop.WebApplication.DataLayer.dll.config
+I:\sample\sample\abofazl's  project\eramweb\eShop\eShop.WebApplication.DataLayer\bin\Release\eShop.WebApplication.DataLayer.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\eShop.WebApplication.DataLayer\bin\Release\eShop.WebApplication.DataLayer.pdb
+I:\sample\sample\abofazl's  project\eramweb\eShop\eShop.WebApplication.DataLayer\bin\Release\EntityFramework.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\eShop.WebApplication.DataLayer\bin\Release\EntityFramework.SqlServer.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\eShop.WebApplication.DataLayer\bin\Release\eShop.WebApplication.DomainClasses.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\eShop.WebApplication.DataLayer\bin\Release\Microsoft.AspNet.Identity.Core.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\eShop.WebApplication.DataLayer\bin\Release\Microsoft.AspNet.Identity.EntityFramework.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\eShop.WebApplication.DataLayer\bin\Release\eShop.WebApplication.DomainClasses.pdb
+I:\sample\sample\abofazl's  project\eramweb\eShop\eShop.WebApplication.DataLayer\bin\Release\EntityFramework.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\eShop.WebApplication.DataLayer\bin\Release\EntityFramework.SqlServer.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\eShop.WebApplication.DataLayer\bin\Release\Microsoft.AspNet.Identity.Core.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\eShop.WebApplication.DataLayer\bin\Release\Microsoft.AspNet.Identity.EntityFramework.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\eShop.WebApplication.DataLayer\obj\Release\eShop.WebApplication.DataLayer.csprojResolveAssemblyReference.cache
+I:\sample\sample\abofazl's  project\eramweb\eShop\eShop.WebApplication.DataLayer\obj\Release\eShop.WebApplication.DataLayer.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\eShop.WebApplication.DataLayer\obj\Release\eShop.WebApplication.DataLayer.pdb
+I:\sample\sample\abofazl's  project\eramweb\eShop\eShop.WebApplication.DataLayer\bin\Release\System.Web.Mvc.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\eShop.WebApplication.DataLayer\bin\Release\System.Web.Razor.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\eShop.WebApplication.DataLayer\bin\Release\System.Web.WebPages.Razor.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\eShop.WebApplication.DataLayer\bin\Release\System.Web.WebPages.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\eShop.WebApplication.DataLayer\bin\Release\Microsoft.Web.Infrastructure.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\eShop.WebApplication.DataLayer\bin\Release\System.Web.WebPages.Deployment.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\eShop.WebApplication.DataLayer\bin\Release\System.Web.Mvc.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\eShop.WebApplication.DataLayer\bin\Release\System.Web.Razor.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\eShop.WebApplication.DataLayer\bin\Release\System.Web.WebPages.Razor.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\eShop.WebApplication.DataLayer\bin\Release\System.Web.WebPages.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\eShop.WebApplication.DataLayer\bin\Release\System.Web.WebPages.Deployment.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\eShop.WebApplication.DataLayer\bin\Release\eShop.WebApplication.DataLayer.dll.config
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\eShop.WebApplication.DataLayer\bin\Release\eShop.WebApplication.DataLayer.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\eShop.WebApplication.DataLayer\bin\Release\eShop.WebApplication.DataLayer.pdb
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\eShop.WebApplication.DataLayer\bin\Release\EntityFramework.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\eShop.WebApplication.DataLayer\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\eShop.WebApplication.DataLayer\bin\Release\eShop.WebApplication.DomainClasses.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\eShop.WebApplication.DataLayer\bin\Release\Microsoft.AspNet.Identity.Core.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\eShop.WebApplication.DataLayer\bin\Release\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\eShop.WebApplication.DataLayer\bin\Release\System.Web.Mvc.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\eShop.WebApplication.DataLayer\bin\Release\System.Web.Razor.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\eShop.WebApplication.DataLayer\bin\Release\System.Web.WebPages.Razor.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\eShop.WebApplication.DataLayer\bin\Release\System.Web.WebPages.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\eShop.WebApplication.DataLayer\bin\Release\Microsoft.Web.Infrastructure.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\eShop.WebApplication.DataLayer\bin\Release\System.Web.WebPages.Deployment.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\eShop.WebApplication.DataLayer\bin\Release\eShop.WebApplication.DomainClasses.pdb
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\eShop.WebApplication.DataLayer\bin\Release\EntityFramework.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\eShop.WebApplication.DataLayer\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\eShop.WebApplication.DataLayer\bin\Release\Microsoft.AspNet.Identity.Core.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\eShop.WebApplication.DataLayer\bin\Release\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\eShop.WebApplication.DataLayer\bin\Release\System.Web.Mvc.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\eShop.WebApplication.DataLayer\bin\Release\System.Web.Razor.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\eShop.WebApplication.DataLayer\bin\Release\System.Web.WebPages.Razor.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\eShop.WebApplication.DataLayer\bin\Release\System.Web.WebPages.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\eShop.WebApplication.DataLayer\bin\Release\System.Web.WebPages.Deployment.xml
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\eShop.WebApplication.DataLayer\obj\Release\eShop.WebApplication.DataLayer.csprojResolveAssemblyReference.cache
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\eShop.WebApplication.DataLayer\obj\Release\eShop.WebApplication.DataLayer.dll
+C:\Users\AR\Desktop\Roshanzamir'sProject\eShop\eShop.WebApplication.DataLayer\obj\Release\eShop.WebApplication.DataLayer.pdb

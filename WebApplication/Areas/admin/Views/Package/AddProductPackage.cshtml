@@ -1,0 +1,179 @@
+﻿@{
+    ViewBag.Title = "addProductPackage";
+    Layout = "~/Areas/admin/Views/Shared/_Main.cshtml";
+
+
+    var HourEducation = int.Parse(Model.TimeEducationPackage.Split(':')[0]);
+    var MinuteEducation = int.Parse(Model.TimeEducationPackage.Split(':')[1]);
+
+    if (MinuteEducation > 60)
+    {
+        HourEducation += MinuteEducation / 60;
+        MinuteEducation = MinuteEducation % 60;
+    }
+
+
+}
+
+@using eShop.WebApplication.DomainClasses.ViewModelClasses
+@model PackageViewModel
+
+<input type="hidden" value="@Model.Id" name="Package_Id" id="Package_Id" />
+
+<div id="resultOperation">
+
+</div>
+<div class="row">
+    <div class="col-md-12">
+        @Html.Partial(partialViewName: MVC.admin.Package.Views._BaseInformationPackage, model: Model)
+    </div>
+</div>
+
+<br />
+<div class="row">
+    <div class="col-md-2">توضحیات مربوط به پکیج آموزشی</div>
+    <div class="col-md-10 borderRight textColor">
+        @Html.Raw(Model.ExplainPackage)
+    </div>
+    <div class="col-md-12 borderBottom">
+        <div class="spliterDivPackage">
+        </div>
+    </div>
+</div>
+
+
+<br />
+
+<div class="row">
+    <div class="col-md-12" style=" padding:8px 0;">
+        <h4 class="text-center">
+            اضافه کردن محصولات آموزشی دیگری به پکیج :
+            &nbsp;&nbsp;
+            <span>
+                @Model.NamePackage
+            </span>
+        </h4>
+    </div>
+</div>
+
+<div class="row" id="loadingElement">
+    <div class="col-md-12" id="ElementLoading">
+        <img src="@Url.Content("~/Content/Images/Main/loadingAnimation.gif")" class="center-block" />
+    </div>
+</div>
+
+<div class="row" id="contenttablePackage">
+    <div class="col-md-12">
+        <table class="table" id="tablePackage">
+            <thead>
+                <tr>
+                    <th>
+                        انتخاب
+                    </th>
+                    <th>
+                        نام محصول آموزشی
+                    </th>
+                    <th>
+                        قیمت محصول
+                    </th>
+                    <th>
+                        مدت زمان آموزش
+                    </th>
+
+                    <th>
+                        کمپانی سازنده محصول آموزشی
+                    </th>
+                    <th>
+                        اطلاعات بیشتر
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="result"></tbody>
+
+        </table>
+    </div>
+
+    <div class="col-md-12">
+        <div class="col-md-2">
+            <input type="button" id="btnAddProductToPackage" class="btn btn-primary" value="ثبت محصولات انتخاب شده برای پکیج" />
+        </div>
+        <div class="col-md-10" id="loadingElementSubmit">
+            <img src="@Url.Content("~/Content/Images/Main/loadingAnimation.gif")" class="center-block" />
+        </div>
+    </div>
+</div>
+
+<span id="sp"></span>
+
+
+@section Scripts
+{
+    <script type="text/javascript" lang="en">
+        $(document).ready(function () {
+            var id = $("#Package_Id").val();
+            $("#loadingElementSubmit").hide();
+            $("#contenttablePackage").hide();
+            $.ajax({
+                cache: false,
+                type: "GET",
+                url: "@Url.Action(MVC.admin.Package.ActionNames.LoadOtherProductToPackage,
+            MVC.admin.Package.Name)",
+                data: { "id": id },
+                success: function (data) {
+                    $("#loadingElement").hide();
+                    if (data.length > 4) {
+                        $("#result").fadeOut(600, function () {
+                            $("#contenttablePackage").fadeIn(1000);
+                            $(this).html(data).fadeIn(1000);
+                        });
+                    }
+                    else {
+                        $("#resultOperation").html(createAlert_return("info", "محصولات بیشتر دیگری در این  گروه آموزشی یافت نشد"));
+                        $("#contenttablePackage").hide();
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert('Failed to retrieve books.');
+                }
+            });
+            var arrayCheckBox = [];
+            $(document).on('change', '#result :checkbox', function () {
+                if ($(this).is(':checked')) {
+                    arrayCheckBox.push($(this).attr('value').split('/')[0]);
+                } else {
+                    var IdProduct = $(this).attr('value').split('/')[0];
+                    arrayCheckBox = jQuery.grep(function (value) {
+                        return value != IdProduct;
+                    });
+                }
+            });
+            $("#btnAddProductToPackage").click(function () {
+                if (arrayCheckBox.length > 0) {
+                    $("#loadingElementSubmit").show();
+                    $.ajax({
+                        cache: false,
+                        type: "POST",
+                        url: "@Url.Action(MVC.admin.Package.ActionNames.SubmitAddOtherProductToPackage,
+                    MVC.admin.Package.Name)",
+                        data: { "Package_Id": id, array: arrayCheckBox.toString() },
+                        success: function (data) {
+                            $("#loadingElementSubmit").hide();
+                            $("#resultOperation").fadeOut(200, function () {
+                                $(this).html(data).fadeIn(200);
+                            });
+                            $("#loadingElementSubmit").hide();
+                            //  location.reload();
+                            //  alert("Hello");
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) {
+                            alert('Failed to retrieve books.');
+                        }
+                    });
+                }
+                else
+                    alert("برای اضافه کردن محصول باید یک یا بیشتر از یک محصول را انتخاب نمایید");
+            });
+        });
+    </script>
+}
+

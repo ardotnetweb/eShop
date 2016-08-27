@@ -1,0 +1,49 @@
+﻿@using eShop.WebApplication.DomainClasses.ViewModelClasses
+
+@model List<ProductPackageViewModel>
+
+
+@for (int i = 0; i < Model.Count; i++)
+{
+    <div class="row containerProductPackage">
+        <div class="col-md-10 borderLeft">
+            <div class="col-md-12 marginBottom">
+                <div class="col-md-2 padingTop">نام محصول</div>
+                <div class="col-md-10 borderBottom padingBottom colortextOne">
+                    <a href="@Url.Action(actionName: MVC.admin.Product.ActionNames.DetailsProduct, controllerName: MVC.admin.Product.Name, routeValues: new { id = Model[i].Id })" class="decoration_a">
+                    <h4>
+                    @Model[i].Name
+                    </h4>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-12 marginBottom">
+                <div class=" col-md-2 padingbottom">تاریخ درج محصول</div>
+                <div class="col-md-4 borderBottom colortextOne backgroundColor  padingTop3 padingBottom3">
+                    <span>@Model[i].Date</span>
+                </div>
+                <div class="col-md-2 padingBottom">مدت زمان آموزش</div>
+                <div class="col-md-4 borderBottom colortextOne backgroundColor  padingTop3 padingBottom3">
+                    <span>@Model[i].Time</span>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="col-md-2 padingBottom">دسته گروه آموزشی</div>
+                <div class="col-md-4 colortextOne backgroundColor  padingTop3 padingBottom3">
+                    <span>@Model[i].Category_Name</span>
+                </div>
+                <div class="col-md-2 padingBottom">قیمت محصول</div>
+                <div class="col-md-4 padingBottom colortextOne backgroundColor  padingTop3 padingBottom3">
+                    <span>تومان</span>&nbsp;
+                    <span>@Model[i].PricePackage</span>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="col-md-2">
+                <img class="media-object img-circle img-online imageProductInPackage"
+                     src="~/Content/Images/Product/MainSize/@Model[i].PrimaryImage" alt="...">
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,14 @@
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication.API\bin\WebApplication.API.dll.config
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication.API\bin\WebApplication.API.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication.API\bin\WebApplication.API.pdb
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication.API\bin\Newtonsoft.Json.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication.API\bin\System.Net.Http.Formatting.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication.API\bin\System.Web.Http.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication.API\bin\System.Web.Http.WebHost.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication.API\bin\Newtonsoft.Json.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication.API\bin\System.Net.Http.Formatting.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication.API\bin\System.Web.Http.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication.API\bin\System.Web.Http.WebHost.xml
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication.API\obj\Release\WebApplication.API.csprojResolveAssemblyReference.cache
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication.API\obj\Release\WebApplication.API.dll
+I:\sample\sample\abofazl's  project\eramweb\eShop\WebApplication.API\obj\Release\WebApplication.API.pdb

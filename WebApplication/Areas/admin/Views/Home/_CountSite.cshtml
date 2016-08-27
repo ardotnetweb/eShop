@@ -1,0 +1,311 @@
+﻿@using eShop.WebApplication.DomainClasses.ViewModelClasses
+@model CountSite
+
+<div class="dynamicTile">
+        <div style="float:none; margin:0px auto 0px auto !important;">
+            <div class="col-sm-4 col-xs-8">
+                <div id="tile3" class="tile">
+                    <div class="carousel slide" data-ride="carousel">
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner">
+                            <div class="item active text-center img-responsive">
+                                <a href="@Url.Action(MVC.admin.Sale.ActionNames.Index,MVC.admin.Sale.Name)" class="decoration_a">
+                                    <div>
+                                        <span class="fa fa-th-list bigicon"></span>
+                                    </div>
+                                    <div class="icontext hidden-sm hidden-xs img-responsive">
+                                        مشاهده سفارشات در انتظار تائید
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="item text-center img-responsive">
+                                <a href="@Url.Action(MVC.admin.Sale.ActionNames.Index,MVC.admin.Sale.Name)" class="decoration_a">
+                                    <div>
+                                        <span class="fa fa-th-list bigicon"></span>
+                                    </div>
+                                    <div class="icontext hidden-sm hidden-xs img-responsive">
+                                        تعداد سفارشات در انتظار تائید
+                                        (@Model.ContSaleNotConfirmed.ToString())
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-2 col-xs-4">
+                <div id="tile8" class="tile">
+                    <div class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="item active text-center img-responsive">
+                                <a href="@Url.Action(MVC.admin.Comment.ActionNames.Index, MVC.admin.Comment.Name)" class="decoration_a">
+                                    <div>
+                                        <span class="fa fa-spinner bigicon"></span>
+                                    </div>
+                                    <div class="icontext hidden-sm hidden-xs img-responsive">
+                                        مشاهده کامنت ها
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="item text-center img-responsive">
+                                <a href="@Url.Action(MVC.admin.Comment.ActionNames.Index, MVC.admin.Comment.Name)" class="decoration_a">
+                                    <div>
+                                        <span class="fa fa-spinner bigicon"></span>
+                                    </div>
+                                    <div class="icontext hidden-sm hidden-xs img-responsive">
+                                        (@Model.CountCommentNotRead.ToString())تعداد کامنت
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-2 col-xs-4">
+                <div id="tile15" class="tile">
+                    <div class="carousel slide" data-ride="carousel">
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner">
+                            <div class="item active text-center img-responsive">
+                                <a href="@Url.Action(MVC.admin.Manage.ActionNames.Index,MVC.admin.Manage.Name)" class="decoration_a">
+                                    <div>
+                                        <span class="fa fa-users bigicon"></span>
+                                    </div>
+                                    <div class="icontext hidden-sm hidden-xs img-responsive">
+                                        مشاهده کاربران
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="item text-center img-responsive">
+                                <a href="@Url.Action(MVC.admin.Manage.ActionNames.Index,MVC.admin.Manage.Name)" class="decoration_a">
+                                    <div>
+                                        <span class="fa fa-users bigicon"></span>
+                                    </div>
+                                    <div class="icontext hidden-sm hidden-xs img-responsive">
+                                        مشاهده کاربران
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4 col-xs-8">
+                <div id="tile2" class="tile">
+                    <div class="carousel slide" data-ride="carousel">
+
+                        <div class="carousel-inner">
+                            <div class="item active text-center img-responsive">
+                                <a href="@Url.Action(MVC.admin.ContactUs.ActionNames.Index,MVC.admin.ContactUs.Name)" class="decoration_a">
+                                    <div>
+                                        <span class="fa fa-envelope-o bigicon"></span>
+                                    </div>
+                                    <div class="icontext hidden-sm hidden-xs img-responsive">
+                                        پیام های دریافتی تماس با ما
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="item text-center img-responsive">
+                                <a href="@Url.Action(MVC.admin.ContactUs.ActionNames.Index,MVC.admin.ContactUs.Name)" class="decoration_a">
+                                    <div>
+                                        <span class="fa fa-envelope-o bigicon"></span>
+                                    </div>
+                                    <div class="icontext hidden-sm hidden-xs img-responsive">
+                                        تعداد پیام های خوانده نشده
+                                        (@Model.CountMessageNotRead.ToString())
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+<div class="dynamicTile">
+        <div style="float:none; margin:0px auto 20px auto !important;">
+            <div class="col-sm-2 col-xs-4">
+                <div id="tile8" class="tile">
+                    <div class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="item active text-center img-responsive">
+                                <a href="@Url.Action(MVC.admin.Label.ActionNames.Index, MVC.admin.Label.Name)" class="decoration_a">
+                                    <div>
+                                        <span class="glyphicon glyphicon-tags bigicon"></span>
+                                    </div>
+                                    <div class="icontext hidden-sm hidden-xs img-responsive">
+                                        لیست برچسب
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="item text-center img-responsive">
+                                <a href="@Url.Action(MVC.admin.Label.ActionNames.CreateLabel, MVC.admin.Label.Name)" class="decoration_a">
+                                    <div>
+                                        <span class="glyphicon glyphicon-tags bigicon"></span>
+                                    </div>
+                                    <div class="icontext hidden-sm hidden-xs img-responsive">
+                                        ایجاد برچسب
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="item text-center img-responsive">
+                                <a href="@Url.Action(MVC.admin.Label.ActionNames.Index, MVC.admin.Label.Name)" class="decoration_a">
+                                    <div>
+                                        <span class="glyphicon glyphicon-tags bigicon"></span>
+                                    </div>
+                                    <div class="icontext hidden-sm hidden-xs img-responsive">
+                                        تعداد
+                                        (@Model.CountLabels.ToString())
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 col-xs-8">
+                <div id="tile3" class="tile">
+                    <div class="carousel slide" data-ride="carousel">
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner">
+                            <div class="item active text-center img-responsive">
+                                <a href="@Url.Action(MVC.admin.Product.ActionNames.OfferProduct,MVC.admin.Product.Name)" class="decoration_a">
+                                    <div>
+                                        <span class="fa fa-th-list bigicon"></span>
+                                    </div>
+                                    <div class="icontext hidden-sm hidden-xs img-responsive">
+                                        مشاهده لیست محصولات پیشنهادی
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="item text-center img-responsive">
+                                <a href="@Url.Action(MVC.admin.Product.ActionNames.OfferProduct, MVC.admin.Product.Name)" class="decoration_a">
+                                    <div>
+                                        <span class="fa fa-th-list bigicon"></span>
+                                    </div>
+                                    <div class="icontext hidden-sm hidden-xs img-responsive">
+                                        تعداد محصولات پیشنهادی
+                                        (@Model.CountOfferProduct.ToString())
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="item text-center img-responsive">
+                                <a href="@Url.Action(MVC.admin.Product.ActionNames.SaverOfferProduct, MVC.admin.Product.Name)" class="decoration_a">
+                                    <div>
+                                        <span class="fa fa-th-list bigicon"></span>
+                                    </div>
+                                    <div class="icontext hidden-sm hidden-xs img-responsive">
+                                        ایجاد لیست محصولات پیشنهادی
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="item text-center img-responsive">
+                                <a href="@Url.Action(MVC.admin.Product.ActionNames.DeleteOfferProduct, MVC.admin.Product.Name)" class="decoration_a">
+                                    <div>
+                                        <span class="fa fa-th-list bigicon"></span>
+                                    </div>
+                                    <div class="icontext hidden-sm hidden-xs img-responsive">
+                                        حذف محصولات از لیست پیشنهاد
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 col-xs-8">
+                <div id="tile2" class="tile">
+                    <div class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="item active text-center img-responsive">
+                                <a href="@Url.Action(MVC.admin.Setting.ActionNames.GetReadSMS,MVC.admin.Setting.Name)" class="decoration_a">
+                                    <div>
+                                        <span class="glyphicon glyphicon-envelope bigicon"></span>
+                                    </div>
+                                    <div class="icontext hidden-sm hidden-xs img-responsive">
+                                        پیام کوتاه های دزیافتی خوانده شده
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="item text-center img-responsive">
+                                <a href="@Url.Action(MVC.admin.Setting.ActionNames.GetUnReadSMS,MVC.admin.Setting.Name)" class="decoration_a">
+                                    <div>
+                                        <span class="glyphicon glyphicon-envelope bigicon"></span>
+                                    </div>
+                                    <div class="icontext hidden-sm hidden-xs img-responsive">
+                                        پیام کوتاه های دریافتی خوانده نشده
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="item text-center img-responsive">
+                                <a href="@Url.Action(MVC.admin.Setting.ActionNames.ServiceSMS,MVC.admin.Setting.Name)" class="decoration_a">
+                                    <div>
+                                        <span class="glyphicon glyphicon-envelope bigicon"></span>
+                                    </div>
+                                    <div class="icontext hidden-sm hidden-xs img-responsive">
+                                        ارسال پیام کوتاه با سامانه
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2 col-xs-4">
+                <div id="tile15" class="tile">
+                    <div class="carousel slide" data-ride="carousel">
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner">
+                            <div class="item active text-center img-responsive">
+                                <a href="@Url.Action(MVC.admin.Package.ActionNames.Index,MVC.admin.Package.Name)" class="decoration_a">
+                                    <div>
+                                        <span class="glyphicon glyphicon-list bigicon"></span>
+                                    </div>
+                                    <div class="icontext hidden-sm hidden-xs img-responsive">
+                                        لیست پکیج ها
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="item text-center img-responsive">
+                                <a href="@Url.Action(MVC.admin.Package.ActionNames.Index,MVC.admin.Package.Name)" class="decoration_a">
+                                    <div>
+                                        <span class="glyphicon glyphicon-eye-open bigicon"></span>
+                                    </div>
+                                    <div class="icontext hidden-sm hidden-xs img-responsive">
+                                        غیر فعال
+                                        (@Model.CountActivePackage.ToString())
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="item text-center img-responsive">
+                                <a href="@Url.Action(MVC.admin.Package.ActionNames.Index,MVC.admin.Package.Name)" class="decoration_a">
+                                    <div>
+                                        <span class="glyphicon glyphicon-eye-close bigicon"></span>
+                                    </div>
+                                    <div class="icontext hidden-sm hidden-xs img-responsive">
+                                        تعدا فعال
+                                        (@Model.CountDisablePackage.ToString())
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="item text-center img-responsive">
+                                <a href="@Url.Action(MVC.admin.Package.ActionNames.CreatePackage,MVC.admin.Package.Name)" class="decoration_a">
+                                    <div>
+                                        <span class="glyphicon glyphicon-new-window bigicon"></span>
+                                    </div>
+                                    <div class="icontext hidden-sm hidden-xs img-responsive">
+                                        ایجاد پکیج آموزشی
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+

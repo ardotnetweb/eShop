@@ -1,0 +1,21 @@
+﻿@using eShop.WebApplication.DomainClasses.ViewModelClasses
+@model SaleCountViewModel
+
+<div class="row distanceTextBoxSearchWithDataTable">
+    <div class="col-sm-7 padingTextBoxSearchWithDataTable">
+        <label>
+            @string.Format("سفارش های تائید شده {0} - سفارشات تائید نشده {1} - کل سفارشات {2}",Model.Confirmed, Model.NotConfirmed, Model.Count)
+        </label>
+    </div>
+    <div class="col-sm-1 padingTextBoxSearchWithDataTable">
+        <label class="pull-left">
+            جستجو
+        </label>
+    </div>
+    <div class="col-sm-4">
+        @using (Ajax.BeginForm(actionName: MVC.admin.Sale.ActionNames.DataSale, controllerName: MVC.admin.Sale.Name, ajaxOptions: new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.Replace, LoadingElementId = "divLoadingTable", UpdateTargetId = "table-Content" }))
+        {
+            <input type="search" id="term" name="term" class="pull-right styleTextBoxSearch" />
+        }
+    </div>
+</div>

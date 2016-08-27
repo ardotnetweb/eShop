@@ -1,0 +1,56 @@
+﻿@using eShop.WebApplication.DomainClasses.ViewModelClasses
+@model IEnumerable<LuceneProductModel>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainSidebar.cshtml";
+    string term = ViewBag.Term;
+}
+
+
+
+<div class="row BaseInformationResultSearch img-rounded">
+    <br />
+    <div class="col-md-12">
+        <div class="col-md-3" style="border-bottom:2px solid #eee; font:normal 17px eramFont; padding-bottom:10px; margin-bottom:15px;">
+            نتایج یافت شده برای
+        </div>
+        @if (term.Length > 0)
+        {
+            <div class="col-md-9" style="border-bottom:2px solid #eee; font:normal 17px eramFont; color:green; padding-bottom:10px; margin-bottom:15px;">
+                @ViewBag.Term
+            </div>
+        }
+    </div>
+    <div class="clearfix"></div>
+    <br />
+
+    @if (Model.Count() > 0)
+    {
+        foreach (var item in Model)
+        {
+            <div class="col-md-12">
+                <div class="col-md-12 marginBottom">
+                    <a class="decoration_a" style="font:normal 15px eramFont;" href="@Url.RouteUrl("DetailsProduct", new { productId = item.Product_Id, productName = UrlExtensions.ResolveTitleForUrl(item.Product_Name) })">
+                        @Html.Raw(item.Product_Name)
+                    </a>
+                </div>
+                <div class="col-md-12 borderBottom padingBottom marginBottom">
+                    @Html.Raw(item.Product_Explain)
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="col-md-12">
+            <div class="alert alert-white">
+                <p>
+                    هیچ نتیجه ای یافت نشد
+                </p>
+            </div>
+        </div>
+    }
+
+</div>

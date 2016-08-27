@@ -1,0 +1,191 @@
+﻿@using eShop.WebApplication.DomainClasses.ViewModelClasses
+@model UpdateProfileUserViewModel
+
+    <div id="resultUpdate">
+
+    </div>
+    <div class="panel panel-default">
+        <div class="divLoading" id="divLoadingUpdateProfile">
+            <img src="@Url.Content("~/Content/Images/Main/Loadnig.GIF")" />
+        </div>
+        <div class="panel-heading">
+            <h4 class="fontSizeLarge">
+                ویرایش اطلاعات کاربری :
+            </h4>
+            <p class="fontSizeLargeTitle">
+                در این بخش شما می توانید اقدام به ویرایش اطلاعات کاربر کنید در ضمن فقط در مورد سطح دسترسی دقت لازمه صورت گیرد
+            </p>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="breadcrumb" id="navBarMenu">
+                    <li>
+                        <a href="@Url.Action(MVC.admin.Manage.ActionNames.Register,MVC.admin.Manage.Name)">ایجاد کاربر جدید در سیستم</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action(MVC.admin.Manage.ActionNames.Index,MVC.admin.Manage.Name)">مشاهده لیست کاربران سیستم</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        @using (Ajax.BeginForm(actionName: MVC.admin.Manage.ActionNames.UpdateProfile,controllerName: MVC.admin.Manage.Name,routeValues: null,ajaxOptions: new AjaxOptions {HttpMethod="POST",InsertionMode=InsertionMode.Replace,LoadingElementId = "divLoadingUpdateProfile",UpdateTargetId = "resultUpdate"}))
+        {
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <h3 class="borderBottom padingBottom marginBottom">
+                        ویرایش اطلاعات کاربری :
+                        <label>
+                            @string.Concat(Model.Name, " ", Model.Family)
+                        </label>
+                    </h3>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">نام</label>
+                    <div class="col-sm-4">
+                        @Html.TextBoxFor(x => x.Name, new { @class = "form-control col-md-4 controlFocus" })
+                        @Html.ValidationMessageFor(x => x.Name, "",new { @class = "text-danger" })
+                    </div>
+                    <label class="col-sm-2 control-label">نام خانوادگی</label>
+                    <div class="col-sm-4">
+
+                        @Html.TextBoxFor(x => x.Family, new { @class = "form-control col-md-4 controlFocus" })
+                        @Html.ValidationMessageFor(x => x.Family, "",new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">کدپستی</label>
+                    <div class="col-sm-4">
+                        @Html.TextBoxFor(x => x.PostalCode, new { @class = "form-control col-md-4 controlFocus" })
+                        @Html.ValidationMessageFor(x => x.PostalCode, "",new { @class = "text-danger" })
+                    </div>
+                    <label class="col-sm-2 control-label">شماره موبایل</label>
+                    <div class="col-sm-4">
+
+                        @Html.TextBoxFor(x => x.Phone, new { @class = "form-control col-md-4 controlFocus" })
+                        @Html.ValidationMessageFor(x => x.Phone, "",new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="marginBottom clearfix">
+                    <div class="col-md-2">استان</div>
+                    <div class="col-md-4  padingBottom">
+                        @Html.DropDownListFor(x => x.Province_Id,ViewBag.Provinces as SelectList,"یکی از گروه های آموزشی  را انتخاب نمایید",new { @class = "form-control controlFocus dropdownProvince chosen-rtl" })
+                        @Html.ValidationMessageFor(x => x.Province_Id, "",new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-2">شهرستان</div>
+                    <div class="col-md-4  padingBottom">
+                        @Html.DropDownListFor(x => x.City_Id,ViewBag.Cities as SelectList,"یکی از گروه های آموزشی  را انتخاب نمایید",new { @class = "form-control controlFocus dropdownCity chosen-rtl" })
+
+                        @Html.ValidationMessageFor(x => x.City_Id, "",new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+
+                <div class="marginBottom clearfix">
+                    <div class="col-md-2">آدرس</div>
+                    <div class="col-md-10  padingBottom">
+                        @Html.TextAreaFor(x => x.Address, new { @class = "form-control controlFocus" })
+                    </div>
+                </div>
+
+                <div class="marginBottom clearfix">
+                    <div class="col-md-2">سطوح دسترسی</div>
+                    <div class="col-md-10 borderBottom padingBottom">
+                        @foreach (var item in Model.RolesList)
+                        {
+                            <input type="checkbox" name="SelectedRole" value="@item.Value" checked="@item.Selected" />
+                            <span>&nbsp;</span>
+                            switch (item.Value)
+                            {
+                                case "private":
+                                    @Html.Label("مدیر ارشد سیستم", new { @class = "control-label" })
+                                    break;
+                                case "protect":
+                                @Html.Label("مدیر سیستم", new { @class = "control-label" })
+                                    break;
+                                case "public":
+                                @Html.Label("کاربر معمولی سیستم", new { @class = "control-label" })
+                                    break;
+                            }
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        }
+                    </div>
+                </div>
+
+
+                <div class="marginBottom clearfix">
+                    <div class="col-md-2">دریافت پیامک</div>
+                    <div class="col-md-10 borderBottom padingBottom">
+                        @Html.CheckBoxFor(x => x.ReciveMessage, new { })
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <input type="submit" value="ذخیره اطلاعات بروز رسانی شده" class="btn btn-primary" onclick="$.validator.unobtrusive.parse($('form'));  " />
+            </div>
+        }
+    </div>
+
+<script type="text/javascript" lang="en">
+
+
+    jQuery(document).ready(function () {
+        $.getJSON("@Url.Action(actionName:MVC.admin.City.ActionNames.GetCityByIdProvince,
+            controllerName:MVC.admin.City.Name)", { Id: @Model.Province_Id },
+        function (data) {
+            $(".dropdownCity").empty();
+            $(".dropdownCity").trigger("chosen:updated");
+            var option = $('<option></option>').attr("value", data[0].Id).text("لطفا یکی از شهر ها را انتخاب نمایید");
+            $(".dropdownCity").append(option);
+
+            $.each(data, function (index) {
+                var option = $('<option></option>').attr("value", data[index].Id).text(data[index].Name);
+                $(".dropdownCity").append(option);
+                $(".dropdownCity").trigger("chosen:updated");
+            });
+            $(".dropdownCity").val(@Model.City_Id);
+            $(".dropdownCity").trigger("chosen:updated");
+
+        });
+    });
+
+
+    $(".dropdownProvince").chosen({
+        width: "100%",
+        dataplaceholder: "لطفا تعدادی برچسب انتخاب نمایید"
+    }).css({ height: "60px" });
+
+
+    $(".dropdownCity").chosen({
+        width: "100%",
+        dataplaceholder: "لطفا تعدادی برچسب انتخاب نمایید"
+    }).css({ height: "60px" });
+
+
+    $(".dropdownProvince").chosen().change(function (event) {
+        $.getJSON("@Url.Action(actionName:MVC.admin.City.ActionNames.GetCityByIdProvince,
+                                   controllerName:MVC.admin.City.Name)", { Id: $(event.target).val() },
+                               function (data) {
+                                   $(".dropdownCity").empty();
+                                   $(".dropdownCity").trigger("chosen:updated");
+
+
+                                   var option = $('<option></option>').attr("value", data[0].Id).text("لطفا یکی از شهر ها را انتخاب نمایید");
+                                   $(".dropdownCity").append(option);
+
+                                   $.each(data, function (index) {
+                                       var option = $('<option></option>').attr("value", data[index].Id).text(data[index].Name);
+                                       $(".dropdownCity").append(option);
+                                       $(".dropdownCity").trigger("chosen:updated");
+                                   });
+                               });
+    });
+
+
+
+</script>
+

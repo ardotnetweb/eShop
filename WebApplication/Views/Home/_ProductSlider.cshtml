@@ -1,0 +1,90 @@
+﻿@model List<ProductShowViewModel>
+@using eShop.WebApplication.DomainClasses.ViewModelClasses
+
+
+<div class="row img-rounded BaseSliderMasterPage">
+    <div class="col-lg-12">
+        <header>
+            <h5>
+                <a>
+                    پر بازدیدتریم محصولات آموزشی
+                </a>
+            </h5>
+        </header>
+        <div class="bs-example">
+            <div id="SalesProduct" class="carousel slide" data-interval="3000" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    @for (int i = 0; i < Model.Count; i += 4)
+                    {
+                        if (i < 4)
+                        {
+                            <div class="active item ItemSliderState">
+                                <div class="row">
+                                    @for (int j = i; j < i + 4; j++)
+                                    {
+                                        if (j < Model.Count())
+                                        {
+                                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                                <a href="@Url.RouteUrl("DetailsProduct", new { productId = Model[j].Id, productName = UrlExtensions.ResolveTitleForUrl(Model[j].Name) })">
+                                                    <img src="~/Content/Images/Product/MainSize/@Model[j].PrimaryImage" width="171" height="108" />
+                                                </a>
+                                                <div class="ItemExplainSlider">
+                                                    <a class="decoration_a" href="@Url.RouteUrl("DetailsProduct", new { productId = Model[j].Id, productName = UrlExtensions.ResolveTitleForUrl(Model[j].Name) })">
+                                                        @Model[j].Name
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            break;
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="item ItemSliderState">
+                                <div class="row">
+                                    @for (int j = i; j < i + 4; j++)
+                                    {
+                                        if (j < Model.Count())
+                                        {
+                                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                                <a href="@Url.RouteUrl("DetailsProduct", new { productId = Model[j].Id, productName = UrlExtensions.ResolveTitleForUrl(Model[j].Name) })">
+                                                    <img src="~/Content/Images/Product/MainSize/@Model[j].PrimaryImage" width="171" height="108" />
+                                                </a>
+                                                <div class="ItemExplainSlider">
+                                                    <a class="decoration_a" href="@Url.RouteUrl("DetailsProduct", new { productId = Model[j].Id, productName = UrlExtensions.ResolveTitleForUrl(Model[j].Name) })">
+                                                        @Model[j].Name
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            break;
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+                    <a class="carousel-control left" href="#SalesProduct" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                    <a class="carousel-control right" href="#SalesProduct" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
